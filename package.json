@@ -1,0 +1,37 @@
+{
+  "name": "website",
+  "version": "0.0.1",
+  "description": "My personal website",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby clean && gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  },
+  "dependencies": {
+    "babel-plugin-styled-components": "^1.10.0",
+    "gatsby": "^2.8.4",
+    "gatsby-plugin-google-analytics": "^2.0.20",
+    "gatsby-plugin-styled-components": "^3.0.7",
+    "gatsby-source-filesystem": "^2.0.38",
+    "gatsby-transformer-remark": "^2.3.12",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spring3/website.git"
+  },
+  "author": "Daniyil Vasylenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Spring3/website/issues"
+  },
+  "homepage": "https://github.com/Spring3/website#readme"
+}
