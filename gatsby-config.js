@@ -9,6 +9,7 @@ module.exports = {
     title: 'Daniyil Vasylenko'
   },
   plugins: [
+    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -17,16 +18,28 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'content',
+        path: `${__dirname}/src/content/`
+      }
     },
     {
-      resolve: 'gatsby-plugin-styled-components'
+      resolve: 'gatsby-transformer-remark'
+    },
+    {
+      resolve: 'gatsby-plugin-nprogress',
+      options: {
+        showSpinner: false
+      }
     },
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-141684888-1',
       }
-    }
+    },
+    'gatsby-plugin-catch-links',
+    'gatsby-plugin-styled-components'
   ]
 }
