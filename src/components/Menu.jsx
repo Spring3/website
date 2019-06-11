@@ -13,8 +13,11 @@ const Aside = styled.aside`
   }
 `;
 
-export default ({ children }) => (
+export default ({ items }) => (
   <Aside>
-    {children}
+    <ul>
+      <li>About</li>
+      <li>Projects</li>
+    </ul>
   </Aside>
 );

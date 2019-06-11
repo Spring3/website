@@ -1,7 +1,7 @@
 ---
 title: Starbot
 previous: /
-thumbnail: ./starbot1.gif
+thumbnail: ./starbot1.png
 description: Link aggregator for slack with a centralized access to them throu the dashboard or slack messages
 tags: 
   - slack

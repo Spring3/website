@@ -25,7 +25,19 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-transformer-remark'
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1000,
+              linkImagesToOriginal: false
+            }
+          },
+          'gatsby-remark-copy-linked-files'
+        ],
+      }
     },
     {
       resolve: 'gatsby-plugin-nprogress',
@@ -39,6 +51,8 @@ module.exports = {
         trackingId: 'UA-141684888-1',
       }
     },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-styled-components'
   ]
