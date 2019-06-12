@@ -22,8 +22,6 @@ export default (props) => {
             key={i}
             alt={image.name}
             src={image.childImageSharp.sizes.src}
-            width={image.childImageSharp.sizes.presentationWidth}
-            height={image.childImageSharp.sizes.presentationHeight}
           />
         )) 
       }

@@ -7,20 +7,27 @@ import EmailOutlineIcon from 'mdi-react/EmailOutlineIcon';
 
 const SocialButtons = styled.ul`
   list-style-type: none;
+  padding: 0px;
+  vertical-align: middle;
   li {
     display: inline;
+    margin-right: 1rem;
+
+    a {
+      background: transparent !important;
+    }
   }
 `;
 
-export default () => (
-  <SocialButtons>
+export default ({ className }) => (
+  <SocialButtons className={className}>
     <li>
       <a
         href="https://github.com/Spring3"
         target="_blank"
         rel="noreferrer noopener"
       >
-        <GithubCircleIcon />
+        <GithubCircleIcon color="#333" size={32}/>
       </a>
     </li>
     <li>
@@ -29,7 +36,7 @@ export default () => (
         target="_blank"
         rel="noreferrer noopener"
       >
-        <LinkedinBoxIcon />
+        <LinkedinBoxIcon color="#0077b5" size={32} />
       </a>
     </li>
     <li>
@@ -38,7 +45,7 @@ export default () => (
         target="_blank"
         rel="noreferrer noopener"
       >
-      <TwitterIcon />
+      <TwitterIcon color="#1da1f2" size={32} />
       </a>
     </li>
     <li>
@@ -47,7 +54,7 @@ export default () => (
         target="_blank"
         rel="noreferrer noopener"
       >
-        <EmailOutlineIcon />
+        <EmailOutlineIcon color="#ea4335" size={32} />
       </a>
     </li>
   </SocialButtons>
