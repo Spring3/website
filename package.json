@@ -11,6 +11,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {
+    "animate.css": "^3.7.2",
     "babel-plugin-styled-components": "^1.10.0",
     "gatsby": "^2.8.4",
     "gatsby-plugin-catch-links": "^2.0.15",
@@ -27,6 +28,7 @@
     "mdi-react": "^5.4.0",
     "normalize.css": "^8.0.1",
     "react": "^16.8.6",
+    "react-animated-css": "^1.2.1",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "styled-components": "^4.3.1"

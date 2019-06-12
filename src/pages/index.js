@@ -1,10 +1,17 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { graphql, Link } from 'gatsby';
-import 'normalize.css';
+import styled from 'styled-components';
 
 import GlobalStyle from '../components/GlobalStyle';
 import AboutSection from '../components/AboutSection';
 import PageWrapper from '../components/PageWrapper';
+
+const IntroSection = styled.section`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 export default ({ data }) => {
   const { nodes } = data.allMarkdownRemark;
@@ -12,9 +19,11 @@ export default ({ data }) => {
   return (
     <PageWrapper>
       <GlobalStyle />
-      <AboutSection>
-        <div dangerouslySetInnerHTML={{ __html: aboutNode.html }} />
-      </AboutSection>
+      <IntroSection>
+        <AboutSection>
+          <div dangerouslySetInnerHTML={{ __html: aboutNode.html }} />
+        </AboutSection>
+      </IntroSection>
       <div>
         <h1>Projects</h1>
         {nodes.map((node, i) => (

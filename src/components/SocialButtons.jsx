@@ -15,12 +15,18 @@ const SocialButtons = styled.ul`
 
     a {
       background: transparent !important;
+
+      &:hover {
+        svg {
+          animation: pulse ease 1s infinite;
+        }
+      }
     }
   }
 `;
 
-export default ({ className }) => (
-  <SocialButtons className={className}>
+export default ({ className, style }) => (
+  <SocialButtons className={className} style={style}>
     <li>
       <a
         href="https://github.com/Spring3"
@@ -58,4 +64,4 @@ export default ({ className }) => (
       </a>
     </li>
   </SocialButtons>
-)
+);

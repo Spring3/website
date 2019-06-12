@@ -1,4 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
+import 'normalize.css';
+import 'animate.css';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -24,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
       font-weight: 500;
       padding: 2px;
       background: linear-gradient(to bottom, transparent 0%, transparent 60%, var(--marker-link) 60%, var(--marker-link) 100%);
+      transition: background ease .2s;
 
       &:hover,
       &:focus {
