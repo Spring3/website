@@ -3,6 +3,7 @@ title: Redshape
 previous: /
 thumbnail: ./redshape1.png
 description: A time tracker for Redmine with client app features.
+marker: primary
 tags: 
   - redmine
   - electron

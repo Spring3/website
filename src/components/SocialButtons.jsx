@@ -6,15 +6,29 @@ import TwitterIcon from 'mdi-react/TwitterIcon';
 import EmailOutlineIcon from 'mdi-react/EmailOutlineIcon';
 
 const SocialButtons = styled.ul`
+  margin-top: 1rem;
   list-style-type: none;
   padding: 0px;
   vertical-align: middle;
   li {
-    display: inline;
+    display: inline-block;
     margin-right: 1rem;
 
     a {
       background: transparent !important;
+      padding: 0px;
+      display: inline-block;
+
+      svg {
+        width: 2rem;
+        height: 2rem;
+
+        @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px),
+        (max-width: 750px) {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
 
       &:hover {
         svg {
@@ -23,6 +37,10 @@ const SocialButtons = styled.ul`
       }
     }
   }
+
+  
+  
+  
 `;
 
 export default ({ className, style }) => (
@@ -33,7 +51,7 @@ export default ({ className, style }) => (
         target="_blank"
         rel="noreferrer noopener"
       >
-        <GithubCircleIcon color="#333" size={32}/>
+        <GithubCircleIcon color="#333" />
       </a>
     </li>
     <li>
@@ -42,7 +60,7 @@ export default ({ className, style }) => (
         target="_blank"
         rel="noreferrer noopener"
       >
-        <LinkedinBoxIcon color="#0077b5" size={32} />
+        <LinkedinBoxIcon color="#0077b5" />
       </a>
     </li>
     <li>
@@ -51,7 +69,7 @@ export default ({ className, style }) => (
         target="_blank"
         rel="noreferrer noopener"
       >
-      <TwitterIcon color="#1da1f2" size={32} />
+      <TwitterIcon color="#1da1f2" />
       </a>
     </li>
     <li>
@@ -60,7 +78,7 @@ export default ({ className, style }) => (
         target="_blank"
         rel="noreferrer noopener"
       >
-        <EmailOutlineIcon color="#ea4335" size={32} />
+        <EmailOutlineIcon color="#ea4335" />
       </a>
     </li>
   </SocialButtons>

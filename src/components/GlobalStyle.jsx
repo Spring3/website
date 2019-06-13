@@ -4,18 +4,26 @@ import 'animate.css';
 
 const GlobalStyle = createGlobalStyle`
   :root {
-    @import url('https://fonts.googleapis.com/css?family=Assistant:400,600,700&display=swap');
 
     --text-color-primary: black;
     --text-color-secondary: #767B91;
     --background-color: white;
+    --background-color-dark: #f5f5f5;
     --marker-primary: #A9E5BB;
     --marker-secondary: #FCF6B1;
     --marker-link: #BCE5FF;
+    --border-radius: 3px;
 
     body {
       background-color: white;
-      font-size: 16px;
+      @media (min-width: 750px) {
+        font-size: 16px;
+      }
+
+      @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px),
+      (max-width: 750px) {
+        font-size: 14px;
+      }
       font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', Helvetica, Arial, sans-serif;
       line-height: 1.4;
       color: var(--text-color-primary);
