@@ -5,17 +5,15 @@ thumbnail: ./starbot1.png
 description: Link aggregator for slack with a centralized access to them through slack messages or the dashboard
 marker: link
 tags: 
-  - slack
-  - bot
-  - react
-  - ssr
-  - node.js
-  - docker
+  - Bot
+  - React
+  - SSR
+  - Node.js
+  - Docker
   - styled-components
   - WIP
 images:
   - ./starbot1.png
-  - ./starbot1.gif
 ---
 
 A link aggregator for Slack workspace. Ever had a feeling like someone posted a really interesting link but you didn't have time to read it at that same moment? This project provides you a slack bot and a dashboard at the same place. 

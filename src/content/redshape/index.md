@@ -5,11 +5,10 @@ thumbnail: ./redshape1.png
 description: A time tracker for Redmine with client app features.
 marker: primary
 tags: 
-  - redmine
-  - electron
-  - react
-  - redux
-  - node.js
+  - Electron
+  - React
+  - Redux
+  - Node.js
   - styled-components
 images:
   - ./redshape1.png

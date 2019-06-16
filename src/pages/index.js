@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
-import GlobalStyle from '../components/GlobalStyle';
 import AboutSection from '../components/AboutSection';
 import PageWrapper from '../components/PageWrapper';
 import ProjectsSection from '../components/ProjectsSection';
@@ -19,7 +18,6 @@ export default ({ data }) => {
   const aboutNode = nodes.shift();
   return (
     <PageWrapper>
-      <GlobalStyle />
       <IntroSection>
         <AboutSection>
           <div dangerouslySetInnerHTML={{ __html: aboutNode.html }} />

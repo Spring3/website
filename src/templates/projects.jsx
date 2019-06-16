@@ -1,6 +1,8 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 
+import Tags, { Tag } from '../components/Tags';
+
 export default (props) => {
   const post = props.data.markdownRemark;
   return (
@@ -11,17 +13,19 @@ export default (props) => {
       <h1>{post.frontmatter.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
       <h2>Technologies</h2>
-      <ul>
+      <Tags>
         {
-          post.frontmatter.tags.map((tag, i) => (<li key={i}>{tag}</li>))
+          post.frontmatter.tags.map((tag, i) => (<Tag key={i}>{tag}</Tag>))
         }
-      </ul>
+      </Tags>
       {
         post.frontmatter.images.map((image, i) => (
           <img
             key={i}
             alt={image.name}
-            src={image.childImageSharp.sizes.src}
+            src={image.childImageSharp.fluid.src}
+            srcSet={image.childImageSharp.fluid.srcSet}
+            sizes={image.childImageSharp.fluid.sizes}
           />
         )) 
       }
@@ -40,20 +44,20 @@ export const query = graphql`
         images {
           name
           childImageSharp {
-            sizes(maxWidth: 600) {
+            fluid(maxWidth: 900) {
               src
-              presentationWidth
-              presentationHeight
+              sizes
+              srcSet
             }
           }
         }
         thumbnail {
           name
           childImageSharp {
-            sizes(maxWidth: 600) {
+            fluid(maxWidth: 900) {
               src
-              presentationWidth
-              presentationHeight
+              sizes
+              srcSet
             }
           }
         }

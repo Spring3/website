@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Tags = styled.ul`
   list-style-type: none;
-  margin: 0px;
+  margin: 1rem 0px 0px 0px;
   padding: 0px;
 `;
 
