@@ -1,35 +1,50 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
+import styled from 'styled-components';
 
-import Tags, { Tag } from '../components/Tags';
+import BackButton from '../components/BackButton';
+import PageWrapper from '../components/PageWrapper';
+import PageContent from '../components/PageContent';
+import PageHeader from '../components/PageHeader';
+import GithubLink from '../components/GithubLink';
+
+const SourceCodeLink = styled.p`
+  margin: 0;
+
+  a {
+    margin-left: .5rem;
+    svg {
+      vertical-align: bottom;
+    }
+  }
+`;
 
 export default (props) => {
   const post = props.data.markdownRemark;
   return (
-    <div>
-      <button>
-        <Link to={post.previous}>Back</Link>
-      </button>
-      <h1>{post.frontmatter.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
-      <h2>Technologies</h2>
-      <Tags>
-        {
-          post.frontmatter.tags.map((tag, i) => (<Tag key={i}>{tag}</Tag>))
-        }
-      </Tags>
-      {
-        post.frontmatter.images.map((image, i) => (
-          <img
-            key={i}
-            alt={image.name}
-            src={image.childImageSharp.fluid.src}
-            srcSet={image.childImageSharp.fluid.srcSet}
-            sizes={image.childImageSharp.fluid.sizes}
-          />
-        )) 
-      }
-    </div>
+    <PageWrapper>
+      <BackButton href={post.frontmatter.previous} />
+      <div>
+        <PageHeader>{post.frontmatter.title}</PageHeader>
+        <PageContent>
+          <SourceCodeLink>
+            <strong>Source Code:</strong><GithubLink href={post.frontmatter.repository} />
+          </SourceCodeLink>
+          <div dangerouslySetInnerHTML={{ __html: post.html }} />
+          {
+            post.frontmatter.images.map((image, i) => (
+              <img
+                key={i}
+                alt={image.name}
+                src={image.childImageSharp.fluid.src}
+                srcSet={image.childImageSharp.fluid.srcSet}
+                sizes={image.childImageSharp.fluid.sizes}
+              />
+            )) 
+          }
+        </PageContent>
+      </div>
+    </PageWrapper>
   );
 };
 
@@ -40,6 +55,7 @@ export const query = graphql`
       frontmatter {
         title
         previous
+        repository
         tags
         images {
           name

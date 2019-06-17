@@ -35,7 +35,7 @@ Full stack development and support of the omnichannel communication platform, co
 
 <br />
 
-### Node.js Developer - FASTEE, Aug - Dec 2016
+### Node.js Developer - FASTEE Technologies, Aug - Dec 2016
 
 Implemented bots for the generic chat bot platform.
 
