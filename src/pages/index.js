@@ -18,7 +18,7 @@ const PageWrapper = styled.main`
 
 export default ({ data }) => {
   const { nodes } = data.allMarkdownRemark;
-  const aboutNode = nodes.shift();
+  const aboutNode = nodes[0];
   return (
     <PageWrapper>
       <IntroSection>
@@ -26,7 +26,7 @@ export default ({ data }) => {
           <div dangerouslySetInnerHTML={{ __html: aboutNode.html }} />
         </AboutSection>
       </IntroSection>
-      <ProjectsSection nodes={nodes} />
+      <ProjectsSection nodes={nodes.slice(1)} />
     </PageWrapper>
   )
 };
