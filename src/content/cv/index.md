@@ -10,8 +10,8 @@ Curious, creative, ambitious software engineer. I always try to come up with som
 
 ## Skills
 
-- **Back-end**: Javascript, Node.js, Express, RabbitMQ
-- **Front-end**: HTML, CSS, React, Redux
+- **Back-end**: Node.js, Express, RabbitMQ
+- **Front-end**: Javascript, HTML, CSS, React, Redux
 - **Databases**: Mongodb, Redis, MySQL
 - **Build tools**: Webpack
 - **Testing**: Jest, Chai, Sinon, Nyc, Karma.js, Enzyme
@@ -25,7 +25,7 @@ Curious, creative, ambitious software engineer. I always try to come up with som
 
 ### Full Stack Developer - Dial-Once, Dec 2016 - now
 
-Full stack development and support of the omnichannel communication platform, consisting of multiple front-end products with a micro-service architecture behind of it. Dial-Once is a leader on the market of Visual IVR services with clients from all the continents of the world.
+Full stack development and support of the omnichannel communication platform, consisting of multiple front-end products with a micro-service architecture behind it. Dial-Once is a leader on the market of Visual IVR services with clients from all the continents of the world.
 
 - Designed and developed the company's most on-demand product
 - Implemented the tools, that allowed designers concentrate on styling without interacting with the code base.
@@ -39,7 +39,7 @@ Full stack development and support of the omnichannel communication platform, co
 
 Implemented bots for the generic chat bot platform.
 
-- Supported different chat bot APIs - Slack, Asana, Skype, Messenger
+- Created chat bots on multiple chat bot APIs - Slack, Asana, Skype, Messenger
 - Created a routing system of message exchange between different communication platforms
 
 

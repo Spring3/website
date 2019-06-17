@@ -22,4 +22,4 @@ export default ({ href }) => (
   <BackButton href={href}>
     <ArrowLeftIcon /> Go Back
   </BackButton>
-)
+);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
+import { Carousel } from 'react-responsive-carousel';
 
 import BackButton from '../components/BackButton';
 import PageWrapper from '../components/PageWrapper';
@@ -31,17 +32,28 @@ export default (props) => {
             <strong>Source Code:</strong><GithubLink href={post.frontmatter.repository} />
           </SourceCodeLink>
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
-          {
-            post.frontmatter.images.map((image, i) => (
-              <img
-                key={i}
-                alt={image.name}
-                src={image.childImageSharp.fluid.src}
-                srcSet={image.childImageSharp.fluid.srcSet}
-                sizes={image.childImageSharp.fluid.sizes}
-              />
-            )) 
-          }
+          <h2>Screenshots</h2>
+          <Carousel
+            showStatus={false}
+            showIndicators={false}
+            infiniteLoop={true}
+            autoPlay={true}
+            dynamicHeight={true}
+          >
+            {
+              post.frontmatter.images.map((image, i) => (
+                <div key={i}>
+                  <img
+                    key={i}
+                    alt={image.name}
+                    src={image.childImageSharp.fluid.src}
+                    srcSet={image.childImageSharp.fluid.srcSet}
+                    sizes={image.childImageSharp.fluid.sizes}
+                  />
+                </div>
+              )) 
+            }
+          </Carousel>
         </PageContent>
       </div>
     </PageWrapper>

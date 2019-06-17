@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import 'normalize.css';
 import 'animate.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -10,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     --background-color-dark: #f5f5f5;
     --marker-primary: #A9E5BB;
     --marker-secondary: #FCF6B1;
+    --marker-danger: #F27B3B;
     --marker-link: #BCE5FF;
     --border-radius: 3px;
   }
@@ -33,6 +35,10 @@ const GlobalStyle = createGlobalStyle`
     &:focus {
       background: var(--marker-link);
     }
+  }
+
+  .thumbs {
+    padding: 0 !important;
   }
 `;
 
