@@ -3,7 +3,6 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import AboutSection from '../components/AboutSection';
-import PageWrapper from '../components/PageWrapper';
 import ProjectsSection from '../components/ProjectsSection';
 
 const IntroSection = styled.section`
@@ -11,6 +10,10 @@ const IntroSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const PageWrapper = styled.main`
+  padding: 1.25rem;
 `;
 
 export default ({ data }) => {

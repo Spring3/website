@@ -15,23 +15,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    font-size: 16px;
     background-color: white;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.4;
     color: var(--text-color-primary);
-  }
-
-  @media (min-width: 750px) {
-    body {
-      font-size: 16px;
-    }
-  }
-
-  @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px),
-  (max-width: 750px) {
-    body {
-      font-size: 14px;
-    }
   }
 
   a, a:visited {

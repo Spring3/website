@@ -16,7 +16,6 @@ const ContentPanel = styled.div`
   (max-width: 750px) {
     max-width: 100%;
     font-size: 1rem;
-    padding: 1rem;
 
     h1 {
       font-size: 1.6rem;

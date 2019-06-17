@@ -4,36 +4,38 @@ previous: /
 date: 2019-06-09
 ---
 
-Curious, creative, ambitious software engineer. I do everything I can to come up with something special and original. Primarily I focus on Node.js, React, Redux and modern Javascript ecosystem.
+Curious, creative, ambitious software engineer. I always try to come up with something special and original. Primarily I focus on Node.js, React, Redux and modern Javascript ecosystem.
 
-**daniyil.vasylenko@gmail.com**
+**[daniyil.vasylenko@gmail.com](mailto:daniyil.vasylenko@gmail.com)**
 
 ## Skills
 
-- Back-end: Javascript, Node.js, Express, RabbitMQ
-- Front-end: React, Redux, Styled Components
-- Databases: Mongodb, Redis, MySQL
-- Build tools: Webpack
-- Testing: Jest, Chai, Sinon, Nyc, Karma.js, Enzyme
-- Devops: Docker
-- CI/CD: CircleCI, Travis, SonarQube
-- VCS: Git
-- Misc: Electron, Lerna, Gatsby, Functional programming with Elm, Basics of UX Design
+- **Back-end**: Javascript, Node.js, Express, RabbitMQ
+- **Front-end**: HTML, CSS, React, Redux
+- **Databases**: Mongodb, Redis, MySQL
+- **Build tools**: Webpack
+- **Testing**: Jest, Chai, Sinon, Nyc, Karma.js, Enzyme
+- **Devops**: Docker
+- **CI/CD**: CircleCI, Travis, SonarQube
+- **VCS**: Git
+- **Misc**: Electron, Lerna, Gatsby, Functional programming with Elm, Basics of UX Design
 
 
-## Work
+## Experience
 
-### Full Stack Developer at Dial-Once, Dec 2016 - now
+### Full Stack Developer - Dial-Once, Dec 2016 - now
 
-Full stack development and supupport of the omnichannel communication platform, consisting of multiple front-end products with a micro-service architecture behind of it. Dial-Once is a leader on the market of Visual IVR services with clients from all the continents of the world.
+Full stack development and support of the omnichannel communication platform, consisting of multiple front-end products with a micro-service architecture behind of it. Dial-Once is a leader on the market of Visual IVR services with clients from all the continents of the world.
 
-- Designed and developed the currently company's most on-demand product that brings the majority of company's MRR
-- Designed and implemented the tools, that allowed designers concentrate on styling without interacting with the code base.
+- Designed and developed the company's most on-demand product
+- Implemented the tools, that allowed designers concentrate on styling without interacting with the code base.
 - Reduced code base complexity by creating simple abstractions and inroducing new standards and best practices into the workflow.
 - Mentored company's interns
-- Held workshops and pair programming sessions to ease company's tech team integration in cross-functional projects
+- Held workshops and pair programming sessions to ease integration in cross-functional projects
 
-### Node.js Developer at FASTEE Technologies, Aug 2016 - Dec 2016
+<br />
+
+### Node.js Developer - FASTEE, Aug - Dec 2016
 
 Implemented bots for the generic chat bot platform.
 
@@ -43,16 +45,21 @@ Implemented bots for the generic chat bot platform.
 
 ## Education
 
+### Specialist Degree (2016 - 2018)
 
-### Specialist Degree (2016 - 2018) - Faculty of Informatics and Computer Systems
+**Faculty**: Informatics and Computer Systems
 
-The National Technical University of Ukraine "Igor Sikorsky Kyiv Polytechnic Institute" (NTUU "KPI")
+**University**: The National Technical University of Ukraine "Igor Sikorsky Kyiv Polytechnic Institute" (NTUU "KPI")
 
-- Theory of Automation of Computer Systems
+- Theory of Automation and Control of Computer Systems
 
-### Bachelor Degree (2012 - 2016) - Faculty of Informatics and Computer Systems
+<br />
 
-The National Technical University of Ukraine "Igor Sikorsky Kyiv Polytechnic Institute" (NTUU "KPI")
+### Bachelor Degree (2012 - 2016)
+
+**Faculty**: Informatics and Computer Systems
+
+**University**: The National Technical University of Ukraine "Igor Sikorsky Kyiv Polytechnic Institute" (NTUU "KPI")
 
 - Principles of Information Technology
 - Principles of Computer Graphics
@@ -60,7 +67,7 @@ The National Technical University of Ukraine "Igor Sikorsky Kyiv Polytechnic Ins
 - Principles of Communication and Data Transfer and Persistence
 
 
-## Additional Courses
+## Courses
 
 ### The Complete Node.js Developer - Udemy (June - July 2016)
 
@@ -69,8 +76,9 @@ The National Technical University of Ukraine "Igor Sikorsky Kyiv Polytechnic Ins
 - Usage of Mongodb
 - Usage of Socket.io
 
+<br />
 
-### Java Enterprise Edition - Bionic University (Aug - November 2014 )
+### Java Enterprise Edition - Bionic University (Aug - Nov 2014 )
 
 - EJB - Stateful, Stateless beans
 - Introduction to Spring Framework
@@ -83,7 +91,7 @@ The National Technical University of Ukraine "Igor Sikorsky Kyiv Polytechnic Ins
 - English - C1 (7.5 - IELTS, May 2015)
 - German - B1
 
-## Personal Projects
+## Pet Projects
 
 - [Redshape](https://github.com/Spring3/redshape) - Redmine time tracker with client features
 
