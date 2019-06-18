@@ -23,6 +23,8 @@ Re-designs the way tasks, task information, tracked time and communication in th
 
 [Download the latest release](https://github.com/Spring3/redshape/releases/)
 
+[Source Code](https://github.com/Spring3/redshape)
+
 ## Technologies
 - Electron
 - React

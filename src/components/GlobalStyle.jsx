@@ -9,11 +9,13 @@ const GlobalStyle = createGlobalStyle`
     --text-color-secondary: #767B91;
     --background-color: white;
     --background-color-dark: #f5f5f5;
+    --shadow-color: #E0E0E0;
     --marker-primary: #A9E5BB;
     --marker-secondary: #FCF6B1;
-    --marker-danger: #F27B3B;
+    --marker-danger: #F97350;
     --marker-link: #BCE5FF;
     --border-radius: 3px;
+    --page-size: 45em;
   }
 
   body {

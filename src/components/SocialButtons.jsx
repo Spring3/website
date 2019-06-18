@@ -4,6 +4,7 @@ import GithubCircleIcon from 'mdi-react/GithubCircleIcon';
 import LinkedinBoxIcon from 'mdi-react/LinkedinBoxIcon';
 import TwitterIcon from 'mdi-react/TwitterIcon';
 import EmailOutlineIcon from 'mdi-react/EmailOutlineIcon';
+import SpotifyIcon from 'mdi-react/SpotifyIcon';
 
 const SocialButtons = styled.ul`
   margin-top: 1rem;
@@ -79,6 +80,15 @@ export default ({ className, style }) => (
         rel="noreferrer noopener"
       >
         <EmailOutlineIcon color="#ea4335" />
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://open.spotify.com/user/21vcdhgxp3gqinwau2aynzg7i?si=onT2d2-dTA-RqL7xHLI2Tw"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <SpotifyIcon color="#1db954" />
       </a>
     </li>
   </SocialButtons>

@@ -86,7 +86,6 @@ const ScrollDownSign = styled.div`
   }
 `;
 
-
 export default ({ children }) => (
   <Animated animationIn="fadeIn" animationOut="fadeOut">
     <ContentPanel>
