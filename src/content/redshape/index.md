@@ -6,11 +6,12 @@ description: A time tracker for Redmine with client app features.
 marker: primary
 repository: https://github.com/Spring3/redshape
 tags: 
+  - Javascript
   - Electron
   - React
   - Redux
   - Node.js
-  - styled-components
+  - Styled Components
 images:
   - ./redshape1.png
   - ./redshape2.png

@@ -5,12 +5,13 @@ thumbnail: ./starbot1.png
 description: Link aggregator for slack with a centralized access to them through slack messages or the dashboard
 marker: link
 tags: 
+  - Javascript
   - Bot
   - React
   - SSR
   - Node.js
   - Docker
-  - styled-components
+  - Styled Components
   - WIP
 images:
   - ./starbot1.png
