@@ -1,9 +1,11 @@
+import React from 'react';
+import { Helmet } from 'react-helmet';
 import { createGlobalStyle } from 'styled-components';
 import 'normalize.css';
 import 'animate.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-const GlobalStyle = createGlobalStyle`
+export default createGlobalStyle`
   :root {
     --text-color-primary: black;
     --text-color-secondary: #767B91;
@@ -44,4 +46,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default GlobalStyle;
+export const OGP = () => (
+  <Helmet>
+    <meta property="og:site_name" content="website" />
+    <meta property="og:title" content="Daniyil Vasylenko" />
+    <meta property="og:description" content="Personal portfolio website of Daniyil Vasylenko" />
+    <meta property="og:image" content="https://user-images.githubusercontent.com/4171202/59647385-aebee480-9183-11e9-88fe-4b27c41436b4.png" /> 
+    <title>Daniyil Vasylenko</title>
+  </Helmet>
+);

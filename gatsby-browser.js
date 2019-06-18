@@ -1,9 +1,13 @@
 const React = require('react');
-const GlobalStyle = require('./src/components/GlobalStyle').default;
+const Styles = require('./src/components/GlobalStyle');
+
+const GlobalStyle = Styles.default;
+const OGP = Styles.OGP;
 
 exports.wrapRootElement = ({ element }) => (
   <React.Fragment>
     <GlobalStyle />
+    <OGP />
     {element}
   </React.Fragment>
 );

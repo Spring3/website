@@ -11,6 +11,18 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'test',
+        short_name: 'test',
+        start_url: '/',
+        background_color: '#fff',
+        theme_color: '#fff',
+        display: 'standalone',
+        // icon: 'src/images/icon.png', // This path is relative to the root of the site.
+      }
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
@@ -52,9 +64,12 @@ module.exports = {
         trackingId: 'UA-141684888-1',
       }
     },
+    'gatsby-plugin-netlify-cache',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-catch-links',
-    'gatsby-plugin-styled-components'
+    'gatsby-plugin-offline',
+    'gatsby-plugin-styled-components',
+    'gatsby-plugin-netlify'
   ]
 }
