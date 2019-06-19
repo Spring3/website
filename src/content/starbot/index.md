@@ -1,0 +1,36 @@
+---
+title: Starbot
+previous: /
+thumbnail: ./starbot1.png
+description: Link aggregator for slack with a centralized access to them through slack messages or the dashboard
+marker: link
+tags: 
+  - Javascript
+  - Bot
+  - React
+  - SSR
+  - Node.js
+  - Docker
+  - Styled Components
+  - WIP
+images:
+  - ./starbot1.png
+---
+
+A link aggregator for Slack workspace. Ever had a feeling like someone posted a really interesting link but you didn't have time to read it at that same moment? This project provides you a slack bot and a dashboard at the same place. 
+
+Save the links and get the cli command set to get the results. Or use the dashboard that is provided out of the box.
+
+**This project is not yet complete and is a Work In Progress. The source of the project is a subject to change.**
+
+[Source Code](https://github.com/Spring3/starbot)
+
+## Technologies
+
+- Slack API
+- React
+- Server Side Rendering
+- Node.js
+- Docker
+- Styled Components
+
