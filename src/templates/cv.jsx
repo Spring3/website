@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import { Animated } from 'react-animated-css';
 import DownloadOutlineIcon from 'mdi-react/DownloadOutlineIcon';
 
+import GlobalStyles, { OGP } from '../components/GlobalStyle';
 import PageWrapper from '../components/PageWrapper';
 import BackButton from '../components/BackButton';
 import PageContent from '../components/PageContent';
@@ -29,23 +30,30 @@ const DownloadButton = styled.a`
 export default ({ data }) => {
   const post = data.markdownRemark;
   return (
-    <PageWrapper>
-      <Navbar>
-        <BackButton href={post.frontmatter.previous}/>
-        <DownloadButton href="https://drive.google.com/uc?export=download&id=1Q9lHeyQGoNCadM-N4gULbmgvrYekweKU">
-          <DownloadOutlineIcon /> Download .pdf
-        </DownloadButton>
-      </Navbar>
-      <Animated
-        animationIn="fadeIn"
-        animationOut="fadeOut"
-      >
-        <div>
-          <PageHeader>{post.frontmatter.title}</PageHeader>
-          <PageContent dangerouslySetInnerHTML={{ __html: post.html }} />
-        </div>
-      </Animated>
-    </PageWrapper>
+    <Fragment>
+      <GlobalStyles />
+      <OGP
+        title="Daniyil Vasylenko - CV"
+        description="Daniyil Vasylenko - CV online. Download as .pdf"
+      />
+      <PageWrapper>
+        <Navbar>
+          <BackButton href={post.frontmatter.previous}/>
+          <DownloadButton href="https://drive.google.com/uc?export=download&id=1Q9lHeyQGoNCadM-N4gULbmgvrYekweKU">
+            <DownloadOutlineIcon /> Download .pdf
+          </DownloadButton>
+        </Navbar>
+        <Animated
+          animationIn="fadeIn"
+          animationOut="fadeOut"
+        >
+          <div>
+            <PageHeader>{post.frontmatter.title}</PageHeader>
+            <PageContent dangerouslySetInnerHTML={{ __html: post.html }} />
+          </div>
+        </Animated>
+      </PageWrapper>
+    </Fragment>
   );
 };
 

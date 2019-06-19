@@ -46,12 +46,12 @@ export default createGlobalStyle`
   }
 `;
 
-export const OGP = () => (
+export const OGP = ({ title, description, image }) => (
   <Helmet>
-    <meta property="og:site_name" content="website" />
-    <meta property="og:title" content="Daniyil Vasylenko" />
-    <meta property="og:description" content="Personal portfolio website of Daniyil Vasylenko" />
-    <meta property="og:image" content="https://user-images.githubusercontent.com/4171202/59647385-aebee480-9183-11e9-88fe-4b27c41436b4.png" /> 
+    <meta property="og:site_name" content="www.dvasylenko.com" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} /> 
     <title>Daniyil Vasylenko</title>
   </Helmet>
 );

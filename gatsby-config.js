@@ -6,7 +6,9 @@
 
 module.exports = {
   siteMetadata: {
-    title: 'Daniyil Vasylenko'
+    title: 'Daniyil Vasylenko Portfolio Website',
+    description: 'Daniyil Vasylenko\'s personal portfolio website',
+    image: 'https://user-images.githubusercontent.com/4171202/59647385-aebee480-9183-11e9-88fe-4b27c41436b4.png'
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -19,7 +21,7 @@ module.exports = {
         background_color: '#fff',
         theme_color: '#fff',
         display: 'standalone',
-        // icon: 'src/images/icon.png', // This path is relative to the root of the site.
+        icon: 'static/icon.png'
       }
     },
     {
