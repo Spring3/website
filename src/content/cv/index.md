@@ -16,7 +16,7 @@ Curious, creative, ambitious software engineer. I always try to come up with som
 - **Build tools**: Webpack
 - **Testing**: Jest, Chai, Sinon, Nyc, Karma.js, Enzyme
 - **Devops**: Docker
-- **CI/CD**: CircleCI, Travis, SonarQube
+- **CI/CD**: CircleCI, Travis, SonarQube, Netlify, Heroku
 - **VCS**: Git
 - **Misc**: Electron, Lerna, Gatsby, Functional programming with Elm, Basics of UX Design
 
