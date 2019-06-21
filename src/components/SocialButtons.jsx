@@ -66,7 +66,7 @@ export default ({ className, style }) => (
     </li>
     <li>
       <a
-        href="https://twitter.com/danspr3"
+        href="https://twitter.com/dan_vasylenko"
         target="_blank"
         rel="noreferrer noopener"
       >
