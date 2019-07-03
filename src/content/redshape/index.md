@@ -12,6 +12,7 @@ tags:
   - Redux
   - Node.js
   - Styled Components
+  - Webpack
 images:
   - ./redshape1.png
   - ./redshape2.png
@@ -33,5 +34,6 @@ Re-designs the way tasks, task information, tracked time and communication in th
 - Node.js
 - Styled Components
 - Formik
+- Webpack
 
 

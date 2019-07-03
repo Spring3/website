@@ -12,6 +12,7 @@ tags:
   - Node.js
   - Docker
   - Styled Components
+  - Webpack
   - WIP
 images:
   - ./starbot1.png
@@ -33,4 +34,5 @@ Save the links and get the cli command set to get the results. Or use the dashbo
 - Node.js
 - Docker
 - Styled Components
+- Webpack
 
