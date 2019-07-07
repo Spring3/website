@@ -39,7 +39,7 @@ export default ({ data }) => {
       <PageWrapper>
         <Navbar>
           <BackButton href={post.frontmatter.previous}/>
-          <DownloadButton href="https://drive.google.com/uc?export=download&id=1Q9lHeyQGoNCadM-N4gULbmgvrYekweKU">
+          <DownloadButton href="https://drive.google.com/uc?export=download&id=1Uy-HSmkHS4XuLAE18oPqdKiVj9bELqtX">
             <DownloadOutlineIcon /> Download .pdf
           </DownloadButton>
         </Navbar>
