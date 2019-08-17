@@ -20,7 +20,7 @@ images:
   - ./aurelins2.png
 ---
 
-A website that I working on for my sister. It is going to be a place where she will put her portfolio work - images and 3d models. Ideally the aim was to create a really artistic place, rich with animation and UI made with taste, as well as provide an ability to render the models live on the web page.
+A website that I am making for my sister. It is going to be a place where she will put her portfolio work - images and 3d models. Ideally the aim was to create a really artistic place, rich with animation and UI made with taste, as well as provide an ability to render the models live on the web page.
 
 This is a work in progress, so no link is available
 
