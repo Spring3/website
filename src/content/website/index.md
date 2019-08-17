@@ -11,6 +11,7 @@ tags:
   - React
   - Styled Components
   - GraphQL
+  - Netlify
   - Animate.css
 images:
   - ./website1.png
@@ -26,5 +27,6 @@ My personal portfolio website. You are browsing it right now.
 - React
 - Styled Components
 - GraphQL
+- Netlify
 
 
