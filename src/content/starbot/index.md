@@ -13,7 +13,6 @@ tags:
   - Docker
   - Styled Components
   - Webpack
-  - WIP
 images:
   - ./starbot1.png
 ---
@@ -22,7 +21,7 @@ A link aggregator for Slack workspace. Ever had a feeling like someone posted a 
 
 Save the links and get the cli command set to get the results. Or use the dashboard that is provided out of the box.
 
-**This project is not yet complete and is a Work In Progress. The source of the project is a subject to change.**
+**This project is not finished due to many similar projects already available. It is now archived**
 
 [Source Code](https://github.com/Spring3/starbot)
 
