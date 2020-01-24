@@ -1,10 +1,10 @@
 ---
 title: Daniyil Vasylenko
 previous: /
-date: 2019-06-09
+date: 2020-01-24
 ---
 
-Curious, creative, ambitious software engineer. I always try to come up with something special and original. Primarily I focus on Node.js, React, Redux and modern Javascript ecosystem.
+Curious, creative, ambitious software engineer. I always try to come up with something special and original. Primarily I focus on Node.js, React, Graphql and modern Javascript ecosystem.
 
 **[daniyil.vasylenko@gmail.com](mailto:daniyil.vasylenko@gmail.com)**
 
@@ -23,7 +23,17 @@ Curious, creative, ambitious software engineer. I always try to come up with som
 
 ## Experience
 
-### Full Stack Developer - Dial-Once, Dec 2016 - now
+### Senior Full Stack Javascript Engineer - Contentful, Dec 2019 - now
+
+Full stack development and support of the Headless CMS by Contentful
+
+- Maintenance and improvements of the UI kit
+- Bugfixing, UI, UX improvements of the CMS web app
+- Support for the public APIs for CMS content management
+
+<br />
+
+### Full Stack Developer - Dial-Once, Dec 2016 - Dec 2019
 
 Full stack development and support of the omnichannel communication platform, consisting of multiple front-end products with a micro-service architecture behind it. Dial-Once is a leader on the market of Visual IVR services with clients from all the continents of the world.
 
@@ -88,12 +98,12 @@ Implemented bots for the generic chat bot platform.
 
 ## Language Skills
 
-- English - C1 (7.5 - IELTS, May 2015)
+- English - C1 (7.5 - IELTS, May 2015, Aug 2019)
 - German - B1
 
 ## Pet Projects
 
 - [Redshape](https://github.com/Spring3/redshape) - Redmine time tracker with client features
 
-- **WIP** [Starbot](https://github.com/Spring3/starbot) - Links aggregator for slack. Keep all interesting articles and materials in one place and come back to read them when you have time.
+- **Archived** [Starbot](https://github.com/Spring3/starbot) - Links aggregator for slack. Keep all interesting articles and materials in one place and come back to read them when you have time.
 
