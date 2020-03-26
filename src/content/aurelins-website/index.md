@@ -42,5 +42,3 @@ Frankly my sister never used this website, so all the content that you see there
 - Netlify
 - Contentful
 - React-Spring
-
-
