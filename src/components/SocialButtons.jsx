@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import GithubCircleIcon from 'mdi-react/GithubCircleIcon';
-import LinkedinBoxIcon from 'mdi-react/LinkedinBoxIcon';
+import GithubIcon from 'mdi-react/GithubIcon';
+import LinkedInIcon from 'mdi-react/LinkedInIcon';
 import TwitterIcon from 'mdi-react/TwitterIcon';
 import EmailOutlineIcon from 'mdi-react/EmailOutlineIcon';
 import SpotifyIcon from 'mdi-react/SpotifyIcon';
@@ -52,7 +52,7 @@ export default ({ className, style }) => (
         target="_blank"
         rel="noreferrer noopener"
       >
-        <GithubCircleIcon color="#333" />
+        <GithubIcon color="#333" />
       </a>
     </li>
     <li>
@@ -61,7 +61,7 @@ export default ({ className, style }) => (
         target="_blank"
         rel="noreferrer noopener"
       >
-        <LinkedinBoxIcon color="#0077b5" />
+        <LinkedInIcon color="#0077b5" />
       </a>
     </li>
     <li>

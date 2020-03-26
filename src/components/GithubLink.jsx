@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import GithubCircleIcon from 'mdi-react/GithubCircleIcon';
+import GithubIcon from 'mdi-react/GithubIcon';
 
 
 const Link = styled.a`
@@ -17,6 +17,6 @@ export default ({ href }) => (
     target="__blank"
     rel="noopener noreferrer"
   >
-    <GithubCircleIcon size={32} color="#333" />
+    <GithubIcon size={32} color="#333" />
   </Link>
 )

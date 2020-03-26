@@ -16,6 +16,10 @@ const BackButton = styled(Link)`
   &:pressed {
     box-shadow: inset 0px 0px 10px var(--marker-link);
   }
+
+  svg {
+    vertical-align: sub;
+  }
 `;
 
 export default ({ href }) => (
