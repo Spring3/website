@@ -21,6 +21,10 @@ const Content = styled.div`
 
   text-align: justify;
 
+  p > img {
+    max-width: 100%;
+  }
+
   li {
     margin-top: 5px;
   }
