@@ -45,7 +45,7 @@ export default (props) => {
                 >
                 {
                   post.frontmatter.images.map((image, i) => (
-                    <div key={i}>
+                    <div style={{ marginLeft: '0px', marginRight: '0px' }} key={i}>
                       <img
                         key={i}
                         alt={image.name}

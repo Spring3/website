@@ -14,6 +14,7 @@ const TagItem = styled.li`
   border-radius: var(--border-radius);
   padding: 3px 5px;
   margin: .25rem .5rem .25rem 0px;
+  font-size: .9rem;
 `;
 
 export const Tag = ({ children }) => (

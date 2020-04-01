@@ -44,6 +44,10 @@ export default createGlobalStyle`
   .thumbs {
     padding: 0 !important;
   }
+
+  .thumbs-wrapper {
+    margin: 20px 0px !important;
+  }
 `;
 
 export const OGP = ({ title, description, image }) => (

@@ -19,7 +19,7 @@ const ProjectsGrid = styled.div`
 
 const ProjectsContainer = styled.div`
   @media (min-width: 750px) {
-    max-width: 80%;
+    max-width: 90%;
     margin: 0 auto;
   }
 
@@ -50,7 +50,8 @@ const ProjectSection = styled.section`
     }
   }
 
-  @media (min-width: 1500px) {
+  @media (min-width: 1100px),
+  @media (min-width; 1500px) {
     grid-column: span 4;
   }
 
@@ -77,11 +78,24 @@ const ImageLink = styled(Link)`
   background: none !important;
   padding: 0px !important;
   display: inline-block;
-  box-shadow: 0px 0px 20px var(--marker-${props => props.marker || 'link'});
+  height: 300px;
+  width: 100%;
+  box-shadow: 0px 0px 20px lightgrey;
+  transition: box-shadow ease .3s;
 
-  img {
-    border-radius: var(--border-radius);
+  &:hover {
+    box-shadow: 0px 0px 20px var(--marker-${props => props.marker || 'link'});
   }
+`;
+
+const Thumbnail = styled.img`
+  border-radius: var(--border-radius);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const Details = styled.div`
 `;
 
 export default ({ nodes }) => (
@@ -97,24 +111,25 @@ export default ({ nodes }) => (
             animationInDuration={500}
             animationOutDuration={500}
           >
-            <ImageLink marker={node.frontmatter.marker} to={node.fields.slug}>
-              <img
-                loading="lazy"
-                src={node.frontmatter.thumbnail.childImageSharp.fluid.src}
-                srcSet={node.frontmatter.thumbnail.childImageSharp.fluid.srcSet}
-                sizes={node.frontmatter.thumbnail.childImageSharp.fluid.sizes}
-                alt={`A screenshot of ${node.frontmatter.thumbnail.name}`}
-              />
-            </ImageLink>
-            <div className="title">
-              <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-            </div>
-            <p>{node.frontmatter.description}</p>
-            <Tags>
-              {node.frontmatter.tags.map((tag, i) => (
-                <Tag key={i}>{tag}</Tag>
-              ))}
-            </Tags>
+              <ImageLink marker={node.frontmatter.marker} to={node.fields.slug}>
+                <Thumbnail
+                  src={node.frontmatter.thumbnail.childImageSharp.fluid.src}
+                  srcSet={node.frontmatter.thumbnail.childImageSharp.fluid.srcSet}
+                  sizes={node.frontmatter.thumbnail.childImageSharp.fluid.sizes}
+                  alt={`A screenshot of ${node.frontmatter.thumbnail.name}`}
+                />
+              </ImageLink>
+              <Details>
+                <div className="title">
+                  <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+                </div>
+                <p>{node.frontmatter.description}</p>
+                <Tags>
+                  {node.frontmatter.tags.map((tag, i) => (
+                    <Tag key={i}>{tag}</Tag>
+                  ))}
+                </Tags>
+              </Details>
           </Animated>
         </ProjectSection>
       ))}
