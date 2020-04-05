@@ -95,9 +95,6 @@ const Thumbnail = styled.img`
   object-fit: cover;
 `;
 
-const Details = styled.div`
-`;
-
 export default ({ nodes }) => (
   <ProjectsContainer>
     <h1>Projects</h1>
@@ -119,17 +116,15 @@ export default ({ nodes }) => (
                   alt={`A screenshot of ${node.frontmatter.thumbnail.name}`}
                 />
               </ImageLink>
-              <Details>
-                <div className="title">
-                  <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-                </div>
-                <p>{node.frontmatter.description}</p>
-                <Tags>
-                  {node.frontmatter.tags.map((tag, i) => (
-                    <Tag key={i}>{tag}</Tag>
-                  ))}
-                </Tags>
-              </Details>
+              <div className="title">
+                <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+              </div>
+              <p>{node.frontmatter.description}</p>
+              <Tags>
+                {node.frontmatter.tags.map((tag, i) => (
+                  <Tag key={i}>{tag}</Tag>
+                ))}
+              </Tags>
           </Animated>
         </ProjectSection>
       ))}
