@@ -21,6 +21,7 @@ const StyledCarousel = styled(Carousel)`
   .slide {
     background: transparent;
     overflow: hidden;
+    cursor: pointer;
   }
 
   .thumbs {
@@ -41,6 +42,11 @@ const StyledCarousel = styled(Carousel)`
 
 const SingleImage = styled(LazyImage)`
   max-width: 100%;
+  cursor: pointer;
+`;
+
+const ImageSlide = styled(LazyImage)`
+  cursor: pointer;
 `;
 
 const ImageCarousel = ({ images }) => {
@@ -80,7 +86,7 @@ const ImageCarousel = ({ images }) => {
           onClickItem={(index) => showImagePreview(images, index)}
         >
           {images.map((image) => (
-            <LazyImage
+            <ImageSlide
               key={image.name}
               intersectionTriggerRef={containerRef}
               alt={image.name}

@@ -8,8 +8,9 @@ import { Helmet } from 'react-helmet';
 import { useSprings, animated } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import clamp from 'lodash.clamp';
-import { useWindowSize } from 'react-use';
+import { useKeyPressEvent, useWindowSize } from 'react-use';
 import { PreviewButtonNext, PreviewButtonPrevious } from './Buttons';
+import { useImagePreview } from '../../context/ImagePreviewContext';
 
 const ImagePreviewPortal = ({ children }) => {
   const container = useMemo(() => {
@@ -99,6 +100,8 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
   const { width, height } = useWindowSize();
   const [index, setIndex] = useState(0);
   const [mousePressed, setMousePressed] = useState(false);
+
+  const preview = useImagePreview();
 
   const [draggingAnimationSprings, set] = useSprings(images.length, (i) => {
     if (i !== index) return { display: 'none' };
@@ -196,6 +199,10 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
     e.stopPropagation();
     e.preventDefault();
   }, []);
+
+  useKeyPressEvent('Escape', preview.hideImagePreview);
+  useKeyPressEvent('ArrowRight', nextSlide);
+  useKeyPressEvent('ArrowLeft', previousSlide);
 
   if (!images.length) {
     return <></>;

@@ -164,7 +164,7 @@ export default (props) => {
                 {post.frontmatter.description.map((description) => {
                   if (description.href) {
                     return (
-                      <MarkdownContent>
+                      <MarkdownContent key={description.href}>
                         <p>
                           <a href={description.href}>{description.text}</a>
                         </p>
@@ -174,7 +174,7 @@ export default (props) => {
 
                   if (description.text) {
                     return (
-                      <MarkdownContent>
+                      <MarkdownContent key={description.text}>
                         <p>{description.text}</p>
                       </MarkdownContent>
                     );

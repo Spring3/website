@@ -16,7 +16,7 @@ const FixedImage = styled.div.attrs((props) => ({
   background-repeat: no-repeat;
   position: sticky;
   top: 16%;
-  cursor: initial;
+  cursor: pointer;
 `;
 
 const Placeholder = styled.div.attrs((props) => ({
@@ -42,6 +42,7 @@ const NormalImage = styled.div.attrs((props) => ({
 }))`
   background-repeat: no-repeat;
   background-size: contain;
+  cursor: pointer;
 `;
 
 const FixedImageSet = ({ images, containerRef }) => {
@@ -57,9 +58,9 @@ const FixedImageSet = ({ images, containerRef }) => {
     return null;
   }
 
-  // 6%
   const windowWidth = width || window.innerWidth;
   const windowHeight = height || window.innerHeight;
+  // 6%
   const padding = 0.06 * windowWidth;
   const imageAreaWidth = (windowWidth - padding * 2) * 0.59;
   const marginTop = windowHeight * 0.16;
