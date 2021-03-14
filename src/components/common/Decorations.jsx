@@ -14,7 +14,7 @@ const Decorations = styled(animated.div).attrs((props) => ({
   width: 100%;
 `;
 
-const GeometricObject = styled.div.attrs((props) => ({
+const GeometricObject = styled(animated.div).attrs((props) => ({
   style: {
     position: props.sticky ? 'sticky' : props.position || 'absolute',
     width: props.size,
@@ -25,9 +25,11 @@ const GeometricObject = styled.div.attrs((props) => ({
     bottom: props.bottom,
     background: props.background,
     boxShadow: props.flat ? 'none' : `0px 0px 20px 0px ${props.background}`,
+    ...(props.style || {})
   },
 }))`
-  transition: background ease .3s;
+  transition: background ease 0.3s;
+  will-change: opacity, background;
   opacity: 0.9;
 `;
 

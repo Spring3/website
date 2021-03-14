@@ -64,7 +64,9 @@ const LazyImage = ({
       loading="lazy"
       {...restProps}
       style={
-        imageSrc === placeholder && !placeholder ? placeholderStyles : restProps.style
+        imageSrc === placeholder && !placeholder
+          ? placeholderStyles
+          : restProps.style
       }
     />
   );

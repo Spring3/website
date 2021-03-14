@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useSpring } from 'react-spring';
 import { useWindowSize } from 'react-use';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
+import { randomFlicker, randomShift } from '../components/animations';
 import { Square, Circle, Decorations } from '../components/common/Decorations';
 import { Flex } from '../components/common/Flex';
 import { Link } from '../components/common/Reference';
 import { Subheading } from '../components/project/Header';
+import { getRandomIndex } from '../utils';
 
 const RelativeDecorations = styled(Decorations)`
   position: relative !important;
@@ -25,15 +28,17 @@ const colorThemes = [
   ['#9DB09C', '#EEF0F0', '#D6D9D0', '#B7BDB0'],
   ['#FCC4C9', '#FDF6F0', '#F8E2CF', '#F5C6AA'],
   ['#E3BCBC', '#F4F4F4', '#E0E0E0', '#C4C6C8'],
-  ['#464646', '#C4C4BC', '#F4F4F4', '#DEDAD1'],
+  ['#E75A5F', '#FAFADC', '#FEE698', '#FDB15D'],
   ['#415A80', '#A5D4DC', '#F2F4F8', '#D7E2E9'],
   ['#A9A9C4', '#D0D1E1', '#EBECEF', '#908DB9'],
+  ['#5F6874', '#C2C2CC', '#F5F3EB', '#ECDEB0'],
 ];
 
-const getRandomIndex = (max) => Math.floor(Math.random() * max);
-
 const ColorThemedSquare = ({ colorTheme, ...rest }) => {
+  const [seed, setSeed] = useState(0);
   const [color, setColor] = useState();
+
+  const animation = useSpring(randomFlicker(seed, seed));
 
   useEffect(() => {
     const getRandomColor = () => {
@@ -42,14 +47,23 @@ const ColorThemedSquare = ({ colorTheme, ...rest }) => {
     };
 
     setColor(getRandomColor());
+    setSeed(getRandomIndex(colorThemes.length) + 1);
   }, [colorTheme]);
 
-  return <Square {...rest} background={color} />;
+  if (!seed) {
+    return null;
+  }
+
+  return <Square style={animation} {...rest} background={color} />;
 };
 
 const NotFoundPage = () => {
   const [colorTheme, setColorTheme] = useState([]);
   const { width: windowWidth } = useWindowSize();
+
+  const firstCircleAnimation = useSpring(randomShift({ left: '40%', top: '15%' }, 10000));
+  const secondCircleAnimation = useSpring(randomShift({ left: '95%', top: '95%' }, 16700));
+  const thirdCircleAnimation = useSpring(randomShift({ left: '10%', top: '15%' }, 14700));
 
   useEffect(() => {
     const theme = colorThemes[getRandomIndex(colorThemes.length)];
@@ -93,8 +107,7 @@ const NotFoundPage = () => {
       >
         <Decorations margined={false} layer="back">
           <Circle
-            left="5%"
-            top="5%"
+            style={firstCircleAnimation}
             size="300px"
             radius="80% 75% 85% 90% / 80% 90% 85% 90%"
             background="#FEC7C3"
@@ -102,11 +115,18 @@ const NotFoundPage = () => {
             sticky
           />
           <Circle
-            left="95%"
-            top="95%"
-            size="300px"
+            style={secondCircleAnimation}
+            size="350px"
             radius="80% 70% 85% 90% / 80% 90% 80% 90%"
             background="#D4A6D1"
+            flat
+            sticky
+          />
+          <Circle
+            style={thirdCircleAnimation}
+            size="320px"
+            radius="80% 70% 85% 90% / 80% 90% 80% 90%"
+            background="#FCC07E"
             flat
             sticky
           />
