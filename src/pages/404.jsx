@@ -4,7 +4,7 @@ import { useSpring } from 'react-spring';
 import { useWindowSize } from 'react-use';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
 import { randomFlicker, randomShift } from '../animations';
-import { Square, Circle, Decorations } from '../components/common/Decorations';
+import { Rectangle, Circle, Decorations } from '../components/common/Decorations';
 import { Flex } from '../components/common/Flex';
 import { Link } from '../components/common/Reference';
 import { Subheading } from '../components/project/Header';
@@ -34,7 +34,7 @@ const colorThemes = [
   ['#5F6874', '#C2C2CC', '#F5F3EB', '#ECDEB0'],
 ];
 
-const ColorThemedSquare = memo(({ colorTheme, ...rest }) => {
+const ColorThemedRectangle = memo(({ colorTheme, ...rest }) => {
   const [seed, setSeed] = useState(0);
   const [color, setColor] = useState();
 
@@ -54,7 +54,7 @@ const ColorThemedSquare = memo(({ colorTheme, ...rest }) => {
     return null;
   }
 
-  return <Square style={animation} {...rest} background={color} />;
+  return <Rectangle style={animation} {...rest} background={color} />;
 });
 
 const NotFoundPage = () => {
@@ -139,14 +139,14 @@ const NotFoundPage = () => {
         </Decorations>
         <Flex justifyContent="center" alignItems="center" gap="2rem" margined>
           <RelativeDecorations height={`${height}px`} width={`${width}px`}>
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               size={sizePx}
               radius={radiusPx}
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right={`${size + gap}px`}
               top={`${size + gap}px`}
               size={sizePx}
@@ -154,7 +154,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right={`${(size + gap) * 2}px`}
               top={`${(size + gap) * 2}px`}
               size={sizePx}
@@ -162,7 +162,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right={`${(size + gap) * 3}px`}
               top={`${(size + gap) * 3}px`}
               size={sizePx}
@@ -170,7 +170,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right={`${(size + gap) * 2}px`}
               top={`${(size + gap) * 3}px`}
               size={sizePx}
@@ -178,7 +178,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right={`${size + gap}px`}
               top={`${(size + gap) * 3}px`}
               size={sizePx}
@@ -186,7 +186,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               top={`${size + gap}px`}
               size={sizePx}
@@ -194,7 +194,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               top={`${(size + gap) * 2}px`}
               size={sizePx}
@@ -202,7 +202,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               top={`${(size + gap) * 3}px`}
               size={sizePx}
@@ -210,7 +210,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               top={`${(size + gap) * 4}px`}
               size={sizePx}
@@ -218,7 +218,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               top={`${(size + gap) * 5}px`}
               size={sizePx}
@@ -226,7 +226,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               top={`${(size + gap) * 6}px`}
               size={sizePx}
@@ -236,35 +236,35 @@ const NotFoundPage = () => {
             />
           </RelativeDecorations>
           <RelativeDecorations width={`${width}px`}>
-            <ColorThemedSquare
+            <ColorThemedRectangle
               flat
               left={gap * 2}
               size={sizePx}
               radius={radiusPx}
               colorTheme={colorTheme}
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={`${size + gap + gap * 2}px`}
               size={sizePx}
               radius={radiusPx}
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={`${(size + gap) * 2 + gap * 2}px`}
               size={sizePx}
               radius={radiusPx}
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={`${(size + gap) * 3 + gap * 2}px`}
               size={sizePx}
               radius={radiusPx}
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={`${(size + gap) * 3 + gap * 2}px`}
               top={`${size + gap}px`}
               size={sizePx}
@@ -272,7 +272,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={`${(size + gap) * 3 + gap * 2}px`}
               top={`${(size + gap) * 2}px`}
               size={sizePx}
@@ -280,7 +280,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={`${(size + gap) * 3 + gap * 2}px`}
               top={`${(size + gap) * 3}px`}
               size={sizePx}
@@ -288,7 +288,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={`${(size + gap) * 3 + gap * 2}px`}
               top={`${(size + gap) * 4}px`}
               size={sizePx}
@@ -296,7 +296,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={`${(size + gap) * 3 + gap * 2}px`}
               top={`${(size + gap) * 5}px`}
               size={sizePx}
@@ -304,7 +304,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={`${(size + gap) * 3 + gap * 2}px`}
               top={`${(size + gap) * 6}px`}
               size={sizePx}
@@ -312,7 +312,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={`${(size + gap) * 2 + gap * 2}px`}
               top={`${(size + gap) * 6}px`}
               size={sizePx}
@@ -320,7 +320,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={`${size + gap + gap * 2}px`}
               top={`${(size + gap) * 6}px`}
               size={sizePx}
@@ -328,7 +328,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={gap * 2}
               top={`${size + gap}px`}
               size={sizePx}
@@ -336,7 +336,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={gap * 2}
               top={`${(size + gap) * 2}px`}
               size={sizePx}
@@ -344,7 +344,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={gap * 2}
               top={`${(size + gap) * 3}px`}
               size={sizePx}
@@ -352,7 +352,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={gap * 2}
               top={`${(size + gap) * 4}px`}
               size={sizePx}
@@ -360,7 +360,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={gap * 2}
               top={`${(size + gap) * 5}px`}
               size={sizePx}
@@ -368,7 +368,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               left={gap * 2}
               top={`${(size + gap) * 6}px`}
               size={sizePx}
@@ -378,14 +378,14 @@ const NotFoundPage = () => {
             />
           </RelativeDecorations>
           <RelativeDecorations width={`${width}px`}>
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               size={sizePx}
               radius={radiusPx}
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right={`${size + gap}px`}
               top={`${size + gap}px`}
               size={sizePx}
@@ -393,7 +393,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right={`${(size + gap) * 2}px`}
               top={`${(size + gap) * 2}px`}
               size={sizePx}
@@ -401,7 +401,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right={`${(size + gap) * 3}px`}
               top={`${(size + gap) * 3}px`}
               size={sizePx}
@@ -409,7 +409,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right={`${(size + gap) * 2}px`}
               top={`${(size + gap) * 3}px`}
               size={sizePx}
@@ -417,7 +417,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right={`${size + gap}px`}
               top={`${(size + gap) * 3}px`}
               size={sizePx}
@@ -425,7 +425,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               top={`${size + gap}px`}
               size={sizePx}
@@ -433,7 +433,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               top={`${(size + gap) * 2}px`}
               size={sizePx}
@@ -441,7 +441,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               top={`${(size + gap) * 3}px`}
               size={sizePx}
@@ -449,7 +449,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               top={`${(size + gap) * 4}px`}
               size={sizePx}
@@ -457,7 +457,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               top={`${(size + gap) * 5}px`}
               size={sizePx}
@@ -465,7 +465,7 @@ const NotFoundPage = () => {
               colorTheme={colorTheme}
               flat
             />
-            <ColorThemedSquare
+            <ColorThemedRectangle
               right="0px"
               top={`${(size + gap) * 6}px`}
               size={sizePx}

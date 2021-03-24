@@ -17,8 +17,8 @@ const Decorations = styled(animated.div).attrs((props) => ({
 const GeometricObject = styled(animated.div).attrs((props) => ({
   style: {
     position: props.sticky ? 'sticky' : props.position || 'absolute',
-    width: props.size,
-    height: props.size,
+    width: props.width || props.size,
+    height: props.height || props.size,
     top: props.top,
     left: props.left,
     right: props.right,
@@ -33,7 +33,7 @@ const GeometricObject = styled(animated.div).attrs((props) => ({
   opacity: 0.9;
 `;
 
-const Square = styled(GeometricObject)`
+const Rectangle = styled(GeometricObject)`
   ${(props) => css`
     border-radius: ${props.radius || '15px'};
   `}
@@ -43,6 +43,6 @@ const Circle = styled(GeometricObject)`
   border-radius: ${(props) => props.radius || '50%'};
 `;
 
-export { Decorations, Square, Circle };
+export { Decorations, Rectangle, Circle };
 
 export default Decorations;

@@ -16,7 +16,7 @@ import { Link } from '../common/Reference';
 import { MarkdownContent } from '../common/MarkdownContent';
 import { ImageCarousel } from '../common/ImageCarousel';
 import { Flex } from '../common/Flex';
-import { Decorations, Square, Circle } from '../common/Decorations';
+import { Decorations, Rectangle, Circle } from '../common/Decorations';
 import { Subheader } from '../common/Headers';
 
 const ProjectInfo = styled.div`
@@ -122,7 +122,7 @@ const Project = ({ node, index }) => {
       return (
         <Decorations key={key} layer={key} {...props} style={revealAnimation}>
           {squares?.map((squareProps, i) => (
-            <Square {...squareProps} key={`square-${i}`} />
+            <Rectangle {...squareProps} key={`square-${i}`} />
           ))}
           {circles?.map((cirlceProps, i) => (
             <Circle {...cirlceProps} key={`circle-${i}`} />

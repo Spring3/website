@@ -5,7 +5,7 @@ import { animated, useChain, useSpring } from 'react-spring';
 import { Header } from '../common/Headers';
 import { SocialButtons } from '../common/SocialButtons';
 import { Flex } from '../common/Flex';
-import { Square, Decorations } from '../common/Decorations';
+import { Rectangle, Decorations } from '../common/Decorations';
 import { Flickering } from '../common/Animated';
 import { reveal } from '../../animations';
 
@@ -45,13 +45,13 @@ const AboutSection = ({ children }) => {
     <ContentPanel direction="column" justifyContent="center">
       <Decorations layer="back">
         <Flickering duration={1}>
-          <Square top="1.7rem" left="6.5rem" background="#FBD3C4" size="53px" />
+          <Rectangle top="1.7rem" left="6.5rem" background="#FBD3C4" size="53px" />
         </Flickering>
         <Flickering duration={2}>
-          <Square top="1rem" left="1rem" background="#BED5AE" size="75px" />
+          <Rectangle top="1rem" left="1rem" background="#BED5AE" size="75px" />
         </Flickering>
         <Flickering duration={1.5}>
-          <Square
+          <Rectangle
             top="6.5rem"
             left="1.25rem"
             background="#FBBC58"
@@ -59,10 +59,10 @@ const AboutSection = ({ children }) => {
           />
         </Flickering>
         <Flickering duration={2}>
-          <Square bottom="1rem" right="1rem" background="#F57B51" size="65px" />
+          <Rectangle bottom="1rem" right="1rem" background="#F57B51" size="65px" />
         </Flickering>
         <Flickering duration={1.5}>
-          <Square
+          <Rectangle
             bottom="calc(65px + 2rem)"
             right="1.4rem"
             background="#BED5AE"
@@ -70,7 +70,7 @@ const AboutSection = ({ children }) => {
           />
         </Flickering>
         <Flickering duration={1}>
-          <Square
+          <Rectangle
             bottom="1rem"
             right="calc(65px + 2rem)"
             background="#FBD3C4"
@@ -78,7 +78,7 @@ const AboutSection = ({ children }) => {
           />
         </Flickering>
         <Flickering duration={2}>
-          <Square
+          <Rectangle
             bottom="1rem"
             right="calc(65px + 60px + 3rem)"
             background="#FBBC58"

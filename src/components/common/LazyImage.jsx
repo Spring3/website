@@ -12,6 +12,8 @@ const LazyImage = ({
   const [isLoading, setIsLoading] = useState(false);
   const imageRef = useRef();
 
+  const isRenderingPreview = imageSrc === placeholder;
+
   const placeholderStyles = useMemo(
     () => ({
       backgroundColor: 'var(--background-color-dark)',
@@ -25,14 +27,10 @@ const LazyImage = ({
   });
 
   useEffect(() => {
-    if (
-      intersection?.isIntersecting &&
-      !isLoading &&
-      imageSrc === placeholder
-    ) {
+    if (intersection?.isIntersecting && !isLoading && isRenderingPreview) {
       setIsLoading(true);
     }
-  }, [intersection, isLoading, src, imageSrc]);
+  }, [intersection, isLoading, src, isRenderingPreview]);
 
   useEffect(() => {
     let wasCancelled = false;
@@ -57,6 +55,11 @@ const LazyImage = ({
     return null;
   }
 
+  const previewStyles = {
+    filter: 'blur(3px)',
+    ...restProps.style
+  };
+
   return (
     <Component
       src={imageSrc}
@@ -64,9 +67,9 @@ const LazyImage = ({
       loading="lazy"
       {...restProps}
       style={
-        imageSrc === placeholder && !placeholder
+        isRenderingPreview && !placeholder
           ? placeholderStyles
-          : restProps.style
+          : isRenderingPreview ? previewStyles : restProps.style
       }
     />
   );
