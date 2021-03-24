@@ -182,8 +182,7 @@ const CVPage = ({ data }) => {
                 </Subheading>
                 <small>
                   &nbsp;(
-                  {post.frontmatter.updatedAt}
-                  )
+                  {post.frontmatter.updatedAt})
                 </small>
               </Flex>
               <p>

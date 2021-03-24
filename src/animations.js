@@ -1,5 +1,5 @@
 import { config } from 'react-spring';
-import { getRandomIndex } from "./utils";
+import { getRandomIndex } from './utils';
 
 const randomFlicker = (seed = 0, duration) => ({
   from: {
@@ -8,14 +8,14 @@ const randomFlicker = (seed = 0, duration) => ({
   to: async (next) => {
     while (true) {
       await next({ opacity: 1 });
-      await next({ opacity: .5 });
+      await next({ opacity: 0.5 });
     }
   },
   config: {
-    mass: duration
+    mass: duration,
   },
   immediate: false,
-  delay: seed ? seed * 100 : undefined
+  delay: seed ? seed * 100 : undefined,
 });
 
 const randomShift = ({ left, top }, duration) => {
@@ -24,7 +24,7 @@ const randomShift = ({ left, top }, duration) => {
   return {
     from: {
       left: initialLeft,
-      top: initialTop
+      top: initialTop,
     },
     to: async (next) => {
       while (true) {
@@ -36,8 +36,8 @@ const randomShift = ({ left, top }, duration) => {
       }
     },
     config: {
-      duration
-    }
+      duration,
+    },
   };
 };
 
@@ -52,12 +52,8 @@ const reveal = ({ delay, ref }, slow = true) => {
       opacity: 1,
     },
     config: slow ? config.slow : undefined,
-    delay
+    delay,
   };
-}
-
-export {
-  randomFlicker,
-  randomShift,
-  reveal
 };
+
+export { randomFlicker, randomShift, reveal };

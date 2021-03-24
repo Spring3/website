@@ -69,7 +69,10 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.repository) {
     components.push(
-      <ProjectReference key={frontmatter.repository} href={frontmatter.repository}>
+      <ProjectReference
+        key={frontmatter.repository}
+        href={frontmatter.repository}
+      >
         <GithubIcon size={size} />
         {onlyIcons ? '' : ' Source'}
       </ProjectReference>

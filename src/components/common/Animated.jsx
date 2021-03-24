@@ -1,5 +1,5 @@
 import { cloneElement, useEffect, useState } from 'react';
-import { useSpring } from 'react-spring'
+import { useSpring } from 'react-spring';
 import { randomFlicker } from '../../animations';
 import { getRandomIndex } from '../../utils';
 
@@ -20,6 +20,4 @@ const Flickering = ({ duration, children }) => {
   return cloneElement(children, { style: animation });
 };
 
-export {
-  Flickering
-};
+export { Flickering };

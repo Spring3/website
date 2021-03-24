@@ -51,6 +51,8 @@ exports.createPages = ({ graphql, actions }) => {
   });
 };
 
+// Remove when react-spring becomes stable
+// https://github.com/pmndrs/react-spring/issues/1069
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   if (stage.startsWith('build-javascript')) {
     actions.setWebpackConfig({

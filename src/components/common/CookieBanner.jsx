@@ -79,7 +79,7 @@ const CookieBanner = memo(() => {
   }, []);
 
   const [introAnimation, setIntoAnimation] = useSpring(() => ({
-    left: '-50rem'
+    left: '-50rem',
   }));
 
   const descriptionAnimation = useSpring({

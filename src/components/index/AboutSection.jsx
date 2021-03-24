@@ -51,7 +51,12 @@ const AboutSection = ({ children }) => {
           <Square top="1rem" left="1rem" background="#BED5AE" size="75px" />
         </Flickering>
         <Flickering duration={1.5}>
-          <Square top="6.5rem" left="1.25rem" background="#FBBC58" size="65px" />
+          <Square
+            top="6.5rem"
+            left="1.25rem"
+            background="#FBBC58"
+            size="65px"
+          />
         </Flickering>
         <Flickering duration={2}>
           <Square bottom="1rem" right="1rem" background="#F57B51" size="65px" />

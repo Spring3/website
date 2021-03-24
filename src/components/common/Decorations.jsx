@@ -25,7 +25,7 @@ const GeometricObject = styled(animated.div).attrs((props) => ({
     bottom: props.bottom,
     background: props.background,
     boxShadow: props.flat ? 'none' : `0px 0px 20px 0px ${props.background}`,
-    ...(props.style || {})
+    ...(props.style || {}),
   },
 }))`
   transition: background ease 0.3s;

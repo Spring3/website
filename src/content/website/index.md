@@ -48,4 +48,4 @@ This website is static and was implemented with Gatsby, Markdown and React.
 
 Wait, how did you manage to get in here? Anyway, it's too late, so make yourself comfortable here and explore.
 
-If you would like to make sure that THIS version looks beautiful despite it's imperfection, check the way the old design used to look like :p
+If you would like to make sure that THIS version looks beautiful despite it's imperfection, [check the way the old design used to look like](https://5fab235dda93260007a4c3de--loving-nightingale-303c63.netlify.app/) :p

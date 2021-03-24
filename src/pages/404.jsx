@@ -61,9 +61,15 @@ const NotFoundPage = () => {
   const [colorTheme, setColorTheme] = useState([]);
   const { width: windowWidth } = useWindowSize();
 
-  const firstCircleAnimation = useSpring(randomShift({ left: '40%', top: '15%' }, 10000));
-  const secondCircleAnimation = useSpring(randomShift({ left: '95%', top: '95%' }, 16700));
-  const thirdCircleAnimation = useSpring(randomShift({ left: '10%', top: '15%' }, 14700));
+  const firstCircleAnimation = useSpring(
+    randomShift({ left: '40%', top: '15%' }, 10000)
+  );
+  const secondCircleAnimation = useSpring(
+    randomShift({ left: '95%', top: '95%' }, 16700)
+  );
+  const thirdCircleAnimation = useSpring(
+    randomShift({ left: '10%', top: '15%' }, 14700)
+  );
 
   useEffect(() => {
     const theme = colorThemes[getRandomIndex(colorThemes.length)];
