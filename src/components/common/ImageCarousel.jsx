@@ -61,6 +61,7 @@ const ImageCarousel = ({ images }) => {
     const image = images[0];
     return (
       <SingleImage
+        ref={containerRef}
         alt={image.name}
         src={image.src}
         placeholder={image.placeholder}
@@ -73,7 +74,7 @@ const ImageCarousel = ({ images }) => {
 
   return (
     <>
-      <CarouselContainer>
+      <CarouselContainer ref={containerRef}>
         <StyledCarousel
           showStatus={false}
           showIndicators={false}

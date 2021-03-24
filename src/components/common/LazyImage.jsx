@@ -1,20 +1,22 @@
-import React, { useMemo, useState, useRef, useEffect } from 'react';
+import React, {
+  useMemo, useState, useRef, useEffect
+} from 'react';
 import { useIntersection } from 'react-use';
 
 const LazyImage = ({
   Component = 'img',
   src,
   intersectionTriggerRef,
-  placeholder = '#',
+  placeholder,
   ...restProps
 }) => {
   const [imageSrc, setImageSrc] = useState(placeholder);
   const [isLoading, setIsLoading] = useState(false);
   const imageRef = useRef();
 
-  const isRenderingPreview = imageSrc === placeholder;
+  const isRenderingPlaceholder = imageSrc === placeholder;
 
-  const placeholderStyles = useMemo(
+  const defaultPlaceholderStyles = useMemo(
     () => ({
       backgroundColor: 'var(--background-color-dark)',
       minWidth: '350px',
@@ -27,10 +29,10 @@ const LazyImage = ({
   });
 
   useEffect(() => {
-    if (intersection?.isIntersecting && !isLoading && isRenderingPreview) {
+    if (intersection?.isIntersecting && !isLoading && isRenderingPlaceholder) {
       setIsLoading(true);
     }
-  }, [intersection, isLoading, src, isRenderingPreview]);
+  }, [intersection, isLoading, src]);
 
   useEffect(() => {
     let wasCancelled = false;
@@ -38,6 +40,7 @@ const LazyImage = ({
       const updateSrc = () => {
         if (!wasCancelled) {
           setImageSrc(src);
+          setIsLoading(false);
         }
       };
 
@@ -57,8 +60,14 @@ const LazyImage = ({
 
   const previewStyles = {
     filter: 'blur(3px)',
-    ...restProps.style
+    ...restProps.style,
   };
+
+  let styles = restProps.style;
+
+  if (isRenderingPlaceholder) {
+    styles = placeholder ? previewStyles : defaultPlaceholderStyles;
+  }
 
   return (
     <Component
@@ -66,11 +75,7 @@ const LazyImage = ({
       ref={imageRef}
       loading="lazy"
       {...restProps}
-      style={
-        isRenderingPreview && !placeholder
-          ? placeholderStyles
-          : isRenderingPreview ? previewStyles : restProps.style
-      }
+      style={styles}
     />
   );
 };
