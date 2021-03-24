@@ -57,42 +57,51 @@ const Description = styled(animated.div)`
 `;
 
 const CookieBanner = memo(() => {
+  const [conscentRequired, setConsentRequired] = useState(true);
   const [isExpanded, setExpanded] = useState(false);
   const { width } = useWindowSize();
   const [isReady] = useTimeout(3000);
   const [, cancelExpand] = useTimeoutFn(() => setExpanded(true), 4500);
   const [, cancelShrink] = useTimeoutFn(() => setExpanded(false), 9500);
 
-  let haveSavedConsent = false;
-  if (typeof localStorage !== 'undefined') {
-    haveSavedConsent = localStorage.getItem(storageKey) === null;
-  }
-  const [conscentRequired, setConscentRequired] = useState(haveSavedConsent);
+  useEffect(() => {
+    let haveSavedConsent = false;
+    if (typeof localStorage !== 'undefined') {
+      haveSavedConsent = localStorage.getItem(storageKey) !== null;
+    }
+
+    setConsentRequired(!haveSavedConsent);
+
+    return () => {
+      cancelExpand();
+      cancelShrink();
+    };
+  }, []);
 
   const [introAnimation, setIntoAnimation] = useSpring(() => ({
-    left: '-50rem',
+    left: '-50rem'
   }));
 
   const descriptionAnimation = useSpring({
-    maxHeight: isExpanded ? '200%' : '0px',
+    maxHeight: isExpanded ? '1000px' : '0px',
     margin: isExpanded ? '0px 0px 20px 0px' : '0px 0px 0px 0px',
   });
 
   const onAccept = () => {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem(storageKey, true);
-      initializeAndTrack();
-      setConscentRequired(false);
-      setIntoAnimation({ left: '-50rem' });
     }
+    initializeAndTrack();
+    setConsentRequired(false);
+    setIntoAnimation({ left: '-50rem' });
   };
 
   const onReject = () => {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem(storageKey, false);
-      setConscentRequired(false);
-      setIntoAnimation({ left: '-50rem' });
     }
+    setConsentRequired(false);
+    setIntoAnimation({ left: '-50rem' });
   };
 
   const onCaretClick = (e) => {
@@ -123,14 +132,6 @@ const CookieBanner = memo(() => {
       initializeAndTrack();
     }
   }, [conscentRequired, width, canAnimate]);
-
-  useEffect(
-    () => () => {
-      cancelExpand();
-      cancelShrink();
-    },
-    []
-  );
 
   return (
     <CookieBannerContainer style={introAnimation}>

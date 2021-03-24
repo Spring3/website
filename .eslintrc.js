@@ -23,5 +23,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'jsx-quotes': 'off',
     'react/jsx-curly-newline': 'off',
+    'operator-linebreal': 'off'
   },
 };

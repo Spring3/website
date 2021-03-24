@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import styled from 'styled-components';
 import { useSpring } from 'react-spring';
 import { useWindowSize } from 'react-use';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
-import { randomFlicker, randomShift } from '../components/animations';
+import { randomFlicker, randomShift } from '../animations';
 import { Square, Circle, Decorations } from '../components/common/Decorations';
 import { Flex } from '../components/common/Flex';
 import { Link } from '../components/common/Reference';
@@ -34,7 +34,7 @@ const colorThemes = [
   ['#5F6874', '#C2C2CC', '#F5F3EB', '#ECDEB0'],
 ];
 
-const ColorThemedSquare = ({ colorTheme, ...rest }) => {
+const ColorThemedSquare = memo(({ colorTheme, ...rest }) => {
   const [seed, setSeed] = useState(0);
   const [color, setColor] = useState();
 
@@ -55,7 +55,7 @@ const ColorThemedSquare = ({ colorTheme, ...rest }) => {
   }
 
   return <Square style={animation} {...rest} background={color} />;
-};
+});
 
 const NotFoundPage = () => {
   const [colorTheme, setColorTheme] = useState([]);

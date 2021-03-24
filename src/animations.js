@@ -1,11 +1,12 @@
-import { getRandomIndex } from "../utils";
+import { config } from 'react-spring';
+import { getRandomIndex } from "./utils";
 
 const randomFlicker = (seed = 0, duration) => ({
   from: {
     opacity: 0,
   },
   to: async (next) => {
-    while (1) {
+    while (true) {
       await next({ opacity: 1 });
       await next({ opacity: .5 });
     }
@@ -26,14 +27,10 @@ const randomShift = ({ left, top }, duration) => {
       top: initialTop
     },
     to: async (next) => {
-      while (1) {
-        let targetLeft = getRandomIndex(100);
-        let targetTop = getRandomIndex(100);
+      while (true) {
+        const targetLeft = getRandomIndex(100);
+        const targetTop = getRandomIndex(100);
         await next({ left: `${targetLeft}%`, top: `${targetTop}%` });
-
-        // targetLeft = getRandomIndex(100);
-        // targetTop = getRandomIndex(100);
-        // await next({ left: `${targetLeft}%`, top: `${targetTop}%` });
         initialLeft = targetLeft;
         initialTop = targetTop;
       }
@@ -41,10 +38,26 @@ const randomShift = ({ left, top }, duration) => {
     config: {
       duration
     }
-  }
+  };
 };
+
+const reveal = ({ delay, ref }, slow = true) => {
+  return {
+    ref,
+    immediate: false,
+    from: {
+      opacity: 0,
+    },
+    to: {
+      opacity: 1,
+    },
+    config: slow ? config.slow : undefined,
+    delay
+  };
+}
 
 export {
   randomFlicker,
-  randomShift
+  randomShift,
+  reveal
 };

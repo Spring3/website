@@ -51,7 +51,7 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.firefox) {
     components.push(
-      <ProjectReference key={frontmatter.chrome} href={frontmatter.firefox}>
+      <ProjectReference key={frontmatter.firefox} href={frontmatter.firefox}>
         <FirefoxIcon size={size} />
         {onlyIcons ? '' : ' Firefox Store'}
       </ProjectReference>
@@ -60,7 +60,7 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.demo) {
     components.push(
-      <ProjectReference key={frontmatter.chrome} href={frontmatter.demo}>
+      <ProjectReference key={frontmatter.demo} href={frontmatter.demo}>
         <CardSearchOutlineIcon size={size} />
         {onlyIcons ? '' : ' Demo'}
       </ProjectReference>
@@ -69,7 +69,7 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.repository) {
     components.push(
-      <ProjectReference key={frontmatter.chrome} href={frontmatter.repository}>
+      <ProjectReference key={frontmatter.repository} href={frontmatter.repository}>
         <GithubIcon size={size} />
         {onlyIcons ? '' : ' Source'}
       </ProjectReference>

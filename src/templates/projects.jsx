@@ -88,7 +88,7 @@ const ProjectInfo = styled.div`
   grid-area: content;
 `;
 
-export default (props) => {
+const ProjectsPage = (props) => {
   const post = props.data.markdownRemark;
   const allPosts = props.data.allMarkdownRemark.nodes;
   const activeAnchor = useAnchorTracker(['#markdown']);
@@ -195,6 +195,8 @@ export default (props) => {
     </>
   );
 };
+
+export default ProjectsPage;
 
 export const query = graphql`
   query($slug: String!) {

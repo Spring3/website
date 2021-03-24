@@ -38,7 +38,7 @@ const AboutSectionMarkdown = styled(MarkdownContent)`
   }
 `;
 
-export default ({ data }) => {
+const IndexPage = ({ data }) => {
   const { siteMetadata } = data.site;
   const { nodes } = data.allMarkdownRemark;
   const aboutNode = nodes[0];
@@ -58,9 +58,7 @@ export default ({ data }) => {
     window.scrollTo({
       behavior: 'smooth',
       top:
-        element.getBoundingClientRect().top +
-        window.pageYOffset -
-        marginsAndPaddings,
+        element.getBoundingClientRect().top + window.pageYOffset - marginsAndPaddings,
     });
     return false;
   }, []);
@@ -90,6 +88,8 @@ export default ({ data }) => {
     </>
   );
 };
+
+export default IndexPage;
 
 export const query = graphql`
   query {

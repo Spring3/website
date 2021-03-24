@@ -118,7 +118,7 @@ const ProfileInfo = styled.div`
   flex-grow: 1;
 `;
 
-export default ({ data }) => {
+const CVPage = ({ data }) => {
   const post = data.markdownRemark;
   const activeAnchor = useAnchorTracker(['#intro-section']);
   const { width } = useWindowSize();
@@ -182,7 +182,8 @@ export default ({ data }) => {
                 </Subheading>
                 <small>
                   &nbsp;(
-                  {post.frontmatter.updatedAt})
+                  {post.frontmatter.updatedAt}
+                  )
                 </small>
               </Flex>
               <p>
@@ -421,6 +422,8 @@ export default ({ data }) => {
     </>
   );
 };
+
+export default CVPage;
 
 export const query = graphql`
   query($slug: String!) {
