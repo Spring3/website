@@ -6,18 +6,7 @@ import LinkedInIcon from 'mdi-react/LinkedinIcon';
 import TwitterIcon from 'mdi-react/TwitterIcon';
 import EmailOutlineIcon from 'mdi-react/EmailOutlineIcon';
 import SpotifyIcon from 'mdi-react/SpotifyIcon';
-
-const SocialButtonsList = styled.ul`
-  margin: 0px;
-  list-style-type: none;
-  padding: 0px;
-  display: flex;
-  align-items: center;
-
-  & > li:not(:last-child) {
-    padding-right: 1rem;
-  }
-`;
+import { Flex } from './Flex';
 
 const SocialButtonLink = styled.a`
   background: transparent;
@@ -26,67 +15,57 @@ const SocialButtonLink = styled.a`
 
 const OnlyImportantSocialButtons = ({ size }) => (
   <>
-    <li>
-      <SocialButtonLink
-        href="https://github.com/Spring3"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        <GithubIcon color="#333" size={size} />
-      </SocialButtonLink>
-    </li>
-    <li>
-      <SocialButtonLink
-        href="https://www.linkedin.com/in/dvasylenko/"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        <LinkedInIcon color="#0077b5" size={size} />
-      </SocialButtonLink>
-    </li>
-    <li>
-      <SocialButtonLink
-        href="mailto:daniyil.vasylenko@gmail.com"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        <EmailOutlineIcon color="#ea4335" size={size} />
-      </SocialButtonLink>
-    </li>
+    <SocialButtonLink
+      href="https://github.com/Spring3"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      <GithubIcon color="#333" size={size} />
+    </SocialButtonLink>
+    <SocialButtonLink
+      href="https://www.linkedin.com/in/dvasylenko/"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      <LinkedInIcon color="#0077b5" size={size} />
+    </SocialButtonLink>
+    <SocialButtonLink
+      href="mailto:daniyil.vasylenko@gmail.com"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      <EmailOutlineIcon color="#ea4335" size={size} />
+    </SocialButtonLink>
   </>
 );
 
 const SocialButtons = ({ className, size, onlyImportant }) => {
   if (onlyImportant) {
     return (
-      <SocialButtonsList className={className}>
+      <Flex gap="1rem" margined alignItems="center" className={className}>
         <OnlyImportantSocialButtons size={size} />
-      </SocialButtonsList>
+      </Flex>
     );
   }
 
   return (
-    <SocialButtonsList className={className}>
+    <Flex gap="1rem" margined alignItems="center" className={className}>
       <OnlyImportantSocialButtons size={size} />
-      <li>
-        <SocialButtonLink
-          href="https://twitter.com/dan_vasylenko"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <TwitterIcon color="#1da1f2" size={size} />
-        </SocialButtonLink>
-      </li>
-      <li>
-        <SocialButtonLink
-          href="https://open.spotify.com/user/21vcdhgxp3gqinwau2aynzg7i?si=onT2d2-dTA-RqL7xHLI2Tw"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <SpotifyIcon color="#1db954" size={size} />
-        </SocialButtonLink>
-      </li>
-    </SocialButtonsList>
+      <SocialButtonLink
+        href="https://twitter.com/dan_vasylenko"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <TwitterIcon color="#1da1f2" size={size} />
+      </SocialButtonLink>
+      <SocialButtonLink
+        href="https://open.spotify.com/user/21vcdhgxp3gqinwau2aynzg7i?si=onT2d2-dTA-RqL7xHLI2Tw"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <SpotifyIcon color="#1db954" size={size} />
+      </SocialButtonLink>
+    </Flex>
   );
 };
 
@@ -99,7 +78,7 @@ SocialButtons.propTypes = {
 SocialButtons.defaultProps = {
   size: 25,
   className: undefined,
-  onlyImportant: false
+  onlyImportant: false,
 };
 
 export { SocialButtons };

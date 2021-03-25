@@ -16,6 +16,7 @@ const BurgerMenuWrapper = styled.div`
 
 const Button = styled(Reference)`
   background: transparent;
+  user-select: none;
   &:hover {
     background: transparent;
     cursor: pointer;
@@ -42,8 +43,8 @@ const BurgetMenuPanelWrapper = styled.div`
   top: 0;
   min-width: 350px;
   height: 100%;
-  background: rgba(255, 255, 255, .95);
-  border-left: 2px solid rgba(240, 240, 240, .9);
+  background: rgba(255, 255, 255, 0.95);
+  border-left: 2px solid rgba(240, 240, 240, 0.9);
 `;
 
 const MarkerlessLink = styled(Link)`
@@ -84,26 +85,38 @@ const BurgerMenu = () => {
           <IconElement size={32} />
         </Button>
       </BurgerMenuWrapper>
-      <BurgetMenuPanelWrapper>
-        <BurgerMenuPanel direction="column" justifyContent="space-between">
-          <ProjectsSection direction="column" justifyContent="flex-start">
-            <SpaceLessSectionHeader>Projects</SpaceLessSectionHeader>
-            <MarkerlessLink to="/aurelins-website"><SpaceLessHeader>Aurelins Website</SpaceLessHeader></MarkerlessLink>
-            <MarkerlessLink to="/redshape"><SpaceLessHeader>Redshape</SpaceLessHeader></MarkerlessLink>
-            <MarkerlessLink to="/starbot"><SpaceLessHeader>Starbot</SpaceLessHeader></MarkerlessLink>
-            <MarkerlessLink to="/twitch-auto-points"><SpaceLessHeader>Twitch Auto Points</SpaceLessHeader></MarkerlessLink>
-            <MarkerlessLink to="/website"><SpaceLessHeader>Website</SpaceLessHeader></MarkerlessLink>
-          </ProjectsSection>
-          <UtilitySection justifyContent="space-between" alignItems="center">
-            <MarkerlessLink to="/cv"><SpaceLessHeader>CV</SpaceLessHeader></MarkerlessLink>
-            <SocialButtons size={32} onlyImportant />
-          </UtilitySection>
-        </BurgerMenuPanel>
-      </BurgetMenuPanelWrapper>
+      {isMenuOpen ? (
+        <BurgetMenuPanelWrapper>
+          <BurgerMenuPanel direction="column" justifyContent="space-between">
+            <ProjectsSection direction="column" justifyContent="flex-start">
+              <SpaceLessSectionHeader>Projects</SpaceLessSectionHeader>
+              <MarkerlessLink to="/aurelins-website">
+                <SpaceLessHeader>Aurelins Website</SpaceLessHeader>
+              </MarkerlessLink>
+              <MarkerlessLink to="/redshape">
+                <SpaceLessHeader>Redshape</SpaceLessHeader>
+              </MarkerlessLink>
+              <MarkerlessLink to="/starbot">
+                <SpaceLessHeader>Starbot</SpaceLessHeader>
+              </MarkerlessLink>
+              <MarkerlessLink to="/twitch-auto-points">
+                <SpaceLessHeader>Twitch Auto Points</SpaceLessHeader>
+              </MarkerlessLink>
+              <MarkerlessLink to="/website">
+                <SpaceLessHeader>Website</SpaceLessHeader>
+              </MarkerlessLink>
+            </ProjectsSection>
+            <UtilitySection justifyContent="space-between" alignItems="center">
+              <MarkerlessLink to="/cv">
+                <SpaceLessHeader>CV</SpaceLessHeader>
+              </MarkerlessLink>
+              <SocialButtons size={32} onlyImportant />
+            </UtilitySection>
+          </BurgerMenuPanel>
+        </BurgetMenuPanelWrapper>
+      ) : null}
     </>
   );
 };
 
-export {
-  BurgerMenu
-};
+export { BurgerMenu };
