@@ -156,7 +156,7 @@ const AnchorListMenu = ({ nodes, onClick }) => {
   return (
     <MenuContainer
       direction={isSmallScreen ? 'column' : 'row'}
-      gap={isSmallScreen ? '1rem' : 0}
+      gap={isSmallScreen ? '1rem' : '0rem'}
       margined
       justifyContent="center"
       alignItems="center"
@@ -180,7 +180,7 @@ const SlugListMenu = ({ slugs, active, onClick }) => {
       justifyContent="center"
       alignItems="center"
       margined
-      gap={isSmallScreen ? '1rem' : 0}
+      gap={isSmallScreen ? '1rem' : '0rem'}
     >
       <small>Projects:&nbsp;</small>
       {slugs.map((slug) => {

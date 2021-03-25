@@ -9,7 +9,7 @@ import { AnchorListMenu } from '../components/common/Menus';
 import { slugToAnchor } from '../utils';
 import { styles } from '../components/common/Reference';
 import { Footer } from '../components/index/Footer';
-import { ImagePreviewContextProvider } from '../context/ImagePreviewContext';
+import { ImagePreviewContextProvider } from '../context/ImagePreviewContextProvider';
 import { MarkdownContent } from '../components/common/MarkdownContent';
 import { BurgerMenu } from '../components/common/BurgerMenu';
 

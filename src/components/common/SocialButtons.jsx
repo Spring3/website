@@ -36,6 +36,13 @@ const OnlyImportantSocialButtons = ({ size }) => (
     >
       <EmailOutlineIcon color="#ea4335" size={size} />
     </SocialButtonLink>
+    <SocialButtonLink
+      href="https://twitter.com/dan_vasylenko"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      <TwitterIcon color="#1da1f2" size={size} />
+    </SocialButtonLink>
   </>
 );
 
@@ -51,13 +58,6 @@ const SocialButtons = ({ className, size, onlyImportant }) => {
   return (
     <Flex gap="1rem" margined alignItems="center" className={className}>
       <OnlyImportantSocialButtons size={size} />
-      <SocialButtonLink
-        href="https://twitter.com/dan_vasylenko"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        <TwitterIcon color="#1da1f2" size={size} />
-      </SocialButtonLink>
       <SocialButtonLink
         href="https://open.spotify.com/user/21vcdhgxp3gqinwau2aynzg7i?si=onT2d2-dTA-RqL7xHLI2Tw"
         target="_blank"

@@ -16,7 +16,7 @@ import { ImageCarousel } from '../components/common/ImageCarousel';
 import { useAnchorTracker } from '../hooks/useAnchorTracker';
 import { Flex } from '../components/common/Flex';
 import { slugToAnchor } from '../utils';
-import { ImagePreviewContextProvider } from '../context/ImagePreviewContext';
+import { ImagePreviewContextProvider } from '../context/ImagePreviewContextProvider';
 
 const PageLayout = styled.div`
   display: grid;

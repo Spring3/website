@@ -11,7 +11,7 @@ const BurgerMenuWrapper = styled.div`
   position: fixed;
   top: 2rem;
   right: 2rem;
-  z-index: 3;
+  z-index: 4;
 `;
 
 const Button = styled(Reference)`
@@ -38,7 +38,7 @@ const BurgerMenuPanel = styled(Flex)`
 
 const BurgetMenuPanelWrapper = styled.div`
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   right: 0;
   top: 0;
   min-width: 350px;
