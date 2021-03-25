@@ -4,7 +4,11 @@ import { useSpring } from 'react-spring';
 import { useWindowSize } from 'react-use';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
 import { randomFlicker, randomShift } from '../animations';
-import { Rectangle, Circle, Decorations } from '../components/common/Decorations';
+import {
+  Rectangle,
+  Circle,
+  Decorations,
+} from '../components/common/Decorations';
 import { Flex } from '../components/common/Flex';
 import { Link } from '../components/common/Reference';
 import { Subheading } from '../components/project/Header';

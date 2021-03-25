@@ -60,15 +60,16 @@ const ImageCarousel = ({ images }) => {
   if (images.length === 1) {
     const image = images[0];
     return (
-      <SingleImage
-        ref={containerRef}
-        alt={image.name}
-        src={image.src}
-        placeholder={image.placeholder}
-        srcSet={image.srcSet}
-        sizes={image.sizes}
-        onClick={() => showImagePreview(images)}
-      />
+      <div ref={containerRef}>
+        <SingleImage
+          alt={image.name}
+          src={image.src}
+          placeholder={image.placeholder}
+          srcSet={image.srcSet}
+          sizes={image.sizes}
+          onClick={() => showImagePreview(images)}
+        />
+      </div>
     );
   }
 

@@ -45,7 +45,12 @@ const AboutSection = ({ children }) => {
     <ContentPanel direction="column" justifyContent="center">
       <Decorations layer="back">
         <Flickering duration={1}>
-          <Rectangle top="1.7rem" left="6.5rem" background="#FBD3C4" size="53px" />
+          <Rectangle
+            top="1.7rem"
+            left="6.5rem"
+            background="#FBD3C4"
+            size="53px"
+          />
         </Flickering>
         <Flickering duration={2}>
           <Rectangle top="1rem" left="1rem" background="#BED5AE" size="75px" />
@@ -59,7 +64,12 @@ const AboutSection = ({ children }) => {
           />
         </Flickering>
         <Flickering duration={2}>
-          <Rectangle bottom="1rem" right="1rem" background="#F57B51" size="65px" />
+          <Rectangle
+            bottom="1rem"
+            right="1rem"
+            background="#F57B51"
+            size="65px"
+          />
         </Flickering>
         <Flickering duration={1.5}>
           <Rectangle

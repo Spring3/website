@@ -1,21 +1,16 @@
 import React, { useMemo } from 'react';
 import styled, { css } from 'styled-components';
 
+import { useWindowSize } from 'react-use';
 import { useAnchorTracker } from '../../hooks/useAnchorTracker';
 import { Link, Reference } from './Reference';
+import { Flex } from './Flex';
 import { slugToTitle } from '../../utils';
 
-const MenuContainer = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+const MenuContainer = styled(Flex)`
   position: sticky;
   bottom: 3rem;
-  left: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 3;
 
   small {
@@ -24,13 +19,7 @@ const MenuContainer = styled.ul`
 
   @media (max-width: 750px) {
     position: static;
-    flex-direction: column;
-    align-items: center;
     margin-top: 1rem;
-
-    & > *:not(:last-child) {
-      margin-right: 0.5rem;
-    }
   }
 
   @media (min-width: 750px) and (orientation: landscape) {
@@ -43,12 +32,6 @@ const SlugMenuContainer = styled(MenuContainer)`
 
   @media (max-width: 750px) {
     position: static;
-    flex-direction: column;
-    align-items: center;
-
-    & > *:not(:last-child) {
-      margin-right: 0.5rem;
-    }
   }
 `;
 
@@ -109,10 +92,9 @@ const activeStyles = css`
   &:focus {
     border-bottom: 2px solid
       ${(props) => props.theme.marker || 'var(--marker-blue)'};
-    background: ${(props) =>
-      props.active
-        ? props.theme.marker || 'var(--marker-blue)'
-        : 'transparent'};
+    background: ${(props) => (props.active
+    ? props.theme.marker || 'var(--marker-blue)'
+    : 'transparent')};
   }
 `;
 
@@ -149,29 +131,35 @@ const ActiveSlugMenuItem = styled(Link)`
 `;
 
 const AnchorListMenu = ({ nodes, onClick }) => {
+  const { width } = useWindowSize();
   const anchors = useMemo(() => nodes.map((node) => node.anchor), []);
   const activeAnchor = useAnchorTracker(anchors);
+  const isSmallScreen = width <= 750;
   const menuItems = useMemo(
-    () =>
-      nodes.map((node) => {
-        const MenuItem =
-          activeAnchor === node.anchor ? ActiveAnchorMenuItem : AnchorMenuItem;
-        return (
-          <MenuItem
-            onClick={onClick}
-            href={node.anchor}
-            data-anchor={node.anchor}
-            key={node.anchor}
-          >
-            {node.name}
-          </MenuItem>
-        );
-      }),
+    () => nodes.map((node) => {
+      const MenuItem = activeAnchor === node.anchor ? ActiveAnchorMenuItem : AnchorMenuItem;
+      return (
+        <MenuItem
+          onClick={onClick}
+          href={node.anchor}
+          data-anchor={node.anchor}
+          key={node.anchor}
+        >
+          {node.name}
+        </MenuItem>
+      );
+    }),
     [activeAnchor]
   );
 
   return (
-    <MenuContainer>
+    <MenuContainer
+      direction={isSmallScreen ? 'column' : 'row'}
+      gap={isSmallScreen ? '1rem' : 0}
+      margined
+      justifyContent="center"
+      alignItems="center"
+    >
       <small>Projects:&nbsp;</small>
       {menuItems}
       <AnchorMenuItem href="/cv" key="cv">
@@ -181,25 +169,32 @@ const AnchorListMenu = ({ nodes, onClick }) => {
   );
 };
 
-const SlugListMenu = ({ slugs, active, onClick }) => (
-  <SlugMenuContainer>
-    <small>Projects:&nbsp;</small>
-    {slugs.map((slug) => {
-      const MenuItem = active === slug ? ActiveSlugMenuItem : SlugMenuItem;
-      return (
-        <li key={slug}>
-          <MenuItem onClick={onClick} to={slug}>
+const SlugListMenu = ({ slugs, active, onClick }) => {
+  const { width } = useWindowSize();
+  const isSmallScreen = width <= 750;
+
+  return (
+    <SlugMenuContainer
+      direction={isSmallScreen ? 'column' : 'row'}
+      justifyContent="center"
+      alignItems="center"
+      margined
+      gap={isSmallScreen ? '1rem' : 0}
+    >
+      <small>Projects:&nbsp;</small>
+      {slugs.map((slug) => {
+        const MenuItem = active === slug ? ActiveSlugMenuItem : SlugMenuItem;
+        return (
+          <MenuItem key={slug} onClick={onClick} to={slug}>
             {slugToTitle(slug)}
           </MenuItem>
-        </li>
-      );
-    })}
-    <li>
+        );
+      })}
       <SlugMenuItem onClick={onClick} to="/cv" key="cv">
         CV
       </SlugMenuItem>
-    </li>
-  </SlugMenuContainer>
-);
+    </SlugMenuContainer>
+  );
+};
 
 export { AnchorListMenu, SlugListMenu };
