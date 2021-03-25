@@ -11,6 +11,7 @@ import { styles } from '../components/common/Reference';
 import { Footer } from '../components/index/Footer';
 import { ImagePreviewContextProvider } from '../context/ImagePreviewContext';
 import { MarkdownContent } from '../components/common/MarkdownContent';
+import { BurgerMenu } from '../components/common/BurgerMenu';
 
 const AboutSectionMarkdown = styled(MarkdownContent)`
   a {
@@ -36,6 +37,10 @@ const AboutSectionMarkdown = styled(MarkdownContent)`
   @media (min-width: 1000px) {
     font-size: 1.2rem;
   }
+`;
+
+const RelativeDiv = styled.div`
+  position: relative;
 `;
 
 const IndexPage = ({ data }) => {
@@ -75,17 +80,18 @@ const IndexPage = ({ data }) => {
       />
       <ImagePreviewContextProvider>
         <main>
-          <div style={{ position: 'relative' }}>
+          <BurgerMenu />
+          <RelativeDiv>
             <AboutSection>
               <AboutSectionMarkdown
                 dangerouslySetInnerHTML={{ __html: aboutNode.html }}
               />
             </AboutSection>
-          </div>
+          </RelativeDiv>
           <ProjectsSection nodes={projectNodes} />
           <AnchorListMenu nodes={menuNodes} onClick={onMenuClick} />
+          <Footer />
         </main>
-        <Footer />
       </ImagePreviewContextProvider>
     </>
   );

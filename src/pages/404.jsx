@@ -28,6 +28,10 @@ const LinkWithLargerText = styled(Link)`
   font-size: 1.2rem;
 `;
 
+const MessageSection = styled(Flex)`
+  z-index: 3;
+`;
+
 const colorThemes = [
   ['#9DB09C', '#EEF0F0', '#D6D9D0', '#B7BDB0'],
   ['#FCC4C9', '#FDF6F0', '#F8E2CF', '#F5C6AA'],
@@ -479,10 +483,10 @@ const NotFoundPage = () => {
             />
           </RelativeDecorations>
         </Flex>
-        <Flex style={{ zIndex: 3 }} direction="column" alignItems="center">
+        <MessageSection direction="column" alignItems="center">
           <Subheading>This page does not exist</Subheading>
           <LinkWithLargerText to="/">Back To Main Page</LinkWithLargerText>
-        </Flex>
+        </MessageSection>
       </FullHeightFlex>
     </>
   );

@@ -9,7 +9,6 @@ import SpotifyIcon from 'mdi-react/SpotifyIcon';
 
 const SocialButtonsList = styled.ul`
   margin: 0px;
-  margin-top: 1rem;
   list-style-type: none;
   padding: 0px;
   display: flex;
@@ -57,17 +56,17 @@ const OnlyImportantSocialButtons = ({ size }) => (
   </>
 );
 
-const SocialButtons = ({ size, onlyImportant }) => {
+const SocialButtons = ({ className, size, onlyImportant }) => {
   if (onlyImportant) {
     return (
-      <SocialButtonsList>
+      <SocialButtonsList className={className}>
         <OnlyImportantSocialButtons size={size} />
       </SocialButtonsList>
     );
   }
 
   return (
-    <SocialButtonsList>
+    <SocialButtonsList className={className}>
       <OnlyImportantSocialButtons size={size} />
       <li>
         <SocialButtonLink
@@ -92,12 +91,15 @@ const SocialButtons = ({ size, onlyImportant }) => {
 };
 
 SocialButtons.propTypes = {
+  className: PropTypes.string,
   size: PropTypes.number,
   onlyImportant: PropTypes.bool,
 };
 
 SocialButtons.defaultProps = {
   size: 25,
+  className: undefined,
+  onlyImportant: false
 };
 
 export { SocialButtons };

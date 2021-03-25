@@ -75,7 +75,7 @@ const Reference = ({
 
 Reference.propTypes = {
   color: PropTypes.string,
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
   newTab: PropTypes.bool,
   bold: PropTypes.bool,
 };

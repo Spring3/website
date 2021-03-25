@@ -23,7 +23,7 @@ const ProjectInfo = styled.div`
   @media (min-width: 1000px) {
     position: sticky;
     top: 16%;
-    z-index: ${(props) => props.index + 1};
+    z-index: 2;
   }
 `;
 

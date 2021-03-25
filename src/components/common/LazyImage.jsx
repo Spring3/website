@@ -1,6 +1,4 @@
-import React, {
-  useMemo, useState, useRef, useEffect
-} from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { useIntersection } from 'react-use';
 
 const LazyImage = ({

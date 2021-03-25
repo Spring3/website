@@ -12,6 +12,7 @@ const MenuContainer = styled(Flex)`
   bottom: 3rem;
   width: 100%;
   z-index: 3;
+  left: 0;
 
   small {
     color: var(--text-color-secondary);
