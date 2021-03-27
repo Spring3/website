@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import MenuIcon from 'mdi-react/MenuIcon';
 import CloseIcon from 'mdi-react/CloseIcon';
 import styled from 'styled-components';
+import { useSpring, animated } from 'react-spring';
 import { Reference, Link } from './Reference';
 import { Subheader } from './Headers';
 import { Flex } from './Flex';
@@ -11,7 +12,7 @@ const BurgerMenuWrapper = styled.div`
   position: fixed;
   top: 2rem;
   right: 2rem;
-  z-index: 4;
+  z-index: 5;
 `;
 
 const Button = styled(Reference)`
@@ -29,22 +30,23 @@ const Button = styled(Reference)`
 
 const BurgerMenuPanel = styled(Flex)`
   position: sticky;
-  z-index: 3;
+  overflow: hidden;
+  z-index: 4;
   max-height: 100vh;
-  padding: 4rem 1rem 2rem 1rem;
-  top: 0;
+  top: 4rem;
   height: calc(100vh - 6rem);
 `;
 
-const BurgetMenuPanelWrapper = styled.div`
+const BurgetMenuPanelWrapper = styled(animated.div)`
   position: absolute;
-  z-index: 3;
+  z-index: 4;
   right: 0;
   top: 0;
   min-width: 350px;
+  padding: 4rem 2rem 2rem 1rem;
   height: 100%;
   background: rgba(255, 255, 255, 0.95);
-  border-left: 2px solid rgba(240, 240, 240, 0.9);
+  border-left: 2px solid rgba(245, 245, 245, 0.9);
 `;
 
 const MarkerlessLink = styled(Link)`
@@ -61,7 +63,7 @@ const UtilitySection = styled(Flex)`
 `;
 
 const SpaceLessSectionHeader = styled.h4`
-  margin-top: 0;
+  margin: 0;
 `;
 
 const SpaceLessHeader = styled(Subheader)`
@@ -76,6 +78,21 @@ const BurgerMenu = () => {
     setMenuOpen((isOpen) => !isOpen);
   }, []);
 
+  const expandAnimation = useSpring({
+    from: {
+      minWidth: '0px',
+      maxWidth: '0px',
+      paddingLeft: '0rem',
+      paddingRight: '0rem',
+    },
+    to: {
+      minWidth: isMenuOpen ? '350px' : '0px',
+      maxWidth: isMenuOpen ? 'auto' : '0px',
+      paddingLeft: isMenuOpen ? '1rem' : '0rem',
+      paddingRight: isMenuOpen ? '2rem' : '0rem',
+    },
+  });
+
   const IconElement = isMenuOpen ? CloseIcon : MenuIcon;
 
   return (
@@ -85,36 +102,34 @@ const BurgerMenu = () => {
           <IconElement size={32} />
         </Button>
       </BurgerMenuWrapper>
-      {isMenuOpen ? (
-        <BurgetMenuPanelWrapper>
-          <BurgerMenuPanel direction="column" justifyContent="space-between">
-            <ProjectsSection direction="column" justifyContent="flex-start">
-              <SpaceLessSectionHeader>Projects</SpaceLessSectionHeader>
-              <MarkerlessLink to="/aurelins-website">
-                <SpaceLessHeader>Aurelins Website</SpaceLessHeader>
-              </MarkerlessLink>
-              <MarkerlessLink to="/redshape">
-                <SpaceLessHeader>Redshape</SpaceLessHeader>
-              </MarkerlessLink>
-              <MarkerlessLink to="/starbot">
-                <SpaceLessHeader>Starbot</SpaceLessHeader>
-              </MarkerlessLink>
-              <MarkerlessLink to="/twitch-auto-points">
-                <SpaceLessHeader>Twitch Auto Points</SpaceLessHeader>
-              </MarkerlessLink>
-              <MarkerlessLink to="/website">
-                <SpaceLessHeader>Website</SpaceLessHeader>
-              </MarkerlessLink>
-            </ProjectsSection>
-            <UtilitySection justifyContent="space-between" alignItems="center">
-              <MarkerlessLink to="/cv">
-                <SpaceLessHeader>CV</SpaceLessHeader>
-              </MarkerlessLink>
-              <SocialButtons size={32} onlyImportant />
-            </UtilitySection>
-          </BurgerMenuPanel>
-        </BurgetMenuPanelWrapper>
-      ) : null}
+      <BurgetMenuPanelWrapper style={expandAnimation}>
+        <BurgerMenuPanel direction="column" justifyContent="space-between">
+          <ProjectsSection direction="column" justifyContent="flex-start">
+            <SpaceLessSectionHeader>Projects</SpaceLessSectionHeader>
+            <MarkerlessLink to="/aurelins-website">
+              <SpaceLessHeader>Aurelins Website</SpaceLessHeader>
+            </MarkerlessLink>
+            <MarkerlessLink to="/redshape">
+              <SpaceLessHeader>Redshape</SpaceLessHeader>
+            </MarkerlessLink>
+            <MarkerlessLink to="/starbot">
+              <SpaceLessHeader>Starbot</SpaceLessHeader>
+            </MarkerlessLink>
+            <MarkerlessLink to="/twitch-auto-points">
+              <SpaceLessHeader>Twitch Auto Points</SpaceLessHeader>
+            </MarkerlessLink>
+            <MarkerlessLink to="/website">
+              <SpaceLessHeader>Website</SpaceLessHeader>
+            </MarkerlessLink>
+          </ProjectsSection>
+          <UtilitySection justifyContent="space-between" alignItems="center">
+            <MarkerlessLink to="/cv">
+              <SpaceLessSectionHeader>CV</SpaceLessSectionHeader>
+            </MarkerlessLink>
+            <SocialButtons size={24} onlyImportant />
+          </UtilitySection>
+        </BurgerMenuPanel>
+      </BurgetMenuPanelWrapper>
     </>
   );
 };

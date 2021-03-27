@@ -44,7 +44,7 @@ const ImagePreviewContainer = ({ children }) => (
 
 const PreviewContainer = styled.div`
   position: fixed;
-  z-index: 5;
+  z-index: 6;
   top: 0;
   left: 0;
   height: 100%;
