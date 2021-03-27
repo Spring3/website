@@ -29,16 +29,25 @@ const Button = styled(Reference)`
 `;
 
 const BurgerMenuPanel = styled(Flex)`
-  position: sticky;
   overflow: hidden;
   z-index: 4;
   max-height: 100vh;
-  top: 4rem;
   height: calc(100vh - 6rem);
 `;
 
+const Overlay = styled(animated.div)`
+  background: transparent;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 4;
+}
+`;
+
 const BurgetMenuPanelWrapper = styled(animated.div)`
-  position: absolute;
+  position: fixed;
   z-index: 4;
   right: 0;
   top: 0;
@@ -84,12 +93,23 @@ const BurgerMenu = () => {
       maxWidth: '0px',
       paddingLeft: '0rem',
       paddingRight: '0rem',
+      opacity: 1,
     },
     to: {
       minWidth: isMenuOpen ? '350px' : '0px',
       maxWidth: isMenuOpen ? 'auto' : '0px',
       paddingLeft: isMenuOpen ? '1rem' : '0rem',
       paddingRight: isMenuOpen ? '2rem' : '0rem',
+      opacity: isMenuOpen ? 1 : 0,
+    },
+  });
+
+  const overlayAnimation = useSpring({
+    from: {
+      width: '0%',
+    },
+    to: {
+      width: isMenuOpen ? '100%' : '0%',
     },
   });
 
@@ -102,6 +122,7 @@ const BurgerMenu = () => {
           <IconElement size={32} />
         </Button>
       </BurgerMenuWrapper>
+      <Overlay style={overlayAnimation} onClick={onIconClick} />
       <BurgetMenuPanelWrapper style={expandAnimation}>
         <BurgerMenuPanel direction="column" justifyContent="space-between">
           <ProjectsSection direction="column" justifyContent="flex-start">
