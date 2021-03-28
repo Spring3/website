@@ -35,6 +35,16 @@ const ProjectsContainer = styled.div`
   @media (max-width: 750px) {
     padding: 1rem;
   }
+
+  @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px) {
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+  }
+
+  @media (max-width: 750px) {
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+  }
 `;
 
 const ProjectsSection = ({ nodes }) => (

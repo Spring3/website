@@ -1,13 +1,11 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-
-import { useWindowSize } from 'react-use';
 import { useGithubData } from '../hooks/useGithubData';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
 import { ButtonBack, DownloadButton } from '../components/common/Buttons';
 import { Subheading } from '../components/project/Header';
-import Navbar from '../components/common/Navbar';
+import { Navbar } from '../components/common/Navbar';
 import { PageWrapper } from '../components/common/PageWrapper';
 import { SocialButtons } from '../components/common/SocialButtons';
 import { useAnchorTracker } from '../hooks/useAnchorTracker';
@@ -15,6 +13,8 @@ import { DownloadFooter } from '../components/cv/DownloadFooter';
 import { Flex } from '../components/common/Flex';
 import { MARKERS } from '../theme';
 import { LazyImage } from '../components/common/LazyImage';
+import { BurgerMenu } from '../components/common/BurgerMenu';
+import { useWindowSize } from 'react-use';
 
 const CVWrapper = styled.div`
   padding: 0px 1rem;
@@ -81,7 +81,6 @@ const ProfileGrid = styled(Grid)`
 `;
 
 const InlinedNavbarPart = styled(Flex)`
-  padding: 1rem;
   h2 {
     margin: 0;
     font-size: 1rem;
@@ -118,10 +117,24 @@ const ProfileInfo = styled.div`
   flex-grow: 1;
 `;
 
+const NonTransparentSocialButtons = styled(SocialButtons)`
+  background: var(--background-color);
+  padding: 0.1rem .6rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px var(--shadow-color);
+`;
+
+const NonTransparentSubheading = styled(Subheading)`
+  background: var(--background-color);
+  padding: 0.1rem .6rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px var(--shadow-color);
+`;
+
 const CVPage = ({ data }) => {
   const post = data.markdownRemark;
-  const activeAnchor = useAnchorTracker(['#intro-section']);
   const { width } = useWindowSize();
+  const activeAnchor = useAnchorTracker(['#intro-section']);
   const { data: githubProfile } = useGithubData();
 
   return (
@@ -132,23 +145,25 @@ const CVPage = ({ data }) => {
         description="Daniyil Vasylenko - CV"
       />
       <PageWrapper>
-        <Navbar>
+        <Navbar margined gap="1rem">
           <ButtonBack href="/" value="Main page" />
           {activeAnchor === '#intro-section' ? (
             <Flex
               justifyContent="space-between"
               alignItems="center"
               gap="1rem"
+              margined
               flexGrow="1"
             >
               <InlinedNavbarPart
                 id="navbar-contents"
                 alignItems="center"
-                gap="2rem"
+                gap="1rem"
+                margined
                 flexGrow="1"
               >
-                <Subheading>{post.frontmatter.title}</Subheading>
-                <SocialButtons onlyImportant />
+                <NonTransparentSubheading>{post.frontmatter.title}</NonTransparentSubheading>
+                <NonTransparentSocialButtons onlyImportant />
               </InlinedNavbarPart>
               <small>
                 &nbsp;(
@@ -156,13 +171,8 @@ const CVPage = ({ data }) => {
               </small>
             </Flex>
           ) : null}
-          {width > 750 ? (
-            <DownloadButton
-              href="https://drive.google.com/uc?export=download&id=1Uy-HSmkHS4XuLAE18oPqdKiVj9bELqtX"
-              value="Download"
-            />
-          ) : null}
         </Navbar>
+        <BurgerMenu />
         <CVWrapper>
           <ProfileGrid>
             <LazyImage
@@ -193,7 +203,15 @@ const CVPage = ({ data }) => {
                 Primarily I focus on Node.js, React, Graphql and modern
                 Javascript ecosystem.
               </p>
+              <br />
               <SocialButtons onlyImportant />
+              <br />
+              <Flex>
+                <DownloadButton
+                  href="https://drive.google.com/uc?export=download&id=1Uy-HSmkHS4XuLAE18oPqdKiVj9bELqtX"
+                  value="Download as .pdf"
+                />
+              </Flex>
             </ProfileInfo>
           </ProfileGrid>
           <Grid id="intro-section">

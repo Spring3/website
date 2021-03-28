@@ -13,6 +13,10 @@ const BurgerMenuWrapper = styled.div`
   top: 2rem;
   right: 2rem;
   z-index: 5;
+
+  @media (max-width: 750px) {
+    right: 2rem;
+  }
 `;
 
 const Button = styled(Reference)`
@@ -33,6 +37,7 @@ const BurgerMenuPanel = styled(Flex)`
   z-index: 4;
   max-height: 100vh;
   height: calc(100vh - 6rem);
+  overflow-y: scroll;
 `;
 
 const Overlay = styled(animated.div)`
@@ -124,7 +129,7 @@ const BurgerMenu = () => {
       </BurgerMenuWrapper>
       <Overlay style={overlayAnimation} onClick={onIconClick} />
       <BurgetMenuPanelWrapper style={expandAnimation}>
-        <BurgerMenuPanel direction="column" justifyContent="space-between">
+        <BurgerMenuPanel direction="column" justifyContent="space-between" flexWrap="nowrap">
           <ProjectsSection direction="column" justifyContent="flex-start">
             <SpaceLessSectionHeader>Projects</SpaceLessSectionHeader>
             <MarkerlessLink to="/aurelins-website">

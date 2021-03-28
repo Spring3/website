@@ -4,6 +4,8 @@ const DownloadFooter = styled.footer`
   position: fixed;
   bottom: 0px;
   display: none;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   width: 100%;
   flex-direction: column;
   background: var(--background-color);

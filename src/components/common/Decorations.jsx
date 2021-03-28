@@ -31,6 +31,7 @@ const GeometricObject = styled(animated.div).attrs((props) => ({
   transition: background ease 0.3s;
   will-change: opacity, background;
   opacity: 0.9;
+  pointer-events: none;
 `;
 
 const Rectangle = styled(GeometricObject)`

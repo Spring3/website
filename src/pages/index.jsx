@@ -79,8 +79,8 @@ const IndexPage = ({ data }) => {
         image={siteMetadata.image}
       />
       <ImagePreviewContextProvider>
+        <BurgerMenu />
         <main>
-          <BurgerMenu />
           <RelativeDiv>
             <AboutSection>
               <AboutSectionMarkdown
@@ -89,9 +89,9 @@ const IndexPage = ({ data }) => {
             </AboutSection>
           </RelativeDiv>
           <ProjectsSection nodes={projectNodes} />
-          <AnchorListMenu nodes={menuNodes} onClick={onMenuClick} />
-          <Footer />
         </main>
+        <AnchorListMenu nodes={menuNodes} onClick={onMenuClick} />
+        <Footer />
       </ImagePreviewContextProvider>
     </>
   );

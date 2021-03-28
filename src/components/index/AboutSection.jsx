@@ -30,6 +30,16 @@ const ContentPanel = styled(Flex)`
   div {
     line-height: 1.7;
   }
+
+  @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px) {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  @media (max-width: 750px) {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
 `;
 
 const AboutSection = ({ children }) => {

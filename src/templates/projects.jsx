@@ -11,12 +11,13 @@ import { Tags } from '../components/common/Tags';
 import { ProjectReferences } from '../components/project/ProjectReferences';
 import { SlugListMenu } from '../components/common/Menus';
 import { PageWrapper } from '../components/common/PageWrapper';
-import Navbar from '../components/common/Navbar';
+import { Navbar } from '../components/common/Navbar';
 import { ImageCarousel } from '../components/common/ImageCarousel';
 import { useAnchorTracker } from '../hooks/useAnchorTracker';
 import { Flex } from '../components/common/Flex';
 import { slugToAnchor } from '../utils';
 import { ImagePreviewContextProvider } from '../context/ImagePreviewContextProvider';
+import { BurgerMenu } from '../components/common/BurgerMenu';
 
 const PageLayout = styled.div`
   display: grid;
@@ -64,16 +65,6 @@ const TinyProjectReferenceContainer = styled(ProjectReferenceContainer)`
       font-size: 1rem;
     }
   }
-
-  a > svg {
-    margin: 0;
-    height: 32px;
-    width: 32px;
-  }
-
-  a:not(:last-child) {
-    margin-right: 1.5rem;
-  }
 `;
 
 const ProjectInfoWrapper = styled.div`
@@ -120,24 +111,25 @@ const ProjectsPage = (props) => {
       <ThemeProvider theme={theme}>
         <ImagePreviewContextProvider>
           <PageWrapper>
-            <Navbar>
+            <Navbar withBurgerMenu>
               <ButtonBack href={`/${anchor}`} value="Main page" />
-              {activeAnchor === '#markdown' ? (
-                <TinyProjectReferenceContainer
-                  alignItems="center"
-                  flexWrap="wrap"
-                  gap=".5rem"
-                  margined
-                  justifyContent="flex-end"
-                >
-                  <ProjectReferences
-                    size={25}
-                    frontmatter={post.frontmatter}
-                    onlyIcons={isSmallScreen}
-                  />
-                </TinyProjectReferenceContainer>
-              ) : null}
+                {activeAnchor === '#markdown' ? (
+                  <TinyProjectReferenceContainer
+                    alignItems="center"
+                    flexWrap="wrap"
+                    gap=".5rem"
+                    margined
+                    justifyContent="flex-end"
+                  >
+                    <ProjectReferences
+                      size={25}
+                      frontmatter={post.frontmatter}
+                      onlyIcons={isSmallScreen}
+                    />
+                  </TinyProjectReferenceContainer>
+                ) : null}
             </Navbar>
+            <BurgerMenu />
             <PageLayout>
               <ProjectContentNav
                 alignItems="center"

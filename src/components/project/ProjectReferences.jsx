@@ -7,7 +7,7 @@ import FirefoxIcon from 'mdi-react/FirefoxIcon';
 import { Reference } from '../common/Reference';
 
 const StyledReference = styled(Reference)`
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
   background: none;
   height: 2rem;
@@ -16,7 +16,7 @@ const StyledReference = styled(Reference)`
   font-size: 1.2rem;
   svg {
     margin-right: 0.5rem;
-    vertical-align: top;
+    vertical-align: middle;
   }
 
   &:visited,

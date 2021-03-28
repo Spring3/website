@@ -28,18 +28,18 @@ const ButtonBack = ({ href, value }) => (
 );
 
 const StyledDownloadButton = styled(Reference)`
-  vertical-align: top;
+  vertical-align: middle;
   text-decoration: none;
   background: var(--marker-green) !important;
-  padding: 5px !important;
+  padding: 7px !important;
   border-radius: 3px;
 
   &:hover {
-    box-shadow: 0px 0px 10px var(--marker-green);
+    border-radius: 3px;
   }
 
-  &:active {
-    box-shadow: none !important;
+  & > svg {
+    vertical-align: top;
   }
 
   @media (max-width: 750px) {

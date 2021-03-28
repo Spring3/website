@@ -93,9 +93,10 @@ const activeStyles = css`
   &:focus {
     border-bottom: 2px solid
       ${(props) => props.theme.marker || 'var(--marker-blue)'};
-    background: ${(props) => (props.active
-    ? props.theme.marker || 'var(--marker-blue)'
-    : 'transparent')};
+    background: ${(props) =>
+      props.active
+        ? props.theme.marker || 'var(--marker-blue)'
+        : 'transparent'};
   }
 `;
 
@@ -137,19 +138,21 @@ const AnchorListMenu = ({ nodes, onClick }) => {
   const activeAnchor = useAnchorTracker(anchors);
   const isSmallScreen = width <= 750;
   const menuItems = useMemo(
-    () => nodes.map((node) => {
-      const MenuItem = activeAnchor === node.anchor ? ActiveAnchorMenuItem : AnchorMenuItem;
-      return (
-        <MenuItem
-          onClick={onClick}
-          href={node.anchor}
-          data-anchor={node.anchor}
-          key={node.anchor}
-        >
-          {node.name}
-        </MenuItem>
-      );
-    }),
+    () =>
+      nodes.map((node) => {
+        const MenuItem =
+          activeAnchor === node.anchor ? ActiveAnchorMenuItem : AnchorMenuItem;
+        return (
+          <MenuItem
+            onClick={onClick}
+            href={node.anchor}
+            data-anchor={node.anchor}
+            key={node.anchor}
+          >
+            {node.name}
+          </MenuItem>
+        );
+      }),
     [activeAnchor]
   );
 

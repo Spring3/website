@@ -1,21 +1,17 @@
 import styled from 'styled-components';
+import { Flex } from './Flex';
 
-const Navbar = styled.nav`
+const Navbar = styled(Flex)`
   position: sticky;
   top: 0;
-  display: flex;
+  height: 2.5rem;
   justify-content: space-between;
   align-items: center;
-  background: var(--background-color);
   z-index: 1;
 
-  & > *:not(:last-child) {
-    margin-right: 2rem;
-  }
-
   @media (min-width: 750px) {
-    top: 0;
-    padding: 1rem 0rem;
+    top: .75rem;
+    padding: 1rem 1rem 1rem 0rem;
 
     a {
       padding: 0;
@@ -29,6 +25,9 @@ const Navbar = styled.nav`
     (max-width: 750px) {
     top: 0px;
     padding: 1rem;
+    padding-top: 1.75rem;
+    padding-right: 3rem;
+    padding-left: 1rem;
     left: 0;
 
     a {
@@ -46,11 +45,13 @@ const Navbar = styled.nav`
   }
 
   @media (max-width: 750px) {
-    box-shadow: 0px 0px 10px var(--shadow-color);
-
     #navbar-contents {
       display: none;
     }
+    padding-top: 1.75rem;
+    padding-bottom: 1rem;
+    padding-right: 3rem;
+    padding-left: 1rem;
 
     a {
       padding: 0;
@@ -63,4 +64,6 @@ const Navbar = styled.nav`
   }
 `;
 
-export default Navbar;
+export {
+  Navbar
+};
