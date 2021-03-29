@@ -2,9 +2,8 @@ import React, { useMemo } from 'react';
 import { graphql } from 'gatsby';
 import styled, { ThemeProvider } from 'styled-components';
 
-import { useWindowSize } from 'react-use';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
-import { ButtonBack } from '../components/common/Buttons';
+import { ButtonBack } from '../components/common/buttons';
 import { MarkdownContent } from '../components/common/MarkdownContent';
 import { Subheading } from '../components/project/Header';
 import { Tags } from '../components/common/Tags';
@@ -13,9 +12,7 @@ import { SlugListMenu } from '../components/common/Menus';
 import { PageWrapper } from '../components/common/PageWrapper';
 import { Navbar } from '../components/common/Navbar';
 import { ImageCarousel } from '../components/common/ImageCarousel';
-import { useAnchorTracker } from '../hooks/useAnchorTracker';
 import { Flex } from '../components/common/Flex';
-import { slugToAnchor } from '../utils';
 import { ImagePreviewContextProvider } from '../context/ImagePreviewContextProvider';
 import { BurgerMenu } from '../components/common/BurgerMenu';
 
@@ -57,14 +54,6 @@ const ProjectReferenceContainer = styled(Flex)`
   }
 `;
 
-const TinyProjectReferenceContainer = styled(ProjectReferenceContainer)`
-  @media (max-width: 750px) {
-    a {
-      font-size: 1rem;
-    }
-  }
-`;
-
 const ProjectInfoWrapper = styled.div`
   grid-area: info;
 `;
@@ -80,9 +69,7 @@ const ProjectInfo = styled.div`
 const ProjectsPage = (props) => {
   const post = props.data.markdownRemark;
   const allPosts = props.data.allMarkdownRemark.nodes;
-  const activeAnchor = useAnchorTracker(['#markdown']);
   const anchor = slugToAnchor(post.fields.slug);
-  const { width } = useWindowSize();
 
   const slugs = allPosts.map((node) => node.fields.slug);
 
@@ -96,8 +83,6 @@ const ProjectsPage = (props) => {
     placeholder: image.childImageSharp.placeholder.base64,
   }));
 
-  const isSmallScreen = width < 850;
-
   return (
     <>
       <GlobalStyles />
@@ -109,23 +94,8 @@ const ProjectsPage = (props) => {
       <ThemeProvider theme={theme}>
         <ImagePreviewContextProvider>
           <PageWrapper>
-            <Navbar withBurgerMenu>
+            <Navbar withBurgerMenu margined>
               <ButtonBack href={`/${anchor}`} value="Main page" />
-                {activeAnchor === '#markdown' ? (
-                  <TinyProjectReferenceContainer
-                    alignItems="center"
-                    flexWrap="wrap"
-                    gap=".5rem"
-                    margined
-                    justifyContent="flex-end"
-                  >
-                    <ProjectReferences
-                      size={25}
-                      frontmatter={post.frontmatter}
-                      onlyIcons={isSmallScreen}
-                    />
-                  </TinyProjectReferenceContainer>
-                ) : null}
             </Navbar>
             <BurgerMenu />
             <PageLayout>

@@ -42,6 +42,9 @@ const BurgerMenuPanel = styled(Flex)`
   max-height: 100vh;
   height: calc(100vh - 6rem);
   overflow-y: scroll;
+
+  padding-left: 1rem;
+  padding-right: 2rem;
 `;
 
 const Overlay = styled(animated.div)`
@@ -58,10 +61,12 @@ const Overlay = styled(animated.div)`
 const BurgetMenuPanelWrapper = styled(animated.div)`
   position: fixed;
   z-index: 4;
+  max-width: 100%;
   right: 0;
   top: 0;
   min-width: 350px;
-  padding: 4rem 2rem 2rem 1rem;
+  padding-top: 4rem;
+  padding-bottom; 2rem;
   height: 100%;
   background: rgba(255, 255, 255, 0.95);
   border-left: 2px solid rgba(245, 245, 245, 0.9);
@@ -100,17 +105,24 @@ const BurgerMenu = () => {
     from: {
       minWidth: '0px',
       maxWidth: '0px',
-      paddingLeft: '0rem',
-      paddingRight: '0rem',
       opacity: 1,
     },
     to: {
       minWidth: isMenuOpen ? '350px' : '0px',
-      maxWidth: isMenuOpen ? 'auto' : '0px',
-      paddingLeft: isMenuOpen ? '1rem' : '0rem',
-      paddingRight: isMenuOpen ? '2rem' : '0rem',
+      // maxWidth: isMenuOpen ? 'auto' : '100%',
       opacity: isMenuOpen ? 1 : 0,
     },
+  });
+
+  const expandContentPanelAnimation = useSpring({
+    from: {
+      paddingLeft: '0rem',
+      paddingRight: '0rem',
+    },
+    to: {
+      paddingLeft: isMenuOpen ? '1rem' : '0rem',
+      paddingRight: isMenuOpen ? '2rem' : '0rem',
+    }
   });
 
   const overlayAnimation = useSpring({
@@ -133,7 +145,7 @@ const BurgerMenu = () => {
       </BurgerMenuWrapper>
       <Overlay style={overlayAnimation} onClick={onIconClick} />
       <BurgetMenuPanelWrapper style={expandAnimation}>
-        <BurgerMenuPanel direction="column" justifyContent="space-between" flexWrap="nowrap">
+        <BurgerMenuPanel style={expandContentPanelAnimation} direction="column" justifyContent="space-between" flexWrap="nowrap">
           <ProjectsSection direction="column" justifyContent="flex-start">
             <SpaceLessSectionHeader>Projects</SpaceLessSectionHeader>
             <MarkerlessLink to="/aurelins-website">

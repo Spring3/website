@@ -6,7 +6,7 @@ import CaretUpIcon from 'mdi-react/CaretUpOutlineIcon';
 import { useSpring, animated } from 'react-spring';
 import { initializeAndTrack } from 'gatsby-plugin-gdpr-cookies';
 import { useTimeout, useTimeoutFn, useWindowSize } from 'react-use';
-import { Button, FlatButton } from './Buttons';
+import { Button, FlatButton } from './buttons';
 import { Flex } from './Flex';
 import { MARKERS } from '../../theme';
 import { Reference } from './Reference';

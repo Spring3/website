@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import { animated } from 'react-spring';
 
-const FlexContainer = styled.div`
+const FlexContainer = styled(animated.div)`
   display: flex;
   ${(props) => css`
     flex-direction: ${props.direction};

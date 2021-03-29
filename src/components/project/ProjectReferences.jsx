@@ -15,7 +15,7 @@ const StyledReference = styled(Reference)`
   align-items: center;
   font-size: 1.2rem;
   svg {
-    margin-right: 0.5rem;
+    margin-right: ${(props) => props.onlyIcons ? '0rem' : '0.5rem'};
     vertical-align: middle;
   }
 
@@ -31,8 +31,8 @@ const StyledReference = styled(Reference)`
   }
 `;
 
-const ProjectReference = ({ href, children }) => (
-  <StyledReference href={href} newTab>
+const ProjectReference = ({ href, children, onlyIcons }) => (
+  <StyledReference href={href} newTab onlyIcons={onlyIcons}>
     {children}
   </StyledReference>
 );
@@ -42,7 +42,7 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.chrome) {
     components.push(
-      <ProjectReference key={frontmatter.chrome} href={frontmatter.chrome}>
+      <ProjectReference key={frontmatter.chrome} href={frontmatter.chrome} onlyIcons={onlyIcons}>
         <ChromeIcon size={size} />
         {onlyIcons ? '' : ' Chrome Store'}
       </ProjectReference>
@@ -51,7 +51,7 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.firefox) {
     components.push(
-      <ProjectReference key={frontmatter.firefox} href={frontmatter.firefox}>
+      <ProjectReference key={frontmatter.firefox} href={frontmatter.firefox} onlyIcons={onlyIcons}>
         <FirefoxIcon size={size} />
         {onlyIcons ? '' : ' Firefox Store'}
       </ProjectReference>
@@ -60,7 +60,7 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.demo) {
     components.push(
-      <ProjectReference key={frontmatter.demo} href={frontmatter.demo}>
+      <ProjectReference key={frontmatter.demo} href={frontmatter.demo} onlyIcons={onlyIcons}>
         <CardSearchOutlineIcon size={size} />
         {onlyIcons ? '' : ' Demo'}
       </ProjectReference>
@@ -72,6 +72,7 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
       <ProjectReference
         key={frontmatter.repository}
         href={frontmatter.repository}
+        onlyIcons={onlyIcons}
       >
         <GithubIcon size={size} />
         {onlyIcons ? '' : ' Source'}

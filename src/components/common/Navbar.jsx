@@ -7,11 +7,11 @@ const Navbar = styled(Flex)`
   height: 2.5rem;
   justify-content: space-between;
   align-items: center;
-  z-index: 1;
+  z-index: 3;
 
   @media (min-width: 750px) {
     top: .75rem;
-    padding: 1rem 1rem 1rem 0rem;
+    padding: 1rem 1.5rem 1rem 0rem;
 
     a {
       padding: 0;
@@ -53,11 +53,6 @@ const Navbar = styled(Flex)`
 
     a {
       padding: 0;
-    }
-
-    div small {
-      flex-grow: 1;
-      text-align: right;
     }
   }
 `;

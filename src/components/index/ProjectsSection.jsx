@@ -9,6 +9,10 @@ const ProjectsWrapper = styled(Flex)`
   position: relative;
 
   ${paddingStyles};
+
+  @media(max-width: 750px) {
+    padding-top: 0;
+  }
 `;
 
 const StickyTitle = styled(Header)`

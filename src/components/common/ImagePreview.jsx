@@ -11,7 +11,7 @@ import { useSprings, animated } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import clamp from 'lodash.clamp';
 import { useKeyPressEvent, useWindowSize } from 'react-use';
-import { PreviewButtonNext, PreviewButtonPrevious } from './Buttons';
+import { PreviewButtonNext, PreviewButtonPrevious } from './buttons';
 import { useImagePreview } from '../../context/ImagePreviewContext';
 
 const ImagePreviewPortal = ({ children }) => {

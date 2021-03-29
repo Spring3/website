@@ -11,6 +11,8 @@ import { Flex } from './Flex';
 const SocialButtonLink = styled.a`
   background: transparent;
   padding: 0px;
+  justify-content: center;
+  display: flex;
 `;
 
 const OnlyImportantSocialButtons = ({ size }) => (

@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import { useGithubData } from '../hooks/useGithubData';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
-import { ButtonBack, DownloadButton } from '../components/common/Buttons';
+import { ButtonBack, ButtonDownload } from '../components/common/buttons';
 import { Subheading } from '../components/project/Header';
 import { Navbar } from '../components/common/Navbar';
 import { PageWrapper } from '../components/common/PageWrapper';
@@ -14,10 +14,6 @@ import { Flex } from '../components/common/Flex';
 import { MARKERS } from '../theme';
 import { LazyImage } from '../components/common/LazyImage';
 import { BurgerMenu } from '../components/common/BurgerMenu';
-import { useWindowSize } from 'react-use';
-
-const CVWrapper = styled.div`
-`;
 
 const CVSectionBlock = styled.div`
   margin-top: 3rem;
@@ -116,18 +112,6 @@ const ProfileInfo = styled.div`
   flex-grow: 1;
 `;
 
-const NonTransparentSocialButtons = styled(SocialButtons)`
-  background: var(--background-color);
-  padding: 0.1rem .6rem;
-  border-radius: 10px;
-`;
-
-const NonTransparentSubheading = styled(Subheading)`
-  background: var(--background-color);
-  padding: 0.1rem .6rem;
-  border-radius: 10px;
-`;
-
 const CVPage = ({ data }) => {
   const post = data.markdownRemark;
   const activeAnchor = useAnchorTracker(['#intro-section']);
@@ -142,34 +126,10 @@ const CVPage = ({ data }) => {
       />
       <PageWrapper>
         <Navbar margined gap="1rem">
-          <ButtonBack href="/" value="Main page" />
-          {activeAnchor === '#intro-section' ? (
-            <Flex
-              justifyContent="space-between"
-              alignItems="center"
-              gap="1rem"
-              margined
-              flexGrow="1"
-            >
-              <InlinedNavbarPart
-                id="navbar-contents"
-                alignItems="center"
-                gap="1rem"
-                margined
-                flexGrow="1"
-              >
-                <NonTransparentSubheading>{post.frontmatter.title}</NonTransparentSubheading>
-                <NonTransparentSocialButtons onlyImportant />
-              </InlinedNavbarPart>
-              <small>
-                &nbsp;(
-                {post.frontmatter.updatedAt})
-              </small>
-            </Flex>
-          ) : null}
+          <ButtonBack background={MARKERS.blue} href="/" value="Main page" />
         </Navbar>
         <BurgerMenu />
-        <CVWrapper>
+        <div>
           <ProfileGrid>
             <LazyImage
               Component={ProfilePicture}
@@ -187,8 +147,8 @@ const CVPage = ({ data }) => {
                   {post.frontmatter.title}
                 </Subheading>
                 <small>
-                  &nbsp;(
-                  {post.frontmatter.updatedAt})
+                  Updated:&nbsp;
+                  {post.frontmatter.updatedAt.toUpperCase()}
                 </small>
               </Flex>
               <p>
@@ -203,7 +163,7 @@ const CVPage = ({ data }) => {
               <SocialButtons onlyImportant />
               <br />
               <Flex>
-                <DownloadButton
+                <ButtonDownload
                   href="https://drive.google.com/uc?export=download&id=1Uy-HSmkHS4XuLAE18oPqdKiVj9bELqtX"
                   value="Download as .pdf"
                 />
@@ -419,13 +379,13 @@ const CVPage = ({ data }) => {
               </Flex>
             </section>
           </Grid>
-        </CVWrapper>
+        </div>
       </PageWrapper>
       {activeAnchor === '#intro-section' ? (
         <DownloadFooter>
           <InlinedNavbarPart>
             <SocialButtons size={30} onlyImportant />
-            <DownloadButton
+            <ButtonDownload
               href="https://drive.google.com/uc?export=download&id=1Uy-HSmkHS4XuLAE18oPqdKiVj9bELqtX"
               value="Download"
             />
