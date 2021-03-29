@@ -28,6 +28,10 @@ const ContentPanel = styled(Flex)`
     width: 800px;
   }
 
+  @media (min-width: 1920px) {
+    width: 1000px;
+  }
+
   div {
     line-height: 1.7;
   }
@@ -109,7 +113,7 @@ const AboutSection = ({ children }) => {
       </animated.div>
       <animated.div style={springAnimation}>
         {children}
-        <SocialButtons />
+        <SocialButtons size={26} />
       </animated.div>
     </ContentPanel>
   );

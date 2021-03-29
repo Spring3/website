@@ -7,7 +7,7 @@ import { LazyImage } from './LazyImage';
 const CarouselContainer = styled.div`
   padding-top: ${(props) => (props.isPreview ? '0' : '1.5rem')};
 
-  @media (max-width: 750px) {
+  @media (max-width: 1000px) {
     padding-top: 0;
   }
 `;
@@ -48,7 +48,7 @@ const ImageSlide = styled(LazyImage)`
   cursor: pointer;
 `;
 
-const ImageCarousel = ({ images }) => {
+const ImageCarousel = ({ className, images }) => {
   const { showImagePreview } = useImagePreview();
   const containerRef = useRef();
 
@@ -74,7 +74,7 @@ const ImageCarousel = ({ images }) => {
 
   return (
     <>
-      <CarouselContainer ref={containerRef}>
+      <CarouselContainer className={className} ref={containerRef}>
         <StyledCarousel
           showStatus={false}
           showIndicators={false}

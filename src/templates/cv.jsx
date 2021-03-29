@@ -126,7 +126,7 @@ const CVPage = ({ data }) => {
       />
       <PageWrapper>
         <Navbar margined gap="1rem">
-          <ButtonBack background={MARKERS.blue} href="/" value="Main page" />
+          <ButtonBack withColorfulBackground={activeAnchor === '#intro-section'} background={MARKERS.blue} href="/" value="Main page" />
         </Navbar>
         <BurgerMenu />
         <div>

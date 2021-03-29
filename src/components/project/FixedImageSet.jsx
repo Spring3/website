@@ -62,7 +62,7 @@ const FixedImageSet = ({ images, containerRef }) => {
   const windowHeight = height || window.innerHeight;
   // 6%
   const padding = 0.06 * windowWidth;
-  const imageAreaWidth = (windowWidth - padding * 2) * 0.59;
+  const imageAreaWidth = (windowWidth - padding * 2) * 0.58;
   const marginTop = windowHeight * 0.16;
   const imageWidthPercent = Number(
     (imageAreaWidth / windowWidth) * 100

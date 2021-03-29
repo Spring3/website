@@ -15,6 +15,8 @@ import { ImageCarousel } from '../components/common/ImageCarousel';
 import { Flex } from '../components/common/Flex';
 import { ImagePreviewContextProvider } from '../context/ImagePreviewContextProvider';
 import { BurgerMenu } from '../components/common/BurgerMenu';
+import { slugToAnchor } from '../utils';
+import { useAnchorTracker } from '../hooks/useAnchorTracker';
 
 const PageLayout = styled.div`
   display: grid;
@@ -70,6 +72,7 @@ const ProjectsPage = (props) => {
   const post = props.data.markdownRemark;
   const allPosts = props.data.allMarkdownRemark.nodes;
   const anchor = slugToAnchor(post.fields.slug);
+  const activeAnchor = useAnchorTracker(['#title']);
 
   const slugs = allPosts.map((node) => node.fields.slug);
 
@@ -95,7 +98,7 @@ const ProjectsPage = (props) => {
         <ImagePreviewContextProvider>
           <PageWrapper>
             <Navbar withBurgerMenu margined>
-              <ButtonBack href={`/${anchor}`} value="Main page" />
+              <ButtonBack withColorfulBackground={activeAnchor === '#title'} href={`/${anchor}`} value="Main page" />
             </Navbar>
             <BurgerMenu />
             <PageLayout>
@@ -103,7 +106,7 @@ const ProjectsPage = (props) => {
                 alignItems="center"
                 justifyContent="space-between"
               >
-                <div>
+                <div id="title">
                   <Subheading>{post.frontmatter.title}</Subheading>
                 </div>
                 <ProjectReferenceContainer

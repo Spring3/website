@@ -29,6 +29,7 @@ const ProjectInfo = styled.div`
 
 const InfoWrapper = styled(animated.div)`
   width: 100%;
+  padding-right: 1rem;
 
   @media (min-width: 1001px) {
     width: 40%;
@@ -38,7 +39,7 @@ const InfoWrapper = styled(animated.div)`
 `;
 
 const ImageWrapper = styled(animated.div)`
-  width: 59%;
+  width: 58%;
   gap: 0px;
 
   @media (max-width: 1200px) {
@@ -64,6 +65,9 @@ const ProjectContent = styled(MarkdownContent)`
   @media (max-width: 1000px) {
     margin-top: 2.5rem;
   }
+
+  border-left: 5px solid ${(props) => props.theme.marker};
+  padding-left: 1rem;
 `;
 
 const Project = ({ node, index }) => {

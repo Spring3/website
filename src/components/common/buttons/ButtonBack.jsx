@@ -22,17 +22,17 @@ const LinkButton = styled(Link)`
 `;
 
 const BackButtonContainer = styled.div`
-  background: ${(props) => props.theme.marker || MARKERS.blue};
+  background: ${(props) => props.withColorfulBackground ? (props.theme.marker || MARKERS.blue) : 'transparent'};
   border-radius: 3px;
   padding: 0.1rem 0.6rem 0.1rem 0rem;
 
   &:hover {
-    background: ${(props) => props.theme.marker || MARKERS.blue}
+    background: ${(props) => props.withColorfulBackground ? (props.theme.marker || MARKERS.blue) : 'transparent'};
   }
 `;
 
-const ButtonBack = ({ href, value }) => (
-  <BackButtonContainer>
+const ButtonBack = ({ href, value, withColorfulBackground }) => (
+  <BackButtonContainer withColorfulBackground={withColorfulBackground}>
     <LinkButton to={href}>
       <ArrowLeftIcon /> {value}
     </LinkButton>
