@@ -17,7 +17,6 @@ import { BurgerMenu } from '../components/common/BurgerMenu';
 import { useWindowSize } from 'react-use';
 
 const CVWrapper = styled.div`
-  padding: 0px 1rem;
 `;
 
 const CVSectionBlock = styled.div`
@@ -121,19 +120,16 @@ const NonTransparentSocialButtons = styled(SocialButtons)`
   background: var(--background-color);
   padding: 0.1rem .6rem;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px var(--shadow-color);
 `;
 
 const NonTransparentSubheading = styled(Subheading)`
   background: var(--background-color);
   padding: 0.1rem .6rem;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px var(--shadow-color);
 `;
 
 const CVPage = ({ data }) => {
   const post = data.markdownRemark;
-  const { width } = useWindowSize();
   const activeAnchor = useAnchorTracker(['#intro-section']);
   const { data: githubProfile } = useGithubData();
 
@@ -424,18 +420,18 @@ const CVPage = ({ data }) => {
             </section>
           </Grid>
         </CVWrapper>
-        <DownloadFooter>
-          {activeAnchor === '#intro-section' ? (
-            <InlinedNavbarPart>
-              <SocialButtons size={30} onlyImportant />
-              <DownloadButton
-                href="https://drive.google.com/uc?export=download&id=1Uy-HSmkHS4XuLAE18oPqdKiVj9bELqtX"
-                value="Download CV"
-              />
-            </InlinedNavbarPart>
-          ) : null}
-        </DownloadFooter>
       </PageWrapper>
+      {activeAnchor === '#intro-section' ? (
+        <DownloadFooter>
+          <InlinedNavbarPart>
+            <SocialButtons size={30} onlyImportant />
+            <DownloadButton
+              href="https://drive.google.com/uc?export=download&id=1Uy-HSmkHS4XuLAE18oPqdKiVj9bELqtX"
+              value="Download"
+            />
+          </InlinedNavbarPart>
+        </DownloadFooter>
+      ) : null}
     </>
   );
 };

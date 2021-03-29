@@ -3,16 +3,12 @@ import styled, { ThemeProvider } from 'styled-components';
 import { Header } from '../common/Headers';
 import { Project } from './Project';
 import { Flex } from '../common/Flex';
+import { paddingStyles } from '../common/PageWrapper';
 
 const ProjectsWrapper = styled(Flex)`
   position: relative;
 
-  @media (min-width: 1000px) {
-    & > *:not(:first-child) {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
-    }
-  }
+  ${paddingStyles};
 `;
 
 const StickyTitle = styled(Header)`
@@ -22,10 +18,9 @@ const StickyTitle = styled(Header)`
     top: 5%;
   }
 
-  @media (min-width: 750px) {
-    padding-left: 6%;
-    padding-right: 6%;
-  }
+  ${paddingStyles}
+  padding-top: 0px;
+  padding-bottom: 0px;
 `;
 
 const ProjectsContainer = styled.div`
@@ -33,17 +28,13 @@ const ProjectsContainer = styled.div`
   position: relative;
 
   @media (max-width: 750px) {
-    padding: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px) {
-    padding-right: 2.5rem;
-    padding-left: 2.5rem;
-  }
-
-  @media (max-width: 750px) {
-    padding-right: 2.5rem;
-    padding-left: 2.5rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
   }
 `;
 

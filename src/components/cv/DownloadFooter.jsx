@@ -9,7 +9,6 @@ const DownloadFooter = styled.footer`
   width: 100%;
   flex-direction: column;
   background: var(--background-color);
-  box-shadow: 0px 0px 10px var(--shadow-color);
   align-items: center;
   z-index: 1;
   a {

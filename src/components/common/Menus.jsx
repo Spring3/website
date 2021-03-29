@@ -21,6 +21,7 @@ const MenuContainer = styled(Flex)`
   @media (max-width: 750px) {
     position: static;
     margin-top: 1rem;
+    flex-direction: columnn;
   }
 
   @media (min-width: 750px) and (orientation: landscape) {

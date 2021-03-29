@@ -15,7 +15,11 @@ const BurgerMenuWrapper = styled.div`
   z-index: 5;
 
   @media (max-width: 750px) {
-    right: 2rem;
+    right: 1rem;
+  }
+
+  @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px) {
+    right: 1.5rem;
   }
 `;
 

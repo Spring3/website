@@ -24,10 +24,9 @@ const Navbar = styled(Flex)`
   @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px),
     (max-width: 750px) {
     top: 0px;
-    padding: 1rem;
     padding-top: 1.75rem;
+    padding-bottom: 1rem;
     padding-right: 3rem;
-    padding-left: 1rem;
     left: 0;
 
     a {
@@ -51,7 +50,6 @@ const Navbar = styled(Flex)`
     padding-top: 1.75rem;
     padding-bottom: 1rem;
     padding-right: 3rem;
-    padding-left: 1rem;
 
     a {
       padding: 0;

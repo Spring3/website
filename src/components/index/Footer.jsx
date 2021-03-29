@@ -16,6 +16,7 @@ const StyledLink = styled(Reference)`
   width: 100%;
   text-align: center;
   padding: 1rem;
+  border-radius: 0px;
   background: ${(props) => props.theme.marker || MARKERS.blue} !important;
 `;
 

@@ -33,7 +33,6 @@ const PageLayout = styled.div`
 
   @media (max-width: 850px) {
     grid-template-columns: repeat(4, 25%);
-    padding: 1rem;
     grid-gap: 0rem;
 
     grid-template-areas:
@@ -43,7 +42,6 @@ const PageLayout = styled.div`
   }
 
   @media (max-width: 700px) {
-    padding: 1rem;
     grid-gap: 0rem;
 
     grid-template-areas:

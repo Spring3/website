@@ -8,7 +8,7 @@ const Header = styled.h1`
   }
 
   @media (max-width: 750px) {
-    font-size: 2rem;
+    font-size: 2rem !important;
   }
 `;
 
@@ -20,7 +20,7 @@ const Subheader = styled.h2`
   }
 
   @media (max-width: 750px) {
-    font-size: 1.8rem;
+    font-size: 1.8rem !important;
   }
 `;
 

@@ -8,6 +8,7 @@ import { Flex } from '../common/Flex';
 import { Rectangle, Decorations } from '../common/Decorations';
 import { Flickering } from '../common/Animated';
 import { reveal } from '../../animations';
+import { paddingStyles } from '../common/PageWrapper';
 
 const HugeHeader = styled(Header)`
   font-size: 2.5rem;
@@ -20,8 +21,8 @@ const ContentPanel = styled(Flex)`
   color: var(--text-color-primary);
   border-radius: var(--border-radius);
   min-height: 100vh;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 1rem;
 
   @media (min-width: 750px) {
     width: 800px;
@@ -31,14 +32,11 @@ const ContentPanel = styled(Flex)`
     line-height: 1.7;
   }
 
-  @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px) {
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
-  }
+  ${paddingStyles}
 
-  @media (max-width: 750px) {
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
+  @media (min-width: 1000px) {
+    padding-right: 1rem;
+    padding-left: 1rem;
   }
 `;
 

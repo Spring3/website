@@ -50,12 +50,6 @@ const ImageWrapper = styled(animated.div)`
 const ProjectRow = styled(Flex)`
   width: 100%;
   position: relative;
-
-  @media (min-width: 750px) {
-    width: 88%;
-    padding-left: 6%;
-    padding-right: 6%;
-  }
 `;
 
 const ProjectTitle = styled(Subheader)`
