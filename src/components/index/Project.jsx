@@ -29,10 +29,10 @@ const ProjectInfo = styled.div`
 
 const InfoWrapper = styled(animated.div)`
   width: 100%;
-  padding-right: 1rem;
   position: relative;
 
   @media (min-width: 1001px) {
+    padding-right: 1rem;
     width: 40%;
     position: sticky;
     top: 16%;
