@@ -15,7 +15,7 @@ const StyledReference = styled(Reference)`
   align-items: center;
   font-size: 1.2rem;
   svg {
-    margin-right: ${(props) => props.onlyIcons ? '0rem' : '0.5rem'};
+    margin-right: ${(props) => (props.onlyIcons ? '0rem' : '0.5rem')};
     vertical-align: middle;
   }
 
@@ -42,7 +42,11 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.chrome) {
     components.push(
-      <ProjectReference key={frontmatter.chrome} href={frontmatter.chrome} onlyIcons={onlyIcons}>
+      <ProjectReference
+        key={frontmatter.chrome}
+        href={frontmatter.chrome}
+        onlyIcons={onlyIcons}
+      >
         <ChromeIcon size={size} />
         {onlyIcons ? '' : ' Chrome Store'}
       </ProjectReference>
@@ -51,7 +55,11 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.firefox) {
     components.push(
-      <ProjectReference key={frontmatter.firefox} href={frontmatter.firefox} onlyIcons={onlyIcons}>
+      <ProjectReference
+        key={frontmatter.firefox}
+        href={frontmatter.firefox}
+        onlyIcons={onlyIcons}
+      >
         <FirefoxIcon size={size} />
         {onlyIcons ? '' : ' Firefox Store'}
       </ProjectReference>
@@ -60,7 +68,11 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.demo) {
     components.push(
-      <ProjectReference key={frontmatter.demo} href={frontmatter.demo} onlyIcons={onlyIcons}>
+      <ProjectReference
+        key={frontmatter.demo}
+        href={frontmatter.demo}
+        onlyIcons={onlyIcons}
+      >
         <CardSearchOutlineIcon size={size} />
         {onlyIcons ? '' : ' Demo'}
       </ProjectReference>

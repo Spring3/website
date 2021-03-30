@@ -22,6 +22,4 @@ const Button = styled.button`
   }
 `;
 
-export {
-  Button
-};
+export { Button };

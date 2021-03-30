@@ -50,7 +50,7 @@ const LazyImage = ({
     return () => {
       wasCancelled = true;
     };
-  }, [isLoading]);
+  }, [isLoading, src]);
 
   if (!src) {
     return null;

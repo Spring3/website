@@ -10,7 +10,7 @@ const ProjectsWrapper = styled(Flex)`
 
   ${paddingStyles};
 
-  @media(max-width: 750px) {
+  @media (max-width: 750px) {
     padding-top: 0;
   }
 `;

@@ -22,12 +22,18 @@ const LinkButton = styled(Link)`
 `;
 
 const BackButtonContainer = styled.div`
-  background: ${(props) => props.withColorfulBackground ? (props.theme.marker || MARKERS.blue) : 'transparent'};
+  background: ${(props) =>
+    props.withColorfulBackground
+      ? props.theme.marker || MARKERS.blue
+      : 'transparent'};
   border-radius: 3px;
   padding: 0.1rem 0.6rem 0.1rem 0rem;
 
   &:hover {
-    background: ${(props) => props.withColorfulBackground ? (props.theme.marker || MARKERS.blue) : 'transparent'};
+    background: ${(props) =>
+      props.withColorfulBackground
+        ? props.theme.marker || MARKERS.blue
+        : 'transparent'};
   }
 `;
 
@@ -39,6 +45,4 @@ const ButtonBack = ({ href, value, withColorfulBackground }) => (
   </BackButtonContainer>
 );
 
-export {
-  ButtonBack
-};
+export { ButtonBack };

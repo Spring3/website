@@ -10,7 +10,7 @@ const Navbar = styled(Flex)`
   z-index: 3;
 
   @media (min-width: 750px) {
-    top: .75rem;
+    top: 0.75rem;
     padding: 1rem 1.5rem 1rem 0rem;
 
     a {
@@ -57,6 +57,4 @@ const Navbar = styled(Flex)`
   }
 `;
 
-export {
-  Navbar
-};
+export { Navbar };

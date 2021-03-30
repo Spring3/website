@@ -6,6 +6,4 @@ const FlatButton = styled(Button)`
   border: none;
 `;
 
-export {
-  FlatButton
-};
+export { FlatButton };

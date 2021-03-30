@@ -12,7 +12,7 @@ const StyledDownloadButton = styled(FlatButton)`
 
   &:hover {
     border-radius: 3px;
-    opacity: .8;
+    opacity: 0.8;
   }
 
   & > svg {
@@ -30,6 +30,4 @@ const ButtonDownload = ({ href, value }) => (
   </StyledDownloadButton>
 );
 
-export {
-  ButtonDownload
-};
+export { ButtonDownload };

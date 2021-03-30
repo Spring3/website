@@ -62,7 +62,4 @@ const PreviewButtonNext = styled(PreviewButton)`
   }
 `;
 
-export {
-  PreviewButtonPrevious,
-  PreviewButtonNext
-};
+export { PreviewButtonPrevious, PreviewButtonNext };

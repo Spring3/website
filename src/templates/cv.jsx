@@ -126,7 +126,12 @@ const CVPage = ({ data }) => {
       />
       <PageWrapper>
         <Navbar margined gap="1rem">
-          <ButtonBack withColorfulBackground={activeAnchor === '#intro-section'} background={MARKERS.blue} href="/" value="Main page" />
+          <ButtonBack
+            withColorfulBackground={activeAnchor === '#intro-section'}
+            background={MARKERS.blue}
+            href="/"
+            value="Main page"
+          />
         </Navbar>
         <BurgerMenu />
         <div>
@@ -135,7 +140,7 @@ const CVPage = ({ data }) => {
               Component={ProfilePicture}
               alt="avatar"
               loading="lazy"
-              src={githubProfile.avatar_url}
+              src={githubProfile.avatar_url || '/#'}
             />
             <ProfileInfo>
               <Flex

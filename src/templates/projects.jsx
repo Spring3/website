@@ -98,7 +98,11 @@ const ProjectsPage = (props) => {
         <ImagePreviewContextProvider>
           <PageWrapper>
             <Navbar withBurgerMenu margined>
-              <ButtonBack withColorfulBackground={activeAnchor === '#title'} href={`/${anchor}`} value="Main page" />
+              <ButtonBack
+                withColorfulBackground={activeAnchor === '#title'}
+                href={`/${anchor}`}
+                value="Main page"
+              />
             </Navbar>
             <BurgerMenu />
             <PageLayout>

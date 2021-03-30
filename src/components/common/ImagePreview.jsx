@@ -1,6 +1,4 @@
-import React, {
-  useCallback, useEffect, useMemo, useState
-} from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftThickIcon';
@@ -142,9 +140,7 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
   }, [index, width]);
 
   const bind = useDrag(
-    ({
-      active, movement: [mx], direction: [xDir], distance, cancel
-    }) => {
+    ({ active, movement: [mx], direction: [xDir], distance, cancel }) => {
       if (active && distance > width / 4) {
         const newIndex = clamp(
           index + (xDir > 0 ? -1 : 1),
