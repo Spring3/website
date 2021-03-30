@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import MenuIcon from 'mdi-react/MenuIcon';
 import CloseIcon from 'mdi-react/CloseIcon';
 import styled from 'styled-components';
@@ -64,7 +64,7 @@ const BurgetMenuPanelWrapper = styled(animated.div)`
   max-width: 100%;
   right: 0;
   top: 0;
-  min-width: 350px;
+  min-width: 370px;
   padding-top: 4rem;
   padding-bottom; 2rem;
   height: 100%;
@@ -95,11 +95,37 @@ const SpaceLessHeader = styled(Subheader)`
 
 const BurgerMenu = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isHovering, setHovering] = useState(false);
 
   const onIconClick = useCallback((e) => {
     e.preventDefault();
     setMenuOpen((isOpen) => !isOpen);
+    setHovering((hovering) => !hovering);
   }, []);
+
+  const handleMouseEnter = useCallback(() => {
+    setHovering(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setHovering(false);
+  }, []);
+
+  useEffect(() => {
+    let timeout;
+    if (isMenuOpen) {
+      if (isHovering) {
+        clearTimeout(timeout);
+      } else {
+        timeout = setTimeout(() => {
+          setMenuOpen(false);
+        }, 2000);
+      }
+    } else {
+      setHovering(false);
+    }
+    return () => clearTimeout(timeout);
+  }, [isMenuOpen, isHovering]);
 
   const expandAnimation = useSpring({
     from: {
@@ -108,8 +134,7 @@ const BurgerMenu = () => {
       opacity: 1,
     },
     to: {
-      minWidth: isMenuOpen ? '350px' : '0px',
-      // maxWidth: isMenuOpen ? 'auto' : '100%',
+      minWidth: isMenuOpen ? '370px' : '0px',
       opacity: isMenuOpen ? 1 : 0,
     },
   });
@@ -122,7 +147,7 @@ const BurgerMenu = () => {
     to: {
       paddingLeft: isMenuOpen ? '1rem' : '0rem',
       paddingRight: isMenuOpen ? '2rem' : '0rem',
-    }
+    },
   });
 
   const overlayAnimation = useSpring({
@@ -140,12 +165,21 @@ const BurgerMenu = () => {
     <>
       <BurgerMenuWrapper>
         <Button role="button" onClick={onIconClick}>
-          <IconElement size={32} />
+          <IconElement size={32} onMouseEnter={handleMouseEnter} />
         </Button>
       </BurgerMenuWrapper>
       <Overlay style={overlayAnimation} onClick={onIconClick} />
-      <BurgetMenuPanelWrapper style={expandAnimation}>
-        <BurgerMenuPanel style={expandContentPanelAnimation} direction="column" justifyContent="space-between" flexWrap="nowrap">
+      <BurgetMenuPanelWrapper
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={expandAnimation}
+      >
+        <BurgerMenuPanel
+          style={expandContentPanelAnimation}
+          direction="column"
+          justifyContent="space-between"
+          flexWrap="nowrap"
+        >
           <ProjectsSection direction="column" justifyContent="flex-start">
             <SpaceLessSectionHeader>Projects</SpaceLessSectionHeader>
             <MarkerlessLink to="/aurelins-website">
