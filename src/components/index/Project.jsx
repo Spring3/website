@@ -30,6 +30,7 @@ const ProjectInfo = styled.div`
 const InfoWrapper = styled(animated.div)`
   width: 100%;
   padding-right: 1rem;
+  position: relative;
 
   @media (min-width: 1001px) {
     width: 40%;
@@ -41,6 +42,7 @@ const InfoWrapper = styled(animated.div)`
 const ImageWrapper = styled(animated.div)`
   width: 58%;
   gap: 0px;
+  position: relative;
 
   @media (max-width: 1200px) {
     width: 58%;
@@ -87,21 +89,27 @@ const Project = ({ node, index }) => {
   }));
 
   const intersection = useIntersection(infoRef, {
-    threshold: width > 1000 ? 0.8 : 0.001,
+    threshold: isSmallScreen ? 0.001 : 0.8,
   });
 
   const isIntersecting = intersection?.isIntersecting;
 
-  const revealAnimation = useSpring({
+  const revealAnimationConfig = {
     opacity: wasRevealed || isIntersecting ? 1 : 0,
-    transform:
-      wasRevealed || isIntersecting ? 'translateY(0%)' : 'translateY(100px)',
     immediate: false,
     delay: 100,
     config: {
       reset: false,
     },
-  });
+  };
+
+  if (isSmallScreen) {
+    revealAnimationConfig.bottom = wasRevealed || isIntersecting ? '0px' : '-100px';
+  } else {
+    revealAnimationConfig.transform = wasRevealed || isIntersecting ? 'translateY(0%)' : 'translateY(100px)';
+  }
+
+  const revealAnimation = useSpring(revealAnimationConfig);
 
   useEffect(() => {
     if (!wasRevealed && isIntersecting) {
