@@ -14,6 +14,8 @@ import { Flex } from '../components/common/Flex';
 import { MARKERS } from '../theme';
 import { LazyImage } from '../components/common/LazyImage';
 import { BurgerMenu } from '../components/common/BurgerMenu';
+import { animated, useSpring } from 'react-spring';
+import { CVSection } from '../components/cv/CVSection';
 
 const CVSectionBlock = styled.div`
   margin-top: 3rem;
@@ -34,16 +36,6 @@ const Grid = styled.div`
   padding-bottom: 6rem;
   margin-top: 2rem;
 
-  section {
-    background: rgba(200, 200, 200, 0.1);
-    padding: 1rem;
-    border-radius: 5px;
-  }
-
-  section#experience {
-    grid-row: span 2;
-  }
-
   section ${CVSectionBlock}:first-of-type {
     margin-top: 0;
   }
@@ -52,9 +44,6 @@ const Grid = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0px;
-    section {
-      margin: 0;
-    }
 
     & > div:first-child > h2 {
       margin-top: 0;
@@ -91,9 +80,10 @@ const InlinedNavbarPart = styled(Flex)`
   }
 `;
 
-const ProfilePicture = styled.img`
+const ProfilePicture = styled(animated.img)`
   border-radius: 10px;
   max-width: 350px;
+  position: relative;
 
   @media (max-width: 1000px) {
     width: 300px;
@@ -108,14 +98,49 @@ const ProfilePicture = styled.img`
   }
 `;
 
-const ProfileInfo = styled.div`
+const ProfileInfo = styled(animated.div)`
   flex-grow: 1;
+  position: relative;
+`;
+
+const ProfilePageContents = styled.div`
+  overflow: hidden;
 `;
 
 const CVPage = ({ data }) => {
   const post = data.markdownRemark;
   const activeAnchor = useAnchorTracker(['#intro-section']);
   const { data: githubProfile } = useGithubData();
+
+  const profileSectionAnimation = useSpring({
+    initial: {
+      opacity: 0,
+      right: '-5rem'
+    },
+    from: {
+      opacity: 0,
+      right: '-5rem'
+    },
+    to: {
+      opacity: 1,
+      right: '0rem'
+    }
+  });
+
+  const profilePictureAnimation = useSpring({
+    initial: {
+      opacity: 0,
+      top: '5rem'
+    },
+    from: {
+      opacity: 0,
+      top: '5rem'
+    },
+    to: {
+      opacity: 1,
+      top: '0rem'
+    }
+  });
 
   return (
     <>
@@ -134,15 +159,16 @@ const CVPage = ({ data }) => {
           />
         </Navbar>
         <BurgerMenu />
-        <div>
+        <ProfilePageContents>
           <ProfileGrid>
             <LazyImage
+              style={profilePictureAnimation}
               Component={ProfilePicture}
               alt="avatar"
               loading="lazy"
               src={githubProfile.avatar_url || '/#'}
             />
-            <ProfileInfo>
+            <ProfileInfo style={profileSectionAnimation}>
               <Flex
                 justifyContent="space-between"
                 alignItems="center"
@@ -176,7 +202,7 @@ const CVPage = ({ data }) => {
             </ProfileInfo>
           </ProfileGrid>
           <Grid id="intro-section">
-            <section id="experience">
+            <CVSection id="experience" span={2}>
               <StickySubheading marker={MARKERS.blue}>
                 Experience
               </StickySubheading>
@@ -260,8 +286,8 @@ const CVPage = ({ data }) => {
                   </li>
                 </Flex>
               </CVSectionBlock>
-            </section>
-            <section id="skills">
+            </CVSection>
+            <CVSection id="skills">
               <StickySubheading marker={MARKERS.red}>Skills</StickySubheading>
               <p>
                 <strong>Back-end</strong>
@@ -301,8 +327,8 @@ const CVPage = ({ data }) => {
                   : Electron, Lerna, Gatsby, Basics of Elm, Basics of UX Design
                 </span>
               </p>
-            </section>
-            <section id="education">
+            </CVSection>
+            <CVSection id="education">
               <StickySubheading marker={MARKERS.yellow}>
                 Education
               </StickySubheading>
@@ -353,8 +379,8 @@ const CVPage = ({ data }) => {
                   </li>
                 </Flex>
               </CVSectionBlock>
-            </section>
-            <section id="courses">
+            </CVSection>
+            <CVSection id="courses">
               <StickySubheading marker={MARKERS.green}>
                 Courses
               </StickySubheading>
@@ -373,8 +399,8 @@ const CVPage = ({ data }) => {
                 <li>Jersey, Jackson</li>
                 <li>JPA</li>
               </Flex>
-            </section>
-            <section id="language skills">
+            </CVSection>
+            <CVSection id="language skills">
               <StickySubheading marker={MARKERS.purple}>
                 Language Skills
               </StickySubheading>
@@ -382,9 +408,9 @@ const CVPage = ({ data }) => {
                 <li>English - C1 (7.5 - IELTS, Aug 2019)</li>
                 <li>German - B1</li>
               </Flex>
-            </section>
+            </CVSection>
           </Grid>
-        </div>
+        </ProfilePageContents>
       </PageWrapper>
       {activeAnchor === '#intro-section' ? (
         <DownloadFooter>

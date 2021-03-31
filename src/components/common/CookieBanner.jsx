@@ -83,7 +83,7 @@ const CookieBanner = memo(() => {
   }));
 
   const descriptionAnimation = useSpring({
-    maxHeight: isExpanded ? '1000px' : '0px',
+    maxHeight: isExpanded ? '400px' : '0px',
     margin: isExpanded ? '0px 0px 20px 0px' : '0px 0px 0px 0px',
   });
 
