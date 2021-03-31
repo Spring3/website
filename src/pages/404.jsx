@@ -20,8 +20,15 @@ const RelativeDecorations = styled(Decorations)`
   width: ${(props) => props.width} !important;
 `;
 
+const OverflowDecorations = styled(Decorations)`
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+`;
+
 const FullHeightFlex = styled(Flex)`
   height: 100vh;
+  max-height: 100%;
 `;
 
 const LinkWithLargerText = styled(Link)`
@@ -116,17 +123,15 @@ const NotFoundPage = () => {
         direction="column"
         justifyContent="center"
         alignItems="center"
-        gap="2rem"
-        margined
       >
-        <Decorations margined={false} layer="back">
+        <OverflowDecorations margined={false} layer="back">
           <Circle
             style={firstCircleAnimation}
             size="300px"
             radius="80% 75% 85% 90% / 80% 90% 85% 90%"
             background="#FEC7C3"
             flat
-            sticky
+            sticky={width > 850}
           />
           <Circle
             style={secondCircleAnimation}
@@ -134,7 +139,7 @@ const NotFoundPage = () => {
             radius="80% 70% 85% 90% / 80% 90% 80% 90%"
             background="#D4A6D1"
             flat
-            sticky
+            sticky={width > 850}
           />
           <Circle
             style={thirdCircleAnimation}
@@ -142,351 +147,359 @@ const NotFoundPage = () => {
             radius="80% 70% 85% 90% / 80% 90% 80% 90%"
             background="#FCC07E"
             flat
-            sticky
+            sticky={width > 850}
           />
-        </Decorations>
-        <Flex justifyContent="center" alignItems="center" gap="2rem" margined>
-          <RelativeDecorations height={`${height}px`} width={`${width}px`}>
-            <ColorThemedRectangle
-              right="0px"
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right={`${size + gap}px`}
-              top={`${size + gap}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right={`${(size + gap) * 2}px`}
-              top={`${(size + gap) * 2}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right={`${(size + gap) * 3}px`}
-              top={`${(size + gap) * 3}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right={`${(size + gap) * 2}px`}
-              top={`${(size + gap) * 3}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right={`${size + gap}px`}
-              top={`${(size + gap) * 3}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right="0px"
-              top={`${size + gap}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right="0px"
-              top={`${(size + gap) * 2}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right="0px"
-              top={`${(size + gap) * 3}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right="0px"
-              top={`${(size + gap) * 4}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right="0px"
-              top={`${(size + gap) * 5}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right="0px"
-              top={`${(size + gap) * 6}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-          </RelativeDecorations>
-          <RelativeDecorations width={`${width}px`}>
-            <ColorThemedRectangle
-              flat
-              left={gap * 2}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-            />
-            <ColorThemedRectangle
-              left={`${size + gap + gap * 2}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={`${(size + gap) * 2 + gap * 2}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={`${(size + gap) * 3 + gap * 2}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={`${(size + gap) * 3 + gap * 2}px`}
-              top={`${size + gap}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={`${(size + gap) * 3 + gap * 2}px`}
-              top={`${(size + gap) * 2}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={`${(size + gap) * 3 + gap * 2}px`}
-              top={`${(size + gap) * 3}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={`${(size + gap) * 3 + gap * 2}px`}
-              top={`${(size + gap) * 4}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={`${(size + gap) * 3 + gap * 2}px`}
-              top={`${(size + gap) * 5}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={`${(size + gap) * 3 + gap * 2}px`}
-              top={`${(size + gap) * 6}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={`${(size + gap) * 2 + gap * 2}px`}
-              top={`${(size + gap) * 6}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={`${size + gap + gap * 2}px`}
-              top={`${(size + gap) * 6}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={gap * 2}
-              top={`${size + gap}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={gap * 2}
-              top={`${(size + gap) * 2}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={gap * 2}
-              top={`${(size + gap) * 3}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={gap * 2}
-              top={`${(size + gap) * 4}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={gap * 2}
-              top={`${(size + gap) * 5}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              left={gap * 2}
-              top={`${(size + gap) * 6}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-          </RelativeDecorations>
-          <RelativeDecorations width={`${width}px`}>
-            <ColorThemedRectangle
-              right="0px"
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right={`${size + gap}px`}
-              top={`${size + gap}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right={`${(size + gap) * 2}px`}
-              top={`${(size + gap) * 2}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right={`${(size + gap) * 3}px`}
-              top={`${(size + gap) * 3}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right={`${(size + gap) * 2}px`}
-              top={`${(size + gap) * 3}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right={`${size + gap}px`}
-              top={`${(size + gap) * 3}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right="0px"
-              top={`${size + gap}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right="0px"
-              top={`${(size + gap) * 2}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right="0px"
-              top={`${(size + gap) * 3}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right="0px"
-              top={`${(size + gap) * 4}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right="0px"
-              top={`${(size + gap) * 5}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-            <ColorThemedRectangle
-              right="0px"
-              top={`${(size + gap) * 6}px`}
-              size={sizePx}
-              radius={radiusPx}
-              colorTheme={colorTheme}
-              flat
-            />
-          </RelativeDecorations>
-        </Flex>
-        <MessageSection direction="column" alignItems="center">
-          <Subheading>This page does not exist</Subheading>
-          <LinkWithLargerText to="/">Back To Main Page</LinkWithLargerText>
-        </MessageSection>
+        </OverflowDecorations>
+        <FullHeightFlex
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          gap="2rem"
+          margined
+        >
+          <Flex justifyContent="center" alignItems="center" gap="2rem" margined>
+            <RelativeDecorations height={`${height}px`} width={`${width}px`}>
+              <ColorThemedRectangle
+                right="0px"
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right={`${size + gap}px`}
+                top={`${size + gap}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right={`${(size + gap) * 2}px`}
+                top={`${(size + gap) * 2}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right={`${(size + gap) * 3}px`}
+                top={`${(size + gap) * 3}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right={`${(size + gap) * 2}px`}
+                top={`${(size + gap) * 3}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right={`${size + gap}px`}
+                top={`${(size + gap) * 3}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right="0px"
+                top={`${size + gap}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right="0px"
+                top={`${(size + gap) * 2}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right="0px"
+                top={`${(size + gap) * 3}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right="0px"
+                top={`${(size + gap) * 4}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right="0px"
+                top={`${(size + gap) * 5}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right="0px"
+                top={`${(size + gap) * 6}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+            </RelativeDecorations>
+            <RelativeDecorations width={`${width}px`}>
+              <ColorThemedRectangle
+                flat
+                left={gap * 2}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+              />
+              <ColorThemedRectangle
+                left={`${size + gap + gap * 2}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={`${(size + gap) * 2 + gap * 2}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={`${(size + gap) * 3 + gap * 2}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={`${(size + gap) * 3 + gap * 2}px`}
+                top={`${size + gap}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={`${(size + gap) * 3 + gap * 2}px`}
+                top={`${(size + gap) * 2}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={`${(size + gap) * 3 + gap * 2}px`}
+                top={`${(size + gap) * 3}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={`${(size + gap) * 3 + gap * 2}px`}
+                top={`${(size + gap) * 4}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={`${(size + gap) * 3 + gap * 2}px`}
+                top={`${(size + gap) * 5}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={`${(size + gap) * 3 + gap * 2}px`}
+                top={`${(size + gap) * 6}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={`${(size + gap) * 2 + gap * 2}px`}
+                top={`${(size + gap) * 6}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={`${size + gap + gap * 2}px`}
+                top={`${(size + gap) * 6}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={gap * 2}
+                top={`${size + gap}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={gap * 2}
+                top={`${(size + gap) * 2}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={gap * 2}
+                top={`${(size + gap) * 3}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={gap * 2}
+                top={`${(size + gap) * 4}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={gap * 2}
+                top={`${(size + gap) * 5}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                left={gap * 2}
+                top={`${(size + gap) * 6}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+            </RelativeDecorations>
+            <RelativeDecorations width={`${width}px`}>
+              <ColorThemedRectangle
+                right="0px"
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right={`${size + gap}px`}
+                top={`${size + gap}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right={`${(size + gap) * 2}px`}
+                top={`${(size + gap) * 2}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right={`${(size + gap) * 3}px`}
+                top={`${(size + gap) * 3}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right={`${(size + gap) * 2}px`}
+                top={`${(size + gap) * 3}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right={`${size + gap}px`}
+                top={`${(size + gap) * 3}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right="0px"
+                top={`${size + gap}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right="0px"
+                top={`${(size + gap) * 2}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right="0px"
+                top={`${(size + gap) * 3}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right="0px"
+                top={`${(size + gap) * 4}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right="0px"
+                top={`${(size + gap) * 5}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+              <ColorThemedRectangle
+                right="0px"
+                top={`${(size + gap) * 6}px`}
+                size={sizePx}
+                radius={radiusPx}
+                colorTheme={colorTheme}
+                flat
+              />
+            </RelativeDecorations>
+          </Flex>
+          <MessageSection direction="column" alignItems="center">
+            <Subheading>This page does not exist</Subheading>
+            <LinkWithLargerText to="/">Back To Main Page</LinkWithLargerText>
+          </MessageSection>
+        </FullHeightFlex>
       </FullHeightFlex>
     </>
   );

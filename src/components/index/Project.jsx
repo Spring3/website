@@ -94,28 +94,39 @@ const Project = ({ node, index }) => {
 
   const isIntersecting = intersection?.isIntersecting;
 
-  const revealAnimationConfig = {
-    opacity: wasRevealed || isIntersecting ? 1 : 0,
-    immediate: false,
-    delay: 100,
-    config: {
-      reset: false,
-    },
+  const initialAnimationState = {
+    opacity: 0
   };
 
   if (isSmallScreen) {
-    revealAnimationConfig.bottom = wasRevealed || isIntersecting ? '0px' : '-100px';
+    initialAnimationState.bottom = '-100px';
   } else {
-    revealAnimationConfig.transform = wasRevealed || isIntersecting ? 'translateY(0%)' : 'translateY(100px)';
+    initialAnimationState.transform = 'translateY(100px)';
   }
 
-  const revealAnimation = useSpring(revealAnimationConfig);
+  const [revealAnimation, animate] = useSpring(() => initialAnimationState);
 
   useEffect(() => {
     if (!wasRevealed && isIntersecting) {
       setRevealed(true);
+      const revealAnimationConfig = {
+        opacity: 1,
+        immediate: false,
+        delay: 100,
+        config: {
+          reset: false,
+        },
+      };
+
+      if (isSmallScreen) {
+        revealAnimationConfig.bottom = '0px';
+      } else {
+        revealAnimationConfig.transform = 'translateY(0%)';
+      }
+
+      animate(revealAnimationConfig);
     }
-  }, [wasRevealed, isIntersecting]);
+  }, [wasRevealed, isIntersecting, isSmallScreen]);
 
   const renderLayer = useCallback(
     (key, layerData) => {
