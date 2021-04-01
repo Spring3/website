@@ -8,7 +8,7 @@ import { Subheader } from './Headers';
 import { Flex } from './Flex';
 import { SocialButtons } from './SocialButtons';
 
-const BurgerMenuWrapper = styled.div`
+const BurgerMenuWrapper = styled(animated.div)`
   position: fixed;
   top: 2rem;
   right: 2rem;
@@ -159,11 +159,22 @@ const BurgerMenu = () => {
     },
   });
 
+  const burgerMenuButtonAnimation = useSpring({
+    from: {
+      right: '-3rem',
+    },
+    to: {
+      right: '2rem',
+    },
+    immediate: false,
+    delay: 1000,
+  });
+
   const IconElement = isMenuOpen ? CloseIcon : MenuIcon;
 
   return (
     <>
-      <BurgerMenuWrapper>
+      <BurgerMenuWrapper style={burgerMenuButtonAnimation}>
         <Button role="button" onClick={onIconClick}>
           <IconElement size={32} onMouseEnter={handleMouseEnter} />
         </Button>
