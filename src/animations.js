@@ -68,7 +68,7 @@ const revealLeft = ({ delay, ref, left = '0rem' }) => {
   const animation = reveal({ delay, ref });
   const initial = {
     opacity: 0,
-    left: '-5rem'
+    left: '-5rem',
   };
   animation.initial = initial;
   animation.from = initial;
@@ -80,7 +80,7 @@ const revealRight = ({ delay, ref, right = '0rem' }) => {
   const animation = reveal({ delay, ref });
   const initial = {
     opacity: 0,
-    right: '-5rem'
+    right: '-5rem',
   };
   animation.initial = initial;
   animation.from = initial;
@@ -92,7 +92,7 @@ const revealTop = ({ delay, ref, top = '0rem' }) => {
   const animation = reveal({ delay, ref });
   const initial = {
     opacity: 0,
-    top: '-5rem'
+    top: '-5rem',
   };
   animation.initial = initial;
   animation.from = initial;
@@ -104,7 +104,7 @@ const revealBottom = ({ delay, ref, bottom = '0rem' }) => {
   const animation = reveal({ delay, ref });
   const initial = {
     opacity: 0,
-    bottom: '-5rem'
+    bottom: '-5rem',
   };
   animation.initial = initial;
   animation.from = initial;
@@ -112,4 +112,12 @@ const revealBottom = ({ delay, ref, bottom = '0rem' }) => {
   return animation;
 };
 
-export { randomFlicker, randomShift, reveal, revealLeft, revealRight, revealTop, revealBottom };
+export {
+  randomFlicker,
+  randomShift,
+  reveal,
+  revealLeft,
+  revealRight,
+  revealTop,
+  revealBottom,
+};

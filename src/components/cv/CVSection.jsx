@@ -34,7 +34,7 @@ const CVSection = ({ id, children, span }) => {
       animate({
         opacity: 1,
         top: '0rem',
-        delay: 500
+        delay: 500,
       });
     }
   }, [intersection, hasIntersected]);

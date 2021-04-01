@@ -107,9 +107,13 @@ const Project = ({ node, index }) => {
     initialAnimationState.transform = 'translateY(100px)';
   }
 
-  const [revealAnimation, animateSection] = useSpring(() => initialAnimationState);
+  const [revealAnimation, animateSection] = useSpring(
+    () => initialAnimationState
+  );
   const [tagAnimation, animateTags] = useSpring(() => revealBottom({}).initial);
-  const [revealDecorations, animateDecorations] = useSpring(() => revealBottom({}).initial);
+  const [revealDecorations, animateDecorations] = useSpring(
+    () => revealBottom({}).initial
+  );
 
   useEffect(() => {
     if (!wasRevealed && isIntersecting) {

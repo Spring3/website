@@ -18,7 +18,12 @@ import { ImagePreviewContextProvider } from '../context/ImagePreviewContextProvi
 import { BurgerMenu } from '../components/common/BurgerMenu';
 import { slugToAnchor } from '../utils';
 import { useAnchorTracker } from '../hooks/useAnchorTracker';
-import { revealBottom, revealLeft, revealRight, revealTop } from '../animations';
+import {
+  revealBottom,
+  revealLeft,
+  revealRight,
+  revealTop,
+} from '../animations';
 
 const PageLayout = styled.div`
   display: grid;
@@ -101,11 +106,18 @@ const ProjectsPage = (props) => {
   }));
 
   const contentRevealAnimation = useSpring(revealLeft({}));
-  const imageRevealAnimation = useSpring(revealRight({ ref: imagesAnimationRef }));
-  const referencesAnimation = useSpring(revealTop({ ref: referencesAnimationRef }));
+  const imageRevealAnimation = useSpring(
+    revealRight({ ref: imagesAnimationRef })
+  );
+  const referencesAnimation = useSpring(
+    revealTop({ ref: referencesAnimationRef })
+  );
   const tagsAnimation = useSpring(revealBottom({ ref: tagsAnimationRef }));
 
-  useChain([imagesAnimationRef, referencesAnimationRef, tagsAnimationRef], [0, .5, .5]);
+  useChain(
+    [imagesAnimationRef, referencesAnimationRef, tagsAnimationRef],
+    [0, 0.5, 0.5]
+  );
 
   return (
     <>
@@ -174,7 +186,10 @@ const ProjectsPage = (props) => {
               </ProjectInfoWrapper>
               <ProjectInfo style={imageRevealAnimation}>
                 <ImageCarousel images={images} />
-                <Tags style={tagsAnimation} tags={post.frontmatter.technologies} />
+                <Tags
+                  style={tagsAnimation}
+                  tags={post.frontmatter.technologies}
+                />
               </ProjectInfo>
             </PageLayout>
             <SlugListMenu active={post.fields.slug} slugs={slugs} />

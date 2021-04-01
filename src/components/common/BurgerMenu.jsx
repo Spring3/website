@@ -160,7 +160,9 @@ const BurgerMenu = () => {
     },
   });
 
-  const burgerMenuButtonAnimation = useSpring(revealRight({ delay: 1000, right: '2rem' }));
+  const burgerMenuButtonAnimation = useSpring(
+    revealRight({ delay: 1000, right: '2rem' })
+  );
 
   const IconElement = isMenuOpen ? CloseIcon : MenuIcon;
 

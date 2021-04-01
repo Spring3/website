@@ -43,7 +43,10 @@ const BackButtonContainer = styled(animated.div)`
 const ButtonBack = ({ href, value, withColorfulBackground }) => {
   const revealAnimation = useSpring(revealLeft({ delay: 1000 }));
   return (
-    <BackButtonContainer style={revealAnimation} withColorfulBackground={withColorfulBackground}>
+    <BackButtonContainer
+      style={revealAnimation}
+      withColorfulBackground={withColorfulBackground}
+    >
       <LinkButton to={href}>
         <ArrowLeftIcon /> {value}
       </LinkButton>
