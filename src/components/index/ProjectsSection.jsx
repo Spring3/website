@@ -12,6 +12,7 @@ const ProjectsWrapper = styled(Flex)`
 
   @media (max-width: 750px) {
     padding-top: 0;
+    padding-bottom: 5rem;
   }
 `;
 
@@ -28,7 +29,7 @@ const StickyTitle = styled(Header)`
 `;
 
 const ProjectsContainer = styled.div`
-  padding-bottom: 25vh;
+  padding-bottom: 15vh;
   position: relative;
 
   @media (max-width: 750px) {

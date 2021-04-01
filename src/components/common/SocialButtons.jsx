@@ -48,17 +48,17 @@ const OnlyImportantSocialButtons = ({ size }) => (
   </>
 );
 
-const SocialButtons = ({ className, size, onlyImportant }) => {
+const SocialButtons = ({ className, size, onlyImportant, ...rest }) => {
   if (onlyImportant) {
     return (
-      <Flex gap="1rem" margined alignItems="center" className={className}>
+      <Flex gap="1rem" margined alignItems="center" className={className} {...rest}>
         <OnlyImportantSocialButtons size={size} />
       </Flex>
     );
   }
 
   return (
-    <Flex gap="1rem" margined alignItems="center" className={className}>
+    <Flex gap="1rem" margined alignItems="center" className={className} {...rest}>
       <OnlyImportantSocialButtons size={size} />
       <SocialButtonLink
         href="https://open.spotify.com/user/21vcdhgxp3gqinwau2aynzg7i?si=onT2d2-dTA-RqL7xHLI2Tw"

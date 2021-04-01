@@ -21,11 +21,11 @@ const CVSection = ({ id, children, span }) => {
   const [hasIntersected, setIntersected] = useState(false);
   const [sectionAnimation, animate] = useSpring(() => ({
     opacity: 0,
-    top: '5rem'
+    top: '5rem',
   }));
 
   const intersection = useIntersection(ref, {
-    threshold: 0
+    threshold: 0,
   });
 
   useEffect(() => {
@@ -33,23 +33,17 @@ const CVSection = ({ id, children, span }) => {
       setIntersected(true);
       animate({
         opacity: 1,
-        top: '0rem'
+        top: '0rem',
+        delay: 500
       });
     }
   }, [intersection, hasIntersected]);
 
   return (
-    <Section
-      id={id}
-      span={span}
-      style={sectionAnimation}
-      ref={ref}
-    >
+    <Section id={id} span={span} style={sectionAnimation} ref={ref}>
       {children}
     </Section>
   );
 };
 
-export {
-  CVSection
-};
+export { CVSection };

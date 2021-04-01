@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { graphql } from 'gatsby';
 import styled, { ThemeProvider } from 'styled-components';
+import { animated, useChain, useSpring } from 'react-spring';
 
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
 import { ButtonBack } from '../components/common/buttons';
@@ -17,6 +18,7 @@ import { ImagePreviewContextProvider } from '../context/ImagePreviewContextProvi
 import { BurgerMenu } from '../components/common/BurgerMenu';
 import { slugToAnchor } from '../utils';
 import { useAnchorTracker } from '../hooks/useAnchorTracker';
+import { revealBottom, revealLeft, revealRight, revealTop } from '../animations';
 
 const PageLayout = styled.div`
   display: grid;
@@ -50,13 +52,20 @@ const PageLayout = styled.div`
   }
 `;
 
+const RelativeAnimatedDiv = styled(animated.div)`
+  position: relative;
+`;
+
 const ProjectReferenceContainer = styled(Flex)`
+  position: relative;
+
   @media (max-width: 750px) {
     justify-content: flex-start;
   }
 `;
 
-const ProjectInfoWrapper = styled.div`
+const ProjectInfoWrapper = styled(animated.div)`
+  position: relative;
   grid-area: info;
 `;
 
@@ -64,11 +73,16 @@ const ProjectContentNav = styled(Flex)`
   grid-area: nav;
 `;
 
-const ProjectInfo = styled.div`
+const ProjectInfo = styled(animated.div)`
+  position: relative;
   grid-area: content;
 `;
 
 const ProjectsPage = (props) => {
+  const imagesAnimationRef = useRef();
+  const referencesAnimationRef = useRef();
+  const tagsAnimationRef = useRef();
+
   const post = props.data.markdownRemark;
   const allPosts = props.data.allMarkdownRemark.nodes;
   const anchor = slugToAnchor(post.fields.slug);
@@ -85,6 +99,13 @@ const ProjectsPage = (props) => {
     ...image.childImageSharp.original,
     placeholder: image.childImageSharp.placeholder.base64,
   }));
+
+  const contentRevealAnimation = useSpring(revealLeft({}));
+  const imageRevealAnimation = useSpring(revealRight({ ref: imagesAnimationRef }));
+  const referencesAnimation = useSpring(revealTop({ ref: referencesAnimationRef }));
+  const tagsAnimation = useSpring(revealBottom({ ref: tagsAnimationRef }));
+
+  useChain([imagesAnimationRef, referencesAnimationRef, tagsAnimationRef], [0, .5, .5]);
 
   return (
     <>
@@ -110,10 +131,11 @@ const ProjectsPage = (props) => {
                 alignItems="center"
                 justifyContent="space-between"
               >
-                <div id="title">
+                <RelativeAnimatedDiv id="title" style={contentRevealAnimation}>
                   <Subheading>{post.frontmatter.title}</Subheading>
-                </div>
+                </RelativeAnimatedDiv>
                 <ProjectReferenceContainer
+                  style={referencesAnimation}
                   alignItems="center"
                   flexWrap="wrap"
                   gap="1.5rem"
@@ -123,7 +145,7 @@ const ProjectsPage = (props) => {
                   <ProjectReferences size={25} frontmatter={post.frontmatter} />
                 </ProjectReferenceContainer>
               </ProjectContentNav>
-              <ProjectInfoWrapper>
+              <ProjectInfoWrapper style={contentRevealAnimation}>
                 <MarkdownContent
                   id="markdown"
                   dangerouslySetInnerHTML={{ __html: post.html }}
@@ -150,9 +172,9 @@ const ProjectsPage = (props) => {
                   return null;
                 })}
               </ProjectInfoWrapper>
-              <ProjectInfo>
+              <ProjectInfo style={imageRevealAnimation}>
                 <ImageCarousel images={images} />
-                <Tags tags={post.frontmatter.technologies} />
+                <Tags style={tagsAnimation} tags={post.frontmatter.technologies} />
               </ProjectInfo>
             </PageLayout>
             <SlugListMenu active={post.fields.slug} slugs={slugs} />

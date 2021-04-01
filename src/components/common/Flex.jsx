@@ -14,11 +14,11 @@ const FlexContainer = styled(animated.div)`
 
     & > *:not(:last-child) {
       ${props.direction === 'column'
-    ? css`
+        ? css`
             padding-bottom: ${props.margined ? '' : props.gap};
             margin-bottom: ${props.margined ? props.gap : ''};
           `
-    : css`
+        : css`
             padding-right: ${props.margined ? '' : props.gap};
             margin-right: ${props.margined ? props.gap : ''};
           `};

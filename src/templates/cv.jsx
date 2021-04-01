@@ -16,6 +16,7 @@ import { LazyImage } from '../components/common/LazyImage';
 import { BurgerMenu } from '../components/common/BurgerMenu';
 import { animated, useSpring } from 'react-spring';
 import { CVSection } from '../components/cv/CVSection';
+import { revealRight, revealTop } from '../animations';
 
 const CVSectionBlock = styled.div`
   margin-top: 3rem;
@@ -112,35 +113,8 @@ const CVPage = ({ data }) => {
   const activeAnchor = useAnchorTracker(['#intro-section']);
   const { data: githubProfile } = useGithubData();
 
-  const profileSectionAnimation = useSpring({
-    initial: {
-      opacity: 0,
-      right: '-5rem'
-    },
-    from: {
-      opacity: 0,
-      right: '-5rem'
-    },
-    to: {
-      opacity: 1,
-      right: '0rem'
-    }
-  });
-
-  const profilePictureAnimation = useSpring({
-    initial: {
-      opacity: 0,
-      top: '5rem'
-    },
-    from: {
-      opacity: 0,
-      top: '5rem'
-    },
-    to: {
-      opacity: 1,
-      top: '0rem'
-    }
-  });
+  const profileSectionAnimation = useSpring(revealRight({}));
+  const profilePictureAnimation = useSpring(revealTop({ delay: 200 }));
 
   return (
     <>

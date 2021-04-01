@@ -7,6 +7,7 @@ import { Reference, Link } from './Reference';
 import { Subheader } from './Headers';
 import { Flex } from './Flex';
 import { SocialButtons } from './SocialButtons';
+import { revealRight } from '../../animations';
 
 const BurgerMenuWrapper = styled(animated.div)`
   position: fixed;
@@ -159,16 +160,7 @@ const BurgerMenu = () => {
     },
   });
 
-  const burgerMenuButtonAnimation = useSpring({
-    from: {
-      right: '-3rem',
-    },
-    to: {
-      right: '2rem',
-    },
-    immediate: false,
-    delay: 1000,
-  });
+  const burgerMenuButtonAnimation = useSpring(revealRight({ delay: 1000, right: '2rem' }));
 
   const IconElement = isMenuOpen ? CloseIcon : MenuIcon;
 

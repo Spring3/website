@@ -41,10 +41,8 @@ const randomShift = ({ left, top }, duration) => {
   };
 };
 
-const reveal = ({ delay, ref }, slow = true) => {
-  return {
-    ref,
-    immediate: false,
+const reveal = ({ delay, ref, slow = true }) => {
+  const animation = {
     from: {
       opacity: 0,
     },
@@ -52,8 +50,66 @@ const reveal = ({ delay, ref }, slow = true) => {
       opacity: 1,
     },
     config: slow ? config.slow : undefined,
-    delay,
   };
+
+  if (ref) {
+    animation.ref = ref;
+  }
+
+  if (delay) {
+    animation.immediate = false;
+    animation.delay = delay;
+  }
+
+  return animation;
 };
 
-export { randomFlicker, randomShift, reveal };
+const revealLeft = ({ delay, ref, left = '0rem' }) => {
+  const animation = reveal({ delay, ref });
+  const initial = {
+    opacity: 0,
+    left: '-5rem'
+  };
+  animation.initial = initial;
+  animation.from = initial;
+  animation.to.left = left;
+  return animation;
+};
+
+const revealRight = ({ delay, ref, right = '0rem' }) => {
+  const animation = reveal({ delay, ref });
+  const initial = {
+    opacity: 0,
+    right: '-5rem'
+  };
+  animation.initial = initial;
+  animation.from = initial;
+  animation.to.right = right;
+  return animation;
+};
+
+const revealTop = ({ delay, ref, top = '0rem' }) => {
+  const animation = reveal({ delay, ref });
+  const initial = {
+    opacity: 0,
+    top: '-5rem'
+  };
+  animation.initial = initial;
+  animation.from = initial;
+  animation.to.top = top;
+  return animation;
+};
+
+const revealBottom = ({ delay, ref, bottom = '0rem' }) => {
+  const animation = reveal({ delay, ref });
+  const initial = {
+    opacity: 0,
+    bottom: '-5rem'
+  };
+  animation.initial = initial;
+  animation.from = initial;
+  animation.to.bottom = bottom;
+  return animation;
+};
+
+export { randomFlicker, randomShift, reveal, revealLeft, revealRight, revealTop, revealBottom };

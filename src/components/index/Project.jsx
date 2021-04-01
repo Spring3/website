@@ -8,7 +8,7 @@ import React, {
 import styled from 'styled-components';
 
 import { animated, useSpring } from 'react-spring';
-import { useWindowSize, useIntersection } from 'react-use';
+import { useWindowSize, useIntersection, usePrevious } from 'react-use';
 import { Tags } from '../common/Tags';
 import { FixedImageSet } from '../project/FixedImageSet';
 import { slugToAnchor } from '../../utils';
@@ -18,6 +18,7 @@ import { ImageCarousel } from '../common/ImageCarousel';
 import { Flex } from '../common/Flex';
 import { Decorations, Rectangle, Circle } from '../common/Decorations';
 import { Subheader } from '../common/Headers';
+import { revealBottom } from '../../animations';
 
 const ProjectInfo = styled.div`
   @media (min-width: 1000px) {
@@ -82,6 +83,8 @@ const Project = ({ node, index }) => {
   const id = anchor.substring(1);
   const isSmallScreen = width <= 1000;
 
+  const wasSmallScreen = usePrevious(isSmallScreen);
+
   const images = node.frontmatter.images.map((image) => ({
     name: image.name,
     ...image.childImageSharp.original,
@@ -89,13 +92,13 @@ const Project = ({ node, index }) => {
   }));
 
   const intersection = useIntersection(infoRef, {
-    threshold: isSmallScreen ? 0.001 : 0.8,
+    threshold: isSmallScreen ? 0.001 : 0.6,
   });
 
   const isIntersecting = intersection?.isIntersecting;
 
   const initialAnimationState = {
-    opacity: 0
+    opacity: 0,
   };
 
   if (isSmallScreen) {
@@ -104,7 +107,9 @@ const Project = ({ node, index }) => {
     initialAnimationState.transform = 'translateY(100px)';
   }
 
-  const [revealAnimation, animate] = useSpring(() => initialAnimationState);
+  const [revealAnimation, animateSection] = useSpring(() => initialAnimationState);
+  const [tagAnimation, animateTags] = useSpring(() => revealBottom({}).initial);
+  const [revealDecorations, animateDecorations] = useSpring(() => revealBottom({}).initial);
 
   useEffect(() => {
     if (!wasRevealed && isIntersecting) {
@@ -124,9 +129,17 @@ const Project = ({ node, index }) => {
         revealAnimationConfig.transform = 'translateY(0%)';
       }
 
-      animate(revealAnimationConfig);
+      animateSection(revealAnimationConfig);
+      animateTags(revealBottom({ delay: 200 }));
+      animateDecorations(revealBottom({ delay: 500 }));
     }
   }, [wasRevealed, isIntersecting, isSmallScreen]);
+
+  useEffect(() => {
+    if (wasSmallScreen !== isSmallScreen) {
+      setRevealed(false);
+    }
+  }, [wasSmallScreen, isSmallScreen]);
 
   const renderLayer = useCallback(
     (key, layerData) => {
@@ -137,7 +150,7 @@ const Project = ({ node, index }) => {
       const { props, squares, circles } = layerData;
 
       return (
-        <Decorations key={key} layer={key} {...props} style={revealAnimation}>
+        <Decorations key={key} layer={key} {...props} style={revealDecorations}>
           {squares?.map((squareProps, i) => (
             <Rectangle {...squareProps} key={`square-${i}`} />
           ))}
@@ -172,7 +185,7 @@ const Project = ({ node, index }) => {
             marker={node.frontmatter.marker}
             dangerouslySetInnerHTML={{ __html: node.html }}
           />
-          <Tags tags={node.frontmatter.technologies} />
+          <Tags style={tagAnimation} tags={node.frontmatter.technologies} />
         </ProjectInfo>
       </InfoWrapper>
       {!isSmallScreen ? (

@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { animated } from 'react-spring';
 
-const TagsContainer = styled.ul`
+const TagsContainer = styled(animated.ul)`
   list-style-type: none;
+  position: relative;
   margin: 0;
   padding: 0;
   display: flex;
@@ -20,8 +22,8 @@ const TagItem = styled.li`
   font-size: 0.8rem;
 `;
 
-const Tags = ({ tags = [] }) => (
-  <TagsContainer>
+const Tags = ({ tags = [], ...rest }) => (
+  <TagsContainer {...rest}>
     {tags.map((tag) => (
       <TagItem key={tag}>
         {tag}
