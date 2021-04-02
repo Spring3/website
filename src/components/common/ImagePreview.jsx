@@ -5,12 +5,13 @@ import ArrowLeftIcon from 'mdi-react/ArrowLeftThickIcon';
 import ArrowRightIcon from 'mdi-react/ArrowRightThickIcon';
 import CloseIcon from 'mdi-react/CloseIcon';
 import { Helmet } from 'react-helmet';
-import { useSprings, animated } from 'react-spring';
+import { useSprings, animated, useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import clamp from 'lodash.clamp';
-import { useKeyPressEvent, useWindowSize } from 'react-use';
+import { useKeyPressEvent, usePrevious, useWindowSize } from 'react-use';
 import { PreviewButtonNext, PreviewButtonPrevious } from './buttons';
 import { useImagePreview } from '../../context/ImagePreviewContext';
+import { reveal } from '../../animations';
 
 const ImagePreviewPortal = ({ children }) => {
   const container = useMemo(() => {
@@ -40,7 +41,7 @@ const ImagePreviewContainer = ({ children }) => (
   <div id="image-preview-portal">{children}</div>
 );
 
-const PreviewContainer = styled.div`
+const PreviewContainer = styled(animated.div)`
   position: fixed;
   z-index: 6;
   top: 0;
@@ -98,46 +99,44 @@ const IconClose = styled(CloseIcon)`
 
 const ImagePreview = ({ images, startIndex = 0, onClose }) => {
   const { width, height } = useWindowSize();
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(startIndex);
   const [mousePressed, setMousePressed] = useState(false);
 
   const preview = useImagePreview();
 
+  const wasOpen = usePrevious(preview.isPreviewShown);
+
   const [draggingAnimationSprings, set] = useSprings(images.length, (i) => {
-    if (i !== index) return { display: 'none' };
-    const x = (i - index) * width;
-    const scale = 1;
+    if (i !== startIndex) return { display: 'none' };
+    const x = (i - startIndex) * width;
     return {
       x,
-      scale,
+      scale: 1,
       display: 'block',
-      transform: `translateX(${x}px) scale(${scale})`,
+      transform: `translateX(${x}px) scale(1)`,
     };
   });
-
-  useEffect(() => {
-    if (!images.length) {
-      setIndex(0);
-    }
-  }, [images]);
 
   useEffect(() => {
     setIndex(images.length ? startIndex : 0);
   }, [startIndex, images]);
 
   useEffect(() => {
+    if (!wasOpen && preview.isPreviewShown) {
+      return;
+    }
+
     set((i) => {
       if (i < index - 1 || i > index + 1) return { display: 'none' };
       const x = (i - index) * width;
-      const scale = 1;
       return {
         x,
-        scale,
+        scale: 1,
         display: 'block',
-        transform: `translateX(${x}px) scale(${scale})`,
+        transform: `translateX(${x}px) scale(1)`,
       };
     });
-  }, [index, width]);
+  }, [index, width, wasOpen, preview]);
 
   const bind = useDrag(
     ({ active, movement: [mx], direction: [xDir], distance, cancel }) => {
@@ -180,7 +179,7 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
         setIndex(clamp(index + 1, 0, images.length - 1));
       }
     },
-    [index, images.length]
+    [index, images]
   );
 
   const previousSlide = useCallback(
@@ -192,7 +191,7 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
         setIndex(clamp(index - 1, 0, images.length - 1));
       }
     },
-    [index, images.length]
+    [index, images]
   );
 
   const interceptEvent = useCallback((e) => {
@@ -203,6 +202,14 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
   useKeyPressEvent('Escape', preview.hideImagePreview);
   useKeyPressEvent('ArrowRight', nextSlide);
   useKeyPressEvent('ArrowLeft', previousSlide);
+
+  const [containerAnimation, animateContainer] = useSpring(() => reveal({ duration: 150, slow: false }));
+
+  useEffect(() => {
+    if (preview.isPreviewShown) {
+      animateContainer(reveal({ duration: 150, slow: false }));
+    }
+  }, [preview.isPreviewShown]);
 
   if (!images.length) {
     return <></>;
@@ -221,7 +228,7 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
           </style>
         </Helmet>
         <ImagePreviewPortal>
-          <PreviewContainer onClick={onClose}>
+          <PreviewContainer style={containerAnimation} onClick={onClose}>
             <IconClose color="white" onClick={onClose} />
             <PreviewImages>
               <SlidingImage
@@ -253,6 +260,7 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
       </Helmet>
       <ImagePreviewPortal>
         <PreviewContainer
+          style={containerAnimation}
           onClick={() => {
             // this is done because when drag event is cancelled, releasing the mouse triggered this click event and closed the preview
             // this way we skip this one call

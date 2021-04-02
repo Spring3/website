@@ -41,7 +41,7 @@ const randomShift = ({ left, top }, duration) => {
   };
 };
 
-const reveal = ({ delay, ref, slow = true }) => {
+const reveal = ({ delay, ref, duration, slow = true }) => {
   const animation = {
     from: {
       opacity: 0,
@@ -54,6 +54,12 @@ const reveal = ({ delay, ref, slow = true }) => {
 
   if (ref) {
     animation.ref = ref;
+  }
+
+  if (!slow && duration) {
+    animation.config = {
+      duration
+    };
   }
 
   if (delay) {
