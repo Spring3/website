@@ -20,12 +20,12 @@ decorations:
       top: 30vh
     squares:
       - { radius: 10px, top: 80%, left: 80%, size: 45px, background: "#FFAE5A", sticky: true }
-      - { radius: 10px, top: 11%, left: 60%, size: 75px, background: "#EDE8E2", sticky: true }
+      - { radius: 10px, top: 11%, left: 60%, size: 75px, background: "#EAC9E2", sticky: true }
       - { radius: 10px, top: 60%, left: 27%, size: 65px, background: "#EDE8E2", sticky: true }
-      - { radius: 10px, top: 50%, left: 38%, size: 55px, background: "#F57B51", sticky: true }
+      - { radius: 10px, top: 50%, left: 38%, size: 55px, background: "#B9A6E0", sticky: true }
       - { radius: 10px, top: 65%, left: 5%, size: 55px, background: "#BED5AE", sticky: true }
       - { radius: 10px, top: 70%, left: 50%, size: 45px, background: "#EDE8E2", sticky: true }
-      - { radius: 10px, top: 5%, left: 15%, size: 95px, background: "#EDE8E2", sticky: true }
+      - { radius: 10px, top: 5%, left: 15%, size: 95px, background: "#A9E2F5", sticky: true }
     circles:
   base:
     props:

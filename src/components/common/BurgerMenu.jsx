@@ -7,7 +7,9 @@ import { Reference, Link } from './Reference';
 import { Subheader } from './Headers';
 import { Flex } from './Flex';
 import { SocialButtons } from './SocialButtons';
+import { Logo } from './Logo';
 import { revealRight } from '../../animations';
+import { useWindowSize } from 'react-use';
 
 const BurgerMenuWrapper = styled(animated.div)`
   position: fixed;
@@ -41,11 +43,12 @@ const BurgerMenuPanel = styled(Flex)`
   overflow: hidden;
   z-index: 4;
   max-height: 100vh;
-  height: calc(100vh - 6rem);
+  height: calc(100vh - 7.5rem);
   overflow-y: scroll;
-
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   padding-left: 1rem;
-  padding-right: 2rem;
+  padding-right: 1rem;
 `;
 
 const Overlay = styled(animated.div)`
@@ -65,12 +68,20 @@ const BurgetMenuPanelWrapper = styled(animated.div)`
   max-width: 100%;
   right: 0;
   top: 0;
-  min-width: 370px;
-  padding-top: 4rem;
-  padding-bottom; 2rem;
+  padding-bottom: 4rem;
   height: 100%;
   background: rgba(255, 255, 255, 0.95);
   border-left: 2px solid rgba(245, 245, 245, 0.9);
+
+  @media (max-width: 750px) {
+    background: white;
+  }
+`;
+
+const LogoContainer = styled(Flex)`
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(245, 245, 245, 0.9);
 `;
 
 const MarkerlessLink = styled(Link)`
@@ -84,6 +95,7 @@ const ProjectsSection = styled(Flex)`
 
 const UtilitySection = styled(Flex)`
   width: 100%;
+  padding-top: 1rem;
 `;
 
 const SpaceLessSectionHeader = styled.h4`
@@ -97,6 +109,9 @@ const SpaceLessHeader = styled(Subheader)`
 const BurgerMenu = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isHovering, setHovering] = useState(false);
+  const { width } = useWindowSize();
+
+  const isSmallScreen = width <= 750;
 
   const onIconClick = useCallback((e) => {
     e.preventDefault();
@@ -119,7 +134,7 @@ const BurgerMenu = () => {
         clearTimeout(timeout);
       } else {
         timeout = setTimeout(() => {
-          setMenuOpen(false);
+          // setMenuOpen(false);
         }, 2000);
       }
     } else {
@@ -135,7 +150,7 @@ const BurgerMenu = () => {
       opacity: 1,
     },
     to: {
-      minWidth: isMenuOpen ? '370px' : '0px',
+      minWidth: isMenuOpen ? isSmallScreen ? `${width}px` : '370px' : '0px',
       opacity: isMenuOpen ? 1 : 0,
     },
   });
@@ -147,7 +162,7 @@ const BurgerMenu = () => {
     },
     to: {
       paddingLeft: isMenuOpen ? '1rem' : '0rem',
-      paddingRight: isMenuOpen ? '2rem' : '0rem',
+      paddingRight: isMenuOpen ? '1rem' : '0rem',
     },
   });
 
@@ -179,6 +194,9 @@ const BurgerMenu = () => {
         onMouseLeave={handleMouseLeave}
         style={expandAnimation}
       >
+        <LogoContainer justifyContent="center" alignItems="center">
+          <Logo width="65px" height="32.5px" />
+        </LogoContainer>
         <BurgerMenuPanel
           style={expandContentPanelAnimation}
           direction="column"

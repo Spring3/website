@@ -21,7 +21,7 @@ import { Subheader } from '../common/Headers';
 import { revealBottom } from '../../animations';
 
 const ProjectInfo = styled.div`
-  @media (min-width: 1000px) {
+  @media (min-width: 1050px) {
     position: sticky;
     top: 16%;
     z-index: 2;
@@ -32,7 +32,7 @@ const InfoWrapper = styled(animated.div)`
   width: 100%;
   position: relative;
 
-  @media (min-width: 1001px) {
+  @media (min-width: 1051px) {
     padding-right: 1rem;
     width: 40%;
     position: sticky;
@@ -65,7 +65,7 @@ const ProjectContent = styled(MarkdownContent)`
   font-size: 1rem;
   -webkit-line-clamp: 1;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1050px) {
     margin-top: 2.5rem;
   }
 
@@ -81,7 +81,7 @@ const Project = ({ node, index }) => {
   const infoRef = useRef();
   const { width } = useWindowSize();
   const id = anchor.substring(1);
-  const isSmallScreen = width <= 1000;
+  const isSmallScreen = width <= 1050;
 
   const wasSmallScreen = usePrevious(isSmallScreen);
 

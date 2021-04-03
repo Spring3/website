@@ -1,11 +1,29 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'gatsby';
 import { animated, useSpring } from 'react-spring';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 import { styles } from '../Reference';
 import { MARKERS } from '../../../theme';
 import { revealLeft } from '../../../animations';
+
+const bounceLeftAnimation = keyframes`
+  0% {
+    left: 0px;
+  }
+  10% {
+    left: -5px;
+  }
+  20% {
+    left: -5px;
+  }
+  30% {
+    left: 0px;
+  }
+  100% {
+    left: 0px;
+  }
+`;
 
 const LinkButton = styled(Link)`
   ${styles}
@@ -20,6 +38,13 @@ const LinkButton = styled(Link)`
 
   &:visited {
     background: transparent;
+  }
+
+  &:hover {
+    svg {
+      position: relative;
+      animation: ${bounceLeftAnimation} 2.5s ease-in infinite;
+    }
   }
 `;
 
@@ -42,6 +67,7 @@ const BackButtonContainer = styled(animated.div)`
 
 const ButtonBack = ({ href, value, withColorfulBackground }) => {
   const revealAnimation = useSpring(revealLeft({ delay: 1000 }));
+
   return (
     <BackButtonContainer
       style={revealAnimation}

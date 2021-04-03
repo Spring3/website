@@ -56,7 +56,7 @@ const ProfileGrid = styled(Grid)`
   grid-template-columns: 350px auto;
   padding-bottom: 3rem;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1050px) {
     grid-template-columns: 300px auto;
   }
 
@@ -86,7 +86,7 @@ const ProfilePicture = styled(animated.img)`
   max-width: 350px;
   position: relative;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1050px) {
     width: 300px;
   }
 

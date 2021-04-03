@@ -26,7 +26,7 @@ const MarkdownContent = styled.div`
     padding: 0rem 1rem;
   }
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1050px) {
     h2 {
       font-size: 2rem;
     }
@@ -38,6 +38,21 @@ const MarkdownContent = styled.div`
     p,
     ul {
       font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 1024px) and (max-height: 800px) {
+    h2 {
+      font-size: 1.8rem;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+    }
+
+    p,
+    ul {
+      font-size: 1.1rem;
     }
   }
 

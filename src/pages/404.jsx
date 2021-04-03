@@ -129,7 +129,7 @@ const NotFoundPage = () => {
             style={firstCircleAnimation}
             size="300px"
             radius="80% 75% 85% 90% / 80% 90% 85% 90%"
-            background="#FEC7C3"
+            background="linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)"
             flat
             sticky={width > 850}
           />
@@ -137,7 +137,7 @@ const NotFoundPage = () => {
             style={secondCircleAnimation}
             size="350px"
             radius="80% 70% 85% 90% / 80% 90% 80% 90%"
-            background="#D4A6D1"
+            background="linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)"
             flat
             sticky={width > 850}
           />
@@ -145,7 +145,7 @@ const NotFoundPage = () => {
             style={thirdCircleAnimation}
             size="320px"
             radius="80% 70% 85% 90% / 80% 90% 80% 90%"
-            background="#FCC07E"
+            background="linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)"
             flat
             sticky={width > 850}
           />

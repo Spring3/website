@@ -38,7 +38,7 @@ const ContentPanel = styled(Flex)`
 
   ${paddingStyles}
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1050px) {
     padding-right: 1rem;
     padding-left: 1rem;
   }

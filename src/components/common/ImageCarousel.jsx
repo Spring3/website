@@ -7,7 +7,7 @@ import { LazyImage } from './LazyImage';
 const CarouselContainer = styled.div`
   padding-top: ${(props) => (props.isPreview ? '0' : '1.5rem')};
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1050px) {
     padding-top: 0;
   }
 `;

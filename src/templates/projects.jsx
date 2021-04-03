@@ -18,12 +18,14 @@ import { ImagePreviewContextProvider } from '../context/ImagePreviewContextProvi
 import { BurgerMenu } from '../components/common/BurgerMenu';
 import { slugToAnchor } from '../utils';
 import { useAnchorTracker } from '../hooks/useAnchorTracker';
+
 import {
   revealBottom,
   revealLeft,
   revealRight,
   revealTop,
 } from '../animations';
+import { useWindowSize } from 'react-use';
 
 const PageLayout = styled.div`
   display: grid;

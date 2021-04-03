@@ -26,6 +26,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/
+        }
+      }
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
@@ -46,7 +54,7 @@ module.exports = {
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 1000,
+              maxWidth: 1024,
               linkImagesToOriginal: false,
             },
           },

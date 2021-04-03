@@ -17,7 +17,7 @@ const ProjectsWrapper = styled(Flex)`
 `;
 
 const StickyTitle = styled(Header)`
-  @media (min-width: 1000px) {
+  @media (min-width: 1050px) {
     z-index: 2;
     position: sticky;
     top: 5%;

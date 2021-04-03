@@ -34,7 +34,7 @@ const AboutSectionMarkdown = styled(MarkdownContent)`
     font-size: smaller;
   }
 
-  @media (min-width: 1000px) {
+  @media (min-width: 1050px) {
     font-size: 1.2rem;
   }
 `;
