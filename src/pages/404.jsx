@@ -13,6 +13,7 @@ import { Flex } from '../components/common/Flex';
 import { Link } from '../components/common/Reference';
 import { Subheading } from '../components/project/Header';
 import { getRandomIndex } from '../utils';
+import { BurgerMenu } from '../components/common/BurgerMenu';
 
 const RelativeDecorations = styled(Decorations)`
   position: relative !important;
@@ -119,6 +120,7 @@ const NotFoundPage = () => {
         title="404 - Page Not Found"
         description="It looks like you have discovered the edge"
       />
+      <BurgerMenu />
       <FullHeightFlex
         direction="column"
         justifyContent="center"
