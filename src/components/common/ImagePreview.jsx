@@ -203,7 +203,9 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
   useKeyPressEvent('ArrowRight', nextSlide);
   useKeyPressEvent('ArrowLeft', previousSlide);
 
-  const [containerAnimation, animateContainer] = useSpring(() => reveal({ duration: 150, slow: false }));
+  const [containerAnimation, animateContainer] = useSpring(() =>
+    reveal({ duration: 150, slow: false })
+  );
 
   useEffect(() => {
     if (preview.isPreviewShown) {

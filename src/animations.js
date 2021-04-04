@@ -58,7 +58,7 @@ const reveal = ({ delay, ref, duration, slow = true }) => {
 
   if (!slow && duration) {
     animation.config = {
-      duration
+      duration,
     };
   }
 

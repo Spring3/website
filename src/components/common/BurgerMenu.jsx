@@ -10,6 +10,8 @@ import { SocialButtons } from './SocialButtons';
 import { Logo } from './Logo';
 import { revealRight } from '../../animations';
 import { useWindowSize } from 'react-use';
+import { MARKERS } from '../../theme';
+import { Helmet } from 'react-helmet';
 
 const BurgerMenuWrapper = styled(animated.div)`
   position: fixed;
@@ -59,7 +61,6 @@ const Overlay = styled(animated.div)`
   width: 100%;
   height: 100vh;
   z-index: 4;
-}
 `;
 
 const BurgetMenuPanelWrapper = styled(animated.div)`
@@ -72,6 +73,7 @@ const BurgetMenuPanelWrapper = styled(animated.div)`
   height: 100%;
   background: rgba(255, 255, 255, 0.95);
   border-left: 2px solid rgba(245, 245, 245, 0.9);
+  box-shadow: 0px 0px 10px ${MARKERS.shadow};
 
   @media (max-width: 750px) {
     background: white;
@@ -134,7 +136,7 @@ const BurgerMenu = () => {
         clearTimeout(timeout);
       } else {
         timeout = setTimeout(() => {
-          // setMenuOpen(false);
+          setMenuOpen(false);
         }, 2000);
       }
     } else {
@@ -150,7 +152,7 @@ const BurgerMenu = () => {
       opacity: 1,
     },
     to: {
-      minWidth: isMenuOpen ? isSmallScreen ? `${width}px` : '370px' : '0px',
+      minWidth: isMenuOpen ? (isSmallScreen ? `${width}px` : '370px') : '0px',
       opacity: isMenuOpen ? 1 : 0,
     },
   });
@@ -183,6 +185,17 @@ const BurgerMenu = () => {
 
   return (
     <>
+      {isSmallScreen && isMenuOpen ? (
+        <Helmet>
+          <style type="text/css">
+            {`
+              body {
+                overflow-y: hidden;
+              }
+            `}
+          </style>
+        </Helmet>
+      ) : null}
       <BurgerMenuWrapper style={burgerMenuButtonAnimation}>
         <Button role="button" onClick={onIconClick}>
           <IconElement size={32} onMouseEnter={handleMouseEnter} />
