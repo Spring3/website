@@ -8,16 +8,14 @@ module.exports = {
   siteMetadata: {
     title: 'Danv',
     description: "Danv's personal website",
-    image:
-      'https://user-images.githubusercontent.com/4171202/108579794-e4d54400-7328-11eb-8bda-cfd9811ae3af.png',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'mafinest',
-        short_name: 'manifest',
+        name: 'Danv',
+        short_name: 'Danv',
         start_url: '/',
         background_color: '#fff',
         theme_color: '#fff',

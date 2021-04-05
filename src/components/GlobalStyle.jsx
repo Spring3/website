@@ -54,7 +54,7 @@ const GlobalStyles = () => {
   return <GlobalStylesComponent />;
 };
 
-const OGP = memo(({ title, description, image }) => {
+const OGP = memo(({ title, description, image = '/icon_ogp.png' }) => {
   if (typeof window !== 'undefined') {
     // eslint-disable-next-line
     window.__forceSmoothScrollPolyfill__ = true;

@@ -25,7 +25,6 @@ import {
   revealRight,
   revealTop,
 } from '../animations';
-import { useWindowSize } from 'react-use';
 
 const PageLayout = styled.div`
   display: grid;
