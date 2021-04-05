@@ -239,7 +239,7 @@ export const query = graphql`
           name
           childImageSharp {
             fluid(maxHeight: 1080) {
-              src: srcWebp
+              src
             }
           }
         }
