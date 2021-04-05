@@ -257,7 +257,7 @@ const NotFoundPage = () => {
                 flat
               />
             </RelativeDecorations>
-            <RelativeDecorations width={`${width}px`}>
+            <RelativeDecorations height={`${height}px`} width={`${width}px`}>
               <ColorThemedRectangle
                 flat
                 left={gap * 2}
@@ -399,7 +399,7 @@ const NotFoundPage = () => {
                 flat
               />
             </RelativeDecorations>
-            <RelativeDecorations width={`${width}px`}>
+            <RelativeDecorations height={`${height}px`} width={`${width}px`}>
               <ColorThemedRectangle
                 right="0px"
                 size={sizePx}

@@ -63,9 +63,9 @@ const IndexPage = ({ data }) => {
     window.scrollTo({
       behavior: 'smooth',
       top:
-        element.getBoundingClientRect().top +
-        window.pageYOffset -
-        marginsAndPaddings,
+        element.getBoundingClientRect().top
+        + window.pageYOffset
+        - marginsAndPaddings,
     });
     return false;
   }, []);
@@ -73,11 +73,7 @@ const IndexPage = ({ data }) => {
   return (
     <>
       <GlobalStyles />
-      <OGP
-        title={siteMetadata.title}
-        description={siteMetadata.description}
-        image={siteMetadata.image}
-      />
+      <OGP title={siteMetadata.title} description={siteMetadata.description} />
       <ImagePreviewContextProvider>
         <BurgerMenu />
         <main>
@@ -105,7 +101,6 @@ export const query = graphql`
       siteMetadata {
         title
         description
-        image
       }
     }
     allMarkdownRemark(

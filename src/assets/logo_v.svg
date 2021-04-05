@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
- <g transform="translate(.24956 .25013)" fill-opacity="0" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
-  <path d="m11.752 9.5252-2e-3 0.00262-4.096-8.5277h-4.1747l-2.4791 2.3864 5.3822 9.5699 5.3673 9.5436 3.3623-5.978-0.21585-0.44918z" stop-color="#000000" style="paint-order:normal"/>
-  <path d="m11.752 9.5252 3.1452 6.5473 0.21585 0.44918 2.0052-3.5656 5.3822-9.5699-2.479-2.3864h-4.1747z" stop-color="#000000" style="paint-order:normal"/>
- </g>
+<svg version="1.1" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+ <path d="m3.1318 1.2528-3.1318 3.275 13.582 26.225 4.2179-8.1455h0.0018l2.5416-4.9044 6.8175-13.167-3.1406-3.2832h-5.2881l-5.1603 11.671-5.1654-11.675z" fill="#9beec1" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path d="m17.171 12.949 3.9735 8.9839 0.27267 0.61633 2.5332-4.8923 6.7994-13.131-3.1318-3.2744h-5.2741z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path d="m17.171 12.949-0.0027 0.0031-5.1747-11.702h-5.2741l-3.1318 3.2744 13.581 26.226 4.2477-8.2024-0.27267-0.61633z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="mix-blend-mode:normal;paint-order:normal"/>
 </svg>

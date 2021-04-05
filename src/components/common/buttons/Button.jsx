@@ -12,10 +12,6 @@ const Button = styled.button`
   cursor: pointer;
   transition: box-shadow 0.2s ease;
 
-  &:hover {
-    box-shadow: 0px 0px 5px ${(props) => props.theme.marker || 'transparent'};
-  }
-
   &:active {
     filter: brightness(0.9);
     box-shadow: none;

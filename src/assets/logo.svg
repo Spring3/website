@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg fill="white" version="1.1" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">
- <g stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5">
-  <path d="m47.109 13.051 4.4306 8.6791 0.30403 0.59544 2.8246-4.7265 7.5818-12.686-3.4921-3.1634h-5.8809z" stop-color="#000000" style="mix-blend-mode:normal;paint-order:normal"/>
-  <path d="m9.4881 1.7631c26.999 0 26.993 28.445 0 28.445z" stop-color="#000000" style="mix-blend-mode:normal;paint-order:normal"/>
-  <path d="m1.7499 15.984 7.8492-7.6159 7.8492 7.6159-7.8492 7.6159z" stop-color="#000000" style="mix-blend-mode:normal;paint-order:normal"/>
-  <path d="m47.109 13.051-0.0028 0.0034-5.77-11.305h-5.8809l-3.4921 3.1634 15.143 25.337 4.7364-7.9245-0.30403-0.59544z" stop-color="#000000" style="mix-blend-mode:normal;paint-order:normal"/>
+<svg version="1.1" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">
+ <path d="m32.792 1.252-3.3972 3.275 14.733 26.225 4.5753-8.1455h2e-3l2.7569-4.9044 7.3951-13.167-3.4067-3.2832h-5.7362l-5.5975 11.671-5.6031-11.675z" fill="#9beec1" style="mix-blend-mode:normal;paint-order:normal"/>
+ <g transform="matrix(.9728 0 0 1.0351 -159.11 644.25)" fill="#ffe680">
+  <path d="m171.3-621.18c26.999 0 26.993 28.445 0 28.445z" stop-color="#000000" style="mix-blend-mode:normal;paint-order:normal"/>
+  <path d="m163.56-606.96 7.8492-7.6159 7.8492 7.6159-7.8492 7.6159z" stop-color="#000000" style="mix-blend-mode:normal;paint-order:normal"/>
  </g>
+ <path d="m11.42 1.2785c26.265 0 26.259 29.443 0 29.443z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path d="m3.8923 16 7.6357-7.8828 7.6357 7.8828-7.6357 7.8828z" fill="#ffe680" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path d="m48.021 12.948 4.3102 8.9839 0.29577 0.61633 2.7478-4.8923 7.3755-13.131-3.3972-3.2744h-5.721z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path d="m48.021 12.948-0.0029 0.0031-5.6131-11.702h-5.721l-3.3972 3.2744 14.732 26.226 4.6076-8.2024-0.29577-0.61633z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="mix-blend-mode:normal;paint-order:normal"/>
 </svg>

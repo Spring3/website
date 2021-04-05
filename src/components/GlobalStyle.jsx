@@ -59,6 +59,7 @@ const OGP = memo(({ title, description, image }) => {
     // eslint-disable-next-line
     window.__forceSmoothScrollPolyfill__ = true;
   }
+
   return (
     <>
       <Helmet>

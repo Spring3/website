@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
- <g transform="translate(.24999 .25001)" fill-opacity="0" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
-  <path d="m6.945 0.99999c20.742 0 20.738 21.5 0 21.5z" stop-color="#000000" style="paint-order:normal"/>
-  <path d="m0.99996 11.749 6.0303-5.7564 6.0302 5.7564-6.0302 5.7564z" stop-color="#000000" style="paint-order:normal"/>
+<svg version="1.1" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+ <g transform="matrix(.96138 0 0 1.0371 -157.24 645.47)" fill="#ffe680" stroke-width="1.0109">
+  <path d="m171.3-621.18c26.999 0 26.993 28.445 0 28.445z" stop-color="#000000" style="mix-blend-mode:normal;paint-order:normal"/>
+  <path d="m163.56-606.96 7.8492-7.6159 7.8492 7.6159-7.8492 7.6159z" stop-color="#000000" style="mix-blend-mode:normal;paint-order:normal"/>
  </g>
+ <path d="m11.285 1.25c25.957 0 25.951 29.5 0 29.5z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path d="m3.8454 16 7.546-7.8981 7.546 7.8981-7.546 7.8981z" fill="#ffe680" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="mix-blend-mode:normal;paint-order:normal"/>
 </svg>
