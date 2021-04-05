@@ -73,6 +73,7 @@ module.exports = {
         googleAnalytics: {
           trackingId: 'UA-141684888-1',
         },
+        environments: ['production', 'development'],
       },
     },
     'gatsby-plugin-netlify-cache',

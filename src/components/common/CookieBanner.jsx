@@ -1,17 +1,24 @@
-import React, { useEffect, useMemo, useState, memo } from 'react';
+import React, {
+  useEffect, useMemo, useState, memo
+} from 'react';
 import styled from 'styled-components';
 import CookieOutlineIcon from 'mdi-react/CookieIcon';
 import CaretDownIcon from 'mdi-react/CaretDownOutlineIcon';
 import CaretUpIcon from 'mdi-react/CaretUpOutlineIcon';
 import { useSpring, animated } from 'react-spring';
 import { initializeAndTrack } from 'gatsby-plugin-gdpr-cookies';
-import { useLocation, useTimeout, useTimeoutFn, useWindowSize } from 'react-use';
+import {
+  useLocation,
+  useTimeout,
+  useTimeoutFn,
+  useWindowSize,
+} from 'react-use';
 import { Button, FlatButton } from './buttons';
 import { Flex } from './Flex';
 import { MARKERS } from '../../theme';
 import { Reference } from './Reference';
 
-const storageKey = 'danv-ga-cookie-conscent';
+export const COOKIE_KEY = 'gatsby-gdpr-google-analytics';
 
 const CookieBannerContainer = styled(animated.div)`
   position: fixed;
@@ -57,7 +64,7 @@ const Description = styled(animated.div)`
 `;
 
 const CookieBanner = memo(() => {
-  const [conscentRequired, setConsentRequired] = useState(true);
+  const [consentRequired, setConsentRequired] = useState(true);
   const [isExpanded, setExpanded] = useState(false);
   const { width } = useWindowSize();
   const location = useLocation();
@@ -66,14 +73,21 @@ const CookieBanner = memo(() => {
   const [, cancelShrink] = useTimeoutFn(() => setExpanded(false), 9500);
 
   useEffect(() => {
-    let haveSavedConsent = false;
-    if (typeof localStorage !== 'undefined') {
-      haveSavedConsent = localStorage.getItem(storageKey) !== null;
-    }
+    let isMounted = true;
 
-    setConsentRequired(!haveSavedConsent);
+    const getGACookie = async () => {
+      if (typeof window !== 'undefined') {
+        const savedConsent = await window.cookieStore.get(COOKIE_KEY)?.value;
+        if (isMounted) {
+          setConsentRequired(!savedConsent);
+        }
+      }
+    };
+
+    getGACookie();
 
     return () => {
+      isMounted = false;
       cancelExpand();
       cancelShrink();
     };
@@ -88,18 +102,18 @@ const CookieBanner = memo(() => {
     margin: isExpanded ? '0px 0px 20px 0px' : '0px 0px 0px 0px',
   });
 
-  const onAccept = () => {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(storageKey, true);
+  const onAccept = async () => {
+    if (typeof window !== 'undefined') {
+      await window.cookieStore.set(COOKIE_KEY, true);
     }
-    initializeAndTrack();
+    initializeAndTrack(location);
     setConsentRequired(false);
     setIntoAnimation({ left: '-50rem' });
   };
 
-  const onReject = () => {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(storageKey, false);
+  const onReject = async () => {
+    if (typeof window !== 'undefined') {
+      await window.cookieStore.delete(COOKIE_KEY);
     }
     setConsentRequired(false);
     setIntoAnimation({ left: '-50rem' });
@@ -120,25 +134,41 @@ const CookieBanner = memo(() => {
   const canAnimate = isReady();
 
   useEffect(() => {
-    if (typeof localStorage === 'undefined') {
-      return;
-    }
+    let isMounted = true;
 
-    const decisionMade = localStorage.getItem(storageKey);
+    const maybeInitGA = async () => {
+      if (typeof window !== 'undefined') {
+        const decisionMade = await window.cookieStore.get(COOKIE_KEY)?.value;
+        if (isMounted && decisionMade === 'true') {
+          initializeAndTrack(location);
+          setIntoAnimation({ left: '-50rem' });
+        }
+      }
+    };
 
-    if (conscentRequired && canAnimate) {
+    if (consentRequired && canAnimate) {
       const distanceFromTheBorder = width >= 750 ? '2rem' : '1rem';
       setIntoAnimation({ left: distanceFromTheBorder });
-    } else if (decisionMade === 'true') {
-      initializeAndTrack(location);
+    } else {
+      maybeInitGA();
     }
-  }, [conscentRequired, width, canAnimate, location]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [consentRequired, width, canAnimate, location]);
+
+  if (!consentRequired) {
+    return null;
+  }
 
   return (
     <CookieBannerContainer style={introAnimation}>
       <Flex alignItems="center" justifyContent="space-between">
         <h3>
-          <CookieOutlineIcon size={40} color="#875A34" /> Cookies!
+          <CookieOutlineIcon size={40} color="#875A34" />
+          {' '}
+          Cookies!
         </h3>
         <FlatButton href="" onClick={onCaretClick}>
           {isExpanded ? <CaretDownIcon /> : <CaretUpIcon />}
