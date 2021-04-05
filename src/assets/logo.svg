@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg version="1.1" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">
- <path d="m32.792 1.252-3.3972 3.275 14.733 26.225 4.5753-8.1455h2e-3l2.7569-4.9044 7.3951-13.167-3.4067-3.2832h-5.7362l-5.5975 11.671-5.6031-11.675z" fill="#9beec1" style="mix-blend-mode:normal;paint-order:normal"/>
- <g transform="matrix(.9728 0 0 1.0351 -159.11 644.25)" fill="#ffe680">
+ <path d="m32.53 1.7527-3.3702 3.164 14.616 25.336 4.5389-7.8694h2e-3l2.735-4.7381 7.3363-12.721-3.3796-3.1719h-5.6906l-5.553 11.275-5.5585-11.279z" fill="#9beec1" style="mix-blend-mode:normal;paint-order:normal"/>
+ <g transform="matrix(.96506 0 0 1 -157.85 622.95)" fill="#ffe680" stroke-width="1.0256">
   <path d="m171.3-621.18c26.999 0 26.993 28.445 0 28.445z" stop-color="#000000" style="mix-blend-mode:normal;paint-order:normal"/>
   <path d="m163.56-606.96 7.8492-7.6159 7.8492 7.6159-7.8492 7.6159z" stop-color="#000000" style="mix-blend-mode:normal;paint-order:normal"/>
  </g>
- <path d="m11.42 1.2785c26.265 0 26.259 29.443 0 29.443z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="mix-blend-mode:normal;paint-order:normal"/>
- <path d="m3.8923 16 7.6357-7.8828 7.6357 7.8828-7.6357 7.8828z" fill="#ffe680" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="mix-blend-mode:normal;paint-order:normal"/>
- <path d="m48.021 12.948 4.3102 8.9839 0.29577 0.61633 2.7478-4.8923 7.3755-13.131-3.3972-3.2744h-5.721z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="mix-blend-mode:normal;paint-order:normal"/>
- <path d="m48.021 12.948-0.0029 0.0031-5.6131-11.702h-5.721l-3.3972 3.2744 14.732 26.226 4.6076-8.2024-0.29577-0.61633z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path d="m11.328 1.7783c26.056 0 26.05 28.445 0 28.445z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path d="m3.8602 16.001 7.575-7.6156 7.575 7.6156-7.575 7.6156z" fill="#ffe680" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path d="m47.638 13.052 4.2759 8.6793 0.29342 0.59544 2.7259-4.7264 7.3168-12.686-3.3702-3.1634h-5.6755z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path d="m47.638 13.052-0.0029 3e-3 -5.5685-11.305h-5.6755l-3.3702 3.1634 14.615 25.337 4.571-7.9243-0.29342-0.59544z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" style="mix-blend-mode:normal;paint-order:normal"/>
 </svg>
