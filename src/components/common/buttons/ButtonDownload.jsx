@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import DownloadOutlineIcon from 'mdi-react/DownloadOutlineIcon';
-import { FlatButton } from './FlatButton';
+import { Reference } from '../Reference';
 
-const StyledDownloadButton = styled(FlatButton)`
+const StyledDownloadButton = styled(Reference)`
   vertical-align: middle;
   text-decoration: none;
   background: var(--marker-green) !important;
   padding: 7px !important;
-  border-radius: 3px;
+  border-radius: 3px !important;
 
   &:hover {
     border-radius: 3px;
@@ -25,8 +25,10 @@ const StyledDownloadButton = styled(FlatButton)`
 `;
 
 const ButtonDownload = ({ href, value }) => (
-  <StyledDownloadButton role="button" id="download-button" href={href}>
-    <DownloadOutlineIcon /> {value}
+  <StyledDownloadButton role="button" download="CV_dvasylenko.pdf" href={href}>
+    <DownloadOutlineIcon />
+    {' '}
+    {value}
   </StyledDownloadButton>
 );
 
