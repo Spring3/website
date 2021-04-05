@@ -71,9 +71,8 @@ module.exports = {
       resolve: 'gatsby-plugin-gdpr-cookies',
       options: {
         googleAnalytics: {
-          trackingId: 'UA-141684888-1',
+          trackingId: process.env.GA_ID,
         },
-        environments: ['production', 'development'],
       },
     },
     'gatsby-plugin-netlify-cache',

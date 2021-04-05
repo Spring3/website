@@ -1,23 +1,26 @@
 import React from 'react';
-import { useCookie } from 'react-use';
+import { useCookieConsent } from '../../../context/CookieConsentContext';
 import { Flex } from '../Flex';
 import { Reference } from '../Reference';
-import { COOKIE_KEY } from './CookieBanner';
 
 const CookieManager = () => {
-  const [cookie, updateCookie] = useCookie(COOKIE_KEY);
+  const { consent, acceptCookies, rejectCookies } = useCookieConsent();
 
   const updateCookieValue = async (e) => {
     e.preventDefault();
-    const nextValue = cookie === null ? true : !(cookie.value === 'true');
-    updateCookie(nextValue);
+    const nextValue = consent === null ? true : !consent;
+    if (nextValue === true) {
+      acceptCookies();
+    } else {
+      rejectCookies();
+    }
   };
 
-  const text = cookie?.value === 'true' ? 'Disallow cookies' : 'Allow cookies';
+  const text = consent === true ? 'Reject cookies' : 'Allow cookies';
 
   return (
     <Flex gap="1rem" margined alignItems="center">
-      <strong>Cookies:</strong>
+      <strong>Cookies: {consent ? 'Allowed' : 'Rejected'}</strong>
       <Reference href="#" role="button" onClick={updateCookieValue}>
         {text}
       </Reference>

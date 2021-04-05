@@ -12,6 +12,7 @@ import { Footer } from '../components/index/Footer';
 import { ImagePreviewContextProvider } from '../context/ImagePreviewContextProvider';
 import { MarkdownContent } from '../components/common/MarkdownContent';
 import { BurgerMenu } from '../components/common/BurgerMenu';
+import { CookieConsentContextProvider } from '../context/CookieConsentContextProvider';
 
 const AboutSectionMarkdown = styled(MarkdownContent)`
   a {
@@ -73,22 +74,24 @@ const IndexPage = ({ data }) => {
   return (
     <>
       <GlobalStyles />
-      <OGP title={siteMetadata.title} description={siteMetadata.description} />
-      <ImagePreviewContextProvider>
-        <BurgerMenu />
-        <main>
-          <RelativeDiv>
-            <AboutSection>
-              <AboutSectionMarkdown
-                dangerouslySetInnerHTML={{ __html: aboutNode.html }}
-              />
-            </AboutSection>
-          </RelativeDiv>
-          <ProjectsSection nodes={projectNodes} />
-        </main>
-        <AnchorListMenu nodes={menuNodes} onClick={onMenuClick} />
-        <Footer />
-      </ImagePreviewContextProvider>
+      <CookieConsentContextProvider>
+        <OGP title={siteMetadata.title} description={siteMetadata.description} />
+        <ImagePreviewContextProvider>
+          <BurgerMenu />
+          <main>
+            <RelativeDiv>
+              <AboutSection>
+                <AboutSectionMarkdown
+                  dangerouslySetInnerHTML={{ __html: aboutNode.html }}
+                />
+              </AboutSection>
+            </RelativeDiv>
+            <ProjectsSection nodes={projectNodes} />
+          </main>
+          <AnchorListMenu nodes={menuNodes} onClick={onMenuClick} />
+          <Footer />
+        </ImagePreviewContextProvider>
+      </CookieConsentContextProvider>
     </>
   );
 };

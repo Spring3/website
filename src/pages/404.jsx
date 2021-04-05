@@ -14,6 +14,7 @@ import { Link } from '../components/common/Reference';
 import { Subheading } from '../components/project/Header';
 import { getRandomIndex } from '../utils';
 import { BurgerMenu } from '../components/common/BurgerMenu';
+import { CookieConsentContextProvider } from '../context/CookieConsentContextProvider';
 
 const RelativeDecorations = styled(Decorations)`
   position: relative !important;
@@ -116,393 +117,395 @@ const NotFoundPage = () => {
   return (
     <>
       <GlobalStyles />
-      <OGP
-        title="404 - Page Not Found"
-        description="It looks like you have discovered the edge"
-      />
-      <BurgerMenu />
-      <FullHeightFlex
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <OverflowDecorations margined={false} layer="back">
-          <Circle
-            style={firstCircleAnimation}
-            size="300px"
-            radius="80% 75% 85% 90% / 80% 90% 85% 90%"
-            background="linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)"
-            flat
-            sticky={width > 850}
-          />
-          <Circle
-            style={secondCircleAnimation}
-            size="350px"
-            radius="80% 70% 85% 90% / 80% 90% 80% 90%"
-            background="linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)"
-            flat
-            sticky={width > 850}
-          />
-          <Circle
-            style={thirdCircleAnimation}
-            size="320px"
-            radius="80% 70% 85% 90% / 80% 90% 80% 90%"
-            background="linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)"
-            flat
-            sticky={width > 850}
-          />
-        </OverflowDecorations>
+      <CookieConsentContextProvider>
+        <OGP
+          title="404 - Page Not Found"
+          description="It looks like you have discovered the edge"
+        />
+        <BurgerMenu />
         <FullHeightFlex
           direction="column"
           justifyContent="center"
           alignItems="center"
-          gap="2rem"
-          margined
         >
-          <Flex justifyContent="center" alignItems="center" gap="2rem" margined>
-            <RelativeDecorations height={`${height}px`} width={`${width}px`}>
-              <ColorThemedRectangle
-                right="0px"
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right={`${size + gap}px`}
-                top={`${size + gap}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right={`${(size + gap) * 2}px`}
-                top={`${(size + gap) * 2}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right={`${(size + gap) * 3}px`}
-                top={`${(size + gap) * 3}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right={`${(size + gap) * 2}px`}
-                top={`${(size + gap) * 3}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right={`${size + gap}px`}
-                top={`${(size + gap) * 3}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right="0px"
-                top={`${size + gap}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right="0px"
-                top={`${(size + gap) * 2}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right="0px"
-                top={`${(size + gap) * 3}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right="0px"
-                top={`${(size + gap) * 4}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right="0px"
-                top={`${(size + gap) * 5}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right="0px"
-                top={`${(size + gap) * 6}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-            </RelativeDecorations>
-            <RelativeDecorations height={`${height}px`} width={`${width}px`}>
-              <ColorThemedRectangle
-                flat
-                left={gap * 2}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-              />
-              <ColorThemedRectangle
-                left={`${size + gap + gap * 2}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={`${(size + gap) * 2 + gap * 2}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={`${(size + gap) * 3 + gap * 2}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={`${(size + gap) * 3 + gap * 2}px`}
-                top={`${size + gap}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={`${(size + gap) * 3 + gap * 2}px`}
-                top={`${(size + gap) * 2}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={`${(size + gap) * 3 + gap * 2}px`}
-                top={`${(size + gap) * 3}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={`${(size + gap) * 3 + gap * 2}px`}
-                top={`${(size + gap) * 4}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={`${(size + gap) * 3 + gap * 2}px`}
-                top={`${(size + gap) * 5}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={`${(size + gap) * 3 + gap * 2}px`}
-                top={`${(size + gap) * 6}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={`${(size + gap) * 2 + gap * 2}px`}
-                top={`${(size + gap) * 6}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={`${size + gap + gap * 2}px`}
-                top={`${(size + gap) * 6}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={gap * 2}
-                top={`${size + gap}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={gap * 2}
-                top={`${(size + gap) * 2}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={gap * 2}
-                top={`${(size + gap) * 3}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={gap * 2}
-                top={`${(size + gap) * 4}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={gap * 2}
-                top={`${(size + gap) * 5}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                left={gap * 2}
-                top={`${(size + gap) * 6}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-            </RelativeDecorations>
-            <RelativeDecorations height={`${height}px`} width={`${width}px`}>
-              <ColorThemedRectangle
-                right="0px"
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right={`${size + gap}px`}
-                top={`${size + gap}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right={`${(size + gap) * 2}px`}
-                top={`${(size + gap) * 2}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right={`${(size + gap) * 3}px`}
-                top={`${(size + gap) * 3}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right={`${(size + gap) * 2}px`}
-                top={`${(size + gap) * 3}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right={`${size + gap}px`}
-                top={`${(size + gap) * 3}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right="0px"
-                top={`${size + gap}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right="0px"
-                top={`${(size + gap) * 2}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right="0px"
-                top={`${(size + gap) * 3}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right="0px"
-                top={`${(size + gap) * 4}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right="0px"
-                top={`${(size + gap) * 5}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-              <ColorThemedRectangle
-                right="0px"
-                top={`${(size + gap) * 6}px`}
-                size={sizePx}
-                radius={radiusPx}
-                colorTheme={colorTheme}
-                flat
-              />
-            </RelativeDecorations>
-          </Flex>
-          <MessageSection direction="column" alignItems="center">
-            <Subheading>This page does not exist</Subheading>
-            <LinkWithLargerText to="/">Back To Main Page</LinkWithLargerText>
-          </MessageSection>
+          <OverflowDecorations margined={false} layer="back">
+            <Circle
+              style={firstCircleAnimation}
+              size="300px"
+              radius="80% 75% 85% 90% / 80% 90% 85% 90%"
+              background="linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)"
+              flat
+              sticky={width > 850}
+            />
+            <Circle
+              style={secondCircleAnimation}
+              size="350px"
+              radius="80% 70% 85% 90% / 80% 90% 80% 90%"
+              background="linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%)"
+              flat
+              sticky={width > 850}
+            />
+            <Circle
+              style={thirdCircleAnimation}
+              size="320px"
+              radius="80% 70% 85% 90% / 80% 90% 80% 90%"
+              background="linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)"
+              flat
+              sticky={width > 850}
+            />
+          </OverflowDecorations>
+          <FullHeightFlex
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            gap="2rem"
+            margined
+          >
+            <Flex justifyContent="center" alignItems="center" gap="2rem" margined>
+              <RelativeDecorations height={`${height}px`} width={`${width}px`}>
+                <ColorThemedRectangle
+                  right="0px"
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right={`${size + gap}px`}
+                  top={`${size + gap}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right={`${(size + gap) * 2}px`}
+                  top={`${(size + gap) * 2}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right={`${(size + gap) * 3}px`}
+                  top={`${(size + gap) * 3}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right={`${(size + gap) * 2}px`}
+                  top={`${(size + gap) * 3}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right={`${size + gap}px`}
+                  top={`${(size + gap) * 3}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right="0px"
+                  top={`${size + gap}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right="0px"
+                  top={`${(size + gap) * 2}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right="0px"
+                  top={`${(size + gap) * 3}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right="0px"
+                  top={`${(size + gap) * 4}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right="0px"
+                  top={`${(size + gap) * 5}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right="0px"
+                  top={`${(size + gap) * 6}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+              </RelativeDecorations>
+              <RelativeDecorations height={`${height}px`} width={`${width}px`}>
+                <ColorThemedRectangle
+                  flat
+                  left={gap * 2}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                />
+                <ColorThemedRectangle
+                  left={`${size + gap + gap * 2}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={`${(size + gap) * 2 + gap * 2}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={`${(size + gap) * 3 + gap * 2}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={`${(size + gap) * 3 + gap * 2}px`}
+                  top={`${size + gap}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={`${(size + gap) * 3 + gap * 2}px`}
+                  top={`${(size + gap) * 2}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={`${(size + gap) * 3 + gap * 2}px`}
+                  top={`${(size + gap) * 3}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={`${(size + gap) * 3 + gap * 2}px`}
+                  top={`${(size + gap) * 4}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={`${(size + gap) * 3 + gap * 2}px`}
+                  top={`${(size + gap) * 5}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={`${(size + gap) * 3 + gap * 2}px`}
+                  top={`${(size + gap) * 6}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={`${(size + gap) * 2 + gap * 2}px`}
+                  top={`${(size + gap) * 6}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={`${size + gap + gap * 2}px`}
+                  top={`${(size + gap) * 6}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={gap * 2}
+                  top={`${size + gap}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={gap * 2}
+                  top={`${(size + gap) * 2}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={gap * 2}
+                  top={`${(size + gap) * 3}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={gap * 2}
+                  top={`${(size + gap) * 4}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={gap * 2}
+                  top={`${(size + gap) * 5}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  left={gap * 2}
+                  top={`${(size + gap) * 6}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+              </RelativeDecorations>
+              <RelativeDecorations height={`${height}px`} width={`${width}px`}>
+                <ColorThemedRectangle
+                  right="0px"
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right={`${size + gap}px`}
+                  top={`${size + gap}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right={`${(size + gap) * 2}px`}
+                  top={`${(size + gap) * 2}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right={`${(size + gap) * 3}px`}
+                  top={`${(size + gap) * 3}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right={`${(size + gap) * 2}px`}
+                  top={`${(size + gap) * 3}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right={`${size + gap}px`}
+                  top={`${(size + gap) * 3}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right="0px"
+                  top={`${size + gap}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right="0px"
+                  top={`${(size + gap) * 2}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right="0px"
+                  top={`${(size + gap) * 3}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right="0px"
+                  top={`${(size + gap) * 4}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right="0px"
+                  top={`${(size + gap) * 5}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+                <ColorThemedRectangle
+                  right="0px"
+                  top={`${(size + gap) * 6}px`}
+                  size={sizePx}
+                  radius={radiusPx}
+                  colorTheme={colorTheme}
+                  flat
+                />
+              </RelativeDecorations>
+            </Flex>
+            <MessageSection direction="column" alignItems="center">
+              <Subheading>This page does not exist</Subheading>
+              <LinkWithLargerText to="/">Back To Main Page</LinkWithLargerText>
+            </MessageSection>
+          </FullHeightFlex>
         </FullHeightFlex>
-      </FullHeightFlex>
+      </CookieConsentContextProvider>
     </>
   );
 };

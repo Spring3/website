@@ -137,7 +137,7 @@ const BurgerMenu = () => {
         clearTimeout(timeout);
       } else {
         timeout = setTimeout(() => {
-          setMenuOpen(false);
+          // setMenuOpen(false);
         }, 2000);
       }
     } else {

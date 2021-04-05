@@ -6,9 +6,7 @@ import CookieOutlineIcon from 'mdi-react/CookieIcon';
 import CaretDownIcon from 'mdi-react/CaretDownOutlineIcon';
 import CaretUpIcon from 'mdi-react/CaretUpOutlineIcon';
 import { useSpring, animated } from 'react-spring';
-import { initializeAndTrack } from 'gatsby-plugin-gdpr-cookies';
 import {
-  useCookie,
   useLocation,
   useTimeout,
   useTimeoutFn,
@@ -18,8 +16,7 @@ import { Button, FlatButton } from '../buttons';
 import { Flex } from '../Flex';
 import { MARKERS } from '../../../theme';
 import { Reference } from '../Reference';
-
-export const COOKIE_KEY = 'gatsby-gdpr-google-analytics';
+import { useCookieConsent } from '../../../context/CookieConsentContext';
 
 const CookieBannerContainer = styled(animated.div)`
   position: fixed;
@@ -71,7 +68,8 @@ const CookieBanner = memo(() => {
   const [isReady] = useTimeout(3000);
   const [, cancelExpand] = useTimeoutFn(() => setExpanded(true), 4500);
   const [, cancelShrink] = useTimeoutFn(() => setExpanded(false), 9500);
-  const [cookie, updateCookie] = useCookie(COOKIE_KEY);
+
+  const { consent, acceptCookies, rejectCookies } = useCookieConsent();
 
   useEffect(
     () => () => {
@@ -91,13 +89,12 @@ const CookieBanner = memo(() => {
   });
 
   const onAccept = async () => {
-    updateCookie(true);
-    initializeAndTrack(location);
+    acceptCookies();
     setIntoAnimation({ left: '-50rem' });
   };
 
   const onReject = async () => {
-    updateCookie(false);
+    rejectCookies();
     setIntoAnimation({ left: '-50rem' });
   };
 
@@ -118,29 +115,19 @@ const CookieBanner = memo(() => {
   useEffect(() => {
     let isMounted = true;
 
-    const maybeInitGA = async () => {
-      if (typeof window !== 'undefined') {
-        const decisionMade = await window.cookieStore.get(COOKIE_KEY)?.value;
-        if (isMounted && decisionMade === 'true') {
-          initializeAndTrack(location);
-          setIntoAnimation({ left: '-50rem' });
-        }
-      }
-    };
-
-    if (!cookie && canAnimate) {
+    if (consent === null && canAnimate) {
       const distanceFromTheBorder = width >= 750 ? '2rem' : '1rem';
       setIntoAnimation({ left: distanceFromTheBorder });
-    } else {
-      maybeInitGA();
+    } else if (isMounted && consent === true) {
+      setIntoAnimation({ left: '-50rem' });
     }
 
     return () => {
       isMounted = false;
     };
-  }, [cookie, width, canAnimate, location]);
+  }, [consent, width, canAnimate, location]);
 
-  if (cookie) {
+  if (typeof currentConsent === 'boolean') {
     return null;
   }
 

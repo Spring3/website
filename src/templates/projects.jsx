@@ -25,6 +25,7 @@ import {
   revealRight,
   revealTop,
 } from '../animations';
+import { CookieConsentContextProvider } from '../context/CookieConsentContextProvider';
 
 const PageLayout = styled.div`
   display: grid;
@@ -127,80 +128,82 @@ const ProjectsPage = (props) => {
   return (
     <>
       <GlobalStyles />
-      <OGP
-        title={post.frontmatter.title}
-        description={ogpDescription}
-        image={post.frontmatter.thumbnail.childImageSharp.fluid.src}
-      />
-      <ThemeProvider theme={theme}>
-        <ImagePreviewContextProvider>
-          <PageWrapper>
-            <Navbar withBurgerMenu margined>
-              <ButtonBack
-                withColorfulBackground={activeAnchor === '#title'}
-                href={`/${anchor}`}
-                value="Main page"
-              />
-            </Navbar>
-            <BurgerMenu />
-            <PageLayout>
-              <ProjectContentNav
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <RelativeAnimatedDiv id="title" style={contentRevealAnimation}>
-                  <Subheading>{post.frontmatter.title}</Subheading>
-                </RelativeAnimatedDiv>
-                <ProjectReferenceContainer
-                  style={referencesAnimation}
+      <CookieConsentContextProvider>
+        <OGP
+          title={post.frontmatter.title}
+          description={ogpDescription}
+          image={post.frontmatter.thumbnail.childImageSharp.fluid.src}
+        />
+        <ThemeProvider theme={theme}>
+          <ImagePreviewContextProvider>
+            <PageWrapper>
+              <Navbar withBurgerMenu margined>
+                <ButtonBack
+                  withColorfulBackground={activeAnchor === '#title'}
+                  href={`/${anchor}`}
+                  value="Main page"
+                />
+              </Navbar>
+              <BurgerMenu />
+              <PageLayout>
+                <ProjectContentNav
                   alignItems="center"
-                  flexWrap="wrap"
-                  gap="1.5rem"
-                  margined
-                  justifyContent="flex-end"
+                  justifyContent="space-between"
                 >
-                  <ProjectReferences size={25} frontmatter={post.frontmatter} />
-                </ProjectReferenceContainer>
-              </ProjectContentNav>
-              <ProjectInfoWrapper style={contentRevealAnimation}>
-                <MarkdownContent
-                  id="markdown"
-                  dangerouslySetInnerHTML={{ __html: post.html }}
-                />
-                {post.frontmatter.description.map((description) => {
-                  if (description.href) {
-                    return (
-                      <MarkdownContent key={description.href}>
-                        <p>
-                          <a href={description.href}>{description.text}</a>
-                        </p>
-                      </MarkdownContent>
-                    );
-                  }
+                  <RelativeAnimatedDiv id="title" style={contentRevealAnimation}>
+                    <Subheading>{post.frontmatter.title}</Subheading>
+                  </RelativeAnimatedDiv>
+                  <ProjectReferenceContainer
+                    style={referencesAnimation}
+                    alignItems="center"
+                    flexWrap="wrap"
+                    gap="1.5rem"
+                    margined
+                    justifyContent="flex-end"
+                  >
+                    <ProjectReferences size={25} frontmatter={post.frontmatter} />
+                  </ProjectReferenceContainer>
+                </ProjectContentNav>
+                <ProjectInfoWrapper style={contentRevealAnimation}>
+                  <MarkdownContent
+                    id="markdown"
+                    dangerouslySetInnerHTML={{ __html: post.html }}
+                  />
+                  {post.frontmatter.description.map((description) => {
+                    if (description.href) {
+                      return (
+                        <MarkdownContent key={description.href}>
+                          <p>
+                            <a href={description.href}>{description.text}</a>
+                          </p>
+                        </MarkdownContent>
+                      );
+                    }
 
-                  if (description.text) {
-                    return (
-                      <MarkdownContent key={description.text}>
-                        <p>{description.text}</p>
-                      </MarkdownContent>
-                    );
-                  }
+                    if (description.text) {
+                      return (
+                        <MarkdownContent key={description.text}>
+                          <p>{description.text}</p>
+                        </MarkdownContent>
+                      );
+                    }
 
-                  return null;
-                })}
-              </ProjectInfoWrapper>
-              <ProjectInfo style={imageRevealAnimation}>
-                <ImageCarousel images={images} />
-                <Tags
-                  style={tagsAnimation}
-                  tags={post.frontmatter.technologies}
-                />
-              </ProjectInfo>
-            </PageLayout>
-            <SlugListMenu active={post.fields.slug} slugs={slugs} />
-          </PageWrapper>
-        </ImagePreviewContextProvider>
-      </ThemeProvider>
+                    return null;
+                  })}
+                </ProjectInfoWrapper>
+                <ProjectInfo style={imageRevealAnimation}>
+                  <ImageCarousel images={images} />
+                  <Tags
+                    style={tagsAnimation}
+                    tags={post.frontmatter.technologies}
+                  />
+                </ProjectInfo>
+              </PageLayout>
+              <SlugListMenu active={post.fields.slug} slugs={slugs} />
+            </PageWrapper>
+          </ImagePreviewContextProvider>
+        </ThemeProvider>
+      </CookieConsentContextProvider>
     </>
   );
 };
