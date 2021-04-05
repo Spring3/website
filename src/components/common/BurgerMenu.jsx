@@ -12,6 +12,7 @@ import { revealRight } from '../../animations';
 import { useWindowSize } from 'react-use';
 import { MARKERS } from '../../theme';
 import { Helmet } from 'react-helmet';
+import { CookieManager } from './cookie/CookieManager';
 
 const BurgerMenuWrapper = styled(animated.div)`
   position: fixed;
@@ -234,11 +235,14 @@ const BurgerMenu = () => {
               <SpaceLessHeader>Website</SpaceLessHeader>
             </MarkerlessLink>
           </ProjectsSection>
-          <UtilitySection justifyContent="space-between" alignItems="center">
-            <MarkerlessLink to="/cv">
-              <SpaceLessSectionHeader>CV</SpaceLessSectionHeader>
-            </MarkerlessLink>
-            <SocialButtons size={24} onlyImportant />
+          <UtilitySection direction="column" justifyContent="center">
+            <CookieManager />
+            <UtilitySection justifyContent="space-between" alignItems="center">
+              <MarkerlessLink to="/cv">
+                <SpaceLessSectionHeader>CV Page</SpaceLessSectionHeader>
+              </MarkerlessLink>
+              <SocialButtons size={24} onlyImportant />
+            </UtilitySection>
           </UtilitySection>
         </BurgerMenuPanel>
       </BurgetMenuPanelWrapper>

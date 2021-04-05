@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useMemo, useState, memo
-} from 'react';
+import React, { useEffect, useMemo, useState, memo } from 'react';
 import styled from 'styled-components';
 import CookieOutlineIcon from 'mdi-react/CookieIcon';
 import CaretDownIcon from 'mdi-react/CaretDownOutlineIcon';
@@ -13,10 +11,10 @@ import {
   useTimeoutFn,
   useWindowSize,
 } from 'react-use';
-import { Button, FlatButton } from './buttons';
-import { Flex } from './Flex';
-import { MARKERS } from '../../theme';
-import { Reference } from './Reference';
+import { Button, FlatButton } from '../buttons';
+import { Flex } from '../Flex';
+import { MARKERS } from '../../../theme';
+import { Reference } from '../Reference';
 
 export const COOKIE_KEY = 'gatsby-gdpr-google-analytics';
 
@@ -166,9 +164,7 @@ const CookieBanner = memo(() => {
     <CookieBannerContainer style={introAnimation}>
       <Flex alignItems="center" justifyContent="space-between">
         <h3>
-          <CookieOutlineIcon size={40} color="#875A34" />
-          {' '}
-          Cookies!
+          <CookieOutlineIcon size={40} color="#875A34" /> Cookies!
         </h3>
         <FlatButton href="" onClick={onCaretClick}>
           {isExpanded ? <CaretDownIcon /> : <CaretUpIcon />}

@@ -2,7 +2,7 @@ import React, { memo, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { createGlobalStyle } from 'styled-components';
 import { Globals } from 'react-spring';
-import { CookieBanner } from './common/CookieBanner';
+import { CookieBanner } from './common/cookie/CookieBanner';
 import 'normalize.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { useReducedMotion } from '../hooks/useReducedMotion';
