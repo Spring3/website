@@ -103,6 +103,7 @@ const activeStyles = css`
 const AnchorMenuItem = styled(Reference)`
   ${styles}
   display: inline-flex;
+  white-space: nowrap;
 `;
 
 const ActiveAnchorMenuItem = styled(Reference)`
