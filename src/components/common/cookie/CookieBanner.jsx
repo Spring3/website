@@ -1,4 +1,6 @@
-import React, { useEffect, useMemo, useState, memo } from 'react';
+import React, {
+  useEffect, useMemo, useState, memo
+} from 'react';
 import styled from 'styled-components';
 import CookieOutlineIcon from 'mdi-react/CookieIcon';
 import CaretDownIcon from 'mdi-react/CaretDownOutlineIcon';
@@ -6,6 +8,7 @@ import CaretUpIcon from 'mdi-react/CaretUpOutlineIcon';
 import { useSpring, animated } from 'react-spring';
 import { initializeAndTrack } from 'gatsby-plugin-gdpr-cookies';
 import {
+  useCookie,
   useLocation,
   useTimeout,
   useTimeoutFn,
@@ -62,34 +65,21 @@ const Description = styled(animated.div)`
 `;
 
 const CookieBanner = memo(() => {
-  const [consentRequired, setConsentRequired] = useState(true);
   const [isExpanded, setExpanded] = useState(false);
   const { width } = useWindowSize();
   const location = useLocation();
   const [isReady] = useTimeout(3000);
   const [, cancelExpand] = useTimeoutFn(() => setExpanded(true), 4500);
   const [, cancelShrink] = useTimeoutFn(() => setExpanded(false), 9500);
+  const [cookie, updateCookie] = useCookie(COOKIE_KEY);
 
-  useEffect(() => {
-    let isMounted = true;
-
-    const getGACookie = async () => {
-      if (typeof window !== 'undefined') {
-        const savedConsent = await window.cookieStore.get(COOKIE_KEY)?.value;
-        if (isMounted) {
-          setConsentRequired(!savedConsent);
-        }
-      }
-    };
-
-    getGACookie();
-
-    return () => {
-      isMounted = false;
+  useEffect(
+    () => () => {
       cancelExpand();
       cancelShrink();
-    };
-  }, []);
+    },
+    []
+  );
 
   const [introAnimation, setIntoAnimation] = useSpring(() => ({
     left: '-50rem',
@@ -101,19 +91,13 @@ const CookieBanner = memo(() => {
   });
 
   const onAccept = async () => {
-    if (typeof window !== 'undefined') {
-      await window.cookieStore.set(COOKIE_KEY, true);
-    }
+    updateCookie(true);
     initializeAndTrack(location);
-    setConsentRequired(false);
     setIntoAnimation({ left: '-50rem' });
   };
 
   const onReject = async () => {
-    if (typeof window !== 'undefined') {
-      await window.cookieStore.delete(COOKIE_KEY);
-    }
-    setConsentRequired(false);
+    updateCookie(false);
     setIntoAnimation({ left: '-50rem' });
   };
 
@@ -144,7 +128,7 @@ const CookieBanner = memo(() => {
       }
     };
 
-    if (consentRequired && canAnimate) {
+    if (!cookie && canAnimate) {
       const distanceFromTheBorder = width >= 750 ? '2rem' : '1rem';
       setIntoAnimation({ left: distanceFromTheBorder });
     } else {
@@ -154,9 +138,9 @@ const CookieBanner = memo(() => {
     return () => {
       isMounted = false;
     };
-  }, [consentRequired, width, canAnimate, location]);
+  }, [cookie, width, canAnimate, location]);
 
-  if (!consentRequired) {
+  if (cookie) {
     return null;
   }
 
@@ -164,7 +148,9 @@ const CookieBanner = memo(() => {
     <CookieBannerContainer style={introAnimation}>
       <Flex alignItems="center" justifyContent="space-between">
         <h3>
-          <CookieOutlineIcon size={40} color="#875A34" /> Cookies!
+          <CookieOutlineIcon size={40} color="#875A34" />
+          {' '}
+          Cookies!
         </h3>
         <FlatButton href="" onClick={onCaretClick}>
           {isExpanded ? <CaretDownIcon /> : <CaretUpIcon />}
