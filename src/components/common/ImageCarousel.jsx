@@ -74,8 +74,9 @@ const ImageCarousel = ({ className, images }) => {
 
   return (
     <>
-      <CarouselContainer className={className} ref={containerRef}>
+      <CarouselContainer ref={containerRef}>
         <StyledCarousel
+          className={className}
           showStatus={false}
           showIndicators={false}
           showThumbs={false}

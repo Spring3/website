@@ -95,7 +95,7 @@ const Project = ({ node, index }) => {
   }));
 
   const intersection = useIntersection(projectRef, {
-    rootMargin: isSmallScreen ? '0px' : '-350px'
+    rootMargin: isSmallScreen ? '0px' : '-350px',
   });
 
   const isIntersecting = intersection?.isIntersecting;
@@ -180,7 +180,11 @@ const Project = ({ node, index }) => {
 
   return (
     <ProjectRowWrapper ref={projectRef}>
-      <ProjectRow id={id} style={revealAnimation} justifyContent="space-between">
+      <ProjectRow
+        id={id}
+        style={revealAnimation}
+        justifyContent="space-between"
+      >
         <InfoWrapper>
           <ProjectInfo index={index}>
             <ProjectTitle>
@@ -199,10 +203,7 @@ const Project = ({ node, index }) => {
         {!isSmallScreen ? (
           <>
             <ImageWrapper>
-              <FixedImageSet
-                containerRef={projectRef}
-                images={images}
-              />
+              <FixedImageSet containerRef={projectRef} images={images} />
             </ImageWrapper>
             {decorationLayers}
           </>

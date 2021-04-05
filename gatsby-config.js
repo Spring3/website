@@ -75,13 +75,10 @@ module.exports = {
         },
       },
     },
-    // 'gatsby-plugin-netlify-cache',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-offline',
     'gatsby-plugin-styled-components',
-    // 'gatsby-plugin-netlify',
-    'gatsby-plugin-gatsby-cloud',
   ],
 };
