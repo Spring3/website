@@ -120,12 +120,16 @@ const ProjectsPage = (props) => {
     [0, 0.5, 0.5]
   );
 
+  const ogpDescription = post.excerptAst.children
+    .find((child) => child.tagName === 'p')?.children
+    .find((child) => child.type === 'text')?.value;
+
   return (
     <>
       <GlobalStyles />
       <OGP
         title={post.frontmatter.title}
-        description={post.frontmatter.description}
+        description={ogpDescription}
         image={post.frontmatter.thumbnail.childImageSharp.fluid.src}
       />
       <ThemeProvider theme={theme}>
@@ -207,6 +211,7 @@ export const query = graphql`
   query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      excerptAst
       fields {
         slug
       }
