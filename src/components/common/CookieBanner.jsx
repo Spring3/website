@@ -5,7 +5,7 @@ import CaretDownIcon from 'mdi-react/CaretDownOutlineIcon';
 import CaretUpIcon from 'mdi-react/CaretUpOutlineIcon';
 import { useSpring, animated } from 'react-spring';
 import { initializeAndTrack } from 'gatsby-plugin-gdpr-cookies';
-import { useTimeout, useTimeoutFn, useWindowSize } from 'react-use';
+import { useLocation, useTimeout, useTimeoutFn, useWindowSize } from 'react-use';
 import { Button, FlatButton } from './buttons';
 import { Flex } from './Flex';
 import { MARKERS } from '../../theme';
@@ -60,6 +60,7 @@ const CookieBanner = memo(() => {
   const [conscentRequired, setConsentRequired] = useState(true);
   const [isExpanded, setExpanded] = useState(false);
   const { width } = useWindowSize();
+  const location = useLocation();
   const [isReady] = useTimeout(3000);
   const [, cancelExpand] = useTimeoutFn(() => setExpanded(true), 4500);
   const [, cancelShrink] = useTimeoutFn(() => setExpanded(false), 9500);
@@ -129,9 +130,9 @@ const CookieBanner = memo(() => {
       const distanceFromTheBorder = width >= 750 ? '2rem' : '1rem';
       setIntoAnimation({ left: distanceFromTheBorder });
     } else if (decisionMade === 'true') {
-      initializeAndTrack();
+      initializeAndTrack(location);
     }
-  }, [conscentRequired, width, canAnimate]);
+  }, [conscentRequired, width, canAnimate, location]);
 
   return (
     <CookieBannerContainer style={introAnimation}>

@@ -121,8 +121,8 @@ const ProjectsPage = (props) => {
   );
 
   const ogpDescription = post.excerptAst.children
-    .find((child) => child.tagName === 'p')?.children
-    .find((child) => child.type === 'text')?.value;
+    .find((child) => child.tagName === 'p')
+    ?.children.find((child) => child.type === 'text')?.value;
 
   return (
     <>
