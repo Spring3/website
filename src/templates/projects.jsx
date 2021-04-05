@@ -150,7 +150,10 @@ const ProjectsPage = (props) => {
                   alignItems="center"
                   justifyContent="space-between"
                 >
-                  <RelativeAnimatedDiv id="title" style={contentRevealAnimation}>
+                  <RelativeAnimatedDiv
+                    id="title"
+                    style={contentRevealAnimation}
+                  >
                     <Subheading>{post.frontmatter.title}</Subheading>
                   </RelativeAnimatedDiv>
                   <ProjectReferenceContainer
@@ -161,7 +164,10 @@ const ProjectsPage = (props) => {
                     margined
                     justifyContent="flex-end"
                   >
-                    <ProjectReferences size={25} frontmatter={post.frontmatter} />
+                    <ProjectReferences
+                      size={25}
+                      frontmatter={post.frontmatter}
+                    />
                   </ProjectReferenceContainer>
                 </ProjectContentNav>
                 <ProjectInfoWrapper style={contentRevealAnimation}>

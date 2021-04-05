@@ -75,7 +75,10 @@ const IndexPage = ({ data }) => {
     <>
       <GlobalStyles />
       <CookieConsentContextProvider>
-        <OGP title={siteMetadata.title} description={siteMetadata.description} />
+        <OGP
+          title={siteMetadata.title}
+          description={siteMetadata.description}
+        />
         <ImagePreviewContextProvider>
           <BurgerMenu />
           <main>

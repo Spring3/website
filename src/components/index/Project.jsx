@@ -20,7 +20,7 @@ import { Decorations, Rectangle, Circle } from '../common/Decorations';
 import { Subheader } from '../common/Headers';
 import { revealBottom } from '../../animations';
 
-const ProjectInfo = styled.div`
+const ProjectInfo = styled(animated.div)`
   @media (min-width: 1050px) {
     position: sticky;
     top: 16%;
@@ -56,6 +56,10 @@ const ProjectRow = styled(Flex)`
   position: relative;
 `;
 
+const ProjectRowWrapper = styled.div`
+  width: 100%;
+`;
+
 const ProjectTitle = styled(Subheader)`
   margin-bottom: 1.5rem;
   margin-top: 0px;
@@ -77,8 +81,7 @@ const Project = ({ node, index }) => {
   const [wasRevealed, setRevealed] = useState(false);
   const anchor = slugToAnchor(node.fields.slug);
 
-  const fixedImageContainerRef = useRef();
-  const infoRef = useRef();
+  const projectRef = useRef();
   const { width } = useWindowSize();
   const id = anchor.substring(1);
   const isSmallScreen = width <= 1050;
@@ -91,8 +94,8 @@ const Project = ({ node, index }) => {
     placeholder: image.childImageSharp.placeholder.base64,
   }));
 
-  const intersection = useIntersection(infoRef, {
-    threshold: isSmallScreen ? 0.001 : 0.6,
+  const intersection = useIntersection(projectRef, {
+    rootMargin: isSmallScreen ? '0px' : '-350px'
   });
 
   const isIntersecting = intersection?.isIntersecting;
@@ -176,34 +179,36 @@ const Project = ({ node, index }) => {
   );
 
   return (
-    <ProjectRow id={id} justifyContent="space-between">
-      <InfoWrapper ref={infoRef} style={revealAnimation}>
-        <ProjectInfo index={index}>
-          <ProjectTitle>
-            <Link to={node.fields.slug} marker={node.frontmatter.marker} bold>
-              {node.frontmatter.title}
-            </Link>
-          </ProjectTitle>
-          {isSmallScreen ? <ImageCarousel images={images} /> : null}
-          <ProjectContent
-            marker={node.frontmatter.marker}
-            dangerouslySetInnerHTML={{ __html: node.html }}
-          />
-          <Tags style={tagAnimation} tags={node.frontmatter.technologies} />
-        </ProjectInfo>
-      </InfoWrapper>
-      {!isSmallScreen ? (
-        <>
-          <ImageWrapper ref={fixedImageContainerRef} style={revealAnimation}>
-            <FixedImageSet
-              containerRef={fixedImageContainerRef}
-              images={images}
+    <ProjectRowWrapper ref={projectRef}>
+      <ProjectRow id={id} style={revealAnimation} justifyContent="space-between">
+        <InfoWrapper>
+          <ProjectInfo index={index}>
+            <ProjectTitle>
+              <Link to={node.fields.slug} marker={node.frontmatter.marker} bold>
+                {node.frontmatter.title}
+              </Link>
+            </ProjectTitle>
+            {isSmallScreen ? <ImageCarousel images={images} /> : null}
+            <ProjectContent
+              marker={node.frontmatter.marker}
+              dangerouslySetInnerHTML={{ __html: node.html }}
             />
-          </ImageWrapper>
-          {decorationLayers}
-        </>
-      ) : null}
-    </ProjectRow>
+            <Tags style={tagAnimation} tags={node.frontmatter.technologies} />
+          </ProjectInfo>
+        </InfoWrapper>
+        {!isSmallScreen ? (
+          <>
+            <ImageWrapper>
+              <FixedImageSet
+                containerRef={projectRef}
+                images={images}
+              />
+            </ImageWrapper>
+            {decorationLayers}
+          </>
+        ) : null}
+      </ProjectRow>
+    </ProjectRowWrapper>
   );
 };
 

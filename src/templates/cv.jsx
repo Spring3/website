@@ -198,7 +198,8 @@ const CVPage = ({ data }) => {
                   <Flex direction="column" gap="0.5rem">
                     <li>Maintenance and improvements of the UI kit</li>
                     <li>
-                      Full stack contribution to the web app and related services
+                      Full stack contribution to the web app and related
+                      services
                     </li>
                     <li>
                       Support for the public APIs for CMS content management
@@ -226,13 +227,13 @@ const CVPage = ({ data }) => {
                       product
                     </li>
                     <li>
-                      Implemented the tools, that allowed designers concentrate on
-                      styling without interacting with the code base.
+                      Implemented the tools, that allowed designers concentrate
+                      on styling without interacting with the code base.
                     </li>
                     <li>
-                      Reduced code base complexity by creating simple abstractions
-                      and inroducing new standards and best practices into the
-                      workflow.
+                      Reduced code base complexity by creating simple
+                      abstractions and inroducing new standards and best
+                      practices into the workflow.
                     </li>
                     <li>Mentored company's interns</li>
                     <li>
@@ -253,8 +254,8 @@ const CVPage = ({ data }) => {
                   <h4>Summary:</h4>
                   <Flex direction="column" gap="0.5rem">
                     <li>
-                      Created chat bots on multiple chat bot APIs - Slack, Asana,
-                      Skype, Messenger
+                      Created chat bots on multiple chat bot APIs - Slack,
+                      Asana, Skype, Messenger
                     </li>
                     <li>
                       Created a routing system of message exchange between
@@ -300,7 +301,8 @@ const CVPage = ({ data }) => {
                 <p justifyContent="flex-start">
                   <strong>Misc</strong>
                   <span>
-                    : Electron, Lerna, Gatsby, Basics of Elm, Basics of UX Design
+                    : Electron, Lerna, Gatsby, Basics of Elm, Basics of UX
+                    Design
                   </span>
                 </p>
               </CVSection>
@@ -323,7 +325,9 @@ const CVPage = ({ data }) => {
                     Kyiv Polytechnic Institute" (NTUU "KPI")
                   </p>
                   <Flex>
-                    <li>Theory of Automation and Control of Computer Systems</li>
+                    <li>
+                      Theory of Automation and Control of Computer Systems
+                    </li>
                   </Flex>
                 </CVSectionBlock>
                 <CVSectionBlock>

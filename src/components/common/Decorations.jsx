@@ -5,6 +5,7 @@ const Decorations = styled(animated.div).attrs((props) => ({
   style: {
     top: props.top || '0',
     height: props.height || '100%',
+    maxHeight: `calc(100% - ${props.top || '0px'})`,
     zIndex: props.layer === 'back' ? '-1' : '1',
     pointerEvents: props.layer === 'back' ? 'all' : 'none',
     position: props.position || 'absolute',

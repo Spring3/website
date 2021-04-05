@@ -26,9 +26,7 @@ const StyledDownloadButton = styled(Reference)`
 
 const ButtonDownload = ({ href, value }) => (
   <StyledDownloadButton role="button" download="CV_dvasylenko.pdf" href={href}>
-    <DownloadOutlineIcon />
-    {' '}
-    {value}
+    <DownloadOutlineIcon /> {value}
   </StyledDownloadButton>
 );
 

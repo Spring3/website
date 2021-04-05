@@ -161,7 +161,12 @@ const NotFoundPage = () => {
             gap="2rem"
             margined
           >
-            <Flex justifyContent="center" alignItems="center" gap="2rem" margined>
+            <Flex
+              justifyContent="center"
+              alignItems="center"
+              gap="2rem"
+              margined
+            >
               <RelativeDecorations height={`${height}px`} width={`${width}px`}>
                 <ColorThemedRectangle
                   right="0px"
