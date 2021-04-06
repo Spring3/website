@@ -8,7 +8,7 @@ import React, {
 import styled from 'styled-components';
 
 import { animated, useSpring } from 'react-spring';
-import { useWindowSize, useIntersection, usePrevious } from 'react-use';
+import { useIntersection, usePrevious } from 'react-use';
 import { Tags } from '../common/Tags';
 import { FixedImageSet } from '../project/FixedImageSet';
 import { slugToAnchor } from '../../utils';
@@ -19,6 +19,7 @@ import { Flex } from '../common/Flex';
 import { Decorations, Rectangle, Circle } from '../common/Decorations';
 import { Subheader } from '../common/Headers';
 import { revealBottom } from '../../animations';
+import { useWindowSizeDef } from '../../hooks/useWindowSizeDef';
 
 const ProjectInfo = styled(animated.div)`
   @media (min-width: 1050px) {
@@ -86,11 +87,10 @@ const Project = ({ node, index }) => {
   const anchor = slugToAnchor(node.fields.slug);
 
   const projectRef = useRef();
-  const { width } = useWindowSize();
+  const windowSize = useWindowSizeDef();
   const id = anchor.substring(1);
-  const isSmallScreen = width <= 1050;
 
-  const wasSmallScreen = usePrevious(isSmallScreen);
+  const wasSmallScreen = usePrevious(windowSize.isMedium);
 
   const images = node.frontmatter.images.map((image) => ({
     name: image.name,
@@ -99,7 +99,7 @@ const Project = ({ node, index }) => {
   }));
 
   const intersection = useIntersection(projectRef, {
-    rootMargin: isSmallScreen ? '0px' : '-350px',
+    rootMargin: windowSize.isMedium ? '0px' : '-350px',
   });
 
   const isIntersecting = intersection?.isIntersecting;
@@ -108,7 +108,7 @@ const Project = ({ node, index }) => {
     opacity: 0,
   };
 
-  if (isSmallScreen) {
+  if (windowSize.isMedium) {
     initialAnimationState.bottom = '-100px';
   } else {
     initialAnimationState.transform = 'translateY(100px)';
@@ -134,7 +134,7 @@ const Project = ({ node, index }) => {
         },
       };
 
-      if (isSmallScreen) {
+      if (windowSize.isMedium) {
         revealAnimationConfig.bottom = '0px';
       } else {
         revealAnimationConfig.transform = 'translateY(0%)';
@@ -144,13 +144,13 @@ const Project = ({ node, index }) => {
       animateTags(revealBottom({ delay: 200 }));
       animateDecorations(revealBottom({ delay: 500 }));
     }
-  }, [wasRevealed, isIntersecting, isSmallScreen]);
+  }, [wasRevealed, isIntersecting, windowSize.isMedium]);
 
   useEffect(() => {
-    if (wasSmallScreen !== isSmallScreen) {
+    if (wasSmallScreen !== windowSize.isMedium) {
       setRevealed(false);
     }
-  }, [wasSmallScreen, isSmallScreen]);
+  }, [wasSmallScreen, windowSize.isMedium]);
 
   const renderLayer = useCallback(
     (key, layerData) => {
@@ -177,9 +177,10 @@ const Project = ({ node, index }) => {
   );
 
   const decorationLayers = useMemo(
-    () => Object.entries(
-      node.frontmatter.decorations || {}
-    ).map(([layerKey, layerData]) => renderLayer(layerKey, layerData)),
+    () =>
+      Object.entries(
+        node.frontmatter.decorations || {}
+      ).map(([layerKey, layerData]) => renderLayer(layerKey, layerData)),
     [renderLayer]
   );
 
@@ -197,7 +198,7 @@ const Project = ({ node, index }) => {
                 {node.frontmatter.title}
               </Link>
             </ProjectTitle>
-            {isSmallScreen ? <ImageCarousel images={images} /> : null}
+            {windowSize.isMedium ? <ImageCarousel images={images} /> : null}
             <ProjectContent
               marker={node.frontmatter.marker}
               dangerouslySetInnerHTML={{ __html: node.html }}
@@ -205,7 +206,7 @@ const Project = ({ node, index }) => {
             <Tags style={tagAnimation} tags={node.frontmatter.technologies} />
           </ProjectInfo>
         </InfoWrapper>
-        {!isSmallScreen ? (
+        {!windowSize.isMedium ? (
           <>
             <ImageWrapper>
               <FixedImageSet containerRef={projectRef} images={images} />

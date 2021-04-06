@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+import { MARKERS } from '../../theme';
 
 const styles = css`
   transition: background ease 0.2s;
@@ -73,9 +74,15 @@ const Reference = ({
   );
 };
 
+Reference.defaultProps = {
+  color: MARKERS.blue,
+  newTab: false,
+  bold: false,
+};
+
 Reference.propTypes = {
   color: PropTypes.string,
-  href: PropTypes.string,
+  href: PropTypes.string.isRequired,
   newTab: PropTypes.bool,
   bold: PropTypes.bool,
 };

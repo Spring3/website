@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
+import { animated, useSpring } from 'react-spring';
 import { useGithubData } from '../hooks/useGithubData';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
 import { ButtonBack, ButtonDownload } from '../components/common/buttons';
@@ -14,7 +15,6 @@ import { Flex } from '../components/common/Flex';
 import { MARKERS } from '../theme';
 import { LazyImage } from '../components/common/LazyImage';
 import { BurgerMenu } from '../components/common/BurgerMenu';
-import { animated, useSpring } from 'react-spring';
 import { CVSection } from '../components/cv/CVSection';
 import { revealRight, revealTop } from '../animations';
 import { CookieConsentContextProvider } from '../context/CookieConsentContextProvider';

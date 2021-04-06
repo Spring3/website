@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
 import styled, { css } from 'styled-components';
 
-import { useWindowSize } from 'react-use';
 import { useAnchorTracker } from '../../hooks/useAnchorTracker';
 import { Link, Reference } from './Reference';
 import { Flex } from './Flex';
 import { slugToTitle } from '../../utils';
+import { useWindowSizeDef } from '../../hooks/useWindowSizeDef';
 
 const MenuContainer = styled(Flex)`
   position: sticky;
@@ -139,10 +139,9 @@ const ActiveSlugMenuItem = styled(Link)`
 `;
 
 const AnchorListMenu = ({ nodes, onClick }) => {
-  const { width } = useWindowSize();
+  const windowSize = useWindowSizeDef();
   const anchors = useMemo(() => nodes.map((node) => node.anchor), []);
   const activeAnchor = useAnchorTracker(anchors);
-  const isSmallScreen = width <= 750;
   const menuItems = useMemo(
     () =>
       nodes.map((node) => {
@@ -164,8 +163,8 @@ const AnchorListMenu = ({ nodes, onClick }) => {
 
   return (
     <MenuContainer
-      direction={isSmallScreen ? 'column' : 'row'}
-      gap={isSmallScreen ? '1rem' : '0rem'}
+      direction={windowSize.isSmall ? 'column' : 'row'}
+      gap={windowSize.isSmall ? '1rem' : '0rem'}
       margined
       justifyContent="center"
       alignItems="center"
@@ -180,16 +179,15 @@ const AnchorListMenu = ({ nodes, onClick }) => {
 };
 
 const SlugListMenu = ({ slugs, active, onClick }) => {
-  const { width } = useWindowSize();
-  const isSmallScreen = width <= 750;
+  const windowSize = useWindowSizeDef();
 
   return (
     <SlugMenuContainer
-      direction={isSmallScreen ? 'column' : 'row'}
+      direction={windowSize.isSmall ? 'column' : 'row'}
       justifyContent="center"
       alignItems="center"
       margined
-      gap={isSmallScreen ? '1rem' : '0rem'}
+      gap={windowSize.isSmall ? '1rem' : '0rem'}
     >
       <small>Projects:&nbsp;</small>
       {slugs.map((slug) => {

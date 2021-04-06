@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Carousel } from 'react-responsive-carousel';
 import { useImagePreview } from '../../context/ImagePreviewContext';

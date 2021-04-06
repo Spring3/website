@@ -4,17 +4,13 @@ import CookieOutlineIcon from 'mdi-react/CookieIcon';
 import CaretDownIcon from 'mdi-react/CaretDownOutlineIcon';
 import CaretUpIcon from 'mdi-react/CaretUpOutlineIcon';
 import { useSpring, animated } from 'react-spring';
-import {
-  useLocation,
-  useTimeout,
-  useTimeoutFn,
-  useWindowSize,
-} from 'react-use';
+import { useLocation, useTimeout, useTimeoutFn } from 'react-use';
 import { Button, FlatButton } from '../buttons';
 import { Flex } from '../Flex';
 import { MARKERS } from '../../../theme';
 import { Reference } from '../Reference';
 import { useCookieConsent } from '../../../context/CookieConsentContext';
+import { useWindowSizeDef } from '../../../hooks/useWindowSizeDef';
 
 const CookieBannerContainer = styled(animated.div)`
   position: fixed;
@@ -61,7 +57,7 @@ const Description = styled(animated.div)`
 
 const CookieBanner = memo(() => {
   const [isExpanded, setExpanded] = useState(false);
-  const { width } = useWindowSize();
+  const windowSize = useWindowSizeDef();
   const location = useLocation();
   const [isReady] = useTimeout(3000);
   const [, cancelExpand] = useTimeoutFn(() => setExpanded(true), 4500);
@@ -114,7 +110,7 @@ const CookieBanner = memo(() => {
     let isMounted = true;
 
     if (consent === null && canAnimate) {
-      const distanceFromTheBorder = width >= 750 ? '2rem' : '1rem';
+      const distanceFromTheBorder = windowSize.isSmall ? '1rem' : '2rem';
       setIntoAnimation({ left: distanceFromTheBorder });
     } else if (isMounted && consent === true) {
       setIntoAnimation({ left: '-50rem' });
@@ -123,7 +119,7 @@ const CookieBanner = memo(() => {
     return () => {
       isMounted = false;
     };
-  }, [consent, width, canAnimate, location]);
+  }, [consent, windowSize.isSmall, canAnimate, location]);
 
   if (typeof currentConsent === 'boolean') {
     return null;

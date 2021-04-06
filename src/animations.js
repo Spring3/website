@@ -6,6 +6,7 @@ const randomFlicker = (seed = 0, duration) => ({
     opacity: 0,
   },
   to: async (next) => {
+    // eslint-disable-next-line no-constant-condition
     while (true) {
       // eslint-disable-next-line no-await-in-loop
       await next({ opacity: 1 });
@@ -29,6 +30,7 @@ const randomShift = ({ left, top }, duration) => {
       top: initialTop,
     },
     to: async (next) => {
+      // eslint-disable-next-line no-constant-condition
       while (true) {
         const targetLeft = getRandomIndex(100);
         const targetTop = getRandomIndex(100);
@@ -44,9 +46,7 @@ const randomShift = ({ left, top }, duration) => {
   };
 };
 
-const reveal = ({
-  delay, ref, duration, slow = true
-}) => {
+const reveal = ({ delay, ref, duration, slow = true }) => {
   const animation = {
     from: {
       opacity: 0,

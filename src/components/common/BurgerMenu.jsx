@@ -3,16 +3,16 @@ import MenuIcon from 'mdi-react/MenuIcon';
 import CloseIcon from 'mdi-react/CloseIcon';
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
+import { Helmet } from 'react-helmet';
 import { Reference, Link } from './Reference';
 import { Subheader } from './Headers';
 import { Flex } from './Flex';
 import { SocialButtons } from './SocialButtons';
 import { Logo } from './Logo';
 import { revealRight } from '../../animations';
-import { useWindowSize } from 'react-use';
 import { MARKERS } from '../../theme';
-import { Helmet } from 'react-helmet';
 import { CookieManager } from './cookie/CookieManager';
+import { useWindowSizeDef } from '../../hooks/useWindowSizeDef';
 
 const BurgerMenuWrapper = styled(animated.div)`
   position: fixed;
@@ -112,9 +112,7 @@ const SpaceLessHeader = styled(Subheader)`
 const BurgerMenu = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isHovering, setHovering] = useState(false);
-  const { width } = useWindowSize();
-
-  const isSmallScreen = width <= 750;
+  const windowSize = useWindowSizeDef();
 
   const onIconClick = useCallback((e) => {
     e.preventDefault();
@@ -153,7 +151,12 @@ const BurgerMenu = () => {
       opacity: 1,
     },
     to: {
-      minWidth: isMenuOpen ? (isSmallScreen ? `${width}px` : '370px') : '0px',
+      // eslint-disable-next-line
+      minWidth: isMenuOpen
+        ? windowSize.isSmall
+          ? `${windowSize.width}px`
+          : '370px'
+        : '0px',
       opacity: isMenuOpen ? 1 : 0,
     },
   });
@@ -186,7 +189,7 @@ const BurgerMenu = () => {
 
   return (
     <>
-      {isSmallScreen && isMenuOpen ? (
+      {windowSize.isSmall && isMenuOpen ? (
         <Helmet>
           <style type="text/css">
             {`

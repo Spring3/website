@@ -1,7 +1,6 @@
 import React, { useEffect, useState, memo } from 'react';
 import styled from 'styled-components';
 import { useSpring } from 'react-spring';
-import { useWindowSize } from 'react-use';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
 import { randomFlicker, randomShift } from '../animations';
 import {
@@ -15,6 +14,7 @@ import { Subheading } from '../components/project/Header';
 import { getRandomIndex } from '../utils';
 import { BurgerMenu } from '../components/common/BurgerMenu';
 import { CookieConsentContextProvider } from '../context/CookieConsentContextProvider';
+import { useWindowSizeDef } from '../hooks/useWindowSizeDef';
 
 const RelativeDecorations = styled(Decorations)`
   position: relative !important;
@@ -76,7 +76,7 @@ const ColorThemedRectangle = memo(({ colorTheme, ...rest }) => {
 
 const NotFoundPage = () => {
   const [colorTheme, setColorTheme] = useState([]);
-  const { width: windowWidth } = useWindowSize();
+  const windowSize = useWindowSizeDef();
 
   const firstCircleAnimation = useSpring(
     randomShift({ left: '40%', top: '15%' }, 10000)
@@ -97,10 +97,10 @@ const NotFoundPage = () => {
   let size = 15;
   const gap = 5;
 
-  if (windowWidth <= 750) {
+  if (windowSize.isSmall) {
     radius = 3;
     size = 15;
-  } else if (windowWidth <= 1024) {
+  } else if (windowSize.isMedium) {
     radius = 5;
     size = 20;
   } else {

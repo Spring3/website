@@ -89,8 +89,9 @@ const ProjectsPage = (props) => {
   const imagesAnimationRef = useRef();
   const referencesAnimationRef = useRef();
   const tagsAnimationRef = useRef();
-
+  // eslint-disable-next-line
   const post = props.data.markdownRemark;
+  // eslint-disable-next-line
   const allPosts = props.data.allMarkdownRemark.nodes;
   const anchor = slugToAnchor(post.fields.slug);
   const activeAnchor = useAnchorTracker(['#title']);
