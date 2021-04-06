@@ -1,7 +1,7 @@
 {
   "name": "website",
   "version": "0.0.1",
-  "description": "My personal website",
+  "description": "Danv's personal website",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby clean && gatsby develop",

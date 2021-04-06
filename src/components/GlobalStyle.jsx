@@ -62,7 +62,13 @@ const OGP = memo(({ title, description, image = '/icon_ogp.png' }) => {
 
   return (
     <>
-      <Helmet>
+      <Helmet
+        title={title}
+        htmlAttributes={{
+          lang: 'en',
+        }}
+      >
+        <meta name="description" content={description} />
         <meta property="og:site_name" content="www.dvasylenko.com" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />

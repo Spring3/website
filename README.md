@@ -2,19 +2,32 @@
 
 You are welcome to use or reuse this project for your purposes, if you reference the original (this repo).
 
-### Tech used
+### Run & Build
+
+Development:
+
+```
+  npm start
+```
+
+Production:
+
+```
+  npm build
+  npm run serve
+```
+
+### Core
 
 - [Gatsby](https://github.com/gatsbyjs/gatsby)
 - [React](https://github.com/facebook/react)
+- [React-spring](https://github.com/pmndrs/react-spring) for animations
+- [Styled Components](https://www.styled-components.com/)
 
 ### Data
 
 All the website's content is stored in markdown and fetched with [GraphQL](https://graphql.org/)
 
-### Styles
-
-Styling was done with [Styled Components](https://www.styled-components.com/)
-
 ### Deployment
 
-Automatically deployed to [Netlify](https://netlify.com/)
+Automatically deployed to [Gatsby Cloud](https://www.gatsbyjs.com/dashboard/sites)
