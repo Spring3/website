@@ -55,7 +55,7 @@ const ProjectRow = styled(Flex)`
   width: 100%;
   position: relative;
 
-  @supports (-moz-appearance:none) {
+  @supports (-moz-appearance: none) {
     transform: none !important;
   }
 `;
@@ -163,9 +163,11 @@ const Project = ({ node, index }) => {
       return (
         <Decorations key={key} layer={key} {...props} style={revealDecorations}>
           {squares?.map((squareProps, i) => (
+            // eslint-disable-next-line react/no-array-index-key
             <Rectangle {...squareProps} key={`square-${i}`} />
           ))}
           {circles?.map((cirlceProps, i) => (
+            // eslint-disable-next-line react/no-array-index-key
             <Circle {...cirlceProps} key={`circle-${i}`} />
           ))}
         </Decorations>
@@ -175,10 +177,9 @@ const Project = ({ node, index }) => {
   );
 
   const decorationLayers = useMemo(
-    () =>
-      Object.entries(
-        node.frontmatter.decorations || {}
-      ).map(([layerKey, layerData]) => renderLayer(layerKey, layerData)),
+    () => Object.entries(
+      node.frontmatter.decorations || {}
+    ).map(([layerKey, layerData]) => renderLayer(layerKey, layerData)),
     [renderLayer]
   );
 
