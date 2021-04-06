@@ -80,5 +80,6 @@ module.exports = {
     'gatsby-plugin-catch-links',
     'gatsby-plugin-offline',
     'gatsby-plugin-styled-components',
+    'gatsby-plugin-gatsby-cloud',
   ],
 };
