@@ -1,7 +1,9 @@
 const slugToAnchor = (slug) => `#${slug.substring(1, slug.length - 1)}`;
 
 const getRandomIndex = (max) => Math.floor(Math.random() * max);
-const getRandomShift = ({ from, offset, to, alwaysPositive }) => {
+const getRandomShift = ({
+  from, offset, to, alwaysPositive
+}) => {
   let min = from - offset;
   if (alwaysPositive && min < 0) {
     min = 0;
@@ -29,4 +31,6 @@ const slugToTitle = (slug) => {
   return title.endsWith('/') ? title.substring(0, title.length - 1) : title;
 };
 
-export { slugToAnchor, slugToTitle, getRandomIndex, getRandomShift };
+export {
+  slugToAnchor, slugToTitle, getRandomIndex, getRandomShift
+};

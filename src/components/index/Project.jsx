@@ -54,6 +54,10 @@ const ImageWrapper = styled(animated.div)`
 const ProjectRow = styled(Flex)`
   width: 100%;
   position: relative;
+
+  @supports (-moz-appearance:none) {
+    transform: none !important;
+  }
 `;
 
 const ProjectRowWrapper = styled.div`

@@ -110,10 +110,13 @@ const AnchorMenuItem = styled(Reference)`
 const ActiveAnchorMenuItem = styled(Reference)`
   ${activeStyles};
   display: inline-flex;
+  white-space: nowrap;
 `;
 
 const SlugMenuItem = styled(Link)`
   ${styles}
+
+  white-space: nowrap;
 
   &:visited,
   &:focus,
@@ -126,6 +129,7 @@ const ActiveSlugMenuItem = styled(Link)`
   ${activeStyles}
 
   border-radius: 3px;
+  white-space: nowrap;
 
   &:visited,
   &:focus,

@@ -41,7 +41,9 @@ const randomShift = ({ left, top }, duration) => {
   };
 };
 
-const reveal = ({ delay, ref, duration, slow = true }) => {
+const reveal = ({
+  delay, ref, duration, slow = true
+}) => {
   const animation = {
     from: {
       opacity: 0,
