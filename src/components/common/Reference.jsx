@@ -1,0 +1,90 @@
+import React from 'react';
+import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
+import { MARKERS } from '../../theme';
+
+const styles = css`
+  transition: background ease 0.2s;
+  transition: border ease 0.2s;
+  text-decoration: none;
+  color: var(--text-color-primary);
+  font-weight: ${(props) => (props.bold ? 'bold' : 500)};
+  padding: 2px;
+  ${(props) =>
+    props.theme.marker
+      ? `background: linear-gradient(to bottom, transparent 0%, transparent 60%, ${props.theme.marker} 60%, ${props.theme.marker} 100%);`
+      : 'background: linear-gradient(to bottom, transparent 0%, transparent 60%, var(--marker-blue) 60%,  var(--marker-blue) 100%);'}
+
+  &:visited {
+    font-weight: ${(props) => (props.bold ? 'bold' : 500)};
+    padding: 2px;
+    ${(props) =>
+      props.theme.marker
+        ? `background: linear-gradient(to bottom, transparent 0%, transparent 60%, ${props.theme.marker} 60%, ${props.theme.marker} 100%);`
+        : 'background: linear-gradient(to bottom, transparent 0%, transparent 60%, var(--marker-blue) 60%,  var(--marker-blue) 100%);'}
+  }
+
+  &:hover,
+  &:focus {
+    color: black;
+    background: ${(props) => props.theme.marker || 'var(--marker-blue)'};
+    border-radius: 3px;
+  }
+`;
+
+const StyledReference = styled.a`
+  ${styles};
+
+  border-radius: 3px;
+
+  &:hover,
+  &:focus {
+    border-radius: 0px;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  ${styles};
+`;
+
+const Reference = ({
+  className,
+  href,
+  onClick,
+  newTab,
+  bold,
+  children,
+  ...rest
+}) => {
+  const additionalProps = newTab
+    ? { target: '_blank', rel: 'noopener noreferrer' }
+    : {};
+  return (
+    <StyledReference
+      className={className}
+      bold={bold}
+      onClick={onClick}
+      href={href}
+      {...rest}
+      {...additionalProps}
+    >
+      {children}
+    </StyledReference>
+  );
+};
+
+Reference.defaultProps = {
+  color: MARKERS.blue,
+  newTab: false,
+  bold: false,
+};
+
+Reference.propTypes = {
+  color: PropTypes.string,
+  href: PropTypes.string.isRequired,
+  newTab: PropTypes.bool,
+  bold: PropTypes.bool,
+};
+
+export { Reference, StyledLink as Link, styles };

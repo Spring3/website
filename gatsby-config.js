@@ -6,37 +6,44 @@
 
 module.exports = {
   siteMetadata: {
-    title: 'Daniyil Vasylenko Portfolio Website',
-    description: 'Daniyil Vasylenko\'s personal portfolio website',
-    image: 'https://user-images.githubusercontent.com/4171202/59647385-aebee480-9183-11e9-88fe-4b27c41436b4.png'
+    title: 'Danv',
+    description: "Danv's personal website",
   },
   plugins: [
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'test',
-        short_name: 'test',
+        name: 'Danv',
+        short_name: 'Danv',
         start_url: '/',
         background_color: '#fff',
         theme_color: '#fff',
         display: 'standalone',
-        icon: 'static/icon.png'
-      }
+        icon: 'static/icon.png',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/,
+        },
+      },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'pages',
-        path: `${__dirname}/src/pages/`
-      }
+        path: `${__dirname}/src/pages/`,
+      },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'content',
-        path: `${__dirname}/src/content/`
-      }
+        path: `${__dirname}/src/content/`,
+      },
     },
     {
       resolve: 'gatsby-transformer-remark',
@@ -45,33 +52,34 @@ module.exports = {
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 1000,
-              linkImagesToOriginal: false
-            }
+              maxWidth: 1024,
+              linkImagesToOriginal: false,
+            },
           },
-          'gatsby-remark-copy-linked-files'
+          'gatsby-remark-copy-linked-files',
         ],
-      }
+      },
     },
     {
       resolve: 'gatsby-plugin-nprogress',
       options: {
         showSpinner: false,
-        color: '#A9E5BB'
-      }
+        color: '#A9E5BB',
+      },
     },
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: 'gatsby-plugin-gdpr-cookies',
       options: {
-        trackingId: 'UA-141684888-1',
-      }
+        googleAnalytics: {
+          trackingId: process.env.GA_ID,
+        },
+      },
     },
-    'gatsby-plugin-netlify-cache',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-offline',
     'gatsby-plugin-styled-components',
-    'gatsby-plugin-netlify'
-  ]
-}
+    'gatsby-plugin-gatsby-cloud',
+  ],
+};

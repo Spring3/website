@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">
+ <path id="v-bg" d="m32.53 1.7526-3.3701 3.164 14.616 25.336 4.5389-7.8694h2e-3l2.735-4.7381 7.3362-12.721-3.3795-3.1719h-5.6906l-5.5529 11.275-5.5584-11.279z" fill="#9beec1" style="mix-blend-mode:normal;paint-order:normal"/>
+ <g id="d-bg-group" transform="matrix(.96505 0 0 1 -157.84 622.95)" fill="#ffe680" stroke-width="1.0256">
+  <path id="d-bg" d="m171.3-621.18c26.999 0 26.993 28.445 0 28.445z" stop-color="#000000" style="mix-blend-mode:normal;paint-order:normal"/>
+  <path id="d-bg-circle" d="m163.56-606.96 7.8492-7.6159 7.8492 7.6159-7.8492 7.6159z" stop-color="#000000" style="mix-blend-mode:normal;paint-order:normal"/>
+ </g>
+ <path id="d-outline" d="m11.329 1.7782c26.056 0 26.05 28.445 0 28.445z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path id="d-outline-circle" d="m3.8612 16.001 7.5749-7.6156 7.5749 7.6156-7.5749 7.6156z" fill="#ffe680" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path id="v-outline-small" d="m47.638 13.052 4.2759 8.6793 0.29342 0.59544 2.7259-4.7264 7.3167-12.686-3.3701-3.1634h-5.6755z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" style="mix-blend-mode:normal;paint-order:normal"/>
+ <path id="v-outline" d="m47.638 13.052-0.0029 3e-3 -5.5684-11.305h-5.6755l-3.3701 3.1634 14.615 25.337 4.571-7.9243-0.29342-0.59544z" fill="none" stop-color="#000000" stroke="#4d3267" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" style="mix-blend-mode:normal;paint-order:normal"/>
+</svg>
