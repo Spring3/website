@@ -239,7 +239,7 @@ export const query = graphql`
         images {
           name
           childImageSharp {
-            original: fluid(maxHeight: 1080) {
+            original: fluid(quality: 100, maxHeight: 1920) {
               src: srcWebp
               sizes
               srcSet: srcSetWebp
@@ -252,7 +252,7 @@ export const query = graphql`
         thumbnail {
           name
           childImageSharp {
-            fluid(maxHeight: 1080) {
+            fluid(quality: 100, maxHeight: 1920) {
               src
             }
           }
