@@ -1,52 +1,46 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import { css, cx } from '@emotion/css';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { MARKERS } from '../../theme';
 
-const styles = css`
+const genericStyles = ({ bold, theme }) => css`
   transition: background ease 0.2s;
   transition: border ease 0.2s;
   text-decoration: none;
   color: var(--text-color-primary);
-  font-weight: ${(props) => (props.$bold ? 'bold' : 500)};
+  font-weight: ${bold ? 'bold' : 500};
   padding: 2px;
-  ${(props) =>
-    props.theme.marker
-      ? `background: linear-gradient(to bottom, transparent 0%, transparent 60%, ${props.theme.marker} 60%, ${props.theme.marker} 100%);`
-      : 'background: linear-gradient(to bottom, transparent 0%, transparent 60%, var(--marker-blue) 60%,  var(--marker-blue) 100%);'}
+  ${theme?.marker
+    ? `background: linear-gradient(to bottom, transparent 0%, transparent 60%, ${theme.marker} 60%, ${theme.marker} 100%);`
+    : 'background: linear-gradient(to bottom, transparent 0%, transparent 60%, var(--marker-blue) 60%,  var(--marker-blue) 100%);'}
 
   &:visited {
-    font-weight: ${(props) => (props.$bold ? 'bold' : 500)};
+    font-weight: ${bold ? 'bold' : 500};
     padding: 2px;
-    ${(props) =>
-      props.theme.marker
-        ? `background: linear-gradient(to bottom, transparent 0%, transparent 60%, ${props.theme.marker} 60%, ${props.theme.marker} 100%);`
-        : 'background: linear-gradient(to bottom, transparent 0%, transparent 60%, var(--marker-blue) 60%,  var(--marker-blue) 100%);'}
+    ${theme?.marker
+      ? `background: linear-gradient(to bottom, transparent 0%, transparent 60%, ${theme.marker} 60%, ${theme.marker} 100%);`
+      : 'background: linear-gradient(to bottom, transparent 0%, transparent 60%, var(--marker-blue) 60%,  var(--marker-blue) 100%);'}
   }
 
   &:hover,
   &:focus {
     color: black;
-    background: ${(props) => props.theme.marker || 'var(--marker-blue)'};
+    background: ${theme?.marker || 'var(--marker-blue)'};
     border-radius: 3px;
   }
 `;
 
-const StyledReference = styled.a`
-  ${styles};
+const styles = {
+  reference: css`
+    border-radius: 3px;
 
-  border-radius: 3px;
-
-  &:hover,
-  &:focus {
-    border-radius: 0px;
-  }
-`;
-
-const StyledLink = styled(Link)`
-  ${styles};
-`;
+    &:hover,
+    &:focus {
+      border-radius: 0px;
+    }
+  `,
+};
 
 const Reference = ({
   className,
@@ -61,16 +55,16 @@ const Reference = ({
     ? { target: '_blank', rel: 'noopener noreferrer' }
     : {};
   return (
-    <StyledReference
-      className={className}
-      $bold={bold}
+    <a
+      className={cx(genericStyles({ bold }), styles.reference, className)}
+      bold={bold}
       onClick={onClick}
       href={href}
       {...rest}
       {...additionalProps}
     >
       {children}
-    </StyledReference>
+    </a>
   );
 };
 
@@ -87,4 +81,12 @@ Reference.propTypes = {
   bold: PropTypes.bool,
 };
 
-export { Reference, StyledLink as Link, styles };
+const StyledLink = ({ bold, className, children, ...rest }) => {
+  return (
+    <Link className={cx(genericStyles({ bold }), className)} {...rest}>
+      {children}
+    </Link>
+  );
+};
+
+export { Reference, StyledLink as Link, genericStyles };

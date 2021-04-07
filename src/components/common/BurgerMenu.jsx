@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import { Helmet } from 'react-helmet';
 import { Reference, Link } from './Reference';
-import { Subheader } from './Headers';
+import { SubHeader } from './Headers';
 import { Flex } from './Flex';
 import { SocialButtons } from './SocialButtons';
 import { Logo } from './Logo';
@@ -106,7 +106,7 @@ const SpaceLessSectionHeader = styled.h4`
   margin: 0;
 `;
 
-const SpaceLessHeader = styled(Subheader)`
+const SpaceLessHeader = styled(SubHeader)`
   margin: 0;
 `;
 

@@ -116,8 +116,6 @@ const NotFoundPage = () => {
   const radiusPx = `${radius}px`;
   const sizePx = `${size}px`;
 
-  console.log('width', width);
-
   return (
     <>
       <GlobalStyles />

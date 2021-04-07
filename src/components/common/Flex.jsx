@@ -1,62 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import { css, cx } from '@emotion/css';
 import { animated } from 'react-spring';
 
-const FlexContainer = styled(animated.div).attrs((props) => ({
-  style: {
-    flexDirection: props.direction,
-    justifyContent: props.justifycontent,
-    alignItems: props.alignitems,
-    flexGrow: props.flexgrow,
-    flexWrap: props.flexwrap,
-  },
-}))`
-  display: flex;
-  ${(props) => css`
-    & > *:not(:last-child) {
-      ${props.direction === 'column'
-        ? css`
-            padding-bottom: ${props.margined === 'true' ? '' : props.gap};
-            margin-bottom: ${props.margined === 'true' ? props.gap : ''};
-          `
-        : css`
-            padding-right: ${props.margined === 'true' ? '' : props.gap};
-            margin-right: ${props.margined === 'true' ? props.gap : ''};
-          `};
-    }
-  `}
-`;
-
-const Flex = ({
-  children,
+const styles = ({
   direction,
-  gap,
-  margined,
-  id,
   justifyContent,
   alignItems,
   flexGrow,
   flexWrap,
-  className,
-  style,
-  ...rest
-}) => (
-  <FlexContainer
-    id={id}
-    style={style}
-    direction={direction}
-    gap={gap}
-    margined={String(margined)}
-    justifycontent={justifyContent}
-    alignitems={alignItems}
-    flexgrow={flexGrow}
-    flexwrap={flexWrap}
-    className={className}
-    {...rest}
-  >
+  margined,
+  gap,
+}) => {
+  let spacing = '';
+  if (direction === 'column' || direction === 'column-reverse') {
+    spacing = margined ? `margin-bottom: ${gap};` : `padding-bottom: ${gap};`;
+  } else if (direction === 'row' || direction === 'row-reverse') {
+    spacing = margined ? `margin-right: ${gap};` : `padding-right: ${gap};`;
+  }
+
+  return css([
+    `
+      display: flex;
+      flex-direction: ${direction};
+      justify-content: ${justifyContent};
+      align-items: ${alignItems};
+      flex-grow: ${flexGrow};
+      flex-wrap: ${flexWrap};
+
+      & > *:not(:last-child) {
+        ${spacing}
+      }
+    `,
+  ]);
+};
+
+const Flex = ({ children, id, className, style, ...rest }) => (
+  <animated.div id={id} className={cx(styles(rest), className)} style={style}>
     {children}
-  </FlexContainer>
+  </animated.div>
 );
 
 Flex.propTypes = {

@@ -1,9 +1,8 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { Link } from 'gatsby';
+import React, { memo } from 'react';
+import { css, keyframes } from '@emotion/css';
 import { animated, useSpring } from 'react-spring';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
-import { styles } from '../Reference';
+import { Link } from '../Reference';
 import { MARKERS } from '../../../theme';
 import { revealLeft } from '../../../animations';
 
@@ -25,59 +24,59 @@ const bounceLeftAnimation = keyframes`
   }
 `;
 
-const LinkButton = styled(Link)`
-  ${styles}
-  display: flex;
-  text-decoration: none;
-  gap: 5px;
-  font-size: 1.1rem;
-  padding: 0.25rem 0.5rem;
-  background: transparent;
-  cursor: pointer;
-  border-radius: 3px;
-
-  &:visited {
-    background: transparent;
-  }
-
-  &:hover {
-    svg {
-      position: relative;
-      animation: ${bounceLeftAnimation} 2.5s ease-in infinite;
-    }
-  }
-`;
-
-const BackButtonContainer = styled(animated.div)`
-  position: relative;
-  background: ${(props) =>
-    props.withColorfulBackground === 'true'
-      ? props.theme.marker || MARKERS.blue
+const styles = {
+  container: ({ withColorfulBackground, theme }) => css`
+    position: relative;
+    background: ${withColorfulBackground
+      ? theme?.marker || MARKERS.blue
       : 'transparent'};
-  border-radius: 3px;
-  padding: 0.1rem 0.6rem 0.1rem 0rem;
+    border-radius: 3px;
+    padding: 0.1rem 0.6rem 0.1rem 0rem;
 
-  &:hover {
-    background: ${(props) =>
-      props.withColorfulBackground === 'true'
-        ? props.theme.marker || MARKERS.blue
+    &:hover {
+      background: ${withColorfulBackground
+        ? theme?.marker || MARKERS.blue
         : 'transparent'};
-  }
-`;
+    }
+  `,
+  animatedLink: css`
+    display: flex;
+    text-decoration: none;
+    gap: 5px;
+    font-size: 1.1rem;
+    padding: 0.25rem 0.5rem;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 3px;
 
-const ButtonBack = ({ href, value, withcolorfulbackground }) => {
+    &:visited {
+      background: transparent;
+    }
+
+    &:hover {
+      svg {
+        position: relative;
+        animation: ${bounceLeftAnimation} 2.5s ease-in infinite;
+      }
+    }
+  `,
+};
+
+const ButtonBack = memo(({ href, value, withColorfulBackground }) => {
   const revealAnimation = useSpring(revealLeft({ delay: 1000 }));
 
   return (
-    <BackButtonContainer
+    <animated.div
+      className={styles.container({ withColorfulBackground })}
       style={revealAnimation}
-      withColorfulBackground={String(withcolorfulbackground)}
     >
-      <LinkButton to={href}>
+      <Link className={styles.animatedLink} to={href}>
         <ArrowLeftIcon /> {value}
-      </LinkButton>
-    </BackButtonContainer>
+      </Link>
+    </animated.div>
   );
-};
+});
+
+ButtonBack.displayName = 'ButtonBack';
 
 export { ButtonBack };

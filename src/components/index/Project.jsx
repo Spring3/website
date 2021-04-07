@@ -17,7 +17,7 @@ import { MarkdownContent } from '../common/MarkdownContent';
 import { ImageCarousel } from '../common/ImageCarousel';
 import { Flex } from '../common/Flex';
 import { Decorations, Rectangle, Circle } from '../common/Decorations';
-import { Subheader } from '../common/Headers';
+import { SubHeader } from '../common/Headers';
 import { revealBottom } from '../../animations';
 import { useWindowSizeDef } from '../../hooks/useWindowSizeDef';
 
@@ -69,7 +69,7 @@ const ProjectRowWrapper = styled.div`
   width: 100%;
 `;
 
-const ProjectTitle = styled(Subheader)`
+const ProjectTitle = styled(SubHeader)`
   margin-bottom: 1.5rem;
   margin-top: 0px;
 `;

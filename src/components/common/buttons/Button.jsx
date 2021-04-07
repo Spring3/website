@@ -1,9 +1,8 @@
-import styled from 'styled-components';
-import { styles } from '../Reference';
+import React from 'react';
+import { css, cx } from '@emotion/css';
+import { genericStyles } from '../Reference';
 
-const Button = styled.button`
-  ${styles}
-
+const styles = css`
   text-decoration: none;
   padding: 0.25rem 0.5rem;
   background: transparent;
@@ -17,5 +16,16 @@ const Button = styled.button`
     box-shadow: none;
   }
 `;
+
+const Button = ({ className, bold, children, ...rest }) => {
+  return (
+    <button
+      className={cx(genericStyles({ bold }), styles, className)}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+};
 
 export { Button };

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import styled from 'styled-components';
+import { css } from '@emotion/css';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftThickIcon';
 import ArrowRightIcon from 'mdi-react/ArrowRightThickIcon';
 import CloseIcon from 'mdi-react/CloseIcon';
@@ -41,61 +41,55 @@ const ImagePreviewContainer = ({ children }) => (
   <div id="image-preview-portal">{children}</div>
 );
 
-const PreviewContainer = styled(animated.div)`
-  position: fixed;
-  z-index: 6;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.9);
-`;
+const styles = {
+  previewContainer: css`
+    position: fixed;
+    z-index: 6;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+  `,
+  closeIcon: css`
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    z-index: 2;
 
-const PreviewImages = styled.div`
-  flex-grow: 1;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: calc(100% - 100px);
-  margin: 0 auto;
+    padding: 1rem;
+    fill: rgba(255, 255, 255, 0.5);
 
-  @media (max-width: 700px) {
-    max-width: 95%;
-  }
-`;
+    &:focus,
+    &:hover {
+      fill: rgba(255, 255, 255, 1);
+    }
+  `,
+  previewImages: css`
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: calc(100% - 100px);
+    margin: 0 auto;
 
-const SlidingImage = styled(animated.img).attrs((props) => ({
-  style: {
-    maxHeight: props.maxHeight
-      ? `calc(${props.maxHeight}px - 1rem)`
-      : 'calc(100vh - 1rem)',
-  },
-}))`
-  position: absolute;
-  transition: opacity 0.3s ease-in-out;
-  max-width: 100%;
-  border-radius: 5px;
-  touch-action: pan-y;
-`;
-
-const IconClose = styled(CloseIcon)`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  cursor: pointer;
-  z-index: 2;
-
-  padding: 1rem;
-  fill: rgba(255, 255, 255, 0.5);
-
-  &:focus,
-  &:hover {
-    fill: rgba(255, 255, 255, 1);
-  }
-`;
+    @media (max-width: 700px) {
+      max-width: 95%;
+    }
+  `,
+  slidingImage: (maxHeight) => css`
+    position: absolute;
+    transition: opacity 0.3s ease-in-out;
+    max-width: 100%;
+    border-radius: 5px;
+    touch-action: pan-y;
+    max-height: calc(${maxHeight + 'px' || '100vh'} - 1rem);
+  `,
+};
 
 const ImagePreview = ({ images, startIndex = 0, onClose }) => {
   const { width, height } = useWindowSize();
@@ -230,11 +224,19 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
           </style>
         </Helmet>
         <ImagePreviewPortal>
-          <PreviewContainer style={containerAnimation} onClick={onClose}>
-            <IconClose color="white" onClick={onClose} />
-            <PreviewImages>
-              <SlidingImage
-                maxHeight={height}
+          <animated.div
+            className={styles.previewContainer}
+            style={containerAnimation}
+            onClick={onClose}
+          >
+            <CloseIcon
+              className={styles.closeIcon}
+              color="white"
+              onClick={onClose}
+            />
+            <div className={styles.previewImages}>
+              <animated.img
+                className={styles.slidingImage(height)}
                 src={images[0].src}
                 alt={images[0].name}
                 sizes={images[0].sizes}
@@ -242,8 +244,8 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
                 onDragStart={interceptEvent}
                 onClick={interceptEvent}
               />
-            </PreviewImages>
-          </PreviewContainer>
+            </div>
+          </animated.div>
         </ImagePreviewPortal>
       </>
     );
@@ -261,7 +263,8 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
         </style>
       </Helmet>
       <ImagePreviewPortal>
-        <PreviewContainer
+        <animated.div
+          className={styles.previewContainer}
           style={containerAnimation}
           onClick={() => {
             // this is done because when drag event is cancelled, releasing the mouse triggered this click event and closed the preview
@@ -273,22 +276,26 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
             }
           }}
         >
-          <IconClose color="white" onClick={onClose} />
+          <CloseIcon
+            className={styles.closeIcon}
+            color="white"
+            onClick={onClose}
+          />
           <PreviewButtonPrevious
             onClick={previousSlide}
             isDisabled={index === 0}
           >
             <ArrowLeftIcon color="white" />
           </PreviewButtonPrevious>
-          <PreviewImages>
+          <div className={styles.previewImages}>
             {draggingAnimationSprings.map(({ display, transform }, i) => {
               const image = images[i];
               return (
-                <SlidingImage
+                <animated.img
+                  className={styles.slidingImage(height)}
                   src={image.src}
                   srcSet={image.srcSet}
                   sizes={image.sizes}
-                  maxHeight={height}
                   onClick={interceptEvent}
                   onDragStart={interceptEvent}
                   key={image.name}
@@ -298,14 +305,14 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
                 />
               );
             })}
-          </PreviewImages>
+          </div>
           <PreviewButtonNext
             onClick={nextSlide}
             isDisabled={index === images.length - 1}
           >
             <ArrowRightIcon color="white" />
           </PreviewButtonNext>
-        </PreviewContainer>
+        </animated.div>
       </ImagePreviewPortal>
     </>
   );
