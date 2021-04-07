@@ -9,7 +9,7 @@ const styles = css`
   transition: border ease 0.2s;
   text-decoration: none;
   color: var(--text-color-primary);
-  font-weight: ${(props) => (props.bold ? 'bold' : 500)};
+  font-weight: ${(props) => (props.$bold ? 'bold' : 500)};
   padding: 2px;
   ${(props) =>
     props.theme.marker
@@ -17,7 +17,7 @@ const styles = css`
       : 'background: linear-gradient(to bottom, transparent 0%, transparent 60%, var(--marker-blue) 60%,  var(--marker-blue) 100%);'}
 
   &:visited {
-    font-weight: ${(props) => (props.bold ? 'bold' : 500)};
+    font-weight: ${(props) => (props.$bold ? 'bold' : 500)};
     padding: 2px;
     ${(props) =>
       props.theme.marker
@@ -63,7 +63,7 @@ const Reference = ({
   return (
     <StyledReference
       className={className}
-      bold={bold}
+      $bold={bold}
       onClick={onClick}
       href={href}
       {...rest}

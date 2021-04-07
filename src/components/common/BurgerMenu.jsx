@@ -38,6 +38,7 @@ const Button = styled(Reference)`
   }
 
   &:focus {
+    background: transparent;
     outline: normal;
   }
 `;
@@ -201,7 +202,7 @@ const BurgerMenu = () => {
         </Helmet>
       ) : null}
       <BurgerMenuWrapper style={burgerMenuButtonAnimation}>
-        <Button role="button" onClick={onIconClick}>
+        <Button role="button" href="#" onClick={onIconClick}>
           <IconElement size={32} onMouseEnter={handleMouseEnter} />
         </Button>
       </BurgerMenuWrapper>

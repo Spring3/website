@@ -51,7 +51,7 @@ const LinkButton = styled(Link)`
 const BackButtonContainer = styled(animated.div)`
   position: relative;
   background: ${(props) =>
-    props.withColorfulBackground
+    props.withColorfulBackground === 'true'
       ? props.theme.marker || MARKERS.blue
       : 'transparent'};
   border-radius: 3px;
@@ -59,19 +59,19 @@ const BackButtonContainer = styled(animated.div)`
 
   &:hover {
     background: ${(props) =>
-      props.withColorfulBackground
+      props.withColorfulBackground === 'true'
         ? props.theme.marker || MARKERS.blue
         : 'transparent'};
   }
 `;
 
-const ButtonBack = ({ href, value, withColorfulBackground }) => {
+const ButtonBack = ({ href, value, withcolorfulbackground }) => {
   const revealAnimation = useSpring(revealLeft({ delay: 1000 }));
 
   return (
     <BackButtonContainer
       style={revealAnimation}
-      withColorfulBackground={withColorfulBackground}
+      withColorfulBackground={String(withcolorfulbackground)}
     >
       <LinkButton to={href}>
         <ArrowLeftIcon /> {value}

@@ -52,15 +52,16 @@ const ImageCarousel = ({ className, images }) => {
   const { showImagePreview } = useImagePreview();
   const containerRef = useRef();
 
-  if (!images.length) {
+  if (typeof window === 'undefined' || !images.length) {
     return null;
   }
 
   if (images.length === 1) {
     const image = images[0];
     return (
-      <div ref={containerRef}>
+      <div className={className} ref={containerRef}>
         <SingleImage
+          key={image.name}
           alt={image.name}
           src={image.src}
           placeholder={image.placeholder}
@@ -73,34 +74,31 @@ const ImageCarousel = ({ className, images }) => {
   }
 
   return (
-    <>
-      <CarouselContainer ref={containerRef}>
-        <StyledCarousel
-          className={className}
-          showStatus={false}
-          showIndicators={false}
-          showThumbs={false}
-          infiniteLoop
-          interval={5000}
-          swipeable
-          autoPlay
-          dynamicHeight
-          onClickItem={(index) => showImagePreview(images, index)}
-        >
-          {images.map((image) => (
-            <ImageSlide
-              key={image.name}
-              intersectionTriggerRef={containerRef}
-              alt={image.name}
-              src={image.src}
-              placeholder={image.placeholder}
-              srcSet={image.srcSet}
-              sizes={image.sizes}
-            />
-          ))}
-        </StyledCarousel>
-      </CarouselContainer>
-    </>
+    <CarouselContainer className={className} ref={containerRef}>
+      <StyledCarousel
+        showStatus={false}
+        showIndicators={false}
+        showThumbs={false}
+        infiniteLoop
+        interval={5000}
+        swipeable
+        autoPlay
+        dynamicHeight
+        onClickItem={(index) => showImagePreview(images, index)}
+      >
+        {images.map((image) => (
+          <ImageSlide
+            key={image.name}
+            intersectionTriggerRef={containerRef}
+            alt={image.name}
+            src={image.src}
+            placeholder={image.placeholder}
+            srcSet={image.srcSet}
+            sizes={image.sizes}
+          />
+        ))}
+      </StyledCarousel>
+    </CarouselContainer>
   );
 };
 

@@ -20,10 +20,7 @@ const CookieManager = () => {
 
   return (
     <Flex gap="1rem" margined alignItems="center">
-      <strong>
-        Cookies:
-        {consent ? 'Allowed' : 'Rejected'}
-      </strong>
+      <strong>Cookies: &nbsp;{consent ? 'Allowed' : 'Rejected'}</strong>
       <Reference href="#" role="button" onClick={updateCookieValue}>
         {text}
       </Reference>

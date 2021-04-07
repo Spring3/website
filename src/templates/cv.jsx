@@ -337,10 +337,8 @@ const CVPage = ({ data }) => {
                     <span>: 2012 - 2016</span>
                   </p>
                   <p>
-                    <p>
-                      <strong>Faculty</strong>
-                      <span>: Informatics and Computer Systems</span>
-                    </p>
+                    <strong>Faculty</strong>
+                    <span>: Informatics and Computer Systems</span>
                   </p>
                   <p>
                     The National Technical University of Ukraine "Igor Sikorsky

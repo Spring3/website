@@ -116,6 +116,8 @@ const NotFoundPage = () => {
   const radiusPx = `${radius}px`;
   const sizePx = `${size}px`;
 
+  console.log('width', width);
+
   return (
     <>
       <GlobalStyles />
@@ -130,7 +132,7 @@ const NotFoundPage = () => {
           justifyContent="center"
           alignItems="center"
         >
-          <OverflowDecorations margined={false} layer="back">
+          <OverflowDecorations layer="back">
             <Circle
               style={firstCircleAnimation}
               size="300px"

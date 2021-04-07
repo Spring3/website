@@ -50,6 +50,10 @@ const ImageWrapper = styled(animated.div)`
     width: 58%;
     gap: 0px 1rem;
   }
+
+  @media (max-width: 1050px) {
+    display: none;
+  }
 `;
 
 const ProjectRow = styled(Flex)`
@@ -82,6 +86,18 @@ const ProjectContent = styled(MarkdownContent)`
   padding-left: 1rem;
 `;
 
+const SmallScreenCarousel = styled(ImageCarousel)`
+  @media (min-width: 1050px) {
+    display: none;
+  }
+`;
+
+const LimitedDecorationsLayer = styled(Decorations)`
+  @media (max-width: 1050px) {
+    display: none;
+  }
+`;
+
 const Project = ({ node, index }) => {
   const [wasRevealed, setRevealed] = useState(false);
   const anchor = slugToAnchor(node.fields.slug);
@@ -108,11 +124,11 @@ const Project = ({ node, index }) => {
     opacity: 0,
   };
 
-  if (windowSize.isMedium) {
-    initialAnimationState.bottom = '-100px';
-  } else {
-    initialAnimationState.transform = 'translateY(100px)';
-  }
+  // if (windowSize.isMedium) {
+  //   initialAnimationState.bottom = '-100px';
+  // } else {
+  initialAnimationState.transform = 'translateY(100px)';
+  // }
 
   const [revealAnimation, animateSection] = useSpring(
     () => initialAnimationState
@@ -134,17 +150,17 @@ const Project = ({ node, index }) => {
         },
       };
 
-      if (windowSize.isMedium) {
-        revealAnimationConfig.bottom = '0px';
-      } else {
-        revealAnimationConfig.transform = 'translateY(0%)';
-      }
+      // if (windowSize.isMedium) {
+      //   revealAnimationConfig.bottom = '0px';
+      // } else {
+      revealAnimationConfig.transform = 'translateY(0%)';
+      // }
 
       animateSection(revealAnimationConfig);
       animateTags(revealBottom({ delay: 200 }));
       animateDecorations(revealBottom({ delay: 500 }));
     }
-  }, [wasRevealed, isIntersecting, windowSize.isMedium]);
+  }, [wasRevealed, isIntersecting]);
 
   useEffect(() => {
     if (wasSmallScreen !== windowSize.isMedium) {
@@ -161,7 +177,12 @@ const Project = ({ node, index }) => {
       const { props, squares, circles } = layerData;
 
       return (
-        <Decorations key={key} layer={key} {...props} style={revealDecorations}>
+        <LimitedDecorationsLayer
+          key={key}
+          layer={key}
+          {...props}
+          style={revealDecorations}
+        >
           {squares?.map((squareProps, i) => (
             // eslint-disable-next-line react/no-array-index-key
             <Rectangle {...squareProps} key={`square-${i}`} />
@@ -170,19 +191,21 @@ const Project = ({ node, index }) => {
             // eslint-disable-next-line react/no-array-index-key
             <Circle {...cirlceProps} key={`circle-${i}`} />
           ))}
-        </Decorations>
+        </LimitedDecorationsLayer>
       );
     },
     [id]
   );
 
-  const decorationLayers = useMemo(
-    () =>
-      Object.entries(
-        node.frontmatter.decorations || {}
-      ).map(([layerKey, layerData]) => renderLayer(layerKey, layerData)),
-    [renderLayer]
-  );
+  const decorationLayers = useMemo(() => {
+    if (typeof window === 'undefined') {
+      return null;
+    }
+
+    return Object.entries(
+      node.frontmatter.decorations || {}
+    ).map(([layerKey, layerData]) => renderLayer(layerKey, layerData));
+  }, [renderLayer]);
 
   return (
     <ProjectRowWrapper ref={projectRef}>
@@ -198,7 +221,7 @@ const Project = ({ node, index }) => {
                 {node.frontmatter.title}
               </Link>
             </ProjectTitle>
-            {windowSize.isMedium ? <ImageCarousel images={images} /> : null}
+            <SmallScreenCarousel key={`carousel-${id}`} images={images} />
             <ProjectContent
               marker={node.frontmatter.marker}
               dangerouslySetInnerHTML={{ __html: node.html }}
@@ -206,14 +229,10 @@ const Project = ({ node, index }) => {
             <Tags style={tagAnimation} tags={node.frontmatter.technologies} />
           </ProjectInfo>
         </InfoWrapper>
-        {!windowSize.isMedium ? (
-          <>
-            <ImageWrapper>
-              <FixedImageSet containerRef={projectRef} images={images} />
-            </ImageWrapper>
-            {decorationLayers}
-          </>
-        ) : null}
+        <ImageWrapper>
+          <FixedImageSet containerRef={projectRef} images={images} />
+        </ImageWrapper>
+        {decorationLayers}
       </ProjectRow>
     </ProjectRowWrapper>
   );
