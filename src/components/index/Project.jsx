@@ -20,6 +20,7 @@ import { Decorations, Rectangle, Circle } from '../common/Decorations';
 import { SubHeader } from '../common/Headers';
 import { revealBottom } from '../../animations';
 import { useWindowSizeDef } from '../../hooks/useWindowSizeDef';
+import { useTheme } from '@emotion/react';
 
 const styles = {
   projectInfo: css`
@@ -69,7 +70,7 @@ const styles = {
     margin-bottom: 1.5rem;
     margin-top: 0px;
   `,
-  projectMarkdownContent: css`
+  projectMarkdownContent: (theme) => css`
     font-size: 1rem;
     -webkit-line-clamp: 1;
 
@@ -77,7 +78,7 @@ const styles = {
       margin-top: 2.5rem;
     }
 
-    border-left: 5px solid ${(theme) => theme?.marker};
+    border-left: 5px solid ${theme?.marker};
     padding-left: 1rem;
   `,
   imageCarousel: css`
@@ -98,6 +99,7 @@ const Project = ({ node, index }) => {
 
   const projectRef = useRef();
   const windowSize = useWindowSizeDef();
+  const theme = useTheme();
   const id = anchor.substring(1);
 
   const wasSmallScreen = usePrevious(windowSize.isMedium);
@@ -223,7 +225,7 @@ const Project = ({ node, index }) => {
               images={images}
             />
             <MarkdownContent
-              className={styles.projectMarkdownContent}
+              className={styles.projectMarkdownContent(theme)}
               marker={node.frontmatter.marker}
               dangerouslySetInnerHTML={{ __html: node.html }}
             />

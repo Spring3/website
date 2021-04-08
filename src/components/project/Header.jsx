@@ -1,8 +1,9 @@
 import React from 'react';
 import { cx, css } from '@emotion/css';
+import { useTheme } from '@emotion/react';
 
 const styles = {
-  header: ({ theme, marker }) => css`
+  header: (marker) => css`
     @media (min-width: 750px) {
       font-size: 2.5rem;
     }
@@ -12,8 +13,8 @@ const styles = {
       to bottom,
       transparent 0%,
       transparent 60%,
-      ${marker || theme?.marker} 60%,
-      ${marker || theme?.marker} 100%
+      ${marker} 60%,
+      ${marker} 100%
     );
   `,
   subheading: css`
@@ -24,14 +25,24 @@ const styles = {
 };
 
 const Header = ({ className, children, marker }) => {
+  const theme = useTheme();
   return (
-    <h1 className={cx(styles.header({ marker }), className)}>{children}</h1>
+    <h1 className={cx(styles.header(marker || theme.marker), className)}>
+      {children}
+    </h1>
   );
 };
 
 const Subheading = ({ className, children, marker }) => {
+  const theme = useTheme();
   return (
-    <h2 className={cx(styles.header({ marker }), styles.subheading, className)}>
+    <h2
+      className={cx(
+        styles.header(marker || theme.marker),
+        styles.subheading,
+        className
+      )}
+    >
       {children}
     </h2>
   );

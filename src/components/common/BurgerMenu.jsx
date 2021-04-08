@@ -185,6 +185,7 @@ const BurgerMenu = memo(() => {
             {`
               body {
                 overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
               }
             `}
           </style>
@@ -207,6 +208,8 @@ const BurgerMenu = memo(() => {
         className={styles.overlay}
         style={overlayAnimation}
         onClick={onIconClick}
+        // fix for scrolling on iphone
+        onTouchStart={(e) => e.preventDefault()}
       />
       <animated.div
         className={styles.panelWrapper}

@@ -37,13 +37,8 @@ const styles = {
   `,
 };
 
-const ProjectReference = ({ href, children, onlyIcons }) => (
-  <Reference
-    className={styles.reference}
-    href={href}
-    newTab
-    onlyIcons={onlyIcons}
-  >
+const ProjectReference = ({ href, children }) => (
+  <Reference className={styles.reference} href={href} newTab>
     {children}
   </Reference>
 );

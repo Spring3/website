@@ -52,7 +52,7 @@ const AboutSection = ({ children }) => {
   const headerAnimation = useSpring(reveal({ ref: headerAnimationRef }));
   const springAnimation = useSpring(reveal({ ref: bodyAnimationRef }));
 
-  useChain([headerAnimationRef, bodyAnimationRef], [0.5, 1]);
+  useChain([headerAnimationRef, bodyAnimationRef], [0.2, 0.4]);
 
   return (
     <Flex

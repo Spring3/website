@@ -1,6 +1,7 @@
 import React from 'react';
 import { css, cx } from '@emotion/css';
 import { genericStyles } from '../Reference';
+import { useTheme } from '@emotion/react';
 
 const styles = css`
   text-decoration: none;
@@ -17,10 +18,12 @@ const styles = css`
   }
 `;
 
-const Button = ({ className, bold, children, ...rest }) => {
+const Button = ({ className, children, ...rest }) => {
+  const theme = useTheme();
+  const providedTheme = rest.theme || theme;
   return (
     <button
-      className={cx(genericStyles({ bold }), styles, className)}
+      className={cx(genericStyles(providedTheme), styles, className)}
       {...rest}
     >
       {children}

@@ -5,6 +5,7 @@ import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 import { Link } from '../Reference';
 import { MARKERS } from '../../../theme';
 import { revealLeft } from '../../../animations';
+import { useTheme } from '@emotion/react';
 
 const bounceLeftAnimation = keyframes`
   0% {
@@ -25,7 +26,7 @@ const bounceLeftAnimation = keyframes`
 `;
 
 const styles = {
-  container: ({ theme }) => css`
+  container: (theme) => css`
     position: relative;
     background: ${theme?.marker || MARKERS.blue};
     border-radius: 3px;
@@ -66,10 +67,11 @@ const styles = {
 
 const ButtonBack = memo(({ href, value, withColorfulBackground }) => {
   const revealAnimation = useSpring(revealLeft({ delay: 1000 }));
+  const theme = useTheme();
 
   return (
     <animated.div
-      className={cx(styles.container({}), {
+      className={cx(styles.container(theme), {
         [styles.transparentBg]: !withColorfulBackground,
       })}
       style={revealAnimation}

@@ -4,7 +4,7 @@ import { genericStyles } from './Reference';
 
 const defaultStyles = (marker) => css`
   a {
-    ${genericStyles({ theme: { marker } })}
+    ${genericStyles({ marker })}
   }
 
   @media (min-width: 750px) {

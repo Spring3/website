@@ -3,13 +3,14 @@ import { css } from '@emotion/css';
 import { Flex } from '../common/Flex';
 import { MARKERS } from '../../theme';
 import { Reference } from '../common/Reference';
+import { useTheme } from '@emotion/react';
 
 const styles = {
   footer: css`
     margin-top: 2rem;
     grid-column: 1 / -1;
   `,
-  url: ({ theme }) => css`
+  url: (theme) => css`
     width: 100%;
     text-align: center;
     padding: 1rem;
@@ -29,10 +30,12 @@ const Footer = () => {
     }
   };
 
+  const theme = useTheme();
+
   return (
     <Flex className={styles.footer} justifyContent="center" alignItems="center">
       <Reference
-        className={styles.url({})}
+        className={styles.url(theme)}
         role="button"
         bold
         href="#"

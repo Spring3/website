@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, useState, memo, useMemo } from 'react';
 import { css } from '@emotion/css';
 import { useSpring } from 'react-spring';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
@@ -17,11 +17,6 @@ import { CookieConsentContextProvider } from '../context/CookieConsentContextPro
 import { useWindowSizeDef } from '../hooks/useWindowSizeDef';
 
 const styles = {
-  relativeDecorations: ({ height, width }) => css`
-    position: relative !important;
-    height: ${height} !important;
-    width: ${width} !important;
-  `,
   overflowDecorations: css`
     max-width: 100%;
     max-height: 100%;
@@ -97,10 +92,13 @@ const NotFoundPage = () => {
   let size = 15;
   const gap = 5;
 
-  if (windowSize.isSmall) {
+  if (windowSize.isTiny && windowSize.isSmall && windowSize.isMedium) {
+    radius = 2;
+    size = 10;
+  } else if (!windowSize.isTiny && windowSize.isSmall && windowSize.isMedium) {
     radius = 3;
     size = 15;
-  } else if (windowSize.isMedium) {
+  } else if (!windowSize.isTiny && !windowSize.isSmall && windowSize.isMedium) {
     radius = 5;
     size = 20;
   } else {
@@ -108,11 +106,19 @@ const NotFoundPage = () => {
     size = 25;
   }
 
-  const width = (size + gap) * 4;
-  const height = (size + gap) * 7;
+  const width = size * 4 + gap * 4;
+  const height = size * 7 + gap * 7;
 
   const radiusPx = `${radius}px`;
   const sizePx = `${size}px`;
+
+  const decorationStyles = useMemo(
+    () => ({
+      height: `${height}px !important`,
+      width: `${width}px !important`,
+    }),
+    [width, height]
+  );
 
   return (
     <>
@@ -165,15 +171,16 @@ const NotFoundPage = () => {
           >
             <Flex
               justifyContent="center"
+              direction="row"
               alignItems="center"
               gap="2rem"
+              flexWrap="wrap"
               margined
             >
               <Decorations
-                className={styles.relativeDecorations({
-                  height: `${height}px`,
-                  width: `${width}px`,
-                })}
+                position="relative"
+                height={decorationStyles.height}
+                width={decorationStyles.width}
               >
                 <ColorThemedRectangle
                   right="0px"
@@ -272,10 +279,9 @@ const NotFoundPage = () => {
                 />
               </Decorations>
               <Decorations
-                className={styles.relativeDecorations({
-                  height: `${height}px`,
-                  width: `${width}px`,
-                })}
+                position="relative"
+                height={decorationStyles.height}
+                width={decorationStyles.width}
               >
                 <ColorThemedRectangle
                   flat
@@ -419,10 +425,9 @@ const NotFoundPage = () => {
                 />
               </Decorations>
               <Decorations
-                className={styles.relativeDecorations({
-                  height: `${height}px`,
-                  width: `${width}px`,
-                })}
+                position="relative"
+                height={decorationStyles.height}
+                width={decorationStyles.width}
               >
                 <ColorThemedRectangle
                   right="0px"

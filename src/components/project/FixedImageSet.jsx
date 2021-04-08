@@ -12,29 +12,6 @@ const styles = {
     top: 16%;
     cursor: initial;
   `,
-  fixedImage: ({
-    src,
-    scaledHeight,
-    horizontalPosition,
-    verticalPosition,
-    imageWidth,
-  }) => ({
-    backgroundImage: `url("${src}")`,
-    height: `${scaledHeight}px`,
-    backgroundPosition: `${horizontalPosition}px ${verticalPosition}px`,
-    backgroundSize: `${imageWidth}% auto`,
-  }),
-  placeholder: ({
-    scaledHeight,
-    horizontalPosition,
-    verticalPosition,
-    imageWidth,
-  }) => ({
-    height: `${scaledHeight * 2}px`,
-    backgroundPosition: `${horizontalPosition}px ${verticalPosition}px`,
-    backgroundSize: `${imageWidth}% auto`,
-    pointerEvents: 'none',
-  }),
   normalImage: ({ src, scaledHeight }) => css`
     background-image: url('${src}');
     height: ${scaledHeight}px;
@@ -90,18 +67,25 @@ const FixedImageSet = ({ images, containerRef }) => {
 
   return images.map((image, i) => {
     const scaledHeight = Number(imageAreaWidth / image.aspectRatio).toFixed(2);
+    const style = {
+      backgroundImage: `url("${image.src}")`,
+      height: `${scaledHeight}px`,
+      backgroundPosition: `${horizontalPosition}px ${verticalPosition}px`,
+      backgroundSize: `${imageWidthPercent}% auto`,
+    };
+
+    const placeholderStyle = {
+      height: `${scaledHeight * 2}px`,
+      backgroundPosition: `${horizontalPosition}px ${verticalPosition}px`,
+      backgroundSize: `${imageWidthPercent}% auto`,
+      pointerEvents: 'none',
+    };
 
     return (
       <Fragment key={image.name}>
         <LazyImage
           className={styles.fixedStyles}
-          style={styles.fixedImage({
-            src: image.src,
-            scaledHeight,
-            horizontalPosition,
-            verticalPosition,
-            imageWidth: imageWidthPercent,
-          })}
+          style={style}
           intersectionTriggerRef={containerRef}
           Component={'div'}
           id={image.name}
@@ -111,12 +95,7 @@ const FixedImageSet = ({ images, containerRef }) => {
         />
         <div
           className={styles.fixedStyles}
-          style={styles.placeholder({
-            scaledHeight,
-            horizontalPosition,
-            verticalPosition,
-            imageWidth: imageWidthPercent,
-          })}
+          style={placeholderStyle}
           id={image.name}
         />
       </Fragment>

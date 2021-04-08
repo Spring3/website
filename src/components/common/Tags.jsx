@@ -1,6 +1,7 @@
 import React from 'react';
 import { cx, css } from '@emotion/css';
 import { animated } from 'react-spring';
+import { useTheme } from '@emotion/react';
 
 const styles = {
   container: css`
@@ -12,7 +13,7 @@ const styles = {
     flex-wrap: wrap;
     margin-top: 1.5rem;
   `,
-  tag: ({ theme }) => css`
+  tag: (theme) => css`
     display: inline-block;
     font-weight: bold;
     border-radius: var(--border-radius);
@@ -23,15 +24,19 @@ const styles = {
   `,
 };
 
-const Tags = ({ tags = [], className, ...rest }) => (
-  <animated.div className={cx(styles.container, className)} {...rest}>
-    {tags.map((tag) => (
-      <li className={styles.tag({})} key={tag}>
-        {tag}
-        &nbsp;
-      </li>
-    ))}
-  </animated.div>
-);
+const Tags = ({ tags = [], className, ...rest }) => {
+  const theme = useTheme();
+
+  return (
+    <animated.div className={cx(styles.container, className)} {...rest}>
+      {tags.map((tag) => (
+        <li className={styles.tag(theme)} key={tag}>
+          {tag}
+          &nbsp;
+        </li>
+      ))}
+    </animated.div>
+  );
+};
 
 export { Tags };

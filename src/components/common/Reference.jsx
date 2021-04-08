@@ -1,10 +1,11 @@
 import React from 'react';
 import { css, cx } from '@emotion/css';
+import { useTheme } from '@emotion/react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { MARKERS } from '../../theme';
 
-const genericStyles = ({ theme }) => css`
+const genericStyles = (theme) => css`
   transition: background ease 0.2s;
   transition: border ease 0.2s;
   text-decoration: none;
@@ -58,13 +59,14 @@ const Reference = ({
   children,
   ...rest
 }) => {
+  const theme = useTheme();
   const additionalProps = newTab
     ? { target: '_blank', rel: 'noopener,noreferrer' }
     : {};
   return (
     <a
       className={cx(
-        genericStyles({}),
+        genericStyles(theme),
         { [styles.bold]: bold },
         styles.reference,
         className
@@ -93,8 +95,12 @@ Reference.propTypes = {
 };
 
 const StyledLink = ({ bold, className, children, ...rest }) => {
+  const theme = useTheme();
   return (
-    <Link className={cx(genericStyles({ bold }), className)} {...rest}>
+    <Link
+      className={cx(genericStyles(theme), { [styles.bold]: bold }, className)}
+      {...rest}
+    >
       {children}
     </Link>
   );

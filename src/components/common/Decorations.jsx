@@ -1,12 +1,11 @@
 import React, { memo } from 'react';
 import { css, cx } from '@emotion/css';
-import styled from '@emotion/styled';
 import { animated } from 'react-spring';
 
 const styles = {
-  decorations: ({ top, height, layer, position }) => css`
+  decorations: ({ top, width, height, layer, position }) => css`
     left: 0;
-    width: 100%;
+    width: ${width || '100%'};
     top: ${top};
     height: ${height};
     max-height: calc(100% - ${top});
@@ -78,13 +77,21 @@ GeometricObject.defaultProps = {
 };
 GeometricObject.displayName = 'GeometricObject';
 
-const Rectangle = styled(GeometricObject)`
-  border-radius: ${(props) => props.radius || '15px'};
-`;
+const Rectangle = ({ className, radius, ...rest }) => {
+  const rectangleStyles = css`
+    border-radius: ${radius || '15px'};
+  `;
+  return (
+    <GeometricObject {...rest} className={cx(rectangleStyles, className)} />
+  );
+};
 
-const Circle = styled(GeometricObject)`
-  border-radius: ${(props) => props.radius || '50%'};
-`;
+const Circle = ({ className, radius, ...rest }) => {
+  const circleStyles = css`
+    border-radius: ${radius || '50%'};
+  `;
+  return <GeometricObject {...rest} className={cx(circleStyles, className)} />;
+};
 
 export { Decorations, Rectangle, Circle };
 

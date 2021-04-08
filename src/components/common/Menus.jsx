@@ -6,6 +6,7 @@ import { Link, Reference } from './Reference';
 import { Flex } from './Flex';
 import { slugToTitle } from '../../utils';
 import { useWindowSizeDef } from '../../hooks/useWindowSizeDef';
+import { useTheme } from '@emotion/react';
 
 const styles = {
   menuContainer: css`
@@ -35,7 +36,7 @@ const styles = {
       position: fixed !important;
     }
   `,
-  defaultStyles: ({ theme }) => css`
+  defaultStyles: (theme) => css`
     background: transparent;
     color: var(--text-color-secondary);
     border-bottom: 2px solid transparent;
@@ -58,7 +59,7 @@ const styles = {
       background: transparent;
     }
   `,
-  activeStyles: ({ theme }) => css`
+  activeStyles: (theme) => css`
     transition: all ease 0.2s;
     color: var(--text-color-primary);
     background: ${theme?.marker || 'var(--marker-blue)'};
@@ -93,6 +94,7 @@ const styles = {
 };
 
 const AnchorListMenu = ({ nodes, onClick }) => {
+  const theme = useTheme();
   const windowSize = useWindowSizeDef();
   const anchors = useMemo(() => nodes.map((node) => node.anchor), []);
   const activeAnchor = useAnchorTracker(anchors);
@@ -103,8 +105,8 @@ const AnchorListMenu = ({ nodes, onClick }) => {
         return (
           <Reference
             className={cx(
-              styles.defaultStyles({}),
-              { [styles.activeStyles({})]: isActive },
+              styles.defaultStyles(theme),
+              { [styles.activeStyles(theme)]: isActive },
               styles.anchorMenuItem
             )}
             bold={isActive}
@@ -137,6 +139,7 @@ const AnchorListMenu = ({ nodes, onClick }) => {
 
 const SlugListMenu = ({ slugs, active, onClick }) => {
   const windowSize = useWindowSizeDef();
+  const theme = useTheme();
 
   return (
     <Flex
@@ -153,9 +156,9 @@ const SlugListMenu = ({ slugs, active, onClick }) => {
         return (
           <Link
             className={cx(
-              styles.defaultStyles({}),
+              styles.defaultStyles(theme),
               {
-                [styles.activeStyles({})]: isActive,
+                [styles.activeStyles(theme)]: isActive,
                 [styles.activeSlugMenu]: isActive,
               },
               styles.slugMenuItem
