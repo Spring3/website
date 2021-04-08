@@ -50,5 +50,5 @@ Unfortuantely, as it turned out that there have been several link agregators alr
 
 Lessons learnt: market research is important. 
 
-The screenshot, that you see how the landing page looked like.
+The screenshot that you see describes how the landing page looked like.
 

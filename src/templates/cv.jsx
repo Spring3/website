@@ -155,8 +155,8 @@ const CVPage = ({ data }) => {
                   special and original.
                 </p>
                 <p>
-                  Primarily I focus on Node.js, React, Graphql and modern
-                  Javascript ecosystem.
+                  Primarily I focus on Node.js, React, GraphQL and modern
+                  JavaScript ecosystem.
                 </p>
                 <br />
                 <SocialButtons onlyImportant />
@@ -183,7 +183,7 @@ const CVPage = ({ data }) => {
                     <strong>Company</strong>: Contentful
                   </p>
                   <p>
-                    <strong>Duration:</strong> Dec 2018 - now
+                    <strong>Duration:</strong> Dec 2019 - now
                   </p>
                   <p>
                     Full stack development and support of the Headless CMS by
