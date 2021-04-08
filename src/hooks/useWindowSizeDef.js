@@ -5,6 +5,7 @@ const useWindowSizeDef = () => {
 
   return {
     // will be true even with medium screen, I know. This was just to unite these numbers somewhere.
+    isTiny: width <= 450,
     isSmall: width <= 750,
     isMedium: width <= 1050,
     isLarge: width > 1050,

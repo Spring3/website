@@ -1,9 +1,10 @@
-import styled from 'styled-components';
-import { styles } from './Reference';
+import React from 'react';
+import { css, cx } from '@emotion/css';
+import { genericStyles } from './Reference';
 
-const MarkdownContent = styled.div`
+const defaultStyles = (marker) => css`
   a {
-    ${styles}
+    ${genericStyles({ marker })}
   }
 
   @media (min-width: 750px) {
@@ -69,12 +70,20 @@ const MarkdownContent = styled.div`
       to bottom,
       transparent 0%,
       transparent 60%,
-      ${(props) => props.marker || 'var(--marker-yellow)'} 60%,
-      ${(props) => props.marker || 'var(--marker-yellow)'} 100%
+      ${marker || 'var(--marker-yellow)'} 60%,
+      ${marker || 'var(--marker-yellow)'} 100%
     );
   }
 
   text-align: justify;
 `;
+
+const MarkdownContent = ({ className, children, marker, ...rest }) => {
+  return (
+    <div className={cx(defaultStyles(marker), className)} {...rest}>
+      {children}
+    </div>
+  );
+};
 
 export { MarkdownContent };

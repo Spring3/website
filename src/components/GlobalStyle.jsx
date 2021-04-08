@@ -1,45 +1,45 @@
 import React, { memo, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { createGlobalStyle } from 'styled-components';
+import { Global, css } from '@emotion/react';
 import { Globals } from 'react-spring';
 import { CookieBanner } from './common/cookie/CookieBanner';
 import 'normalize.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 
-const GlobalStylesComponent = createGlobalStyle`
-:root {
-  --text-color-primary: #282C36;
-  --text-color-secondary: #767B91;
-  --background-color: white;
-  --background-color-dark: #f5f5f5;
-  --shadow-color: #E0E0E0;
-  --marker-green: #A9E5BB;
-  --marker-yellow: #FCF6B1;
-  --marker-red: #F78888;
-  --marker-blue: #BCE5FF;
-  --marker-purple: #C3A9FF;
-  --border-radius: 3px;
-  --page-size: 45em;
-  --color-red: #EF3934;
-  --color-green: #44C95C;
-  --color-yellow: #FFB402;
-  --color-blue: #2F86EB;
+const globalStyles = css`
+  :root {
+    --text-color-primary: #282c36;
+    --text-color-secondary: #434750;
+    --background-color: white;
+    --background-color-dark: #f5f5f5;
+    --shadow-color: #e0e0e0;
+    --marker-green: #a9e5bb;
+    --marker-yellow: #fcf6b1;
+    --marker-red: #f78888;
+    --marker-blue: #bce5ff;
+    --marker-purple: #c3a9ff;
+    --border-radius: 3px;
+    --page-size: 45em;
+    --color-red: #ef3934;
+    --color-green: #44c95c;
+    --color-yellow: #ffb402;
+    --color-blue: #2f86eb;
+  }
 
-}
+  body {
+    font-size: 16px;
+    background-color: var(--background-color);
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, Ubuntu, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    color: var(--text-color-primary);
+  }
 
-body {
-  font-size: 16px;
-  background-color: var(--background-color);
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  color: var(--text-color-primary);
-}
-
-main {
-  padding: 0;
-  position: relative;
-}
+  main {
+    padding: 0;
+    position: relative;
+  }
 `;
 
 const GlobalStyles = () => {
@@ -51,7 +51,7 @@ const GlobalStyles = () => {
     });
   }, [prefersReducedMotion]);
 
-  return <GlobalStylesComponent />;
+  return <Global styles={globalStyles} />;
 };
 
 const OGP = memo(({ title, description, image = '/icon_ogp.png' }) => {

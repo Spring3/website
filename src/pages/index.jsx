@@ -1,48 +1,44 @@
 import React, { useCallback } from 'react';
 import { graphql } from 'gatsby';
-import styled from 'styled-components';
+import { css } from '@emotion/css';
 
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
 import { AboutSection } from '../components/index/AboutSection';
 import { ProjectsSection } from '../components/index/ProjectsSection';
 import { AnchorListMenu } from '../components/common/Menus';
 import { slugToAnchor } from '../utils';
-import { styles } from '../components/common/Reference';
 import { Footer } from '../components/index/Footer';
 import { ImagePreviewContextProvider } from '../context/ImagePreviewContextProvider';
 import { MarkdownContent } from '../components/common/MarkdownContent';
 import { BurgerMenu } from '../components/common/BurgerMenu';
 import { CookieConsentContextProvider } from '../context/CookieConsentContextProvider';
 
-const AboutSectionMarkdown = styled(MarkdownContent)`
-  a {
-    ${styles}
-  }
+const styles = {
+  markdown: css`
+    em {
+      font-style: normal;
+      font-weight: bold;
+      background: var(--marker-green);
+    }
 
-  em {
-    font-style: normal;
-    font-weight: bold;
-    background: var(--marker-green);
-  }
+    strong {
+      background: var(--marker-yellow);
+    }
 
-  strong {
-    background: var(--marker-yellow);
-  }
+    span,
+    p:last-child {
+      color: var(--text-color-secondary);
+      font-size: smaller;
+    }
 
-  span,
-  p:last-child {
-    color: var(--text-color-secondary);
-    font-size: smaller;
-  }
-
-  @media (min-width: 1050px) {
-    font-size: 1.2rem;
-  }
-`;
-
-const RelativeDiv = styled.div`
-  position: relative;
-`;
+    @media (min-width: 1050px) {
+      font-size: 1.2rem;
+    }
+  `,
+  relativeDiv: css`
+    position: relative;
+  `,
+};
 
 const IndexPage = ({ data }) => {
   const { siteMetadata } = data.site;
@@ -82,13 +78,14 @@ const IndexPage = ({ data }) => {
         <ImagePreviewContextProvider>
           <BurgerMenu />
           <main>
-            <RelativeDiv>
+            <div className={styles.relativeDiv}>
               <AboutSection>
-                <AboutSectionMarkdown
+                <MarkdownContent
+                  className={styles.markdown}
                   dangerouslySetInnerHTML={{ __html: aboutNode.html }}
                 />
               </AboutSection>
-            </RelativeDiv>
+            </div>
             <ProjectsSection nodes={projectNodes} />
           </main>
           <AnchorListMenu nodes={menuNodes} onClick={onMenuClick} />

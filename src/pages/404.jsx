@@ -1,5 +1,5 @@
-import React, { useEffect, useState, memo } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState, memo, useMemo } from 'react';
+import { css } from '@emotion/css';
 import { useSpring } from 'react-spring';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
 import { randomFlicker, randomShift } from '../animations';
@@ -16,30 +16,23 @@ import { BurgerMenu } from '../components/common/BurgerMenu';
 import { CookieConsentContextProvider } from '../context/CookieConsentContextProvider';
 import { useWindowSizeDef } from '../hooks/useWindowSizeDef';
 
-const RelativeDecorations = styled(Decorations)`
-  position: relative !important;
-  height: ${(props) => props.height} !important;
-  width: ${(props) => props.width} !important;
-`;
-
-const OverflowDecorations = styled(Decorations)`
-  max-width: 100%;
-  max-height: 100%;
-  overflow: hidden;
-`;
-
-const FullHeightFlex = styled(Flex)`
-  height: 100vh;
-  max-height: 100%;
-`;
-
-const LinkWithLargerText = styled(Link)`
-  font-size: 1.2rem;
-`;
-
-const MessageSection = styled(Flex)`
-  z-index: 3;
-`;
+const styles = {
+  overflowDecorations: css`
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+  `,
+  fullHeightFlex: css`
+    height: 100vh;
+    max-height: 100%;
+  `,
+  largerText: css`
+    font-size: 1.2rem;
+  `,
+  messageSection: css`
+    z-index: 3;
+  `,
+};
 
 const colorThemes = [
   ['#9DB09C', '#EEF0F0', '#D6D9D0', '#B7BDB0'],
@@ -99,10 +92,13 @@ const NotFoundPage = () => {
   let size = 15;
   const gap = 5;
 
-  if (windowSize.isSmall) {
+  if (windowSize.isTiny && windowSize.isSmall && windowSize.isMedium) {
+    radius = 2;
+    size = 10;
+  } else if (!windowSize.isTiny && windowSize.isSmall && windowSize.isMedium) {
     radius = 3;
     size = 15;
-  } else if (windowSize.isMedium) {
+  } else if (!windowSize.isTiny && !windowSize.isSmall && windowSize.isMedium) {
     radius = 5;
     size = 20;
   } else {
@@ -110,11 +106,19 @@ const NotFoundPage = () => {
     size = 25;
   }
 
-  const width = (size + gap) * 4;
-  const height = (size + gap) * 7;
+  const width = size * 4 + gap * 4;
+  const height = size * 7 + gap * 7;
 
   const radiusPx = `${radius}px`;
   const sizePx = `${size}px`;
+
+  const decorationStyles = useMemo(
+    () => ({
+      height: `${height}px !important`,
+      width: `${width}px !important`,
+    }),
+    [width, height]
+  );
 
   return (
     <>
@@ -125,12 +129,13 @@ const NotFoundPage = () => {
           description="It looks like you have discovered the edge"
         />
         <BurgerMenu />
-        <FullHeightFlex
+        <Flex
+          className={styles.fullHeightFlex}
           direction="column"
           justifyContent="center"
           alignItems="center"
         >
-          <OverflowDecorations margined={false} layer="back">
+          <Decorations className={styles.overflowDecorations} layer="back">
             <Circle
               style={firstCircleAnimation}
               size="300px"
@@ -155,8 +160,9 @@ const NotFoundPage = () => {
               flat
               sticky={width > 850}
             />
-          </OverflowDecorations>
-          <FullHeightFlex
+          </Decorations>
+          <Flex
+            className={styles.fullHeightFlex}
             direction="column"
             justifyContent="center"
             alignItems="center"
@@ -165,11 +171,17 @@ const NotFoundPage = () => {
           >
             <Flex
               justifyContent="center"
+              direction="row"
               alignItems="center"
               gap="2rem"
+              flexWrap="wrap"
               margined
             >
-              <RelativeDecorations height={`${height}px`} width={`${width}px`}>
+              <Decorations
+                position="relative"
+                height={decorationStyles.height}
+                width={decorationStyles.width}
+              >
                 <ColorThemedRectangle
                   right="0px"
                   size={sizePx}
@@ -265,8 +277,12 @@ const NotFoundPage = () => {
                   colorTheme={colorTheme}
                   flat
                 />
-              </RelativeDecorations>
-              <RelativeDecorations height={`${height}px`} width={`${width}px`}>
+              </Decorations>
+              <Decorations
+                position="relative"
+                height={decorationStyles.height}
+                width={decorationStyles.width}
+              >
                 <ColorThemedRectangle
                   flat
                   left={gap * 2}
@@ -407,8 +423,12 @@ const NotFoundPage = () => {
                   colorTheme={colorTheme}
                   flat
                 />
-              </RelativeDecorations>
-              <RelativeDecorations height={`${height}px`} width={`${width}px`}>
+              </Decorations>
+              <Decorations
+                position="relative"
+                height={decorationStyles.height}
+                width={decorationStyles.width}
+              >
                 <ColorThemedRectangle
                   right="0px"
                   size={sizePx}
@@ -504,14 +524,20 @@ const NotFoundPage = () => {
                   colorTheme={colorTheme}
                   flat
                 />
-              </RelativeDecorations>
+              </Decorations>
             </Flex>
-            <MessageSection direction="column" alignItems="center">
+            <Flex
+              className={styles.messageSection}
+              direction="column"
+              alignItems="center"
+            >
               <Subheading>This page does not exist</Subheading>
-              <LinkWithLargerText to="/">Back To Main Page</LinkWithLargerText>
-            </MessageSection>
-          </FullHeightFlex>
-        </FullHeightFlex>
+              <Link className={styles.largerText} to="/">
+                Back To Main Page
+              </Link>
+            </Flex>
+          </Flex>
+        </Flex>
       </CookieConsentContextProvider>
     </>
   );
