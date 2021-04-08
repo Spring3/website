@@ -1,37 +1,40 @@
-import styled, { css } from 'styled-components';
+import React from 'react';
+import { cx, css } from '@emotion/css';
 
-const Header = styled.h1`
-  @media (min-width: 750px) {
-    font-size: 2.5rem;
-  }
+const styles = {
+  header: ({ theme, marker }) => css`
+    @media (min-width: 750px) {
+      font-size: 2.5rem;
+    }
 
-  display: inline-block;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 60%,
-    ${(props) => css`
-      ${props.marker || props.theme.marker} 60%,
-      ${props.marker || props.theme.marker} 100%
-    `}
+    display: inline-block;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 60%,
+      ${marker || theme?.marker} 60%,
+      ${marker || theme?.marker} 100%
+    );
+  `,
+  subheading: css`
+    @media (min-width: 750px) {
+      font-size: 2rem;
+    }
+  `,
+};
+
+const Header = ({ className, children, marker }) => {
+  return (
+    <h1 className={cx(styles.header({ marker }), className)}>{children}</h1>
   );
-`;
+};
 
-const Subheading = styled.h2`
-  @media (min-width: 750px) {
-    font-size: 2rem;
-  }
-
-  display: inline-block;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 60%,
-    ${(props) => css`
-      ${props.marker || props.theme.marker} 60%,
-      ${props.marker || props.theme.marker} 100%
-    `}
+const Subheading = ({ className, children, marker }) => {
+  return (
+    <h2 className={cx(styles.header({ marker }), styles.subheading, className)}>
+      {children}
+    </h2>
   );
-`;
+};
 
 export { Header, Subheading };

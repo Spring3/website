@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import styled from 'styled-components';
+import { cx, css } from '@emotion/css';
 import { animated, useSpring } from 'react-spring';
 import { useGithubData } from '../hooks/useGithubData';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
@@ -19,95 +19,80 @@ import { CVSection } from '../components/cv/CVSection';
 import { revealRight, revealTop } from '../animations';
 import { CookieConsentContextProvider } from '../context/CookieConsentContextProvider';
 
-const CVSectionBlock = styled.div`
-  margin-top: 3rem;
-`;
-
-const StickySubheading = styled(Subheading)`
-  @media (max-width: 750px) {
-    position: static;
+const styles = {
+  cvSectionBlock: css`
     margin-top: 3rem;
-  }
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: calc(50% - 1.5rem) auto;
-  grid-template-rows: repeat(auto-fill, minmax(2rem, 1fr));
-  grid-gap: 3rem 4rem;
-  padding-bottom: 6rem;
-  margin-top: 2rem;
-
-  section ${CVSectionBlock}:first-of-type {
-    margin-top: 0;
-  }
-
-  @media (max-width: 750px) {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-
-    & > div:first-child > h2 {
-      margin-top: 0;
+    &:first-of-type {
+      margin-top: 0rem;
     }
-  }
-`;
+  `,
+  stickySubheading: css`
+    @media (max-width: 750px) {
+      position: static;
+      margin-top: 0rem;
+    }
+  `,
+  profileInfo: css`
+    flex-grow: 1;
+    position: relative;
 
-const ProfileGrid = styled(Grid)`
-  grid-template-columns: 350px auto;
-  padding-bottom: 3rem;
+    @media (max-width: 750px) {
+      margin-top: 2rem;
+    }
+  `,
+  inlinedNavbarPart: css`
+    @media (max-width: 750px) {
+      justify-content: space-between;
+      width: 90%;
+    }
+  `,
+  grid: css`
+    display: grid;
+    grid-template-columns: calc(50% - 1.5rem) auto;
+    grid-template-rows: repeat(auto-fill, minmax(2rem, 1fr));
+    grid-gap: 3rem 4rem;
+    padding-bottom: 6rem;
+    margin-top: 2rem;
 
-  @media (max-width: 1050px) {
-    grid-template-columns: 300px auto;
-  }
+    @media (max-width: 750px) {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+    }
+  `,
+  profileGrid: css`
+    grid-template-columns: 350px auto;
+    padding-bottom: 3rem;
 
-  @media (max-width: 850px) {
-    grid-template-columns: 250px auto;
-  }
-`;
+    @media (max-width: 1050px) {
+      grid-template-columns: 300px auto;
+    }
 
-const InlinedNavbarPart = styled(Flex)`
-  h2 {
-    margin: 0;
-    font-size: 1rem;
-  }
+    @media (max-width: 850px) {
+      grid-template-columns: 250px auto;
+    }
+  `,
+  profilePicture: css`
+    border-radius: 10px;
+    max-width: 350px;
+    position: relative;
 
-  ul {
-    margin: 0;
-  }
+    @media (max-width: 1050px) {
+      width: 300px;
+    }
 
-  @media (max-width: 750px) {
-    justify-content: space-between;
-    width: 90%;
-  }
-`;
+    @media (max-width: 850px) {
+      width: 250px;
+    }
 
-const ProfilePicture = styled(animated.img)`
-  border-radius: 10px;
-  max-width: 350px;
-  position: relative;
-
-  @media (max-width: 1050px) {
-    width: 300px;
-  }
-
-  @media (max-width: 850px) {
-    width: 250px;
-  }
-
-  @media (max-width: 750px) {
-    align-self: center;
-  }
-`;
-
-const ProfileInfo = styled(animated.div)`
-  flex-grow: 1;
-  position: relative;
-`;
-
-const ProfilePageContents = styled.div`
-  overflow: hidden;
-`;
+    @media (max-width: 750px) {
+      align-self: center;
+    }
+  `,
+  profilePageContents: css`
+    overflow: hidden;
+  `,
+};
 
 const CVPage = ({ data }) => {
   const post = data.markdownRemark;
@@ -135,22 +120,29 @@ const CVPage = ({ data }) => {
             />
           </Navbar>
           <BurgerMenu />
-          <ProfilePageContents>
-            <ProfileGrid>
+          <div className={styles.profilePageContents}>
+            <div className={cx(styles.grid, styles.profileGrid)}>
               <LazyImage
+                className={styles.profilePicture}
                 style={profilePictureAnimation}
-                Component={ProfilePicture}
+                Component={animated.img}
                 alt="avatar"
                 loading="lazy"
                 src={githubProfile.avatar_url || '/#'}
               />
-              <ProfileInfo style={profileSectionAnimation}>
+              <animated.div
+                className={styles.profileInfo}
+                style={profileSectionAnimation}
+              >
                 <Flex
                   justifyContent="space-between"
                   alignItems="center"
                   flexGrow="1"
                 >
-                  <Subheading marker={MARKERS.green}>
+                  <Subheading
+                    className={styles.stickySubheading}
+                    marker={MARKERS.green}
+                  >
                     {post.frontmatter.title}
                   </Subheading>
                   <small>
@@ -175,14 +167,17 @@ const CVPage = ({ data }) => {
                     value="Download as .pdf"
                   />
                 </Flex>
-              </ProfileInfo>
-            </ProfileGrid>
-            <Grid id="intro-section">
+              </animated.div>
+            </div>
+            <div className={styles.grid} id="intro-section">
               <CVSection id="experience" span={2}>
-                <StickySubheading marker={MARKERS.blue}>
+                <Subheading
+                  className={styles.stickySubheading}
+                  marker={MARKERS.blue}
+                >
                   Experience
-                </StickySubheading>
-                <CVSectionBlock>
+                </Subheading>
+                <div className={styles.cvSectionBlock}>
                   <h3>Full Stack Software Engineer</h3>
                   <p>
                     <strong>Company</strong>: Contentful
@@ -206,8 +201,8 @@ const CVPage = ({ data }) => {
                     </li>
                     <li>Part of the customer tech support</li>
                   </Flex>
-                </CVSectionBlock>
-                <CVSectionBlock>
+                </div>
+                <div className={styles.cvSectionBlock}>
                   <h3>Full Stack Developer</h3>
                   <p>
                     <strong>Company</strong>: Dial-Once
@@ -241,8 +236,8 @@ const CVPage = ({ data }) => {
                       integration in cross-functional projects
                     </li>
                   </Flex>
-                </CVSectionBlock>
-                <CVSectionBlock>
+                </div>
+                <div className={styles.cvSectionBlock}>
                   <h3>Node.js Developer</h3>
                   <p>
                     <strong>Company</strong>: FASTEE Technologies
@@ -262,10 +257,15 @@ const CVPage = ({ data }) => {
                       different communication platforms
                     </li>
                   </Flex>
-                </CVSectionBlock>
+                </div>
               </CVSection>
               <CVSection id="skills">
-                <StickySubheading marker={MARKERS.red}>Skills</StickySubheading>
+                <Subheading
+                  className={styles.stickySubheading}
+                  marker={MARKERS.red}
+                >
+                  Skills
+                </Subheading>
                 <p>
                   <strong>Back-end</strong>
                   <span>: Node.js, Express, RabbitMQ</span>
@@ -307,10 +307,13 @@ const CVPage = ({ data }) => {
                 </p>
               </CVSection>
               <CVSection id="education">
-                <StickySubheading marker={MARKERS.yellow}>
+                <Subheading
+                  className={styles.stickySubheading}
+                  marker={MARKERS.yellow}
+                >
                   Education
-                </StickySubheading>
-                <CVSectionBlock>
+                </Subheading>
+                <div className={styles.cvSectionBlock}>
                   <h3>Specialist Degree</h3>
                   <p>
                     <strong>Duration</strong>
@@ -329,8 +332,8 @@ const CVPage = ({ data }) => {
                       Theory of Automation and Control of Computer Systems
                     </li>
                   </Flex>
-                </CVSectionBlock>
-                <CVSectionBlock>
+                </div>
+                <div className={styles.cvSectionBlock}>
                   <h3>Bachelor Degree</h3>
                   <p>
                     <strong>Duration</strong>
@@ -356,12 +359,15 @@ const CVPage = ({ data }) => {
                       Persistence
                     </li>
                   </Flex>
-                </CVSectionBlock>
+                </div>
               </CVSection>
               <CVSection id="courses">
-                <StickySubheading marker={MARKERS.green}>
+                <Subheading
+                  className={styles.stickySubheading}
+                  marker={MARKERS.green}
+                >
                   Courses
-                </StickySubheading>
+                </Subheading>
                 <h3>Java Enterprise Edition</h3>
                 <p>
                   <strong>Provider</strong>
@@ -379,26 +385,29 @@ const CVPage = ({ data }) => {
                 </Flex>
               </CVSection>
               <CVSection id="language skills">
-                <StickySubheading marker={MARKERS.purple}>
+                <Subheading
+                  className={styles.stickySubheading}
+                  marker={MARKERS.purple}
+                >
                   Language Skills
-                </StickySubheading>
+                </Subheading>
                 <Flex direction="column" gap="0.5rem">
                   <li>English - C1 (7.5 - IELTS, Aug 2019)</li>
                   <li>German - B1</li>
                 </Flex>
               </CVSection>
-            </Grid>
-          </ProfilePageContents>
+            </div>
+          </div>
         </PageWrapper>
         {activeAnchor === '#intro-section' ? (
           <DownloadFooter>
-            <InlinedNavbarPart>
+            <Flex className={styles.inlinedNavbarPart}>
               <SocialButtons size={30} onlyImportant />
               <ButtonDownload
                 href="https://drive.google.com/uc?export=download&id=1Uy-HSmkHS4XuLAE18oPqdKiVj9bELqtX"
                 value="Download"
               />
-            </InlinedNavbarPart>
+            </Flex>
           </DownloadFooter>
         ) : null}
       </CookieConsentContextProvider>

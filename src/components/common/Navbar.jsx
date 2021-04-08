@@ -1,7 +1,9 @@
-import styled from 'styled-components';
+import React from 'react';
+import { memo } from 'react';
+import { cx, css } from '@emotion/css';
 import { Flex } from './Flex';
 
-const Navbar = styled(Flex)`
+const styles = css`
   position: sticky;
   top: 0;
   height: 2.5rem;
@@ -9,16 +11,15 @@ const Navbar = styled(Flex)`
   align-items: center;
   z-index: 3;
 
+  pointer-events: none;
+
+  & > * {
+    pointer-events: all;
+  }
+
   @media (min-width: 750px) {
     top: 0.75rem;
     padding: 1rem 1.5rem 1rem 0rem;
-
-    a {
-      padding: 0;
-      svg {
-        vertical-align: bottom;
-      }
-    }
   }
 
   @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px),
@@ -28,33 +29,23 @@ const Navbar = styled(Flex)`
     padding-bottom: 1rem;
     padding-right: 3rem;
     left: 0;
-
-    a {
-      display: block;
-      margin: 0;
-      padding: 0;
-      svg {
-        vertical-align: bottom;
-      }
-
-      &:hover {
-        box-shadow: none !important;
-      }
-    }
   }
 
   @media (max-width: 750px) {
-    #navbar-contents {
-      display: none;
-    }
     padding-top: 1.75rem;
     padding-bottom: 1rem;
     padding-right: 3rem;
-
-    a {
-      padding: 0;
-    }
   }
 `;
+
+const Navbar = memo(({ className, children, ...rest }) => {
+  return (
+    <Flex className={cx(styles, className)} {...rest}>
+      {children}
+    </Flex>
+  );
+});
+
+Navbar.displayName = 'Navbar';
 
 export { Navbar };

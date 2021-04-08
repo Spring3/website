@@ -1,6 +1,7 @@
 import React, { useMemo, useRef } from 'react';
 import { graphql } from 'gatsby';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from '@emotion/react';
+import { css, cx } from '@emotion/css';
 import { animated, useChain, useSpring } from 'react-spring';
 
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
@@ -27,63 +28,56 @@ import {
 } from '../animations';
 import { CookieConsentContextProvider } from '../context/CookieConsentContextProvider';
 
-const PageLayout = styled.div`
-  display: grid;
-  grid-gap: 0rem 3rem;
-  margin: 0 auto;
-  margin-bottom: 3rem;
+const styles = {
+  pageLayout: css`
+    display: grid;
+    grid-gap: 0rem 3rem;
+    margin: 0 auto;
+    margin-bottom: 3rem;
 
-  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
-  grid-template-areas:
-    'nav nav nav nav'
-    'info info content content'
-    'info info content content';
-
-  @media (max-width: 850px) {
-    grid-template-columns: repeat(4, 25%);
-    grid-gap: 0rem;
-
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
     grid-template-areas:
       'nav nav nav nav'
-      'info info info info'
-      'content content content content';
-  }
+      'info info content content'
+      'info info content content';
 
-  @media (max-width: 700px) {
-    grid-gap: 0rem;
+    @media (max-width: 850px) {
+      grid-template-columns: repeat(4, 25%);
+      grid-gap: 0rem;
 
-    grid-template-areas:
-      'nav nav nav nav'
-      'info info info info'
-      'content content content content';
-  }
-`;
+      grid-template-areas:
+        'nav nav nav nav'
+        'info info info info'
+        'content content content content';
+    }
 
-const RelativeAnimatedDiv = styled(animated.div)`
-  position: relative;
-`;
+    @media (max-width: 700px) {
+      grid-gap: 0rem;
 
-const ProjectReferenceContainer = styled(Flex)`
-  position: relative;
-
-  @media (max-width: 750px) {
-    justify-content: flex-start;
-  }
-`;
-
-const ProjectInfoWrapper = styled(animated.div)`
-  position: relative;
-  grid-area: info;
-`;
-
-const ProjectContentNav = styled(Flex)`
-  grid-area: nav;
-`;
-
-const ProjectInfo = styled(animated.div)`
-  position: relative;
-  grid-area: content;
-`;
+      grid-template-areas:
+        'nav nav nav nav'
+        'info info info info'
+        'content content content content';
+    }
+  `,
+  relative: css`
+    position: relative;
+  `,
+  referenceContainer: css`
+    @media (max-width: 750px) {
+      justify-content: flex-start;
+    }
+  `,
+  infoWrapper: css`
+    grid-area: info;
+  `,
+  contentNav: css`
+    grid-area: nav;
+  `,
+  info: css`
+    grid-area: content;
+  `,
+};
 
 const ProjectsPage = (props) => {
   const imagesAnimationRef = useRef();
@@ -146,18 +140,21 @@ const ProjectsPage = (props) => {
                 />
               </Navbar>
               <BurgerMenu />
-              <PageLayout>
-                <ProjectContentNav
+              <div className={styles.pageLayout}>
+                <Flex
+                  className={styles.contentNav}
                   alignItems="center"
                   justifyContent="space-between"
                 >
-                  <RelativeAnimatedDiv
+                  <animated.div
+                    className={styles.relative}
                     id="title"
                     style={contentRevealAnimation}
                   >
                     <Subheading>{post.frontmatter.title}</Subheading>
-                  </RelativeAnimatedDiv>
-                  <ProjectReferenceContainer
+                  </animated.div>
+                  <Flex
+                    className={cx(styles.relative, styles.referenceContainer)}
                     style={referencesAnimation}
                     alignItems="center"
                     flexWrap="wrap"
@@ -169,9 +166,12 @@ const ProjectsPage = (props) => {
                       size={25}
                       frontmatter={post.frontmatter}
                     />
-                  </ProjectReferenceContainer>
-                </ProjectContentNav>
-                <ProjectInfoWrapper style={contentRevealAnimation}>
+                  </Flex>
+                </Flex>
+                <animated.div
+                  className={cx(styles.relative, styles.infoWrapper)}
+                  style={contentRevealAnimation}
+                >
                   <MarkdownContent
                     id="markdown"
                     dangerouslySetInnerHTML={{ __html: post.html }}
@@ -197,15 +197,18 @@ const ProjectsPage = (props) => {
 
                     return null;
                   })}
-                </ProjectInfoWrapper>
-                <ProjectInfo style={imageRevealAnimation}>
+                </animated.div>
+                <animated.div
+                  className={cx(styles.relative, styles.info)}
+                  style={imageRevealAnimation}
+                >
                   <ImageCarousel images={images} />
                   <Tags
                     style={tagsAnimation}
                     tags={post.frontmatter.technologies}
                   />
-                </ProjectInfo>
-              </PageLayout>
+                </animated.div>
+              </div>
               <SlugListMenu active={post.fields.slug} slugs={slugs} />
             </PageWrapper>
           </ImagePreviewContextProvider>

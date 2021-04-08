@@ -5,7 +5,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import styled from 'styled-components';
+import { css } from '@emotion/css';
 
 import { animated, useSpring } from 'react-spring';
 import { useIntersection, usePrevious } from 'react-use';
@@ -21,82 +21,76 @@ import { SubHeader } from '../common/Headers';
 import { revealBottom } from '../../animations';
 import { useWindowSizeDef } from '../../hooks/useWindowSizeDef';
 
-const ProjectInfo = styled(animated.div)`
-  @media (min-width: 1050px) {
-    position: sticky;
-    top: 16%;
-    z-index: 2;
-  }
-`;
+const styles = {
+  projectInfo: css`
+    @media (min-width: 1050px) {
+      position: sticky;
+      top: 16%;
+      z-index: 2;
+    }
+  `,
+  infoWrapper: css`
+    width: 100%;
+    position: relative;
 
-const InfoWrapper = styled(animated.div)`
-  width: 100%;
-  position: relative;
-
-  @media (min-width: 1051px) {
-    padding-right: 1rem;
-    width: 40%;
-    position: sticky;
-    top: 16%;
-  }
-`;
-
-const ImageWrapper = styled(animated.div)`
-  width: 58%;
-  gap: 0px;
-  position: relative;
-
-  @media (max-width: 1200px) {
+    @media (min-width: 1051px) {
+      padding-right: 1rem;
+      width: 40%;
+      position: sticky;
+      top: 16%;
+    }
+  `,
+  imageWrapper: css`
     width: 58%;
-    gap: 0px 1rem;
-  }
+    gap: 0px;
+    position: relative;
 
-  @media (max-width: 1050px) {
-    display: none;
-  }
-`;
+    @media (max-width: 1200px) {
+      width: 58%;
+      gap: 0px 1rem;
+    }
 
-const ProjectRow = styled(Flex)`
-  width: 100%;
-  position: relative;
+    @media (max-width: 1050px) {
+      display: none;
+    }
+  `,
+  projectRow: css`
+    width: 100%;
+    position: relative;
 
-  @supports (-moz-appearance: none) {
-    transform: none !important;
-  }
-`;
+    @supports (-moz-appearance: none) {
+      transform: none !important;
+    }
+  `,
+  projectRowWrapper: css`
+    width: 100%;
+  `,
+  projectTitle: css`
+    margin-bottom: 1.5rem;
+    margin-top: 0px;
+  `,
+  projectMarkdownContent: css`
+    font-size: 1rem;
+    -webkit-line-clamp: 1;
 
-const ProjectRowWrapper = styled.div`
-  width: 100%;
-`;
+    @media (max-width: 1050px) {
+      margin-top: 2.5rem;
+    }
 
-const ProjectTitle = styled(SubHeader)`
-  margin-bottom: 1.5rem;
-  margin-top: 0px;
-`;
-
-const ProjectContent = styled(MarkdownContent)`
-  font-size: 1rem;
-  -webkit-line-clamp: 1;
-
-  @media (max-width: 1050px) {
-    margin-top: 2.5rem;
-  }
-
-  border-left: 5px solid ${(props) => props.theme.marker};
-  padding-left: 1rem;
-`;
-
-const SmallScreenCarousel = styled(ImageCarousel)`
-  @media (min-width: 1050px) {
-    display: none;
-  }
-`;
-
-const LimitedDecorationsLayer = styled(Decorations)`
-  @media (max-width: 1050px) {
-    display: none;
-  }
-`;
+    border-left: 5px solid ${(theme) => theme?.marker};
+    padding-left: 1rem;
+  `,
+  imageCarousel: css`
+    @media (min-width: 1050px) {
+      display: none;
+    }
+  `,
+  decorations: css`
+    @media (max-width: 1050px) {
+      display: none;
+    }
+  `,
+};
 
 const Project = ({ node, index }) => {
   const [wasRevealed, setRevealed] = useState(false);
@@ -177,7 +171,8 @@ const Project = ({ node, index }) => {
       const { props, squares, circles } = layerData;
 
       return (
-        <LimitedDecorationsLayer
+        <Decorations
+          className={styles.decorations}
           key={key}
           layer={key}
           {...props}
@@ -191,7 +186,7 @@ const Project = ({ node, index }) => {
             // eslint-disable-next-line react/no-array-index-key
             <Circle {...cirlceProps} key={`circle-${i}`} />
           ))}
-        </LimitedDecorationsLayer>
+        </Decorations>
       );
     },
     [id]
@@ -208,33 +203,39 @@ const Project = ({ node, index }) => {
   }, [renderLayer]);
 
   return (
-    <ProjectRowWrapper ref={projectRef}>
-      <ProjectRow
+    <div className={styles.projectRowWrapper} ref={projectRef}>
+      <Flex
+        className={styles.projectRow}
         id={id}
         style={revealAnimation}
         justifyContent="space-between"
       >
-        <InfoWrapper>
-          <ProjectInfo index={index}>
-            <ProjectTitle>
+        <animated.div className={styles.infoWrapper}>
+          <animated.div className={styles.projectInfo} index={index}>
+            <SubHeader className={styles.projectTitle}>
               <Link to={node.fields.slug} marker={node.frontmatter.marker} bold>
                 {node.frontmatter.title}
               </Link>
-            </ProjectTitle>
-            <SmallScreenCarousel key={`carousel-${id}`} images={images} />
-            <ProjectContent
+            </SubHeader>
+            <ImageCarousel
+              className={styles.imageCarousel}
+              key={`carousel-${id}`}
+              images={images}
+            />
+            <MarkdownContent
+              className={styles.projectMarkdownContent}
               marker={node.frontmatter.marker}
               dangerouslySetInnerHTML={{ __html: node.html }}
             />
             <Tags style={tagAnimation} tags={node.frontmatter.technologies} />
-          </ProjectInfo>
-        </InfoWrapper>
-        <ImageWrapper>
+          </animated.div>
+        </animated.div>
+        <animated.div className={styles.imageWrapper}>
           <FixedImageSet containerRef={projectRef} images={images} />
-        </ImageWrapper>
+        </animated.div>
         {decorationLayers}
-      </ProjectRow>
-    </ProjectRowWrapper>
+      </Flex>
+    </div>
   );
 };
 

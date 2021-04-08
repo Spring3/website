@@ -9,7 +9,7 @@ const styles = {
     width: 100%;
     top: ${top};
     height: ${height};
-    maxheight: calc(100% - ${top});
+    max-height: calc(100% - ${top});
     z-index: ${layer === 'back' ? '-1' : '1'};
     pointer-events: ${layer === 'back' ? 'all' : 'none'};
     position: ${position};

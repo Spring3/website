@@ -89,6 +89,10 @@ const styles = {
     touch-action: pan-y;
     max-height: calc(${maxHeight + 'px' || '100vh'} - 1rem);
   `,
+  previewButtonIcon: css`
+    fill: rgba(255, 255, 255, 0.5);
+    vertical-align: middle;
+  `,
 };
 
 const ImagePreview = ({ images, startIndex = 0, onClose }) => {
@@ -281,11 +285,8 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
             color="white"
             onClick={onClose}
           />
-          <PreviewButtonPrevious
-            onClick={previousSlide}
-            isDisabled={index === 0}
-          >
-            <ArrowLeftIcon color="white" />
+          <PreviewButtonPrevious onClick={previousSlide} disabled={index === 0}>
+            <ArrowLeftIcon className={styles.previewButtonIcon} color="white" />
           </PreviewButtonPrevious>
           <div className={styles.previewImages}>
             {draggingAnimationSprings.map(({ display, transform }, i) => {
@@ -308,9 +309,12 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
           </div>
           <PreviewButtonNext
             onClick={nextSlide}
-            isDisabled={index === images.length - 1}
+            disabled={index === images.length - 1}
           >
-            <ArrowRightIcon color="white" />
+            <ArrowRightIcon
+              className={styles.previewButtonIcon}
+              color="white"
+            />
           </PreviewButtonNext>
         </animated.div>
       </ImagePreviewPortal>

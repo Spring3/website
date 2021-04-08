@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { css, keyframes } from '@emotion/css';
+import { cx, css, keyframes } from '@emotion/css';
 import { animated, useSpring } from 'react-spring';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 import { Link } from '../Reference';
@@ -25,18 +25,20 @@ const bounceLeftAnimation = keyframes`
 `;
 
 const styles = {
-  container: ({ withColorfulBackground, theme }) => css`
+  container: ({ theme }) => css`
     position: relative;
-    background: ${withColorfulBackground
-      ? theme?.marker || MARKERS.blue
-      : 'transparent'};
+    background: ${theme?.marker || MARKERS.blue};
     border-radius: 3px;
     padding: 0.1rem 0.6rem 0.1rem 0rem;
 
     &:hover {
-      background: ${withColorfulBackground
-        ? theme?.marker || MARKERS.blue
-        : 'transparent'};
+      background: ${theme?.marker || MARKERS.blue};
+    }
+  `,
+  transparentBg: css`
+    background: transparent;
+    &:hover {
+      background: transparent;
     }
   `,
   animatedLink: css`
@@ -67,7 +69,9 @@ const ButtonBack = memo(({ href, value, withColorfulBackground }) => {
 
   return (
     <animated.div
-      className={styles.container({ withColorfulBackground })}
+      className={cx(styles.container({}), {
+        [styles.transparentBg]: !withColorfulBackground,
+      })}
       style={revealAnimation}
     >
       <Link className={styles.animatedLink} to={href}>

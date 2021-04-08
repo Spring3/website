@@ -22,7 +22,7 @@ Production:
 - [Gatsby](https://github.com/gatsbyjs/gatsby)
 - [React](https://github.com/facebook/react)
 - [React-spring](https://github.com/pmndrs/react-spring) for animations
-- [Styled Components](https://www.styled-components.com/)
+- [Emotion](https://emotion.sh/)
 
 ### Data
 

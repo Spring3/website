@@ -1,7 +1,7 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, memo } from 'react';
+import { css } from '@emotion/css';
 import MenuIcon from 'mdi-react/MenuIcon';
 import CloseIcon from 'mdi-react/CloseIcon';
-import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import { Helmet } from 'react-helmet';
 import { Reference, Link } from './Reference';
@@ -14,103 +14,92 @@ import { MARKERS } from '../../theme';
 import { CookieManager } from './cookie/CookieManager';
 import { useWindowSizeDef } from '../../hooks/useWindowSizeDef';
 
-const BurgerMenuWrapper = styled(animated.div)`
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  z-index: 5;
+const styles = {
+  buttonWrapper: css`
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 5;
 
-  @media (max-width: 750px) {
-    right: 1rem;
-  }
+    @media (max-width: 750px) {
+      right: 1rem;
+    }
 
-  @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px) {
-    right: 1.5rem;
-  }
-`;
-
-const Button = styled(Reference)`
-  background: transparent;
-  user-select: none;
-  &:hover {
+    @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px) {
+      right: 1.5rem;
+    }
+  `,
+  button: css`
     background: transparent;
-    cursor: pointer;
-  }
+    user-select: none;
+    &:hover {
+      background: transparent;
+      cursor: pointer;
+    }
 
-  &:focus {
+    &:focus {
+      background: transparent;
+      outline: normal;
+    }
+  `,
+  panelWrapper: css`
+    position: fixed;
+    z-index: 4;
+    max-width: 100%;
+    right: 0;
+    top: 0;
+    padding-bottom: 4rem;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border-left: 2px solid rgba(245, 245, 245, 0.9);
+    box-shadow: 0px 0px 10px ${MARKERS.shadow};
+
+    @media (max-width: 750px) {
+      background: white;
+    }
+  `,
+  panel: css`
+    overflow: hidden;
+    z-index: 4;
+    max-height: 100vh;
+    height: calc(100vh - 7.5rem);
+    overflow-y: scroll;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  `,
+  overlay: css`
     background: transparent;
-    outline: normal;
-  }
-`;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 4;
+  `,
+  logoContainer: css`
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(245, 245, 245, 0.9);
+  `,
+  transparentLink: css`
+    background: transparent;
+  `,
+  projectSection: css`
+    flex-grow: 1
+    overflow-y: scroll;
+  `,
+  utilitySection: css`
+    width: 100%;
+    padding-top: 1rem;
+  `,
+  marginless: css`
+    margin: 0;
+  `,
+};
 
-const BurgerMenuPanel = styled(Flex)`
-  overflow: hidden;
-  z-index: 4;
-  max-height: 100vh;
-  height: calc(100vh - 7.5rem);
-  overflow-y: scroll;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-`;
-
-const Overlay = styled(animated.div)`
-  background: transparent;
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 4;
-`;
-
-const BurgetMenuPanelWrapper = styled(animated.div)`
-  position: fixed;
-  z-index: 4;
-  max-width: 100%;
-  right: 0;
-  top: 0;
-  padding-bottom: 4rem;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  border-left: 2px solid rgba(245, 245, 245, 0.9);
-  box-shadow: 0px 0px 10px ${MARKERS.shadow};
-
-  @media (max-width: 750px) {
-    background: white;
-  }
-`;
-
-const LogoContainer = styled(Flex)`
-  padding-top: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid rgba(245, 245, 245, 0.9);
-`;
-
-const MarkerlessLink = styled(Link)`
-  background: transparent;
-`;
-
-const ProjectsSection = styled(Flex)`
-  flex-grow: 1
-  overflow-y: scroll;
-`;
-
-const UtilitySection = styled(Flex)`
-  width: 100%;
-  padding-top: 1rem;
-`;
-
-const SpaceLessSectionHeader = styled.h4`
-  margin: 0;
-`;
-
-const SpaceLessHeader = styled(SubHeader)`
-  margin: 0;
-`;
-
-const BurgerMenu = () => {
+const BurgerMenu = memo(() => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isHovering, setHovering] = useState(false);
   const windowSize = useWindowSizeDef();
@@ -201,57 +190,93 @@ const BurgerMenu = () => {
           </style>
         </Helmet>
       ) : null}
-      <BurgerMenuWrapper style={burgerMenuButtonAnimation}>
-        <Button role="button" href="#" onClick={onIconClick}>
+      <animated.div
+        className={styles.buttonWrapper}
+        style={burgerMenuButtonAnimation}
+      >
+        <Reference
+          className={styles.button}
+          role="button"
+          href="#"
+          onClick={onIconClick}
+        >
           <IconElement size={32} onMouseEnter={handleMouseEnter} />
-        </Button>
-      </BurgerMenuWrapper>
-      <Overlay style={overlayAnimation} onClick={onIconClick} />
-      <BurgetMenuPanelWrapper
+        </Reference>
+      </animated.div>
+      <animated.div
+        className={styles.overlay}
+        style={overlayAnimation}
+        onClick={onIconClick}
+      />
+      <animated.div
+        className={styles.panelWrapper}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={expandAnimation}
       >
-        <LogoContainer justifyContent="center" alignItems="center">
+        <Flex
+          className={styles.logoContainer}
+          justifyContent="center"
+          alignItems="center"
+        >
           <Logo width="65px" height="32.5px" />
-        </LogoContainer>
-        <BurgerMenuPanel
+        </Flex>
+        <Flex
+          className={styles.panel}
           style={expandContentPanelAnimation}
           direction="column"
           justifyContent="space-between"
           flexWrap="nowrap"
         >
-          <ProjectsSection direction="column" justifyContent="flex-start">
-            <SpaceLessSectionHeader>Projects</SpaceLessSectionHeader>
-            <MarkerlessLink to="/aurelins-website">
-              <SpaceLessHeader>Aurelins Website</SpaceLessHeader>
-            </MarkerlessLink>
-            <MarkerlessLink to="/redshape">
-              <SpaceLessHeader>Redshape</SpaceLessHeader>
-            </MarkerlessLink>
-            <MarkerlessLink to="/starbot">
-              <SpaceLessHeader>Starbot</SpaceLessHeader>
-            </MarkerlessLink>
-            <MarkerlessLink to="/twitch-auto-points">
-              <SpaceLessHeader>Twitch Auto Points</SpaceLessHeader>
-            </MarkerlessLink>
-            <MarkerlessLink to="/website">
-              <SpaceLessHeader>Website</SpaceLessHeader>
-            </MarkerlessLink>
-          </ProjectsSection>
-          <UtilitySection direction="column" justifyContent="center">
+          <Flex
+            className={styles.projectSection}
+            direction="column"
+            justifyContent="flex-start"
+          >
+            <h4 className={styles.marginless}>Projects</h4>
+            <Link className={styles.transparentLink} to="/aurelins-website">
+              <SubHeader className={styles.marginless}>
+                Aurelins Website
+              </SubHeader>
+            </Link>
+            <Link className={styles.transparentLink} to="/redshape">
+              <SubHeader className={styles.marginless}>Redshape</SubHeader>
+            </Link>
+            <Link className={styles.transparentLink} to="/starbot">
+              <SubHeader className={styles.marginless}>Starbot</SubHeader>
+            </Link>
+            <Link className={styles.transparentLink} to="/twitch-auto-points">
+              <SubHeader className={styles.marginless}>
+                Twitch Auto Points
+              </SubHeader>
+            </Link>
+            <Link className={styles.transparentLink} to="/website">
+              <SubHeader className={styles.marginless}>Website</SubHeader>
+            </Link>
+          </Flex>
+          <Flex
+            className={styles.utilitySection}
+            direction="column"
+            justifyContent="center"
+          >
             <CookieManager />
-            <UtilitySection justifyContent="space-between" alignItems="center">
-              <MarkerlessLink to="/cv">
-                <SpaceLessSectionHeader>CV Page</SpaceLessSectionHeader>
-              </MarkerlessLink>
+            <Flex
+              className={styles.utilitySection}
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Link className={styles.transparentLink} to="/cv">
+                <h4 className={styles.marginless}>CV Page</h4>
+              </Link>
               <SocialButtons size={24} onlyImportant />
-            </UtilitySection>
-          </UtilitySection>
-        </BurgerMenuPanel>
-      </BurgetMenuPanelWrapper>
+            </Flex>
+          </Flex>
+        </Flex>
+      </animated.div>
     </>
   );
-};
+});
+
+BurgerMenu.displayName = 'BurgerMenu';
 
 export { BurgerMenu };

@@ -1,9 +1,18 @@
-import styled from 'styled-components';
+import React from 'react';
+import { css, cx } from '@emotion/css';
 import { Button } from './Button';
 
-const FlatButton = styled(Button)`
+const styles = css`
   background: transparent;
   border: none;
 `;
+
+const FlatButton = ({ className, children, ...rest }) => {
+  return (
+    <Button className={cx(styles, className)} {...rest}>
+      {children}
+    </Button>
+  );
+};
 
 export { FlatButton };

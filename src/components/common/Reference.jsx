@@ -4,19 +4,19 @@ import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { MARKERS } from '../../theme';
 
-const genericStyles = ({ bold, theme }) => css`
+const genericStyles = ({ theme }) => css`
   transition: background ease 0.2s;
   transition: border ease 0.2s;
   text-decoration: none;
   color: var(--text-color-primary);
-  font-weight: ${bold ? 'bold' : 500};
+  font-weight: 500;
   padding: 2px;
   ${theme?.marker
     ? `background: linear-gradient(to bottom, transparent 0%, transparent 60%, ${theme.marker} 60%, ${theme.marker} 100%);`
     : 'background: linear-gradient(to bottom, transparent 0%, transparent 60%, var(--marker-blue) 60%,  var(--marker-blue) 100%);'}
 
   &:visited {
-    font-weight: ${bold ? 'bold' : 500};
+    font-weight: 500;
     padding: 2px;
     ${theme?.marker
       ? `background: linear-gradient(to bottom, transparent 0%, transparent 60%, ${theme.marker} 60%, ${theme.marker} 100%);`
@@ -40,6 +40,13 @@ const styles = {
       border-radius: 0px;
     }
   `,
+  bold: css`
+    font-weight: bold;
+
+    &:visited {
+      font-weight: bold;
+    }
+  `,
 };
 
 const Reference = ({
@@ -52,12 +59,16 @@ const Reference = ({
   ...rest
 }) => {
   const additionalProps = newTab
-    ? { target: '_blank', rel: 'noopener noreferrer' }
+    ? { target: '_blank', rel: 'noopener,noreferrer' }
     : {};
   return (
     <a
-      className={cx(genericStyles({ bold }), styles.reference, className)}
-      bold={bold}
+      className={cx(
+        genericStyles({}),
+        { [styles.bold]: bold },
+        styles.reference,
+        className
+      )}
       onClick={onClick}
       href={href}
       {...rest}

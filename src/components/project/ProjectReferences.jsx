@@ -1,40 +1,51 @@
 import React from 'react';
-import styled from 'styled-components';
+import { cx, css } from '@emotion/css';
 import GithubIcon from 'mdi-react/GithubIcon';
 import CardSearchOutlineIcon from 'mdi-react/CardSearchOutlineIcon';
 import ChromeIcon from 'mdi-react/GoogleChromeIcon';
 import FirefoxIcon from 'mdi-react/FirefoxIcon';
 import { Reference } from '../common/Reference';
 
-const StyledReference = styled(Reference)`
-  display: flex !important;
-  flex-wrap: wrap;
-  background: none;
-  height: 2rem;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.2rem;
-  svg {
-    margin-right: ${(props) => (props.onlyIcons ? '0rem' : '0.5rem')};
+const styles = {
+  reference: css`
+    display: flex !important;
+    flex-wrap: wrap;
+    background: none;
+    height: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+
+    &:visited,
+    &:focus,
+    &:hover {
+      border-radius: 3px;
+    }
+
+    @media (max-width: 750px) {
+      font-size: 1rem;
+      margin-right: 1rem;
+    }
+  `,
+  onlyIcons: css`
+    margin-right: 0rem;
     vertical-align: middle;
-  }
-
-  &:visited,
-  &:focus,
-  &:hover {
-    border-radius: 3px;
-  }
-
-  @media (max-width: 750px) {
-    font-size: 1rem;
-    margin-right: 1rem;
-  }
-`;
+  `,
+  icons: css`
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  `,
+};
 
 const ProjectReference = ({ href, children, onlyIcons }) => (
-  <StyledReference href={href} newTab onlyIcons={onlyIcons}>
+  <Reference
+    className={styles.reference}
+    href={href}
+    newTab
+    onlyIcons={onlyIcons}
+  >
     {children}
-  </StyledReference>
+  </Reference>
 );
 
 const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
@@ -42,12 +53,14 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.chrome) {
     components.push(
-      <ProjectReference
-        key={frontmatter.chrome}
-        href={frontmatter.chrome}
-        onlyIcons={onlyIcons}
-      >
-        <ChromeIcon size={size} />
+      <ProjectReference key={frontmatter.chrome} href={frontmatter.chrome}>
+        <ChromeIcon
+          className={cx({
+            [styles.onlyIcons]: onlyIcons,
+            [styles.icons]: !onlyIcons,
+          })}
+          size={size}
+        />
         {onlyIcons ? '' : ' Chrome Store'}
       </ProjectReference>
     );
@@ -55,12 +68,14 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.firefox) {
     components.push(
-      <ProjectReference
-        key={frontmatter.firefox}
-        href={frontmatter.firefox}
-        onlyIcons={onlyIcons}
-      >
-        <FirefoxIcon size={size} />
+      <ProjectReference key={frontmatter.firefox} href={frontmatter.firefox}>
+        <FirefoxIcon
+          className={cx({
+            [styles.onlyIcons]: onlyIcons,
+            [styles.icons]: !onlyIcons,
+          })}
+          size={size}
+        />
         {onlyIcons ? '' : ' Firefox Store'}
       </ProjectReference>
     );
@@ -68,12 +83,14 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
 
   if (frontmatter.demo) {
     components.push(
-      <ProjectReference
-        key={frontmatter.demo}
-        href={frontmatter.demo}
-        onlyIcons={onlyIcons}
-      >
-        <CardSearchOutlineIcon size={size} />
+      <ProjectReference key={frontmatter.demo} href={frontmatter.demo}>
+        <CardSearchOutlineIcon
+          className={cx({
+            [styles.onlyIcons]: onlyIcons,
+            [styles.icons]: !onlyIcons,
+          })}
+          size={size}
+        />
         {onlyIcons ? '' : ' Demo'}
       </ProjectReference>
     );
@@ -84,9 +101,14 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
       <ProjectReference
         key={frontmatter.repository}
         href={frontmatter.repository}
-        onlyIcons={onlyIcons}
       >
-        <GithubIcon size={size} />
+        <GithubIcon
+          className={cx({
+            [styles.onlyIcons]: onlyIcons,
+            [styles.icons]: !onlyIcons,
+          })}
+          size={size}
+        />
         {onlyIcons ? '' : ' Source'}
       </ProjectReference>
     );
