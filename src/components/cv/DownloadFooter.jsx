@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import React from 'react';
+import { cx, css } from '@emotion/css';
 
-const DownloadFooter = styled.footer`
+const styles = css`
   position: fixed;
   bottom: 0px;
   display: none;
@@ -11,15 +12,14 @@ const DownloadFooter = styled.footer`
   background: var(--background-color);
   align-items: center;
   z-index: 1;
-  a {
-    svg {
-      vertical-align: bottom;
-    }
-  }
 
   @media (max-width: 750px) {
     display: flex;
   }
 `;
+
+const DownloadFooter = ({ className, children }) => {
+  return <footer className={cx(styles, className)}>{children}</footer>;
+};
 
 export { DownloadFooter };

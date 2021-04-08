@@ -1,52 +1,50 @@
 import React, { useRef } from 'react';
-import styled from 'styled-components';
+import { css, cx } from '@emotion/css';
 import { Carousel } from 'react-responsive-carousel';
 import { useImagePreview } from '../../context/ImagePreviewContext';
 import { LazyImage } from './LazyImage';
 
-const CarouselContainer = styled.div`
-  padding-top: ${(props) => (props.isPreview ? '0' : '1.5rem')};
+const styles = {
+  container: css`
+    padding-top: 1.5rem;
 
-  @media (max-width: 1050px) {
-    padding-top: 0;
-  }
-`;
-
-const StyledCarousel = styled(Carousel)`
-  div:first-of-type {
-    border-radius: 5px;
-  }
-
-  .slide {
-    background: transparent;
-    overflow: hidden;
-    cursor: pointer;
-  }
-
-  .thumbs {
-    padding: 0 !important;
-  }
-
-  .thumbs-wrapper {
-    margin: 20px 0px !important;
-  }
-
-  @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px),
-    (max-width: 750px) {
-    .slider-wrapper {
-      max-height: 80vh;
+    @media (max-widht: 1050px) {
+      padding-top: 0;
     }
-  }
-`;
+  `,
+  singleImage: css`
+    max-width: 100%;
+  `,
+  slide: css`
+    cursor: pointer;
+  `,
+  carousel: css`
+    div:first-of-type {
+      border-radius: 5px;
+    }
 
-const SingleImage = styled(LazyImage)`
-  max-width: 100%;
-  cursor: pointer;
-`;
+    .slide {
+      background: transparent;
+      overflow: hidden;
+      cursor: pointer;
+    }
 
-const ImageSlide = styled(LazyImage)`
-  cursor: pointer;
-`;
+    .thumbs {
+      padding: 0 !important;
+    }
+
+    .thumbs-wrapper {
+      margin: 20px 0px !important;
+    }
+
+    @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px),
+      (max-width: 750px) {
+      .slider-wrapper {
+        max-height: 80vh;
+      }
+    }
+  `,
+};
 
 const ImageCarousel = ({ className, images }) => {
   const { showImagePreview } = useImagePreview();
@@ -59,8 +57,10 @@ const ImageCarousel = ({ className, images }) => {
   if (images.length === 1) {
     const image = images[0];
     return (
-      <div ref={containerRef}>
-        <SingleImage
+      <div className={cx(styles.singleImage, className)} ref={containerRef}>
+        <LazyImage
+          className={cx(styles.slide, styles.singleImage)}
+          key={image.name}
           alt={image.name}
           src={image.src}
           placeholder={image.placeholder}
@@ -73,34 +73,33 @@ const ImageCarousel = ({ className, images }) => {
   }
 
   return (
-    <>
-      <CarouselContainer ref={containerRef}>
-        <StyledCarousel
-          className={className}
-          showStatus={false}
-          showIndicators={false}
-          showThumbs={false}
-          infiniteLoop
-          interval={5000}
-          swipeable
-          autoPlay
-          dynamicHeight
-          onClickItem={(index) => showImagePreview(images, index)}
-        >
-          {images.map((image) => (
-            <ImageSlide
-              key={image.name}
-              intersectionTriggerRef={containerRef}
-              alt={image.name}
-              src={image.src}
-              placeholder={image.placeholder}
-              srcSet={image.srcSet}
-              sizes={image.sizes}
-            />
-          ))}
-        </StyledCarousel>
-      </CarouselContainer>
-    </>
+    <div className={cx(styles.container, className)} ref={containerRef}>
+      <Carousel
+        className={styles.carousel}
+        showStatus={false}
+        showIndicators={false}
+        showThumbs={false}
+        infiniteLoop
+        interval={5000}
+        swipeable
+        autoPlay
+        dynamicHeight
+        onClickItem={(index) => showImagePreview(images, index)}
+      >
+        {images.map((image) => (
+          <LazyImage
+            className={styles.slide}
+            key={image.name}
+            intersectionTriggerRef={containerRef}
+            alt={image.name}
+            src={image.src}
+            placeholder={image.placeholder}
+            srcSet={image.srcSet}
+            sizes={image.sizes}
+          />
+        ))}
+      </Carousel>
+    </div>
   );
 };
 

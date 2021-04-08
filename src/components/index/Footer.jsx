@@ -1,24 +1,23 @@
 import React from 'react';
-import styled from 'styled-components';
+import { css } from '@emotion/css';
+import { Flex } from '../common/Flex';
 import { MARKERS } from '../../theme';
 import { Reference } from '../common/Reference';
+import { useTheme } from '@emotion/react';
 
-const StyledFooter = styled.footer`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-  grid-column: 1 / -1;
-`;
-
-const StyledLink = styled(Reference)`
-  font-weight: bold !important;
-  width: 100%;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 0px;
-  background: ${(props) => props.theme.marker || MARKERS.blue} !important;
-`;
+const styles = {
+  footer: css`
+    margin-top: 2rem;
+    grid-column: 1 / -1;
+  `,
+  url: (theme) => css`
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 0px;
+    background: ${theme?.marker || MARKERS.blue} !important;
+  `,
+};
 
 const Footer = () => {
   const onClick = (e) => {
@@ -31,12 +30,20 @@ const Footer = () => {
     }
   };
 
+  const theme = useTheme();
+
   return (
-    <StyledFooter>
-      <StyledLink href="#" onClick={onClick}>
+    <Flex className={styles.footer} justifyContent="center" alignItems="center">
+      <Reference
+        className={styles.url(theme)}
+        role="button"
+        bold
+        href="#"
+        onClick={onClick}
+      >
         Yaay, you&apos;ve reached the bottom! I can help you get back up.
-      </StyledLink>
-    </StyledFooter>
+      </Reference>
+    </Flex>
   );
 };
 

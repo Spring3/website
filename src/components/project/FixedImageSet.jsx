@@ -1,49 +1,25 @@
 import React, { Fragment } from 'react';
-import styled from 'styled-components';
+import { css } from '@emotion/css';
 import { useWindowSize } from 'react-use';
 import { useImagePreview } from '../../context/ImagePreviewContext';
 import { LazyImage } from '../common/LazyImage';
 
-const FixedImage = styled.div.attrs((props) => ({
-  style: {
-    backgroundImage: `url("${props.src}")`,
-    height: `${props.scaledHeight}px`,
-    backgroundPosition: `${props.horizontalPosition}px ${props.verticalPosition}px`,
-    backgroundSize: `${props.imageWidth}% auto`,
-  },
-}))`
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  position: sticky;
-  top: 16%;
-  cursor: pointer;
-`;
-
-const Placeholder = styled.div.attrs((props) => ({
-  style: {
-    height: `${props.scaledHeight * 2}px`,
-    backgroundPosition: `${props.horizontalPosition}px ${props.verticalPosition}px`,
-    backgroundSize: `${props.imageWidth}% auto`,
-  },
-}))`
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  position: sticky;
-  top: 16%;
-  cursor: initial;
-  pointer-events: none;
-`;
-
-const NormalImage = styled.div.attrs((props) => ({
-  style: {
-    backgroundImage: `url("${props.src}")`,
-    height: `${props.scaledHeight}px`,
-  },
-}))`
-  background-repeat: no-repeat;
-  background-size: contain;
-  cursor: pointer;
-`;
+const styles = {
+  fixedStyles: css`
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: sticky;
+    top: 16%;
+    cursor: initial;
+  `,
+  normalImage: ({ src, scaledHeight }) => css`
+    background-image: url('${src}');
+    height: ${scaledHeight}px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+  `,
+};
 
 const FixedImageSet = ({ images, containerRef }) => {
   const { height, width } = useWindowSize();
@@ -79,11 +55,11 @@ const FixedImageSet = ({ images, containerRef }) => {
     const scaledHeight = Number(imageAreaWidth / image.aspectRatio).toFixed(2);
     return (
       <LazyImage
+        className={styles.normalImage({ src: image.src, scaledHeight })}
         intersectionTriggerRef={containerRef}
-        Component={NormalImage}
+        Component={'div'}
         src={image.src}
         placeholder={image.placeholder}
-        scaledHeight={scaledHeight}
         onClick={() => showImagePreview(images)}
       />
     );
@@ -91,26 +67,35 @@ const FixedImageSet = ({ images, containerRef }) => {
 
   return images.map((image, i) => {
     const scaledHeight = Number(imageAreaWidth / image.aspectRatio).toFixed(2);
+    const style = {
+      backgroundImage: `url("${image.src}")`,
+      height: `${scaledHeight}px`,
+      backgroundPosition: `${horizontalPosition}px ${verticalPosition}px`,
+      backgroundSize: `${imageWidthPercent}% auto`,
+    };
+
+    const placeholderStyle = {
+      height: `${scaledHeight * 2}px`,
+      backgroundPosition: `${horizontalPosition}px ${verticalPosition}px`,
+      backgroundSize: `${imageWidthPercent}% auto`,
+      pointerEvents: 'none',
+    };
 
     return (
       <Fragment key={image.name}>
         <LazyImage
+          className={styles.fixedStyles}
+          style={style}
           intersectionTriggerRef={containerRef}
-          Component={FixedImage}
-          horizontalPosition={horizontalPosition}
-          imageWidth={imageWidthPercent}
-          verticalPosition={verticalPosition}
-          scaledHeight={scaledHeight}
+          Component={'div'}
           id={image.name}
           src={image.src}
           placeholder={image.placeholder}
           onClick={() => showImagePreview(images, i)}
         />
-        <Placeholder
-          horizontalPosition={horizontalPosition}
-          imageWidth={imageWidthPercent}
-          verticalPosition={verticalPosition}
-          scaledHeight={scaledHeight}
+        <div
+          className={styles.fixedStyles}
+          style={placeholderStyle}
           id={image.name}
         />
       </Fragment>

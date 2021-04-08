@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState, memo } from 'react';
-import styled from 'styled-components';
+import { css } from '@emotion/css';
 import CookieOutlineIcon from 'mdi-react/CookieIcon';
 import CaretDownIcon from 'mdi-react/CaretDownOutlineIcon';
 import CaretUpIcon from 'mdi-react/CaretUpOutlineIcon';
@@ -12,48 +12,41 @@ import { Reference } from '../Reference';
 import { useCookieConsent } from '../../../context/CookieConsentContext';
 import { useWindowSizeDef } from '../../../hooks/useWindowSizeDef';
 
-const CookieBannerContainer = styled(animated.div)`
-  position: fixed;
-  left: 1rem;
-  bottom: 1rem;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0px 0px 5px lightgrey;
-  padding: 1.5rem;
-  border-radius: 5px;
-  z-index: 4;
-  width: 300px;
-  max-width: 60%;
+const styles = {
+  container: css`
+    position: fixed;
+    left: 1rem;
+    bottom: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 0px 5px lightgrey;
+    padding: 1.5rem;
+    border-radius: 5px;
+    z-index: 4;
+    width: 300px;
+    max-width: 60%;
 
-  h3 {
+    @media (min-width: 750px) {
+      left: 2rem;
+      bottom: 2rem;
+    }
+  `,
+  header: css`
     margin-top: 0px;
-    svg {
-      vertical-align: bottom;
-    }
-  }
-
-  a {
-    svg: {
-      vertical-align: bottom;
-    }
-  }
-
-  @media (min-width: 750px) {
-    left: 2rem;
-    bottom: 2rem;
-  }
-`;
-
-const Description = styled(animated.div)`
-  max-width: 300px;
-  overflow: hidden;
-  overflow-y: scroll;
-  margin: 0;
-  transition: height 0.4s;
-
-  a {
+  `,
+  icon: css`
+    vertical-align: bottom;
+  `,
+  description: css`
+    max-width: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin: 0;
+    transition: height 0.4s;
+  `,
+  policyLink: css`
     margin-bottom: 1rem;
-  }
-`;
+  `,
+};
 
 const CookieBanner = memo(() => {
   const [isExpanded, setExpanded] = useState(false);
@@ -126,36 +119,45 @@ const CookieBanner = memo(() => {
   }
 
   return (
-    <CookieBannerContainer style={introAnimation}>
+    <animated.div className={styles.container} style={introAnimation}>
       <Flex alignItems="center" justifyContent="space-between">
-        <h3>
-          <CookieOutlineIcon size={40} color="#875A34" /> Cookies!
+        <h3 className={styles.header}>
+          <CookieOutlineIcon
+            className={styles.icon}
+            size={40}
+            color="#875A34"
+          />{' '}
+          Cookies!
         </h3>
-        <FlatButton href="" onClick={onCaretClick}>
-          {isExpanded ? <CaretDownIcon /> : <CaretUpIcon />}
+        <FlatButton onClick={onCaretClick}>
+          {isExpanded ? (
+            <CaretDownIcon className={styles.icon} />
+          ) : (
+            <CaretUpIcon className={styles.icon} />
+          )}
         </FlatButton>
       </Flex>
-      <Description style={descriptionAnimation}>
+      <animated.div className={styles.description} style={descriptionAnimation}>
         <p>
           I use anonymised google analytics cookies to see if anyone visits this
           website at all. Neither do I export nor use this data in any way other
           than observative.
         </p>
         <Reference
+          className={styles.policyLink}
           href="https://policies.google.com/technologies/partner-sites"
-          target="_blank"
-          rel="noopener,noreferrer"
+          newTab
         >
           Google Privacy & Terms
         </Reference>
-      </Description>
+      </animated.div>
       <div>
         <Button onClick={onAccept}>Accept</Button>
         <Button onClick={onReject} theme={theme}>
           Reject
         </Button>
       </div>
-    </CookieBannerContainer>
+    </animated.div>
   );
 });
 

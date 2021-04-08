@@ -2,3 +2,5 @@ node_modules
 static
 public
 .cache
+gatsby-config.js
+gatsby-node.js

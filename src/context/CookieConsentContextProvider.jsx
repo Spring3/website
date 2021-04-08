@@ -2,7 +2,7 @@ import React from 'react';
 import { useConsentAPI, CookieConsentContext } from './CookieConsentContext';
 
 const CookieConsentContextProvider = ({ children }) => {
-  const { imagesToPreview, startIndex, ...api } = useConsentAPI();
+  const api = useConsentAPI();
 
   return (
     <CookieConsentContext.Provider value={api}>

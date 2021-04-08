@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import React from 'react';
+import { cx, css } from '@emotion/css';
 
-const paddingStyles = `
+const paddingStyles = css`
   padding-left: 6%;
   padding-right: 6%;
 
@@ -17,10 +18,7 @@ const paddingStyles = `
   }
 `;
 
-const PageWrapper = styled.main`
-  ${paddingStyles}
-  padding: 2.5rem 6% 3.5rem 6%;
-
+const styles = css`
   @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px) {
     padding-top: 0rem;
     padding-bottom: 1.5rem;
@@ -31,5 +29,11 @@ const PageWrapper = styled.main`
     padding-bottom: 1.5rem;
   }
 `;
+
+const PageWrapper = ({ className, children }) => {
+  return (
+    <main className={cx(paddingStyles, styles, className)}>{children}</main>
+  );
+};
 
 export { PageWrapper, paddingStyles };

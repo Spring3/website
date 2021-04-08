@@ -1,188 +1,149 @@
 import React, { useMemo } from 'react';
-import styled, { css } from 'styled-components';
+import { css, cx } from '@emotion/css';
 
 import { useAnchorTracker } from '../../hooks/useAnchorTracker';
 import { Link, Reference } from './Reference';
 import { Flex } from './Flex';
 import { slugToTitle } from '../../utils';
 import { useWindowSizeDef } from '../../hooks/useWindowSizeDef';
+import { useTheme } from '@emotion/react';
 
-const MenuContainer = styled(Flex)`
-  position: sticky;
-  bottom: 3rem;
-  width: 100%;
-  z-index: 3;
-  left: 0;
+const styles = {
+  menuContainer: css`
+    position: sticky;
+    bottom: 3rem;
+    width: 100%;
+    z-index: 3;
+    left: 0;
 
-  small {
+    @media (max-width: 750px) {
+      position: static;
+      margin-top: 1rem;
+      flex-direction: columnn;
+    }
+
+    @media (min-width: 750px) and (orientation: landscape) {
+      bottom: 1.5rem;
+    }
+  `,
+  small: css`
     color: var(--text-color-secondary);
-  }
-
-  @media (max-width: 750px) {
+  `,
+  slugMenuContainer: css`
     position: static;
-    margin-top: 1rem;
-    flex-direction: columnn;
-  }
 
-  @media (min-width: 750px) and (orientation: landscape) {
-    bottom: 1.5rem;
-  }
-`;
-
-const SlugMenuContainer = styled(MenuContainer)`
-  position: static;
-
-  @media (min-width: 751px) {
-    position: fixed !important;
-  }
-`;
-
-const styles = css`
-  background: transparent;
-  color: var(--text-color-secondary);
-  border-bottom: 2px solid transparent;
-  padding: 0px 0.5rem;
-  font-size: 0.8rem;
-  text-decoration: none;
-
-  &:visited {
+    @media (min-width: 751px) {
+      position: fixed !important;
+    }
+  `,
+  defaultStyles: (theme) => css`
     background: transparent;
     color: var(--text-color-secondary);
     border-bottom: 2px solid transparent;
     padding: 0px 0.5rem;
     font-size: 0.8rem;
     text-decoration: none;
-  }
 
-  &:hover,
-  &:focus {
-    ${(props) => css`
-      border-bottom: 2px solid ${props.theme.marker || 'var(--marker-blue)'};
+    &:visited {
       background: transparent;
-    `}
-  }
-`;
+      color: var(--text-color-secondary);
+      border-bottom: 2px solid transparent;
+      padding: 0px 0.5rem;
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
 
-const activeStyles = css`
-  transition: all ease 0.2s;
-  background: transparent;
-  color: var(--text-color-secondary);
-  border-bottom: 2px solid transparent;
-  padding: 0px 0.5rem;
-  font-size: 0.8rem;
-  text-decoration: none;
+    &:hover,
+    &:focus {
+      border-bottom: 2px solid ${theme?.marker || 'var(--marker-blue)'}
+      background: transparent;
+    }
+  `,
+  activeStyles: (theme) => css`
+    transition: all ease 0.2s;
+    color: var(--text-color-primary);
+    background: ${theme?.marker || 'var(--marker-blue)'};
 
-  font-weight: bold;
-  color: var(--text-color-primary) !important;
-  background: ${(props) => props.theme.marker || 'var(--marker-blue)'};
+    &:visited {
+      color: var(--text-color-primary) !important;
+      background: ${theme?.marker || 'var(--marker-blue)'};
+    }
 
-  &:visited {
-    background: transparent;
-    color: var(--text-color-secondary);
-    border-bottom: 2px solid transparent;
-    padding: 0px 0.5rem;
-    font-size: 0.8rem;
-    text-decoration: none;
+    &:hover,
+    &:focus {
+      border-bottom: 2px solid ${theme?.marker || 'var(--marker-blue)'};
+      background: ${theme?.marker || 'var(--marker-blue)'};
+    }
+  `,
+  anchorMenuItem: css`
+    display: inline-flex;
+    white-space: nowrap;
+  `,
+  slugMenuItem: css`
+    white-space: nowrap;
 
-    font-weight: bold;
-    color: var(--text-color-primary) !important;
-
-    background: ${(props) => props.theme.marker || 'var(--marker-blue)'};
-  }
-
-  &:hover,
-  &:focus {
-    border-bottom: 2px solid
-      ${(props) => props.theme.marker || 'var(--marker-blue)'};
-    background: ${(props) =>
-      props.active
-        ? props.theme.marker || 'var(--marker-blue)'
-        : 'transparent'};
-  }
-`;
-
-const AnchorMenuItem = styled(Reference)`
-  ${styles}
-  display: inline-flex;
-  white-space: nowrap;
-`;
-
-const ActiveAnchorMenuItem = styled(Reference)`
-  ${activeStyles};
-  display: inline-flex;
-  white-space: nowrap;
-`;
-
-const SlugMenuItem = styled(Link)`
-  ${styles}
-
-  white-space: nowrap;
-
-  &:visited,
-  &:focus,
-  &:hover {
-    border-radius: 0px;
-  }
-`;
-
-const ActiveSlugMenuItem = styled(Link)`
-  ${activeStyles}
-
-  border-radius: 3px;
-  white-space: nowrap;
-
-  &:visited,
-  &:focus,
-  &:hover {
-    border-radius: 0px;
-  }
-`;
+    &:visited,
+    &:focus,
+    &:hover {
+      border-radius: 0px;
+    }
+  `,
+  activeSlugMenu: css`
+    border-radius: 3px;
+  `,
+};
 
 const AnchorListMenu = ({ nodes, onClick }) => {
+  const theme = useTheme();
   const windowSize = useWindowSizeDef();
   const anchors = useMemo(() => nodes.map((node) => node.anchor), []);
   const activeAnchor = useAnchorTracker(anchors);
   const menuItems = useMemo(
     () =>
       nodes.map((node) => {
-        const MenuItem =
-          activeAnchor === node.anchor ? ActiveAnchorMenuItem : AnchorMenuItem;
+        const isActive = activeAnchor === node.anchor;
         return (
-          <MenuItem
+          <Reference
+            className={cx(
+              styles.defaultStyles(theme),
+              { [styles.activeStyles(theme)]: isActive },
+              styles.anchorMenuItem
+            )}
+            bold={isActive}
             onClick={onClick}
             href={node.anchor}
             data-anchor={node.anchor}
             key={node.anchor}
           >
             {node.name}
-          </MenuItem>
+          </Reference>
         );
       }),
     [activeAnchor]
   );
 
   return (
-    <MenuContainer
+    <Flex
+      className={styles.menuContainer}
       direction={windowSize.isSmall ? 'column' : 'row'}
       gap={windowSize.isSmall ? '1rem' : '0rem'}
       margined
       justifyContent="center"
       alignItems="center"
     >
-      <small>Projects:&nbsp;</small>
+      <small className={styles.small}>Projects:&nbsp;</small>
       {menuItems}
-      <AnchorMenuItem href="/cv" key="cv">
-        CV
-      </AnchorMenuItem>
-    </MenuContainer>
+    </Flex>
   );
 };
 
 const SlugListMenu = ({ slugs, active, onClick }) => {
   const windowSize = useWindowSizeDef();
+  const theme = useTheme();
 
   return (
-    <SlugMenuContainer
+    <Flex
+      className={cx(styles.menuContainer, styles.slugMenuContainer)}
       direction={windowSize.isSmall ? 'column' : 'row'}
       justifyContent="center"
       alignItems="center"
@@ -191,17 +152,26 @@ const SlugListMenu = ({ slugs, active, onClick }) => {
     >
       <small>Projects:&nbsp;</small>
       {slugs.map((slug) => {
-        const MenuItem = active === slug ? ActiveSlugMenuItem : SlugMenuItem;
+        const isActive = active === slug;
         return (
-          <MenuItem key={slug} onClick={onClick} to={slug}>
+          <Link
+            className={cx(
+              styles.defaultStyles(theme),
+              {
+                [styles.activeStyles(theme)]: isActive,
+                [styles.activeSlugMenu]: isActive,
+              },
+              styles.slugMenuItem
+            )}
+            key={slug}
+            onClick={onClick}
+            to={slug}
+          >
             {slugToTitle(slug)}
-          </MenuItem>
+          </Link>
         );
       })}
-      <SlugMenuItem onClick={onClick} to="/cv" key="cv">
-        CV
-      </SlugMenuItem>
-    </SlugMenuContainer>
+    </Flex>
   );
 };
 

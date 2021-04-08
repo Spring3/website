@@ -1,18 +1,21 @@
 import React, { useState, useRef, useEffect } from 'react';
-import styled from 'styled-components';
+import { cx, css } from '@emotion/css';
 import { animated, useSpring } from 'react-spring';
 import { useIntersection } from 'react-use';
 
-const Section = styled(animated.section)`
+const styles = ({ span }) => css`
   background: rgba(200, 200, 200, 0.1);
   padding: 1rem;
   border-radius: 5px;
   position: relative;
 
-  grid-row: span ${(props) => props.span || '1'};
+  grid-row: span ${span || '1'};
 
   @media (max-width: 750px) {
     margin: 0;
+    &:not(:first-child) {
+      margin-top: 2rem;
+    }
   }
 `;
 
@@ -40,9 +43,14 @@ const CVSection = ({ id, children, span }) => {
   }, [intersection, hasIntersected]);
 
   return (
-    <Section id={id} span={span} style={sectionAnimation} ref={ref}>
+    <animated.section
+      className={cx(styles({ span }))}
+      id={id}
+      style={sectionAnimation}
+      ref={ref}
+    >
       {children}
-    </Section>
+    </animated.section>
   );
 };
 
