@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import DownloadOutlineIcon from 'mdi-react/DownloadOutlineIcon';
 import { Reference } from '../Reference';
 
@@ -31,12 +31,12 @@ const styles = {
 
 const ButtonDownload = ({ href, value }) => (
   <Reference
-    className={styles.anchor}
+    css={styles.anchor}
     role="button"
     download="CV_dvasylenko.pdf"
     href={href}
   >
-    <DownloadOutlineIcon className={styles.icon} /> {value}
+    <DownloadOutlineIcon css={styles.icon} /> {value}
   </Reference>
 );
 

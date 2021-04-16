@@ -1,12 +1,11 @@
 import React, { useMemo } from 'react';
-import { css, cx } from '@emotion/css';
 
 import { useAnchorTracker } from '../../hooks/useAnchorTracker';
 import { Link, Reference } from './Reference';
 import { Flex } from './Flex';
 import { slugToTitle } from '../../utils';
 import { useWindowSizeDef } from '../../hooks/useWindowSizeDef';
-import { useTheme } from '@emotion/react';
+import { css } from '@emotion/react';
 
 const styles = {
   menuContainer: css`
@@ -94,7 +93,6 @@ const styles = {
 };
 
 const AnchorListMenu = ({ nodes, onClick }) => {
-  const theme = useTheme();
   const windowSize = useWindowSizeDef();
   const anchors = useMemo(() => nodes.map((node) => node.anchor), []);
   const activeAnchor = useAnchorTracker(anchors);
@@ -104,11 +102,12 @@ const AnchorListMenu = ({ nodes, onClick }) => {
         const isActive = activeAnchor === node.anchor;
         return (
           <Reference
-            className={cx(
+            css={(theme) => [
               styles.defaultStyles(theme),
-              { [styles.activeStyles(theme)]: isActive },
-              styles.anchorMenuItem
-            )}
+              ...(isActive
+                ? [styles.activeStyles(theme), styles.anchorMenuItem]
+                : [styles.anchorMenuItem]),
+            ]}
             bold={isActive}
             onClick={onClick}
             href={node.anchor}
@@ -139,11 +138,10 @@ const AnchorListMenu = ({ nodes, onClick }) => {
 
 const SlugListMenu = ({ slugs, active, onClick }) => {
   const windowSize = useWindowSizeDef();
-  const theme = useTheme();
 
   return (
     <Flex
-      className={cx(styles.menuContainer, styles.slugMenuContainer)}
+      css={[styles.menuContainer, styles.slugMenuContainer]}
       direction={windowSize.isSmall ? 'column' : 'row'}
       justifyContent="center"
       alignItems="center"
@@ -155,14 +153,16 @@ const SlugListMenu = ({ slugs, active, onClick }) => {
         const isActive = active === slug;
         return (
           <Link
-            className={cx(
+            css={(theme) => [
               styles.defaultStyles(theme),
-              {
-                [styles.activeStyles(theme)]: isActive,
-                [styles.activeSlugMenu]: isActive,
-              },
-              styles.slugMenuItem
-            )}
+              ...(isActive
+                ? [
+                    styles.activeStyles(theme),
+                    styles.activeSlugMenu,
+                    styles.slugMenuItem,
+                  ]
+                : [styles.slugMenuItem]),
+            ]}
             key={slug}
             onClick={onClick}
             to={slug}

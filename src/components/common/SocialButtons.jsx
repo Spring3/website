@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import GithubIcon from 'mdi-react/GithubIcon';
 import LinkedInIcon from 'mdi-react/LinkedinIcon';
 import TwitterIcon from 'mdi-react/TwitterIcon';
@@ -18,7 +18,7 @@ const styles = css`
 const OnlyImportantSocialButtons = ({ size }) => (
   <>
     <a
-      className={styles}
+      css={styles}
       href="https://github.com/Spring3"
       target="_blank"
       rel="noreferrer noopener"
@@ -26,7 +26,7 @@ const OnlyImportantSocialButtons = ({ size }) => (
       <GithubIcon color="#333" size={size} />
     </a>
     <a
-      className={styles}
+      css={styles}
       href="https://www.linkedin.com/in/dvasylenko/"
       target="_blank"
       rel="noreferrer noopener"
@@ -34,7 +34,7 @@ const OnlyImportantSocialButtons = ({ size }) => (
       <LinkedInIcon color="#0077b5" size={size} />
     </a>
     <a
-      className={styles}
+      css={styles}
       href="mailto:daniyil.vasylenko@gmail.com"
       target="_blank"
       rel="noreferrer noopener"
@@ -42,7 +42,7 @@ const OnlyImportantSocialButtons = ({ size }) => (
       <EmailOutlineIcon color="#ea4335" size={size} />
     </a>
     <a
-      className={styles}
+      css={styles}
       href="https://twitter.com/dan_vasylenko"
       target="_blank"
       rel="noreferrer noopener"
@@ -77,7 +77,7 @@ const SocialButtons = ({ className, size, onlyImportant, ...rest }) => {
     >
       <OnlyImportantSocialButtons size={size} />
       <a
-        className={styles}
+        css={styles}
         href="https://open.spotify.com/user/21vcdhgxp3gqinwau2aynzg7i?si=onT2d2-dTA-RqL7xHLI2Tw"
         target="_blank"
         rel="noreferrer noopener"

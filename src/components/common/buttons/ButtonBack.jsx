@@ -1,11 +1,10 @@
 import React, { memo } from 'react';
-import { cx, css, keyframes } from '@emotion/css';
+import { css, keyframes } from '@emotion/react';
 import { animated, useSpring } from 'react-spring';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
 import { Link } from '../Reference';
 import { MARKERS } from '../../../theme';
 import { revealLeft } from '../../../animations';
-import { useTheme } from '@emotion/react';
 
 const bounceLeftAnimation = keyframes`
   0% {
@@ -67,16 +66,16 @@ const styles = {
 
 const ButtonBack = memo(({ href, value, withColorfulBackground }) => {
   const revealAnimation = useSpring(revealLeft({ delay: 1000 }));
-  const theme = useTheme();
 
   return (
     <animated.div
-      className={cx(styles.container(theme), {
-        [styles.transparentBg]: !withColorfulBackground,
-      })}
+      css={(theme) => [
+        styles.container(theme),
+        ...(withColorfulBackground ? [] : [styles.transparentBg]),
+      ]}
       style={revealAnimation}
     >
-      <Link className={styles.animatedLink} to={href}>
+      <Link css={styles.animatedLink} to={href}>
         <ArrowLeftIcon /> {value}
       </Link>
     </animated.div>

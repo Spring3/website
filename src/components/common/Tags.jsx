@@ -1,7 +1,6 @@
 import React from 'react';
-import { cx, css } from '@emotion/css';
 import { animated } from 'react-spring';
-import { useTheme } from '@emotion/react';
+import { useTheme, css } from '@emotion/react';
 
 const styles = {
   container: css`
@@ -28,9 +27,9 @@ const Tags = ({ tags = [], className, ...rest }) => {
   const theme = useTheme();
 
   return (
-    <animated.div className={cx(styles.container, className)} {...rest}>
+    <animated.div className={className} css={styles.container} {...rest}>
       {tags.map((tag) => (
-        <li className={styles.tag(theme)} key={tag}>
+        <li css={styles.tag(theme)} key={tag}>
           {tag}
           &nbsp;
         </li>

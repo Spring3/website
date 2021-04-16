@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/react';
 import { animated } from 'react-spring';
 
 const styles = {
@@ -45,7 +45,8 @@ const styles = {
 const Decorations = memo(({ className, children, style, ...rest }) => {
   return (
     <animated.div
-      className={cx(styles.decorations(rest), className)}
+      className={className}
+      css={styles.decorations(rest)}
       style={style}
     >
       {children}
@@ -65,7 +66,8 @@ Decorations.displayName = 'Decorations';
 const GeometricObject = memo(({ className, style, ...rest }) => {
   return (
     <animated.div
-      className={cx(styles.geometricObject(rest), className)}
+      className={className}
+      css={styles.geometricObject(rest)}
       style={style}
     />
   );
@@ -78,19 +80,27 @@ GeometricObject.defaultProps = {
 GeometricObject.displayName = 'GeometricObject';
 
 const Rectangle = ({ className, radius, ...rest }) => {
-  const rectangleStyles = css`
-    border-radius: ${radius || '15px'};
-  `;
   return (
-    <GeometricObject {...rest} className={cx(rectangleStyles, className)} />
+    <GeometricObject
+      {...rest}
+      className={className}
+      css={css`
+        border-radius: ${radius || '15px'};
+      `}
+    />
   );
 };
 
 const Circle = ({ className, radius, ...rest }) => {
-  const circleStyles = css`
-    border-radius: ${radius || '50%'};
-  `;
-  return <GeometricObject {...rest} className={cx(circleStyles, className)} />;
+  return (
+    <GeometricObject
+      {...rest}
+      className={className}
+      css={css`
+        border-radius: ${radius || '50%'};
+      `}
+    />
+  );
 };
 
 export { Decorations, Rectangle, Circle };

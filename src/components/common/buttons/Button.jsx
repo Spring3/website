@@ -1,9 +1,9 @@
 import React from 'react';
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/react';
 import { genericStyles } from '../Reference';
-import { useTheme } from '@emotion/react';
 
-const styles = css`
+const styles = (theme) => css`
+  ${genericStyles(theme)}
   text-decoration: none;
   padding: 0.25rem 0.5rem;
   background: transparent;
@@ -19,11 +19,10 @@ const styles = css`
 `;
 
 const Button = ({ className, children, ...rest }) => {
-  const theme = useTheme();
-  const providedTheme = rest.theme || theme;
   return (
     <button
-      className={cx(genericStyles(providedTheme), styles, className)}
+      className={className}
+      css={(theme) => styles(rest.theme || theme)}
       {...rest}
     >
       {children}
