@@ -1,8 +1,8 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { graphql } from 'gatsby';
 import { ThemeProvider } from '@emotion/react';
 import { css, cx } from '@emotion/css';
-import { animated, useChain, useSpring } from 'react-spring';
+import { animated, useChain, useSpring, useSpringRef } from 'react-spring';
 
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
 import { ButtonBack } from '../components/common/buttons';
@@ -80,9 +80,9 @@ const styles = {
 };
 
 const ProjectsPage = (props) => {
-  const imagesAnimationRef = useRef();
-  const referencesAnimationRef = useRef();
-  const tagsAnimationRef = useRef();
+  const imagesAnimationRef = useSpringRef();
+  const referencesAnimationRef = useSpringRef();
+  const tagsAnimationRef = useSpringRef();
   // eslint-disable-next-line
   const post = props.data.markdownRemark;
   // eslint-disable-next-line

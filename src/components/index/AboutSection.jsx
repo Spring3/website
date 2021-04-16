@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { css } from '@emotion/css';
-import { animated, useChain, useSpring } from 'react-spring';
+import { animated, useChain, useSpring, useSpringRef } from 'react-spring';
 
 import { Header } from '../common/Headers';
 import { SocialButtons } from '../common/SocialButtons';
@@ -46,8 +46,8 @@ const styles = {
 };
 
 const AboutSection = ({ children }) => {
-  const headerAnimationRef = useRef();
-  const bodyAnimationRef = useRef();
+  const headerAnimationRef = useSpringRef();
+  const bodyAnimationRef = useSpringRef();
 
   const headerAnimation = useSpring(reveal({ ref: headerAnimationRef }));
   const springAnimation = useSpring(reveal({ ref: bodyAnimationRef }));
