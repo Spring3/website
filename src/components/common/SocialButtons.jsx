@@ -35,7 +35,7 @@ const OnlyImportantSocialButtons = ({ size }) => (
     </a>
     <a
       css={styles}
-      href="mailto:daniyil.vasylenko@gmail.com"
+      href="mailto:connect.danv@gmail.com"
       target="_blank"
       rel="noreferrer noopener"
     >
