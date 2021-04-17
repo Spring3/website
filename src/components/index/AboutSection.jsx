@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import { animated, useChain, useSpring, useSpringRef } from 'react-spring';
 
 import { Header } from '../common/Headers';
@@ -55,11 +55,7 @@ const AboutSection = ({ children }) => {
   useChain([headerAnimationRef, bodyAnimationRef], [0.2, 0.4]);
 
   return (
-    <Flex
-      className={styles.contentPanel}
-      direction="column"
-      justifyContent="center"
-    >
+    <Flex css={styles.contentPanel} direction="column" justifyContent="center">
       <Decorations layer="back">
         <Flickering duration={1}>
           <Rectangle
@@ -114,7 +110,7 @@ const AboutSection = ({ children }) => {
         </Flickering>
       </Decorations>
       <animated.div style={headerAnimation}>
-        <Header className={styles.hugeHeader}>Hello and Welcome!</Header>
+        <Header css={styles.hugeHeader}>Hello and Welcome!</Header>
       </animated.div>
       <animated.div style={springAnimation}>
         {children}

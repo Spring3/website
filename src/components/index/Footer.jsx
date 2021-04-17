@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import { Flex } from '../common/Flex';
 import { MARKERS } from '../../theme';
 import { Reference } from '../common/Reference';
@@ -33,9 +33,9 @@ const Footer = () => {
   const theme = useTheme();
 
   return (
-    <Flex className={styles.footer} justifyContent="center" alignItems="center">
+    <Flex css={styles.footer} justifyContent="center" alignItems="center">
       <Reference
-        className={styles.url(theme)}
+        css={styles.url(theme)}
         role="button"
         bold
         href="#"

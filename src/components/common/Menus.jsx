@@ -123,14 +123,14 @@ const AnchorListMenu = ({ nodes, onClick }) => {
 
   return (
     <Flex
-      className={styles.menuContainer}
+      css={styles.menuContainer}
       direction={windowSize.isSmall ? 'column' : 'row'}
       gap={windowSize.isSmall ? '1rem' : '0rem'}
       margined
       justifyContent="center"
       alignItems="center"
     >
-      <small className={styles.small}>Projects:&nbsp;</small>
+      <small css={styles.small}>Projects:&nbsp;</small>
       {menuItems}
     </Flex>
   );

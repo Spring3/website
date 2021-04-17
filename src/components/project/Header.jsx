@@ -1,5 +1,5 @@
 import React from 'react';
-import { cx, css } from '@emotion/css';
+import { css } from '@emotion/react';
 import { useTheme } from '@emotion/react';
 
 const styles = {
@@ -27,7 +27,7 @@ const styles = {
 const Header = ({ className, children, marker }) => {
   const theme = useTheme();
   return (
-    <h1 className={cx(styles.header(marker || theme.marker), className)}>
+    <h1 className={className} css={styles.header(marker || theme.marker)}>
       {children}
     </h1>
   );
@@ -37,11 +37,8 @@ const Subheading = ({ className, children, marker }) => {
   const theme = useTheme();
   return (
     <h2
-      className={cx(
-        styles.header(marker || theme.marker),
-        styles.subheading,
-        className
-      )}
+      className={className}
+      css={[styles.header(marker || theme.marker), styles.subheading]}
     >
       {children}
     </h2>

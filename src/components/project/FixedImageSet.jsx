@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import { useWindowSize } from 'react-use';
 import { useImagePreview } from '../../context/ImagePreviewContext';
 import { LazyImage } from '../common/LazyImage';
@@ -55,7 +55,7 @@ const FixedImageSet = ({ images, containerRef }) => {
     const scaledHeight = Number(imageAreaWidth / image.aspectRatio).toFixed(2);
     return (
       <LazyImage
-        className={styles.normalImage({ src: image.src, scaledHeight })}
+        css={styles.normalImage({ src: image.src, scaledHeight })}
         intersectionTriggerRef={containerRef}
         Component={'div'}
         src={image.src}
@@ -84,7 +84,7 @@ const FixedImageSet = ({ images, containerRef }) => {
     return (
       <Fragment key={image.name}>
         <LazyImage
-          className={styles.fixedStyles}
+          css={styles.fixedStyles}
           style={style}
           intersectionTriggerRef={containerRef}
           Component={'div'}
@@ -94,7 +94,7 @@ const FixedImageSet = ({ images, containerRef }) => {
           onClick={() => showImagePreview(images, i)}
         />
         <div
-          className={styles.fixedStyles}
+          css={styles.fixedStyles}
           style={placeholderStyle}
           id={image.name}
         />

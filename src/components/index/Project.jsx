@@ -5,7 +5,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 
 import { animated, useSpring } from 'react-spring';
 import { useIntersection, usePrevious } from 'react-use';
@@ -97,9 +97,9 @@ const Project = ({ node, index }) => {
   const [wasRevealed, setRevealed] = useState(false);
   const anchor = slugToAnchor(node.fields.slug);
 
+  const theme = useTheme();
   const projectRef = useRef();
   const windowSize = useWindowSizeDef();
-  const theme = useTheme();
   const id = anchor.substring(1);
 
   const wasSmallScreen = usePrevious(windowSize.isMedium);
@@ -174,7 +174,7 @@ const Project = ({ node, index }) => {
 
       return (
         <Decorations
-          className={styles.decorations}
+          css={styles.decorations}
           key={key}
           layer={key}
           {...props}
@@ -205,34 +205,34 @@ const Project = ({ node, index }) => {
   }, [renderLayer]);
 
   return (
-    <div className={styles.projectRowWrapper} ref={projectRef}>
+    <div css={styles.projectRowWrapper} ref={projectRef}>
       <Flex
-        className={styles.projectRow}
+        css={styles.projectRow}
         id={id}
         style={revealAnimation}
         justifyContent="space-between"
       >
-        <animated.div className={styles.infoWrapper}>
-          <animated.div className={styles.projectInfo} index={index}>
-            <SubHeader className={styles.projectTitle}>
+        <animated.div css={styles.infoWrapper}>
+          <animated.div css={styles.projectInfo} index={index}>
+            <SubHeader css={styles.projectTitle}>
               <Link to={node.fields.slug} marker={node.frontmatter.marker} bold>
                 {node.frontmatter.title}
               </Link>
             </SubHeader>
             <ImageCarousel
-              className={styles.imageCarousel}
+              css={styles.imageCarousel}
               key={`carousel-${id}`}
               images={images}
             />
             <MarkdownContent
-              className={styles.projectMarkdownContent(theme)}
+              css={styles.projectMarkdownContent(theme)}
               marker={node.frontmatter.marker}
               dangerouslySetInnerHTML={{ __html: node.html }}
             />
             <Tags style={tagAnimation} tags={node.frontmatter.technologies} />
           </animated.div>
         </animated.div>
-        <animated.div className={styles.imageWrapper}>
+        <animated.div css={styles.imageWrapper}>
           <FixedImageSet containerRef={projectRef} images={images} />
         </animated.div>
         {decorationLayers}

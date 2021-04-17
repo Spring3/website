@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { cx, css } from '@emotion/css';
+import { css } from '@emotion/react';
 import { animated, useSpring } from 'react-spring';
 import { useGithubData } from '../hooks/useGithubData';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
@@ -120,10 +120,10 @@ const CVPage = ({ data }) => {
             />
           </Navbar>
           <BurgerMenu />
-          <div className={styles.profilePageContents}>
-            <div className={cx(styles.grid, styles.profileGrid)}>
+          <div css={styles.profilePageContents}>
+            <div css={[styles.grid, styles.profileGrid]}>
               <LazyImage
-                className={styles.profilePicture}
+                css={styles.profilePicture}
                 style={profilePictureAnimation}
                 Component={animated.img}
                 alt="avatar"
@@ -131,7 +131,7 @@ const CVPage = ({ data }) => {
                 src={githubProfile.avatar_url || '/#'}
               />
               <animated.div
-                className={styles.profileInfo}
+                css={styles.profileInfo}
                 style={profileSectionAnimation}
               >
                 <Flex
@@ -140,7 +140,7 @@ const CVPage = ({ data }) => {
                   flexGrow="1"
                 >
                   <Subheading
-                    className={styles.stickySubheading}
+                    css={styles.stickySubheading}
                     marker={MARKERS.green}
                   >
                     {post.frontmatter.title}
@@ -169,15 +169,12 @@ const CVPage = ({ data }) => {
                 </Flex>
               </animated.div>
             </div>
-            <div className={styles.grid} id="intro-section">
+            <div css={styles.grid} id="intro-section">
               <CVSection id="experience" span={2}>
-                <Subheading
-                  className={styles.stickySubheading}
-                  marker={MARKERS.blue}
-                >
+                <Subheading css={styles.stickySubheading} marker={MARKERS.blue}>
                   Experience
                 </Subheading>
-                <div className={styles.cvSectionBlock}>
+                <div css={styles.cvSectionBlock}>
                   <h3>Full Stack Software Engineer</h3>
                   <p>
                     <strong>Company</strong>: Contentful
@@ -202,7 +199,7 @@ const CVPage = ({ data }) => {
                     <li>Part of the customer tech support</li>
                   </Flex>
                 </div>
-                <div className={styles.cvSectionBlock}>
+                <div css={styles.cvSectionBlock}>
                   <h3>Full Stack Developer</h3>
                   <p>
                     <strong>Company</strong>: Dial-Once
@@ -237,7 +234,7 @@ const CVPage = ({ data }) => {
                     </li>
                   </Flex>
                 </div>
-                <div className={styles.cvSectionBlock}>
+                <div css={styles.cvSectionBlock}>
                   <h3>Node.js Developer</h3>
                   <p>
                     <strong>Company</strong>: FASTEE Technologies
@@ -260,10 +257,7 @@ const CVPage = ({ data }) => {
                 </div>
               </CVSection>
               <CVSection id="skills">
-                <Subheading
-                  className={styles.stickySubheading}
-                  marker={MARKERS.red}
-                >
+                <Subheading css={styles.stickySubheading} marker={MARKERS.red}>
                   Skills
                 </Subheading>
                 <p>
@@ -308,12 +302,12 @@ const CVPage = ({ data }) => {
               </CVSection>
               <CVSection id="education">
                 <Subheading
-                  className={styles.stickySubheading}
+                  css={styles.stickySubheading}
                   marker={MARKERS.yellow}
                 >
                   Education
                 </Subheading>
-                <div className={styles.cvSectionBlock}>
+                <div css={styles.cvSectionBlock}>
                   <h3>Specialist Degree</h3>
                   <p>
                     <strong>Duration</strong>
@@ -333,7 +327,7 @@ const CVPage = ({ data }) => {
                     </li>
                   </Flex>
                 </div>
-                <div className={styles.cvSectionBlock}>
+                <div css={styles.cvSectionBlock}>
                   <h3>Bachelor Degree</h3>
                   <p>
                     <strong>Duration</strong>
@@ -363,7 +357,7 @@ const CVPage = ({ data }) => {
               </CVSection>
               <CVSection id="courses">
                 <Subheading
-                  className={styles.stickySubheading}
+                  css={styles.stickySubheading}
                   marker={MARKERS.green}
                 >
                   Courses
@@ -386,7 +380,7 @@ const CVPage = ({ data }) => {
               </CVSection>
               <CVSection id="language skills">
                 <Subheading
-                  className={styles.stickySubheading}
+                  css={styles.stickySubheading}
                   marker={MARKERS.purple}
                 >
                   Language Skills
@@ -401,7 +395,7 @@ const CVPage = ({ data }) => {
         </PageWrapper>
         {activeAnchor === '#intro-section' ? (
           <DownloadFooter>
-            <Flex className={styles.inlinedNavbarPart}>
+            <Flex css={styles.inlinedNavbarPart}>
               <SocialButtons size={30} onlyImportant />
               <ButtonDownload
                 href="https://drive.google.com/uc?export=download&id=1Uy-HSmkHS4XuLAE18oPqdKiVj9bELqtX"

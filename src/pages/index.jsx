@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { graphql } from 'gatsby';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
 import { AboutSection } from '../components/index/AboutSection';
@@ -78,10 +78,10 @@ const IndexPage = ({ data }) => {
         <ImagePreviewContextProvider>
           <BurgerMenu />
           <main>
-            <div className={styles.relativeDiv}>
+            <div css={styles.relativeDiv}>
               <AboutSection>
                 <MarkdownContent
-                  className={styles.markdown}
+                  css={styles.markdown}
                   dangerouslySetInnerHTML={{ __html: aboutNode.html }}
                 />
               </AboutSection>
