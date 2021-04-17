@@ -1,6 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from '@emotion/react';
-import { css } from '@emotion/css';
+import { ThemeProvider, css } from '@emotion/react';
 import { Header } from '../common/Headers';
 import { Project } from './Project';
 import { Flex } from '../common/Flex';
@@ -47,8 +46,8 @@ const styles = {
 const ProjectsSection = ({ nodes }) => (
   <div direction="column">
     <div>
-      <Header className={styles.stickyTitle}>Projects</Header>
-      <Flex className={styles.projectsWrapper} direction="column" gap="5rem">
+      <Header css={styles.stickyTitle}>Projects</Header>
+      <Flex css={styles.projectsWrapper} direction="column" gap="5rem">
         {nodes.map((node, i) => {
           const theme = { marker: node.frontmatter.marker };
           return (

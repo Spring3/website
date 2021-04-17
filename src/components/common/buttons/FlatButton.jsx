@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/react';
 import { Button } from './Button';
 
 const styles = css`
@@ -9,7 +9,7 @@ const styles = css`
 
 const FlatButton = ({ className, children, ...rest }) => {
   return (
-    <Button className={cx(styles, className)} {...rest}>
+    <Button className={className} css={styles} {...rest}>
       {children}
     </Button>
   );

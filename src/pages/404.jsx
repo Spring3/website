@@ -1,5 +1,5 @@
 import React, { useEffect, useState, memo, useMemo } from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import { useSpring } from 'react-spring';
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
 import { randomFlicker, randomShift } from '../animations';
@@ -130,12 +130,12 @@ const NotFoundPage = () => {
         />
         <BurgerMenu />
         <Flex
-          className={styles.fullHeightFlex}
+          css={styles.fullHeightFlex}
           direction="column"
           justifyContent="center"
           alignItems="center"
         >
-          <Decorations className={styles.overflowDecorations} layer="back">
+          <Decorations css={styles.overflowDecorations} layer="back">
             <Circle
               style={firstCircleAnimation}
               size="300px"
@@ -162,7 +162,7 @@ const NotFoundPage = () => {
             />
           </Decorations>
           <Flex
-            className={styles.fullHeightFlex}
+            css={styles.fullHeightFlex}
             direction="column"
             justifyContent="center"
             alignItems="center"
@@ -527,12 +527,12 @@ const NotFoundPage = () => {
               </Decorations>
             </Flex>
             <Flex
-              className={styles.messageSection}
+              css={styles.messageSection}
               direction="column"
               alignItems="center"
             >
               <Subheading>This page does not exist</Subheading>
-              <Link className={styles.largerText} to="/">
+              <Link css={styles.largerText} to="/">
                 Back To Main Page
               </Link>
             </Flex>

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { cx, css } from '@emotion/css';
+import { css } from '@emotion/react';
 import { animated, useSpring } from 'react-spring';
 import { useIntersection } from 'react-use';
 
@@ -44,7 +44,7 @@ const CVSection = ({ id, children, span }) => {
 
   return (
     <animated.section
-      className={cx(styles({ span }))}
+      css={styles({ span })}
       id={id}
       style={sectionAnimation}
       ref={ref}

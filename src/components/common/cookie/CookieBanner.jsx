@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState, memo } from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import CookieOutlineIcon from 'mdi-react/CookieIcon';
 import CaretDownIcon from 'mdi-react/CaretDownOutlineIcon';
 import CaretUpIcon from 'mdi-react/CaretUpOutlineIcon';
@@ -119,32 +119,28 @@ const CookieBanner = memo(() => {
   }
 
   return (
-    <animated.div className={styles.container} style={introAnimation}>
+    <animated.div css={styles.container} style={introAnimation}>
       <Flex alignItems="center" justifyContent="space-between">
-        <h3 className={styles.header}>
-          <CookieOutlineIcon
-            className={styles.icon}
-            size={40}
-            color="#875A34"
-          />{' '}
+        <h3 css={styles.header}>
+          <CookieOutlineIcon css={styles.icon} size={40} color="#875A34" />{' '}
           Cookies!
         </h3>
         <FlatButton onClick={onCaretClick}>
           {isExpanded ? (
-            <CaretDownIcon className={styles.icon} />
+            <CaretDownIcon css={styles.icon} />
           ) : (
-            <CaretUpIcon className={styles.icon} />
+            <CaretUpIcon css={styles.icon} />
           )}
         </FlatButton>
       </Flex>
-      <animated.div className={styles.description} style={descriptionAnimation}>
+      <animated.div css={styles.description} style={descriptionAnimation}>
         <p>
           I use anonymised google analytics cookies to see if anyone visits this
           website at all. Neither do I export nor use this data in any way other
           than observative.
         </p>
         <Reference
-          className={styles.policyLink}
+          css={styles.policyLink}
           href="https://policies.google.com/technologies/partner-sites"
           newTab
         >

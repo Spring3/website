@@ -1,6 +1,6 @@
 import React from 'react';
 import { memo } from 'react';
-import { cx, css } from '@emotion/css';
+import { css } from '@emotion/react';
 import { Flex } from './Flex';
 
 const styles = css`
@@ -40,7 +40,7 @@ const styles = css`
 
 const Navbar = memo(({ className, children, ...rest }) => {
   return (
-    <Flex className={cx(styles, className)} {...rest}>
+    <Flex css={styles} className={className} {...rest}>
       {children}
     </Flex>
   );

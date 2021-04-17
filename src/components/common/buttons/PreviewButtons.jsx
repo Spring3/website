@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/react';
 
 const styles = {
   genericStyles: css`
@@ -58,14 +58,11 @@ const styles = {
 const PreviewButton = ({ className, children, onClick, disabled }) => {
   return (
     <button
-      className={cx(
+      className={className}
+      css={[
         styles.genericStyles,
-        {
-          [styles.disabledButton]: disabled,
-          [styles.enabledButton]: !disabled,
-        },
-        className
-      )}
+        ...(disabled ? [styles.disabledButton] : [styles.enabledButton]),
+      ]}
       onClick={onClick}
       disabled={disabled}
     >
@@ -78,7 +75,8 @@ const PreviewButtonPrevious = memo(
   ({ className, children, onClick, disabled }) => {
     return (
       <PreviewButton
-        className={cx(styles.buttonPrevious, className)}
+        className={className}
+        css={styles.buttonPrevious}
         onClick={onClick}
         disabled={disabled}
       >
@@ -93,7 +91,8 @@ PreviewButtonPrevious.displayName = 'PreviewButtonPrevious';
 const PreviewButtonNext = memo(({ className, children, onClick, disabled }) => {
   return (
     <PreviewButton
-      className={cx(styles.buttonNext, className)}
+      className={className}
+      css={styles.buttonNext}
       onClick={onClick}
       disabled={disabled}
     >

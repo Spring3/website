@@ -1,5 +1,5 @@
 import React from 'react';
-import { cx, css } from '@emotion/css';
+import { css } from '@emotion/react';
 
 const styles = css`
   position: fixed;
@@ -19,7 +19,11 @@ const styles = css`
 `;
 
 const DownloadFooter = ({ className, children }) => {
-  return <footer className={cx(styles, className)}>{children}</footer>;
+  return (
+    <footer className={className} css={styles}>
+      {children}
+    </footer>
+  );
 };
 
 export { DownloadFooter };

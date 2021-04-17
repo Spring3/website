@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/react';
 import { animated } from 'react-spring';
 
 const styles = ({
@@ -36,7 +36,7 @@ const styles = ({
 };
 
 const Flex = ({ children, id, className, style, ...rest }) => (
-  <animated.div id={id} className={cx(styles(rest), className)} style={style}>
+  <animated.div id={id} className={className} css={styles(rest)} style={style}>
     {children}
   </animated.div>
 );
