@@ -7,14 +7,14 @@ You are welcome to use or reuse this project for your purposes, if you reference
 Development:
 
 ```
-  npm start
+  yarn && start
 ```
 
 Production:
 
 ```
-  npm build
-  npm run serve
+  yarn && yarn build
+  yarn serve
 ```
 
 ### Core

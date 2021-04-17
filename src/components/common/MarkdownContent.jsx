@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/react';
 import { genericStyles } from './Reference';
 
 const defaultStyles = (marker) => css`
@@ -80,7 +80,7 @@ const defaultStyles = (marker) => css`
 
 const MarkdownContent = ({ className, children, marker, ...rest }) => {
   return (
-    <div className={cx(defaultStyles(marker), className)} {...rest}>
+    <div className={className} css={defaultStyles(marker)} {...rest}>
       {children}
     </div>
   );

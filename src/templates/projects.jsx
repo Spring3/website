@@ -1,8 +1,7 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { graphql } from 'gatsby';
-import { ThemeProvider } from '@emotion/react';
-import { css, cx } from '@emotion/css';
-import { animated, useChain, useSpring } from 'react-spring';
+import { ThemeProvider, css } from '@emotion/react';
+import { animated, useChain, useSpring, useSpringRef } from 'react-spring';
 
 import { GlobalStyles, OGP } from '../components/GlobalStyle';
 import { ButtonBack } from '../components/common/buttons';
@@ -80,9 +79,9 @@ const styles = {
 };
 
 const ProjectsPage = (props) => {
-  const imagesAnimationRef = useRef();
-  const referencesAnimationRef = useRef();
-  const tagsAnimationRef = useRef();
+  const imagesAnimationRef = useSpringRef();
+  const referencesAnimationRef = useSpringRef();
+  const tagsAnimationRef = useSpringRef();
   // eslint-disable-next-line
   const post = props.data.markdownRemark;
   // eslint-disable-next-line
@@ -140,21 +139,21 @@ const ProjectsPage = (props) => {
                 />
               </Navbar>
               <BurgerMenu />
-              <div className={styles.pageLayout}>
+              <div css={styles.pageLayout}>
                 <Flex
-                  className={styles.contentNav}
+                  css={styles.contentNav}
                   alignItems="center"
                   justifyContent="space-between"
                 >
                   <animated.div
-                    className={styles.relative}
+                    css={styles.relative}
                     id="title"
                     style={contentRevealAnimation}
                   >
                     <Subheading>{post.frontmatter.title}</Subheading>
                   </animated.div>
                   <Flex
-                    className={cx(styles.relative, styles.referenceContainer)}
+                    css={[styles.relative, styles.referenceContainer]}
                     style={referencesAnimation}
                     alignItems="center"
                     flexWrap="wrap"
@@ -169,7 +168,7 @@ const ProjectsPage = (props) => {
                   </Flex>
                 </Flex>
                 <animated.div
-                  className={cx(styles.relative, styles.infoWrapper)}
+                  css={[styles.relative, styles.infoWrapper]}
                   style={contentRevealAnimation}
                 >
                   <MarkdownContent
@@ -199,7 +198,7 @@ const ProjectsPage = (props) => {
                   })}
                 </animated.div>
                 <animated.div
-                  className={cx(styles.relative, styles.info)}
+                  css={[styles.relative, styles.info]}
                   style={imageRevealAnimation}
                 >
                   <ImageCarousel images={images} />

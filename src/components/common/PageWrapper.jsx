@@ -1,5 +1,5 @@
 import React from 'react';
-import { cx, css } from '@emotion/css';
+import { css } from '@emotion/react';
 
 const paddingStyles = css`
   padding-left: 6%;
@@ -19,6 +19,7 @@ const paddingStyles = css`
 `;
 
 const styles = css`
+  ${paddingStyles};
   @media (orientation: landscape) and (min-width: 750px) and (max-width: 900px) {
     padding-top: 0rem;
     padding-bottom: 1.5rem;
@@ -32,7 +33,9 @@ const styles = css`
 
 const PageWrapper = ({ className, children }) => {
   return (
-    <main className={cx(paddingStyles, styles, className)}>{children}</main>
+    <main css={styles} className={className}>
+      {children}
+    </main>
   );
 };
 

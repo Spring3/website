@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/react';
 import { Carousel } from 'react-responsive-carousel';
 import { useImagePreview } from '../../context/ImagePreviewContext';
 import { LazyImage } from './LazyImage';
@@ -57,9 +57,9 @@ const ImageCarousel = ({ className, images }) => {
   if (images.length === 1) {
     const image = images[0];
     return (
-      <div className={cx(styles.singleImage, className)} ref={containerRef}>
+      <div className={className} css={styles.singleImage} ref={containerRef}>
         <LazyImage
-          className={cx(styles.slide, styles.singleImage)}
+          css={[styles.slide, styles.singleImage]}
           key={image.name}
           alt={image.name}
           src={image.src}
@@ -73,9 +73,9 @@ const ImageCarousel = ({ className, images }) => {
   }
 
   return (
-    <div className={cx(styles.container, className)} ref={containerRef}>
+    <div className={className} css={styles.container} ref={containerRef}>
       <Carousel
-        className={styles.carousel}
+        css={styles.carousel}
         showStatus={false}
         showIndicators={false}
         showThumbs={false}
@@ -88,7 +88,7 @@ const ImageCarousel = ({ className, images }) => {
       >
         {images.map((image) => (
           <LazyImage
-            className={styles.slide}
+            css={styles.slide}
             key={image.name}
             intersectionTriggerRef={containerRef}
             alt={image.name}

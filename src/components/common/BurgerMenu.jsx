@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect, memo } from 'react';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import MenuIcon from 'mdi-react/MenuIcon';
 import CloseIcon from 'mdi-react/CloseIcon';
 import { useSpring, animated } from 'react-spring';
@@ -192,11 +192,11 @@ const BurgerMenu = memo(() => {
         </Helmet>
       ) : null}
       <animated.div
-        className={styles.buttonWrapper}
+        css={styles.buttonWrapper}
         style={burgerMenuButtonAnimation}
       >
         <Reference
-          className={styles.button}
+          css={styles.button}
           role="button"
           href="#"
           onClick={onIconClick}
@@ -205,71 +205,67 @@ const BurgerMenu = memo(() => {
         </Reference>
       </animated.div>
       <animated.div
-        className={styles.overlay}
+        css={styles.overlay}
         style={overlayAnimation}
         onClick={onIconClick}
         // fix for scrolling on iphone
         onTouchStart={(e) => e.preventDefault()}
       />
       <animated.div
-        className={styles.panelWrapper}
+        css={styles.panelWrapper}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={expandAnimation}
       >
         <Flex
-          className={styles.logoContainer}
+          css={styles.logoContainer}
           justifyContent="center"
           alignItems="center"
         >
           <Logo width="65px" height="32.5px" />
         </Flex>
         <Flex
-          className={styles.panel}
+          css={styles.panel}
           style={expandContentPanelAnimation}
           direction="column"
           justifyContent="space-between"
           flexWrap="nowrap"
         >
           <Flex
-            className={styles.projectSection}
+            css={styles.projectSection}
             direction="column"
             justifyContent="flex-start"
           >
-            <h4 className={styles.marginless}>Projects</h4>
-            <Link className={styles.transparentLink} to="/aurelins-website">
-              <SubHeader className={styles.marginless}>
-                Aurelins Website
-              </SubHeader>
+            <h4 css={styles.marginless}>Projects</h4>
+            <Link css={styles.transparentLink} to="/aurelins-website">
+              <SubHeader css={styles.marginless}>Aurelins Website</SubHeader>
             </Link>
-            <Link className={styles.transparentLink} to="/redshape">
-              <SubHeader className={styles.marginless}>Redshape</SubHeader>
+            <Link css={styles.transparentLink} to="/redshape">
+              <SubHeader css={styles.marginless}>Redshape</SubHeader>
             </Link>
-            <Link className={styles.transparentLink} to="/starbot">
-              <SubHeader className={styles.marginless}>Starbot</SubHeader>
+            <Link css={styles.transparentLink} to="/starbot">
+              <SubHeader css={styles.marginless}>Starbot</SubHeader>
             </Link>
-            <Link className={styles.transparentLink} to="/twitch-auto-points">
-              <SubHeader className={styles.marginless}>
-                Twitch Auto Points
-              </SubHeader>
+            <Link css={styles.transparentLink} to="/twitch-auto-points">
+              <SubHeader css={styles.marginless}>Twitch Auto Points</SubHeader>
             </Link>
-            <Link className={styles.transparentLink} to="/website">
-              <SubHeader className={styles.marginless}>Website</SubHeader>
+            <Link css={styles.transparentLink} to="/website">
+              <SubHeader css={styles.marginless}>Website</SubHeader>
             </Link>
           </Flex>
           <Flex
-            className={styles.utilitySection}
+            css={styles.utilitySection}
             direction="column"
             justifyContent="center"
           >
             <CookieManager />
             <Flex
-              className={styles.utilitySection}
+              css={styles.utilitySection}
               justifyContent="space-between"
               alignItems="center"
             >
-              <Link className={styles.transparentLink} to="/cv">
-                <h4 className={styles.marginless}>CV Page</h4>
+              <Link css={styles.transparentLink} to="/cv">
+                <h4 css={styles.marginless}>CV Page</h4>
               </Link>
               <SocialButtons size={24} onlyImportant />
             </Flex>

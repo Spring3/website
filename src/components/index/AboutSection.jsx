@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { css } from '@emotion/css';
-import { animated, useChain, useSpring } from 'react-spring';
+import React from 'react';
+import { css } from '@emotion/react';
+import { animated, useChain, useSpring, useSpringRef } from 'react-spring';
 
 import { Header } from '../common/Headers';
 import { SocialButtons } from '../common/SocialButtons';
@@ -46,8 +46,8 @@ const styles = {
 };
 
 const AboutSection = ({ children }) => {
-  const headerAnimationRef = useRef();
-  const bodyAnimationRef = useRef();
+  const headerAnimationRef = useSpringRef();
+  const bodyAnimationRef = useSpringRef();
 
   const headerAnimation = useSpring(reveal({ ref: headerAnimationRef }));
   const springAnimation = useSpring(reveal({ ref: bodyAnimationRef }));
@@ -55,11 +55,7 @@ const AboutSection = ({ children }) => {
   useChain([headerAnimationRef, bodyAnimationRef], [0.2, 0.4]);
 
   return (
-    <Flex
-      className={styles.contentPanel}
-      direction="column"
-      justifyContent="center"
-    >
+    <Flex css={styles.contentPanel} direction="column" justifyContent="center">
       <Decorations layer="back">
         <Flickering duration={1}>
           <Rectangle
@@ -114,7 +110,7 @@ const AboutSection = ({ children }) => {
         </Flickering>
       </Decorations>
       <animated.div style={headerAnimation}>
-        <Header className={styles.hugeHeader}>Hello and Welcome!</Header>
+        <Header css={styles.hugeHeader}>Hello and Welcome!</Header>
       </animated.div>
       <animated.div style={springAnimation}>
         {children}

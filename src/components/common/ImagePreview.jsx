@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { css } from '@emotion/css';
+import { css } from '@emotion/react';
 import ArrowLeftIcon from 'mdi-react/ArrowLeftThickIcon';
 import ArrowRightIcon from 'mdi-react/ArrowRightThickIcon';
 import CloseIcon from 'mdi-react/CloseIcon';
@@ -229,18 +229,14 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
         </Helmet>
         <ImagePreviewPortal>
           <animated.div
-            className={styles.previewContainer}
+            css={styles.previewContainer}
             style={containerAnimation}
             onClick={onClose}
           >
-            <CloseIcon
-              className={styles.closeIcon}
-              color="white"
-              onClick={onClose}
-            />
-            <div className={styles.previewImages}>
+            <CloseIcon css={styles.closeIcon} color="white" onClick={onClose} />
+            <div css={styles.previewImages}>
               <animated.img
-                className={styles.slidingImage(height)}
+                css={styles.slidingImage(height)}
                 src={images[0].src}
                 alt={images[0].name}
                 sizes={images[0].sizes}
@@ -268,7 +264,7 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
       </Helmet>
       <ImagePreviewPortal>
         <animated.div
-          className={styles.previewContainer}
+          css={styles.previewContainer}
           style={containerAnimation}
           onClick={() => {
             // this is done because when drag event is cancelled, releasing the mouse triggered this click event and closed the preview
@@ -280,20 +276,16 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
             }
           }}
         >
-          <CloseIcon
-            className={styles.closeIcon}
-            color="white"
-            onClick={onClose}
-          />
+          <CloseIcon css={styles.closeIcon} color="white" onClick={onClose} />
           <PreviewButtonPrevious onClick={previousSlide} disabled={index === 0}>
-            <ArrowLeftIcon className={styles.previewButtonIcon} color="white" />
+            <ArrowLeftIcon css={styles.previewButtonIcon} color="white" />
           </PreviewButtonPrevious>
-          <div className={styles.previewImages}>
+          <div css={styles.previewImages}>
             {draggingAnimationSprings.map(({ display, transform }, i) => {
               const image = images[i];
               return (
                 <animated.img
-                  className={styles.slidingImage(height)}
+                  css={styles.slidingImage(height)}
                   src={image.src}
                   srcSet={image.srcSet}
                   sizes={image.sizes}
@@ -311,10 +303,7 @@ const ImagePreview = ({ images, startIndex = 0, onClose }) => {
             onClick={nextSlide}
             disabled={index === images.length - 1}
           >
-            <ArrowRightIcon
-              className={styles.previewButtonIcon}
-              color="white"
-            />
+            <ArrowRightIcon css={styles.previewButtonIcon} color="white" />
           </PreviewButtonNext>
         </animated.div>
       </ImagePreviewPortal>

@@ -1,6 +1,6 @@
 import React, { memo, useState, useRef, useEffect } from 'react';
 import { useIntersection } from 'react-use';
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/react';
 
 const styles = {
   defaultPlaceholder: css`
@@ -69,13 +69,13 @@ const LazyImage = memo(
 
     return (
       <Component
-        className={cx(
-          {
-            [styles.defaultPlaceholder]: isRenderingPlaceholder && !placeholder,
-            [styles.preview]: isRenderingPlaceholder && placeholder,
-          },
-          className
-        )}
+        className={className}
+        css={[
+          ...(isRenderingPlaceholder && !placeholder
+            ? [styles.defaultPlaceholder]
+            : []),
+          ...(isRenderingPlaceholder && placeholder ? [styles.preview] : []),
+        ]}
         src={imageSrc}
         ref={imageRef}
         loading="lazy"

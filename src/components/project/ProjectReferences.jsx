@@ -1,5 +1,5 @@
 import React from 'react';
-import { cx, css } from '@emotion/css';
+import { css } from '@emotion/react';
 import GithubIcon from 'mdi-react/GithubIcon';
 import CardSearchOutlineIcon from 'mdi-react/CardSearchOutlineIcon';
 import ChromeIcon from 'mdi-react/GoogleChromeIcon';
@@ -38,7 +38,7 @@ const styles = {
 };
 
 const ProjectReference = ({ href, children }) => (
-  <Reference className={styles.reference} href={href} newTab>
+  <Reference css={styles.reference} href={href} newTab>
     {children}
   </Reference>
 );
@@ -50,10 +50,7 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
     components.push(
       <ProjectReference key={frontmatter.chrome} href={frontmatter.chrome}>
         <ChromeIcon
-          className={cx({
-            [styles.onlyIcons]: onlyIcons,
-            [styles.icons]: !onlyIcons,
-          })}
+          css={onlyIcons ? [styles.onlyIcons] : [styles.icons]}
           size={size}
         />
         {onlyIcons ? '' : ' Chrome Store'}
@@ -65,10 +62,7 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
     components.push(
       <ProjectReference key={frontmatter.firefox} href={frontmatter.firefox}>
         <FirefoxIcon
-          className={cx({
-            [styles.onlyIcons]: onlyIcons,
-            [styles.icons]: !onlyIcons,
-          })}
+          css={onlyIcons ? [styles.onlyIcons] : [styles.icons]}
           size={size}
         />
         {onlyIcons ? '' : ' Firefox Store'}
@@ -80,10 +74,7 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
     components.push(
       <ProjectReference key={frontmatter.demo} href={frontmatter.demo}>
         <CardSearchOutlineIcon
-          className={cx({
-            [styles.onlyIcons]: onlyIcons,
-            [styles.icons]: !onlyIcons,
-          })}
+          css={onlyIcons ? [styles.onlyIcons] : [styles.icons]}
           size={size}
         />
         {onlyIcons ? '' : ' Demo'}
@@ -98,10 +89,7 @@ const ProjectReferences = ({ frontmatter, size = 30, onlyIcons = false }) => {
         href={frontmatter.repository}
       >
         <GithubIcon
-          className={cx({
-            [styles.onlyIcons]: onlyIcons,
-            [styles.icons]: !onlyIcons,
-          })}
+          css={onlyIcons ? [styles.onlyIcons] : [styles.icons]}
           size={size}
         />
         {onlyIcons ? '' : ' Source'}

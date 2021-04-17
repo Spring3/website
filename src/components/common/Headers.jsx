@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { css, cx } from '@emotion/css';
+import { css } from '@emotion/react';
 
 const styles = {
   header: css`
@@ -28,7 +28,7 @@ const styles = {
 
 const Header = memo(({ children, className }) => {
   return (
-    <h1 className={cx(styles.header, className)} css={styles.header}>
+    <h1 className={className} css={styles.header}>
       {children}
     </h1>
   );
@@ -38,7 +38,7 @@ Header.displayName = 'Header';
 
 const SubHeader = memo(({ children, className }) => {
   return (
-    <h2 className={cx(styles.subheader, className)} css={styles.subheader}>
+    <h2 className={className} css={styles.subheader}>
       {children}
     </h2>
   );
