@@ -1,5 +1,5 @@
 ---
 title: Daniyil Vasylenko
-email: daniyil.vasylenko@gmail.com
+email: connect.danv@gmail.com
 updatedAt: Aug 01 2020
 ---
