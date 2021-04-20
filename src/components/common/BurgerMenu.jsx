@@ -125,7 +125,7 @@ const BurgerMenu = memo(() => {
         clearTimeout(timeout);
       } else {
         timeout = setTimeout(() => {
-          setMenuOpen(false);
+          // setMenuOpen(false);
         }, 2000);
       }
     } else {
@@ -231,44 +231,49 @@ const BurgerMenu = memo(() => {
           justifyContent="space-between"
           flexWrap="nowrap"
         >
-          <Flex
-            css={styles.projectSection}
-            direction="column"
-            justifyContent="flex-start"
-          >
-            <h4 css={styles.marginless}>Projects</h4>
-            <Link css={styles.transparentLink} to="/aurelins-website">
-              <SubHeader css={styles.marginless}>Aurelins Website</SubHeader>
-            </Link>
-            <Link css={styles.transparentLink} to="/redshape">
-              <SubHeader css={styles.marginless}>Redshape</SubHeader>
-            </Link>
-            <Link css={styles.transparentLink} to="/starbot">
-              <SubHeader css={styles.marginless}>Starbot</SubHeader>
-            </Link>
-            <Link css={styles.transparentLink} to="/twitch-auto-points">
-              <SubHeader css={styles.marginless}>Twitch Auto Points</SubHeader>
-            </Link>
-            <Link css={styles.transparentLink} to="/website">
-              <SubHeader css={styles.marginless}>Website</SubHeader>
-            </Link>
+          <Flex direction="column" margined gap="2rem">
+            <Flex
+              css={styles.projectSection}
+              direction="column"
+              justifyContent="flex-start"
+            >
+              <h4 css={styles.marginless}>Projects</h4>
+              <Link css={styles.transparentLink} to="/aurelins-website">
+                <SubHeader css={styles.marginless}>Aurelins Website</SubHeader>
+              </Link>
+              <Link css={styles.transparentLink} to="/redshape">
+                <SubHeader css={styles.marginless}>Redshape</SubHeader>
+              </Link>
+              <Link css={styles.transparentLink} to="/starbot">
+                <SubHeader css={styles.marginless}>Starbot</SubHeader>
+              </Link>
+              <Link css={styles.transparentLink} to="/twitch-auto-points">
+                <SubHeader css={styles.marginless}>
+                  Twitch Auto Points
+                </SubHeader>
+              </Link>
+              <Link css={styles.transparentLink} to="/website">
+                <SubHeader css={styles.marginless}>Website</SubHeader>
+              </Link>
+            </Flex>
+            <Flex
+              css={styles.projectSection}
+              direction="column"
+              justifyContent="flex-start"
+            >
+              <h4 css={styles.marginless}>Others</h4>
+              <Link css={styles.transparentLink} to="/cv">
+                <SubHeader css={styles.marginless}>CV Page</SubHeader>
+              </Link>
+            </Flex>
           </Flex>
           <Flex
             css={styles.utilitySection}
-            direction="column"
-            justifyContent="center"
+            justifyContent="space-between"
+            alignItems="center"
           >
             <CookieManager />
-            <Flex
-              css={styles.utilitySection}
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              <Link css={styles.transparentLink} to="/cv">
-                <h4 css={styles.marginless}>CV Page</h4>
-              </Link>
-              <SocialButtons size={24} onlyImportant />
-            </Flex>
+            <SocialButtons size={24} onlyImportant />
           </Flex>
         </Flex>
       </animated.div>

@@ -1,13 +1,19 @@
 import React from 'react';
 import { useCookieConsent } from '../../../context/CookieConsentContext';
 import { Flex } from '../Flex';
-import { Reference } from '../Reference';
+import { css } from '@emotion/react';
+import { Toggle } from '../Toggle';
+
+const styles = {
+  label: css`
+    font-weight: bold;
+  `,
+};
 
 const CookieManager = () => {
   const { consent, acceptCookies, rejectCookies } = useCookieConsent();
 
-  const updateCookieValue = async (e) => {
-    e.preventDefault();
+  const updateCookieValue = async () => {
     const nextValue = consent === null ? true : !consent;
     if (nextValue === true) {
       acceptCookies();
@@ -16,15 +22,15 @@ const CookieManager = () => {
     }
   };
 
-  const text = consent === true ? 'Reject cookies' : 'Allow cookies';
-
   return (
     <Flex gap="1rem" margined alignItems="center">
-      <strong>Cookies:</strong>&nbsp;
-      <span>{consent ? 'Allowed' : 'Rejected'}</span>
-      <Reference href="#" role="button" onClick={updateCookieValue}>
-        {text}
-      </Reference>
+      <Toggle
+        onChange={updateCookieValue}
+        label="Cookies:"
+        checked={consent}
+        id="cookie-manager"
+        labelStyles={styles.label}
+      />
     </Flex>
   );
 };
